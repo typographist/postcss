@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "es6",
+    "target": "es2017",
+    "rootDir": ".",
+    "outDir": "./_dist",
+    "sourceMap": false,
+    "lib": [
+      "es2017",
+      "dom"
+    ]
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
