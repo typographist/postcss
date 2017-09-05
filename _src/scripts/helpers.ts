@@ -10,14 +10,14 @@ export const isArray = function(val: any): boolean {
 }
 
 export const isValidBase = function(val: string): boolean {
-        try {
-          if (CONTAINS_PX.test(val)) return true;
-          throw new Error(`${val} is incorrect value! Please, use pixels.`);
+  try {
+    if (CONTAINS_PX.test(val)) return true;
+    throw new Error(`${val} is incorrect value! Please, use pixels.`);
 
-        } catch(err) {
-          console.log(err);
-          return false;
-        }
+  } catch(err) {
+    console.log(err);
+    return false;
+  }
 };
 
 export const getValidBase = function(val: string) {
@@ -34,7 +34,7 @@ export const calcLeading = function(val: object): number {
 
 export const calcRoot = function(val: object):number {
   return Math.round(calcLeading(val) * HALF);
-} 
+}
 
 export const convertToEm = function(val: number): string {
   return val / BROWSER_DEFAULT_FONT_SIZE + 'em';

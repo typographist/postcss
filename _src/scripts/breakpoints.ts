@@ -1,5 +1,5 @@
 import breakpoitsConfig from './breakpoints.config';
-import { 
+import {
   CONTAINS_PX,
   CONTAINS_EM,
   BROWSER_DEFAULT_FONT_SIZE,
@@ -28,7 +28,7 @@ export const below = (breakVal: string) => {
   }
 
   return convertToEm(getValidBreakpoint(breakVal));
-        
+
         /*
         @media screen and (max-width: result) {
           @content;
@@ -37,35 +37,35 @@ export const below = (breakVal: string) => {
 };
 
 export const between = (breakVal1: string, breakVal2: string) => {
-        let result: object = new Object();
+  let result: object = new Object();
 
-        if (!parseFloat(breakVal1) && !parseFloat(breakVal2)) {
-          const breakpoint1 = breakpoitsConfig.find(item => item.name === breakVal1.trim());
-          const breakpoint2 = breakpoitsConfig.find(item => item.name === breakVal2.trim());
+  if (!parseFloat(breakVal1) && !parseFloat(breakVal2)) {
+    const breakpoint1 = breakpoitsConfig.find(item => item.name === breakVal1.trim());
+    const breakpoint2 = breakpoitsConfig.find(item => item.name === breakVal2.trim());
 
-          result['firtBreakValue'] = convertToEm(getValidBreakpoint(breakpoint1.breakpoint));
-          result['lastBreakValue'] = convertToEm(getValidBreakpoint(breakpoint2.breakpoint) -1);
+    result['firtBreakValue'] = convertToEm(getValidBreakpoint(breakpoint1.breakpoint));
+    result['lastBreakValue'] = convertToEm(getValidBreakpoint(breakpoint2.breakpoint) -1);
 
-        } else {
-          result['firstBreakValue'] = convertToEm(getValidBreakpoint(breakVal1));
-          result['lastBreakValue'] = convertToEm(getValidBreakpoint(breakVal2) -1);
-        }
+  } else {
+    result['firstBreakValue'] = convertToEm(getValidBreakpoint(breakVal1));
+    result['lastBreakValue'] = convertToEm(getValidBreakpoint(breakVal2) -1);
+  }
 
-        return result;
+  return result;
 
-        /*
-          @media screen and (min-with: firstbreakValue) and (max-width: lastBreakValue) {
-            @content;
-          }
-        */
+  /*
+    @media screen and (min-with: firstbreakValue) and (max-width: lastBreakValue) {
+      @content;
+    }
+  */
 };
 
-// На чсёт неё надо подумать. Её может заментиь between и она не принимает значения в пикселях
+// На счёт неё надо подумать. Её может заментиь between и она не принимает значения в пикселях
 
 // export const only = (breakVal: string) => {
 //         let result;
 //         const breakpoint = config.find(item => item.name === breakVal);
-        
+
 //         const getNextBreakpoint = (breakpoint: object) => {
 //           const index = config.indexOf(breakpoint);
 
