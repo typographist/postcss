@@ -28,7 +28,7 @@ module.exports = {
               presets: ['env', 'stage-0'],
             },
           },
-          'ts-loader',
+          'awesome-typescript-loader',
         ],
         exclude: /node_modules/,
       },
