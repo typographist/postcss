@@ -1,24 +1,46 @@
 import config from './config';
-import {  BROWSER_DEFAULT_FONT_SIZE, HALF, } from './constants';
+import { 
+  CONTAINS_PX, 
+  CONTAINS_EM, 
+  BROWSER_DEFAULT_FONT_SIZE, 
+  HALF,
+} from './constants';
+
 import { 
   isObject, 
   calcLeading, 
   calcRoot, 
   isValidBase,
+  isValidBreakpoint,
   isArray,
 } from './helpers';
 
-const isAllBaseBalid = function(val: string[]): boolean {
+const isAllBaseValid = function(val: string[]): boolean {
   return val.every(item => isValidBase(item))
 }
 
 const getFloatedBase = function(base: string | string[]):string | string[] {
   let result;
   
-  if (Array.isArray(base) && isAllBaseBalid(base)) {
-    result = base.map(item => parseFloat(item.trim()));
+  if (Array.isArray(base) && isAllBaseValid(base)) {
+    result = base.map(item => {
+      if (CONTAINS_PX.test(item)) {
+        return  parseFloat(item.trim());
+      }
+
+      if (CONTAINS_EM.test(item)) {
+        const fontSize = parseFloat(item.trim()) * BROWSER_DEFAULT_FONT_SIZE;
+        return fontSize;
+      }
+    });
   } else if (typeof base === 'string') {
-    result = parseFloat(base.trim());
+    if (CONTAINS_PX.test(base)) {
+      result =  parseFloat(base.trim());
+    }
+
+    if (CONTAINS_EM.test(base)) {
+      result = parseFloat(base.trim()) * BROWSER_DEFAULT_FONT_SIZE;
+    }
   }
   
   return result;
@@ -34,7 +56,7 @@ const makeDefaultBreakpoint = function(): object  {
   breakpoint['base'] = getFloatedBase(base) || '0';
   breakpoint['lineHeight'] = config.lineHeight;
   breakpoint['ratio'] = config.ratio;
-  breakpoint['breakpoint'] = 0;
+  breakpoint['breakpoint'] = '0px';
   breakpoint['name'] = 'default';
   breakpoint['root'] = calcLeading(breakpoint);
 
@@ -77,7 +99,8 @@ breakpointsConfig.map((item, i) => {
         base: parseFloat(item.base)
       });
     }
-  return item;
+
+    return item;
 
 }).map((item, i) => {
     if (!item.lineHeight) {
@@ -85,6 +108,7 @@ breakpointsConfig.map((item, i) => {
         lineHeight: breakpointsConfig[i - 1].lineHeight
       });
     }
+
     return item;
 
 }).map((item, i) => {
@@ -93,14 +117,29 @@ breakpointsConfig.map((item, i) => {
         ratio: breakpointsConfig[i - 1].ratio
       });
     }
+
     return item;
 
 }).map(item => Object.assign(item, {
     root: calcRoot(item)
-}));
+})).map(item => {
+    const breakVal = item.breakpoint;
+    if (isValidBreakpoint(breakVal)) {
+       if (CONTAINS_PX.test(breakVal)) {
+         return Object.assign(item, {
+          breakpoint: breakVal,
+         });
+       }
 
-const breakpoins = breakpointsConfig;
-export default breakpoins;
+       if (CONTAINS_EM.test(breakVal)) {
+         return Object.assign(item, {
+          breakpoint: `${parseFloat(breakVal.trim()) * BROWSER_DEFAULT_FONT_SIZE}px`
+         });
+       }
+    }
+});
+
+export default breakpointsConfig;
 
 // ToDo
 // 1) Валидировать LineHeight (проверка начисло с точкой), вывести сообщение об ошибке.
