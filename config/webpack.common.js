@@ -5,8 +5,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: ['babel-polyfill', path.join(__dirname, '..', '/_src/index'),
-  ],
+  entry: path.join(__dirname, '..', '/_src/index'),
   output: {
     path: __dirname,
     filename: './_dist/index.js',
@@ -22,12 +21,6 @@ module.exports = {
       {
         test: /\.tsx?$/,
         use: [
-          {
-            loader: 'babel-loader',
-            query: {
-              presets: ['env', 'stage-0'],
-            },
-          },
           'awesome-typescript-loader',
         ],
         exclude: /node_modules/,
