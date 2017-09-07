@@ -1,5 +1,10 @@
-import { CONTAINS_PX, HALF, BROWSER_DEFAULT_FONT_SIZE } from './constants';
-import { CONTAINS_EM } from './constants';
+import { 
+  CONTAINS_PX, 
+  CONTAINS_EM, 
+  CONTAINS_PX_OR_EM, 
+  HALF, 
+  BROWSER_DEFAULT_FONT_SIZE 
+} from './constants';
 
 export const isObject = function(val: any): boolean {
   return Object.prototype.toString.call(val).slice(8, -1) === 'Object';
@@ -11,8 +16,19 @@ export const isArray = function(val: any): boolean {
 
 export const isValidBase = function(val: string): boolean {
   try {
-    if (CONTAINS_PX.test(val)) return true;
-    throw new Error(`${val} is incorrect value! Please, use pixels.`);
+    if (CONTAINS_PX_OR_EM.test(val)) return true;
+    throw new Error(`${val} is incorrect value! Please, use pixels or em.`);
+
+  } catch(err) {
+    console.log(err);
+    return false;
+  }
+};
+
+export const isValidBreakpoint = function(val: string): boolean {
+  try {
+    if (CONTAINS_PX_OR_EM.test(val)) return true;
+    throw new Error(`${val} is incorrect value! Please, use pixels or em.`);
 
   } catch(err) {
     console.log(err);
@@ -37,7 +53,11 @@ export const calcRoot = function(val: object):number {
 }
 
 export const convertToEm = function(val: number): string {
-  return val / BROWSER_DEFAULT_FONT_SIZE + 'em';
+  return `${val / BROWSER_DEFAULT_FONT_SIZE}em`;
+}
+
+export const convertToPx = function(val: number): string {
+  return `${val / BROWSER_DEFAULT_FONT_SIZE}px`;
 }
 
 export const makeArray = function(length: number): Array<number> {
@@ -46,11 +66,12 @@ export const makeArray = function(length: number): Array<number> {
 
 export const getValidBreakpoint = function(val: string): number {
   let result;
+  
   try {
     if (CONTAINS_PX.test(val)) {
-      result = parseFloat(val);
+      result = parseFloat(val.trim());
     } else if (CONTAINS_EM.test(val)) {
-      result = parseFloat(val) * BROWSER_DEFAULT_FONT_SIZE;
+      result = parseFloat(val.trim()) * BROWSER_DEFAULT_FONT_SIZE;
     } else {
       throw new Error(`${val} is incorrect value! Please, use pixels or ems.`)
     }
