@@ -11,6 +11,7 @@ import {
   calcLeading, 
   calcRoot, 
   isValidBase,
+  isValidNumber,
   isValidBreakpoint,
   isArray,
 } from './helpers';
@@ -85,15 +86,15 @@ breakpointsConfig = setBreakpointsName(config);
 
 breakpointsConfig.map((item, i) => {
   if (!item.base) {
-    return Object.assign(item, { 
-      base: breakpointsConfig[i - 1].base
-    });
+    return {
+      ...item,
+      ...breakpointsConfig[i - 1].base,
+    }
   }
   return item;
 
 }).map(item => {
     const isBaseNotArray = item.base && !isArray(item.base);
-
     if (isBaseNotArray) {
       return Object.assign(item, { 
         base: parseFloat(item.base)
@@ -104,31 +105,35 @@ breakpointsConfig.map((item, i) => {
 
 }).map((item, i) => {
     if (!item.lineHeight) {
-      return Object.assign(item, {
-        lineHeight: breakpointsConfig[i - 1].lineHeight
-      });
+      return {
+        ...item,
+        ...breakpointsConfig[i - 1].lineHeight,
+      }
     }
 
     return item;
 
 }).map((item, i) => {
     if (!item.ratio) {
-      return Object.assign(item, {
-        ratio: breakpointsConfig[i - 1].ratio
-      });
+      return {
+        ...item,
+        ...breakpointsConfig[i - 1].ratio,
+      }
     }
 
     return item;
 
 }).map(item => Object.assign(item, {
     root: calcRoot(item)
+
 })).map(item => {
     const breakVal = item.breakpoint;
     if (isValidBreakpoint(breakVal)) {
        if (CONTAINS_PX.test(breakVal)) {
-         return Object.assign(item, {
-          breakpoint: breakVal,
-         });
+         return {
+           ...item,
+           ...breakVal,
+         }
        }
 
        if (CONTAINS_EM.test(breakVal)) {
