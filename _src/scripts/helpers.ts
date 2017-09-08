@@ -1,8 +1,9 @@
 import { 
   CONTAINS_PX, 
   CONTAINS_EM, 
-  CONTAINS_PX_OR_EM, 
-  HALF, 
+  CONTAINS_PX_OR_EM,
+  FLOATING_POINT_NUMBER,
+  HALF,
   BROWSER_DEFAULT_FONT_SIZE 
 } from './constants';
 
@@ -35,6 +36,16 @@ export const isValidBreakpoint = function(val: string): boolean {
     return false;
   }
 };
+
+export const isValidNumber = function(val: number): boolean {
+  try {
+    if (typeof val === 'number') return true;
+    throw new Error(`${val} is incorrect value! Value must me a number.`);
+  } catch(err) {
+    console.log(err);
+    return false;
+  }
+}
 
 export const getValidBase = function(val: string) {
   if (isValidBase(val)) return parseFloat(val);
