@@ -96,9 +96,10 @@ breakpointsConfig.map((item, i) => {
 }).map(item => {
     const isBaseNotArray = item.base && !isArray(item.base);
     if (isBaseNotArray) {
-      return Object.assign(item, { 
-        base: parseFloat(item.base)
-      });
+      return {
+        ...item,
+        base: parseFloat(item.base),
+      }
     }
 
     return item;
@@ -137,9 +138,10 @@ breakpointsConfig.map((item, i) => {
        }
 
        if (CONTAINS_EM.test(breakVal)) {
-         return Object.assign(item, {
-          breakpoint: `${parseFloat(breakVal.trim()) * BROWSER_DEFAULT_FONT_SIZE}px`
-         });
+         return {
+           ...item,
+           breakpoint: `${parseFloat(breakVal.trim()) * BROWSER_DEFAULT_FONT_SIZE}px`,
+         }
        }
     }
 });
