@@ -75,7 +75,11 @@ const setBreakpointsName = function (config: object): object[] {
       const isBreakpoint = isObject(value) && value.breakpoint;
 
       if (isBreakpoint) {
-        breakpointsConfig.push(Object.assign(value, { name: key }));
+        breakpointsConfig.push(
+          {
+            ...value, 
+            name: key
+          });
       }
     }
   }
