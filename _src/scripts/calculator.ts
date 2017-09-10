@@ -2,7 +2,6 @@ import config from './config';
 import { 
   CONTAINS_PX, 
   CONTAINS_EM,
-  CONTAINS_PX_OR_EM,
   CONTAINS_FONT_SIZE,
   CONTAINS_TARGET,
   BROWSER_DEFAULT_FONT_SIZE, 
@@ -17,7 +16,6 @@ import {
   isValidBase,
   isValidRatio,
   isValidBreakpoint,
-  isArray,
   deepFind,
 } from './helpers';
 
@@ -79,16 +77,14 @@ const breakpointToPx = function(breakpoint: string): string {
 };
 
 const getBase = function(base: number|number[]): number {
-  let result;
   if (Array.isArray(base)) {
-    result = base[0];
-  } else if (typeof base === 'string') {
-    result = base;
+    return base[0];
+  } else {
+    return base;
   }
-  return result;
 };
 
-const calcRatio = function(val: number|string, base: number|number[]):number {
+const parseRatioIfString = function(val: number|string, base: number|number[]):number {
   if (typeof val === 'string') {
     const fontSize = val.match(CONTAINS_FONT_SIZE).toString();
     const target = Number(val.match(CONTAINS_TARGET).toString());
@@ -100,7 +96,7 @@ const calcRatio = function(val: number|string, base: number|number[]):number {
       result = parseFloat(fontSize) * BROWSER_DEFAULT_FONT_SIZE;
     }
 
-    return Number(Math.pow((result / getBase(base)), 1 / target).toFixed(5))
+    return Number(Math.pow((result / getBase(base)), 1 / target).toFixed(5));
   } else if (typeof val === 'number') {
     return val;
   }
@@ -117,7 +113,7 @@ const parseConfig = function(config) {
     
     breakpoint['base'] = getFloatedBase(base);
     breakpoint['lineHeight'] = config.lineHeight;
-    breakpoint['ratio'] = calcRatio(config.ratio, breakpoint['base']);
+    breakpoint['ratio'] = parseRatioIfString(config.ratio, breakpoint['base']);
     breakpoint['breakpoint'] = '0px';
     breakpoint['name'] = 'default';
   
@@ -163,9 +159,9 @@ const parseConfig = function(config) {
       ...breakpoints,
       {
         ...item,
-        ratio: !item.ratio ? breakpoints[i - 1].ratio : calcRatio(item.ratio, item.base),
         base: !item.base ? breakpoints[i - 1].base : getFloatedBase(item.base),
         lineHeight: !item.lineHeight ? breakpoints[i - 1].lineHeight : item.lineHeight,
+        ratio: !item.ratio ? breakpoints[i - 1].ratio : parseRatioIfString(item.ratio, item.base),
         breakpoint: breakpointToPx(item.breakpoint),
       }
     ], [])
