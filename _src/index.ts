@@ -1,9 +1,3 @@
-import breakpointsConfig from './scripts/breakpoints.config';
+import calculator from './scripts/calculator';
 import nt from './scripts/nt';
 import { above, below, between } from './scripts/breakpoints';
-
-
-console.log(between('tablet', 'desktop'));
-
-console.log( breakpointsConfig );
-
