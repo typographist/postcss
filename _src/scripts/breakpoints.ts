@@ -1,4 +1,4 @@
-import breakpoitsConfig from './breakpoints.config';
+import calculator from './calculator';
 import {
   CONTAINS_PX,
   CONTAINS_EM,
@@ -8,7 +8,7 @@ import { getValidBreakpoint, convertToEm } from './helpers';
 
 export const above = function(breakVal: string): string {
   if (!parseFloat(breakVal)) {
-    const breakpoint = breakpoitsConfig.find(item => item.name === breakVal.trim());
+    const breakpoint = calculator.find(item => item.name === breakVal.trim());
     return convertToEm(getValidBreakpoint(breakpoint.breakpoint));
   }
 
@@ -23,7 +23,7 @@ export const above = function(breakVal: string): string {
 
 export const below = (breakVal: string) => {
   if (!parseFloat(breakVal)) {
-    const breakpoint = breakpoitsConfig.find(item => item.name === breakVal.trim());
+    const breakpoint = calculator.find(item => item.name === breakVal.trim());
     return convertToEm(getValidBreakpoint(breakpoint.breakpoint));
   }
 
@@ -40,8 +40,8 @@ export const between = (breakVal1: string, breakVal2: string) => {
   let result: object = new Object();
 
   if (!parseFloat(breakVal1) && !parseFloat(breakVal2)) {
-    const breakpoint1 = breakpoitsConfig.find(item => item.name === breakVal1.trim());
-    const breakpoint2 = breakpoitsConfig.find(item => item.name === breakVal2.trim());
+    const breakpoint1 = calculator.find(item => item.name === breakVal1.trim());
+    const breakpoint2 = calculator.find(item => item.name === breakVal2.trim());
 
     result['firtBreakValue'] = convertToEm(getValidBreakpoint(breakpoint1.breakpoint));
     result['lastBreakValue'] = convertToEm(getValidBreakpoint(breakpoint2.breakpoint) -1);
