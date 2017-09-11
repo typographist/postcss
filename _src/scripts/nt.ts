@@ -11,8 +11,8 @@ const calcFontSize = function (
   base: any, 
   ratio: number): number {
     let cloneBase = base.slice();
-    
     const baseHigh = Math.pow(ratio,1) * cloneBase[0];
+    
     for (let i = 1; i < cloneBase.length; i++) {
 
       while (cloneBase[i] / 1 < cloneBase[0] / 1) {
