@@ -105,8 +105,6 @@ const parseRatioIfString = function(val: number|string, base: number|number[]):n
 const parseConfig = function(config) {
   if (!isConfigValid) {
     return;
-
-    // ToDo error message
   }
 
   const makeDefaultBreakpoint = function(config): object  {
