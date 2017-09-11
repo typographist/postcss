@@ -12,25 +12,22 @@ const calcFontSize = function (
   ratio: number): number {
     let cloneBase = base.slice();
     
-    var baseHigh = Math.pow(ratio,1) * cloneBase[0];
-    for (var i = 1; i < cloneBase.length; i++) {
-      // shift up if value too low
-      while (cloneBase[i]/1 < cloneBase[0]/1) {
-        cloneBase[i] = Math.pow(ratio,1) * cloneBase[i];
+    const baseHigh = Math.pow(ratio,1) * cloneBase[0];
+    for (let i = 1; i < cloneBase.length; i++) {
+
+      while (cloneBase[i] / 1 < cloneBase[0] / 1) {
+        cloneBase[i] = Math.pow(ratio, 1) * cloneBase[i];
       }
-      // Shift down if too high
-      while (cloneBase[i]/1 >= baseHigh/1) {
-        cloneBase[i] = Math.pow(ratio,-1) * cloneBase[i];
+
+      while (cloneBase[i] / 1 >= baseHigh / 1) {
+        cloneBase[i] = Math.pow(ratio, -1) * cloneBase[i];
       }
     }
-    // Sort bases
+
     cloneBase.sort();
-  
-    // Figure out what base to use with modulo
     var roundedBase = Math.round((target / cloneBase.length - Math.floor(target / cloneBase.length)) * cloneBase.length);
   
-    // Return
-    return Math.round( Math.pow(ratio,Math.floor(target / cloneBase.length)) * cloneBase[roundedBase]);
+    return Math.round( Math.pow(ratio, Math.floor(target / cloneBase.length)) * cloneBase[roundedBase]);
 };
 
 const convertFontSizeInRem = function(fontSize: number, breakpoint): string {
