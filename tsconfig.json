@@ -10,6 +10,10 @@
       "dom"
     ]
   },
+  "filesGlob": [
+    "node_modules/**/*.d.ts",
+    "definitions/*.d.ts"
+  ],
   "exclude": [
     "node_modules"
   ]
