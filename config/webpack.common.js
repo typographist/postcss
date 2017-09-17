@@ -1,18 +1,12 @@
-const path = require('path');
+import path from 'path';
+import HappyPack from 'happypack';
+import webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-const webpack = require('webpack');
+const happyThreadPool = HappyPack.ThreadPool({ size: 5 });
 
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-
-module.exports = {
-  entry: path.join(__dirname, '..', '/_src/index'),
-  output: {
-    path: __dirname,
-    filename: './_dist/index.js',
-  },
-  resolve: {
-    extensions: ['.ts', '.js'],
-  },
+export default {
+  entry: ['babel-polyfill', path.join(__dirname, '..', '/index')],
   watchOptions: {
     argregateTimeout: 100,
   },
@@ -20,10 +14,8 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        use: [
-          'awesome-typescript-loader',
-        ],
         exclude: /node_modules/,
+        use: ['happypack/loader?id=js'],
       },
     ],
   },
@@ -35,6 +27,16 @@ module.exports = {
       title: 'Page',
       template: path.join(__dirname, '..', '_src', 'index.html'),
       filename: path.join(__dirname, '..', '_dist', 'index.html'),
+    }),
+    new HappyPack({
+      id: 'js',
+      threadPool: happyThreadPool,
+      loaders: [{
+        loader: 'babel-loader',
+        query: {
+          presets: ['react', 'env', 'stage-0'],
+        },
+      }],
     }),
   ],
 };
