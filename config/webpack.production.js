@@ -1,16 +1,12 @@
-const path = require('path');
-
-const webpack = require('webpack');
-
-const HappyPack = require('happypack');
+import path from 'path';
+import webpack from 'webpack';
+import HappyPack from 'happypack';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import AssetsPlugin from 'assets-webpack-plugin';
 
 const happyThreadPool = HappyPack.ThreadPool({ size: 5 });
 
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-const AssetsPlugin = require('assets-webpack-plugin');
-
-module.exports = {
+export default {
   output: {
     path: path.join(__dirname, '..', '_dist', 'assets'),
     publicPath: '/assets/',
