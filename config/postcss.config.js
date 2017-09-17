@@ -1,4 +1,4 @@
-module.exports = ({ options, env }) => ({
+export default ({ options, env }) => ({
   plugins: {
     autoprefixer: options.autoprefixer,
     'postcss-flexbugs-fixes': options.flexbugsFixes,
