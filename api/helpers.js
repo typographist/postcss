@@ -36,7 +36,7 @@ export const isBaseString = (val) => {
 };
 
 /**
- * 
+// Are all the values of bases a string?
  * @param {array<any>} bases
  * @return {boolean}
  */
@@ -44,13 +44,18 @@ export const allBasesOfString = bases => (
   bases.every(base => isBaseString(base))
 );
 
+/**
+ * 
+ * @param {string} base 
+ * @return {boolean} 
+ */
 const isValidBase = (base) => {
   try {
     switch (constants.CONTAINS_PX_OR_EM.test(base)) {
       case true:
         return true;
       default:
-        throw new Error(`${base} is incorrect value! Please, use pixels or em.`); 
+        throw new Error(`${base} is incorrect value! Please, use pixels or em.`);
     }
   } catch (err) {
     console.log(err.message);
