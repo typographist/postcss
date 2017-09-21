@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1506001987585" clover="3.2.0">
+  <project timestamp="1506001987586" name="All files">
+    <metrics statements="101" coveredstatements="52" conditionals="29" coveredconditionals="6" methods="27" coveredmethods="9" elements="157" coveredelements="67" complexity="0" loc="101" ncloc="101" packages="2" files="3" classes="3">
+      <package name="api">
+        <metrics statements="90" coveredstatements="41" conditionals="29" coveredconditionals="6" methods="27" coveredmethods="9"/>
+        <file name="helpers.js" path="/Users/alyoshinmaxim/Desktop/new-typography/api/helpers.js">
+          <metrics statements="67" coveredstatements="26" conditionals="27" coveredconditionals="4" methods="15" coveredmethods="4"/>
+          <line num="9" count="2" type="stmt"/>
+          <line num="10" count="2" type="stmt"/>
+          <line num="19" count="2" type="stmt"/>
+          <line num="27" count="2" type="stmt"/>
+          <line num="28" count="8" type="stmt"/>
+          <line num="29" count="8" type="cond" truecount="2" falsecount="0"/>
+          <line num="31" count="5" type="stmt"/>
+          <line num="33" count="3" type="stmt"/>
+          <line num="36" count="3" type="stmt"/>
+          <line num="37" count="3" type="stmt"/>
+          <line num="47" count="2" type="stmt"/>
+          <line num="48" count="3" type="stmt"/>
+          <line num="49" count="3" type="cond" truecount="2" falsecount="0"/>
+          <line num="50" count="2" type="stmt"/>
+          <line num="52" count="2" type="stmt"/>
+          <line num="53" count="2" type="stmt"/>
+          <line num="62" count="2" type="stmt"/>
+          <line num="63" count="0" type="stmt"/>
+          <line num="64" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="65" count="0" type="stmt"/>
+          <line num="70" count="0" type="stmt"/>
+          <line num="71" count="0" type="stmt"/>
+          <line num="81" count="2" type="stmt"/>
+          <line num="82" count="0" type="stmt"/>
+          <line num="83" count="0" type="cond" truecount="0" falsecount="3"/>
+          <line num="85" count="0" type="stmt"/>
+          <line num="87" count="0" type="stmt"/>
+          <line num="89" count="0" type="stmt"/>
+          <line num="92" count="0" type="stmt"/>
+          <line num="93" count="0" type="stmt"/>
+          <line num="103" count="2" type="stmt"/>
+          <line num="104" count="0" type="stmt"/>
+          <line num="105" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="106" count="0" type="stmt"/>
+          <line num="108" count="0" type="stmt"/>
+          <line num="109" count="0" type="stmt"/>
+          <line num="120" count="2" type="stmt"/>
+          <line num="121" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="122" count="0" type="stmt"/>
+          <line num="124" count="0" type="stmt"/>
+          <line num="127" count="2" type="stmt"/>
+          <line num="128" count="0" type="stmt"/>
+          <line num="131" count="2" type="stmt"/>
+          <line num="132" count="0" type="stmt"/>
+          <line num="135" count="2" type="stmt"/>
+          <line num="136" count="0" type="stmt"/>
+          <line num="139" count="2" type="stmt"/>
+          <line num="140" count="0" type="stmt"/>
+          <line num="143" count="2" type="stmt"/>
+          <line num="144" count="0" type="stmt"/>
+          <line num="145" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="147" count="0" type="stmt"/>
+          <line num="148" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="149" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="150" count="0" type="stmt"/>
+          <line num="151" count="0" type="cond" truecount="0" falsecount="4"/>
+          <line num="152" count="0" type="stmt"/>
+          <line num="157" count="0" type="stmt"/>
+          <line num="160" count="2" type="stmt"/>
+          <line num="163" count="0" type="stmt"/>
+          <line num="164" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="165" count="0" type="stmt"/>
+          <line num="166" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="167" count="0" type="stmt"/>
+          <line num="169" count="0" type="stmt"/>
+          <line num="172" count="0" type="stmt"/>
+          <line num="175" count="0" type="stmt"/>
+        </file>
+        <file name="validators.js" path="/Users/alyoshinmaxim/Desktop/new-typography/api/validators.js">
+          <metrics statements="23" coveredstatements="15" conditionals="2" coveredconditionals="2" methods="12" coveredmethods="5"/>
+          <line num="8" count="1" type="stmt"/>
+          <line num="9" count="5" type="stmt"/>
+          <line num="10" count="5" type="cond" truecount="2" falsecount="0"/>
+          <line num="12" count="3" type="stmt"/>
+          <line num="14" count="2" type="stmt"/>
+          <line num="17" count="2" type="stmt"/>
+          <line num="18" count="2" type="stmt"/>
+          <line num="28" count="1" type="stmt"/>
+          <line num="29" count="3" type="stmt"/>
+          <line num="38" count="1" type="stmt"/>
+          <line num="39" count="4" type="stmt"/>
+          <line num="48" count="1" type="stmt"/>
+          <line num="49" count="0" type="stmt"/>
+          <line num="58" count="1" type="stmt"/>
+          <line num="59" count="0" type="stmt"/>
+          <line num="62" count="1" type="stmt"/>
+          <line num="63" count="0" type="stmt"/>
+          <line num="66" count="1" type="stmt"/>
+          <line num="67" count="0" type="stmt"/>
+          <line num="68" count="0" type="stmt"/>
+          <line num="69" count="0" type="stmt"/>
+          <line num="70" count="0" type="stmt"/>
+          <line num="72" count="0" type="stmt"/>
+        </file>
+      </package>
+      <package name="api.constants">
+        <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <file name="constants.js" path="/Users/alyoshinmaxim/Desktop/new-typography/api/constants/constants.js">
+          <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="9" type="stmt"/>
+          <line num="2" count="9" type="stmt"/>
+          <line num="3" count="9" type="stmt"/>
+          <line num="4" count="9" type="stmt"/>
+          <line num="5" count="9" type="stmt"/>
+          <line num="6" count="9" type="stmt"/>
+          <line num="7" count="9" type="stmt"/>
+          <line num="8" count="9" type="stmt"/>
+          <line num="9" count="9" type="stmt"/>
+          <line num="10" count="9" type="stmt"/>
+          <line num="11" count="9" type="stmt"/>
+        </file>
+      </package>
+    </metrics>
+  </project>
+</coverage>
