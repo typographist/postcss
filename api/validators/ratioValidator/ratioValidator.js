@@ -1,4 +1,4 @@
-import { CONTAINS_AT } from '../../constants/constants';
+import { CONTAINS_AT } from '../../regex/regex';
 import isNumeric from '../../helpers/isNumeric/isNumeric';
 
 /**
