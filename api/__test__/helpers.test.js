@@ -1,6 +1,8 @@
 import * as helpers from '../helpers';
 
 describe('helpers', () => {
+
+
   describe('isObject', () => {
     test('if the parameter object', () => {
       expect(helpers.isObject({})).toBe(true);
@@ -10,6 +12,7 @@ describe('helpers', () => {
       expect(helpers.isObject(12)).toBe(false);
     });
   });
+
 
   describe('isArray', () => {
     test('if the parametr array', () => {
@@ -21,23 +24,37 @@ describe('helpers', () => {
     });
   });
 
-  describe('isBaseString', () => {
-    test('if the parametr string', () => {
-      expect(helpers.isBaseString('string')).toBe(true);
+
+  describe('isBaseContainPxOrEm', () => {
+    test('If contains pixels', () => {
+      expect(helpers.isBaseContainPxOrEm('45px')).toBe(true);
     });
 
-    test('if the parametr is not an string', () => {
-      expect(helpers.isBaseString(12)).toBe(false);
+    test('If contains ems', () => {
+      expect(helpers.isBaseContainPxOrEm('8.8em')).toBe(true);
+    });
+
+    test('The floating-point number does not contain the units of measure', () => {
+      expect(helpers.isBaseContainPxOrEm('8.8rem')).toBe(false);
+    });
+
+    test('The number does not contain the units of measure', () => {
+      expect(helpers.isBaseContainPxOrEm('9')).toBe(false);
     });
   });
 
-  describe('allBasesOfString', () => {
-    test('all values are strings', () => {
-      expect(helpers.allBasesOfString(['12px', '1'])).toBe(true);
+
+  describe('isNumber', () => {
+    test('If the parameter is a string', () => {
+      expect(helpers.isNumber(1)).toBe(true);
     });
 
-    test('one value is not a string', () => {
-      expect(helpers.allBasesOfString([1, '124'])).toBe(false);
+    test('If the parameter is not a string', () => {
+      expect(helpers.isNumber([])).toBe(false);
+    });
+
+    test('If the parameter is not a string', () => {
+      expect(helpers.isNumber(false)).toBe(false);
     });
   });
 });
