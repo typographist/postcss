@@ -1,5 +1,6 @@
 node_modules/
 _dist/
 design/
+coverage/
 .DS_Store
 npm-debug.log
