@@ -1,4 +1,4 @@
-import { CONTAINS_PX_OR_EM } from '../../constants/constants';
+import { CONTAINS_PX_OR_EM } from '../../regex/regex';
 
 /**
  * @param {any} breakpoint 
