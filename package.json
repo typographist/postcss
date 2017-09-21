@@ -69,7 +69,7 @@
     "test:watch": "jest --watch",
     "lint": "eslint **/*.js",
     "dev": "NODE_ENV=development && webpack-dev-server",
-    "build": "npm run clean && NODE_ENV=production webpack -p",
+    "build": "yarn clean && NODE_ENV=production webpack -p",
     "demo": "static _dist",
     "clean": "rimraf ./_dist/*"
   },
