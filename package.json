@@ -15,9 +15,6 @@
     "postcss": "^6.0.11"
   },
   "dependencies": {
-    "@types/lodash": "^4.14.74",
-    "@types/node": "^8.0.26",
-    "@types/pino": "^4.7.0",
     "accoutrement-color": "^2.1.1",
     "accoutrement-init": "^1.1.0",
     "accoutrement-layout": "^2.2.0",
@@ -40,7 +37,6 @@
     "html-webpack-harddisk-plugin": "^0.1.0",
     "html-webpack-plugin": "^2.30.1",
     "image-webpack-loader": "^3.3.1",
-    "lodash": "^4.17.4",
     "mathsass": "^0.10.1",
     "modular-scale": "^4.4.1",
     "modularscale-sass": "^3.0.3",
@@ -57,8 +53,6 @@
     "rimraf": "^2.6.1",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
-    "ts-loader": "^2.3.4",
-    "typescript": "^2.4.2",
     "url-loader": "^0.5.9",
     "webpack": "^3.5.4",
     "webpack-dev-server": "^2.7.1",
