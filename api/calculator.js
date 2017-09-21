@@ -1,36 +1,7 @@
 import config from './config';
+import isConfigValid from './isConfigValid';
 import * as constants from './constants';
-import * as helpers from './helpers';
-
-const isValidBases = bases => (
-  bases.every(base => helpers.isValidBase(base))
-);
-
-const isValidLineHeights = lineHeights => (
-  lineHeights.every(lineHeight => helpers.isNumber(lineHeight))
-);
-
-const isValidRatios = ratios => (
-  ratios.every(ratio => helpers.isValidRatio(ratio))
-);
-
-const isValidBreakpoints = breakpoints => (
-  breakpoints.every(breakpoint => helpers.isValidBreakpoint(breakpoint))
-);
-
-const isConfigValid = (object) => {
-  const bases = helpers.deepFind(object, 'base').toString().split(',');
-  const lineHeighs = helpers.deepFind(object, 'lineHeight');
-  const ratios = helpers.deepFind(object, 'ratio');
-  const breaks = helpers.deepFind(object, 'breakpoint');
-
-  return [
-    isValidBases(bases),
-    isValidLineHeights(lineHeighs),
-    isValidRatios(ratios),
-    isValidBreakpoints(breaks),
-  ].every(Boolean);
-};
+import { calcRoot, calcLeading } from './helpers';
 
 const getFloatedBase = (base) => {
   if (Array.isArray(base)) {
@@ -137,7 +108,7 @@ const parseConfig = (configObject) => {
     ]), []).map(item => (
       {
         ...item,
-        root: helpers.calcRoot(helpers.calcLeading(item.base, item.lineHeight)),
+        root: calcRoot(calcLeading(item.base, item.lineHeight)),
       }
     ));
 
