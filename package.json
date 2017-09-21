@@ -70,5 +70,8 @@
     "build": "npm run clean && NODE_ENV=production webpack -p",
     "demo": "static _dist",
     "clean": "rimraf ./_dist/*"
+  },
+  "jest": {
+    "collectCoverage": true
   }
 }
