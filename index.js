@@ -24,5 +24,7 @@ const config = {
   },
 };
 
+nt(6);
+
 console.log(isConfigValid(config);
 
