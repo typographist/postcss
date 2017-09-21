@@ -1,5 +1,6 @@
 import * as constants from './constants';
 
+
 /**
  *  Whether the parametr is an object?
  *  @param {any} val
@@ -9,6 +10,7 @@ export const isObject = val => (
   Object.prototype.toString.call(val).slice(8, -1) === 'Object'
 );
 
+
 /**
  *   Whether the parametr is an array?
  *  @param {any} val
@@ -16,40 +18,13 @@ export const isObject = val => (
  */
 export const isArray = val => Array.isArray(val);
 
-/**
- * Whether the parametr is an string?
- * @param {any} val
- * @return {boolean} 
- */
-export const isBaseString = (val) => {
-  try {
-    switch (typeof val) {
-      case 'string':
-        return true;
-      default:
-        throw new Error('Base value must be a string or Array<string>!');
-    }
-  } catch (err) {
-    console.log(err.message);
-    return false;
-  }
-};
-
-/**
-// Are all the values of bases a string?
- * @param {array<any>} bases
- * @return {boolean}
- */
-export const allBasesOfString = bases => (
-  bases.every(base => isBaseString(base))
-);
 
 /**
  * 
  * @param {string} base 
  * @return {boolean} 
  */
-const isValidBase = (base) => {
+export const isBaseContainPxOrEm = (base) => {
   try {
     switch (constants.CONTAINS_PX_OR_EM.test(base)) {
       case true:
@@ -63,22 +38,68 @@ const isValidBase = (base) => {
   }
 };
 
-// export const isValidBase = (base) => {
-//   switch (allBasesOfString(base)) {
-//     case true:
-//       return constants.CONTAINS_PX_OR_EM.test(base);
-//     default:
-//       return false;
-//   }
-//   // try {
-//   //   if (constants.CONTAINS_PX_OR_EM.test(base)) return true;
-//   //   throw new Error(`${base} is incorrect value! Please, use pixels or em.`);
-//   // } catch (err) {
-//   //   console.log(err);
-//   //   return false;
-//   // }
-// };
 
+/**
+ * Is it number?
+ * @param {any} val 
+ * @return {boolean}
+ */
+export const isNumber = (val) => {
+  try {
+    if (typeof val === 'number') return true;
+    throw new Error(`typeof ${val} === ${typeof val} is incorrect value! Value must me a number.`);
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+};
+
+
+/**
+ * Check the line for matching the specified pattern.
+ * @param {string} ratio 
+ */
+const isRatioContainsAt = (ratio) => {
+  try {
+    if (constants.CONTAINS_AT.test(ratio)) return true;
+    throw new Error(`${ratio} is incorrect value! The string must have a 
+    positive or negative integer or a floating-point number in units of px or em,
+    a space, a word at, a space, 
+    a positive or negative floating point number without units of measure `);
+  } catch (err) {
+    console.log(err.message);
+    return false;
+  }
+};
+
+
+/**
+ * Validation ratio
+ * @param {any} ratio
+ * @return {boolean} 
+ */
+export const isValidRatio = (ratio) => {
+  try {
+    switch (typeof ratio) {
+      case 'number':
+        return true;
+      case 'string':
+        return isRatioContainsAt(ratio);
+      default:
+        throw new Error('Typeof ratio must be string or number');
+    }
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+};
+
+
+/**
+ * Check whether the string contains values in pixels or ems.
+ * @param {string} val
+ * @return {boolean}
+ */
 export const isValidBreakpoint = (val) => {
   try {
     if (constants.CONTAINS_PX_OR_EM.test(val)) return true;
@@ -89,36 +110,12 @@ export const isValidBreakpoint = (val) => {
   }
 };
 
-export const isNumber = (val) => {
-  try {
-    if (typeof val === 'number') return true;
-    throw new Error(`${val} is incorrect value! Value must me a number.`);
-  } catch (err) {
-    console.log(err);
-    return false;
-  }
-};
 
-// export const isValidRatio = (ratio) => {
-//   try {
-//     switch (typeof ratio) {
-//       case 'string':
-//         return CONTAINS_AT.test(ratio);
-//       case 'number':
-//         return true;
-//       default:
-//         throw new Error('ratio must be string or number');
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   }
+// export const getValidBase = (val) => {
+//   if (isValidBase(val)) return parseFloat(val);
+
+//   return null;
 // };
-
-export const getValidBase = (val) => {
-  if (isValidBase(val)) return parseFloat(val);
-
-  return null;
-};
 
 export const calcLeading = (base, lineHeight) => {
   if (Array.isArray(base)) {
