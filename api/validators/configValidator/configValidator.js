@@ -3,7 +3,7 @@ import findAll from '../../helpers/findAll/findAll';
 
 import { isBaseString, isBaseContainPxOrEm, isValidBases } from '../baseValidator/baseValidator';
 import isValidLineHeights from '../lineHeightValidator/lineHeightValidator';
-import { isValidRatio } from '../ratioValidator/ratioValidator';
+import { isValidRatios } from '../ratioValidator/ratioValidator';
 import { breakpointIsString, isBreakpointContainsPxOrEm, isValidBreakpoints } from '../breakpointsValidator/breakpointsValidator';
 
 
@@ -15,9 +15,9 @@ const isValidConfig = (config) => {
 
   return [
     isValidBases(bases, isBaseString),
-    // isValidBases(bases, isBaseContainPxOrEm),
+    isValidBases(bases, isBaseContainPxOrEm),
     isValidLineHeights(lineHeighs),
-    isValidRatio(ratios),
+    isValidRatios(ratios),
     isValidBreakpoints(breaks, breakpointIsString),
     isValidBreakpoints(breaks, isBreakpointContainsPxOrEm),
   ].every(Boolean);
