@@ -1,12 +1,12 @@
 import { CONTAINS_PX_OR_EM } from '../../regex/regex';
 
 /**
- * @param {any} val
+ * @param {any} checkBase
  * @return {boolean} 
  */
-export const isBaseString = (val) => {
+export const isBaseString = (checkBase) => {
   try {
-    switch (typeof val) {
+    switch (typeof checkBase) {
       case 'string':
         return true;
       default:
@@ -20,16 +20,16 @@ export const isBaseString = (val) => {
 
 
 /**
- * @param {string} base 
+ * @param {string} checkBase 
  * @return {boolean} 
  */
-export const isBaseContainPxOrEm = (base) => {
+export const isBaseContainPxOrEm = (checkBase) => {
   try {
-    switch (CONTAINS_PX_OR_EM.test(base)) {
+    switch (CONTAINS_PX_OR_EM.test(checkBase)) {
       case true:
         return true;
       default:
-        throw new Error(`${base} is incorrect value! Please, use pixels or em.`);
+        throw new Error(`${checkBase} is incorrect value! Please, use pixels or em.`);
     }
   } catch (err) {
     console.log(err.message);
@@ -39,10 +39,10 @@ export const isBaseContainPxOrEm = (base) => {
 
 
 /**
- * @param {array<any>} bases - flat array
+ * @param {array<any>} checkBases - flat array
  * @param {function} fn
  * @return {boolean} 
  */
-export const isValidBases = (bases, fn) => (
-  bases.every(base => fn(base))
+export const isValidBases = (checkBases, fn) => (
+  checkBases.every(base => fn(base))
 );
