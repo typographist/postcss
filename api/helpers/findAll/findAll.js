@@ -1,4 +1,5 @@
 import isArray from '../isArray/isArray';
+import isObject from '../isObject/isObject';
 
 const findAll = (obj, key, memo) => {
   let result = memo;
@@ -9,7 +10,7 @@ const findAll = (obj, key, memo) => {
       if (i === key) {
         result.push(obj[i]);
       } else if (isArray(obj[i]) || isObject(obj[i])) {
-        deepFind(obj[i], key, result);
+        findAll(obj[i], key, result);
       }
     }
   }
