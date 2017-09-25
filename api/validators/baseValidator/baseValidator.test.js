@@ -1,4 +1,4 @@
-import * as validators  from './baseValidator';
+import * as validators from './baseValidator';
 
 describe('isBaseContainPxOrEm', () => {
   it('shoud contains px', () => {
@@ -14,7 +14,7 @@ describe('isBaseContainPxOrEm', () => {
   });
 
   it('should string not contains numbers', () => {
-    expect(validators.isAllBasesAreStrings('blablabla')).toBe(false);
+    expect(validators.isBaseContainPxOrEm('blablabla')).toBe(false);
   });
 });
 
