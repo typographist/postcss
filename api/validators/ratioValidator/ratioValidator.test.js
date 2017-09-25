@@ -1,4 +1,4 @@
-import { isRatioContainsAt, isValidRatio } from './ratioValidator';
+import { isRatioContainsAt, isValidRatio, isValidRatios } from './ratioValidator';
 
 describe('isRatioContainsAt', () => {
   it('should be contains word at in entry string', () => {
@@ -22,5 +22,9 @@ describe('isValidRatio', () => {
 
   it('should be typeof ratio is string and contains word at', () => {
     expect(isValidRatio(NaN)).toBe(false);
+  });
+
+  describe('isValidRatios', () => {
+    expect(isValidRatios([1111, '12px at 8.7'])).toBe(true);
   });
 });
