@@ -10,13 +10,13 @@ const obj = {
   },
   dd: {
     d: {
-      y: 9
+      y: 9,
     },
   },
 };
 
 describe('FindAll', () => {
   it('should', () => {
-    expect(findAll(obj, 'd')).toEqual();
+    expect(findAll(obj, 'd')).toEqual([{ x: 9 }, { y: 9 }]);
   });
 });
