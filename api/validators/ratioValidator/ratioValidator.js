@@ -40,3 +40,11 @@ export const isValidRatio = (ratio) => {
   }
 };
 
+/**
+* @param {any} checkRatios
+* @return {boolean}
+*/
+export const isValidRatios = checkRatios => (
+  checkRatios.every(ratio => isValidRatio(ratio))
+);
+
