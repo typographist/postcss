@@ -1,5 +1,4 @@
-import { CONTAINS_EM } from './constants';
-
+import { CONTAINS_EM } from './';
 describe('CONTAINS_EM', () => {
   test('contains ems', () => {
     expect(CONTAINS_EM.test('12em')).toBe(true);
