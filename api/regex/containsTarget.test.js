@@ -1,4 +1,4 @@
-import { CONTAINS_TARGET } from './constants';
+import { CONTAINS_TARGET } from './';
 
 describe('CONTAINS_TARGET', () => {
   test('Find the number after the word at', () => {

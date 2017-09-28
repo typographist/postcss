@@ -1,4 +1,4 @@
-import { CONTAINS_FONT_SIZE } from './constants';
+import { CONTAINS_FONT_SIZE } from './';
 
 describe('CONTAINS_FONT_SIZE', () => {
   test('Find the first value in the line containing the pixels', () => {
