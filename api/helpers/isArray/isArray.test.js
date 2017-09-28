@@ -1,4 +1,4 @@
-import isArray from './isArray';
+import isArray from './';
 
 describe('isArray', () => {
   it('should be the array', () => {
