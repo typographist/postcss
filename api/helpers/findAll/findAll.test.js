@@ -1,4 +1,4 @@
-import findAll from './findAll';
+import findAll from './';
 
 const obj = {
   aa: 1,
