@@ -1,4 +1,4 @@
-import { CONTAINS_PX_OR_EM } from './constants';
+import { CONTAINS_PX_OR_EM } from './';
 
 describe('CONTAINS_PX_OR_EM', () => {
   it('should contains pixels', () => {
