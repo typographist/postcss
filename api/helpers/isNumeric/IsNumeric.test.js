@@ -1,19 +1,27 @@
-import isNumeric from './isNumeric';
+import isNumeric from './';
 
 describe('isNumeric', () => {
-  it('it should be a number', () => {
-    expect(isNumeric(888)).toBe(true);
+  it('should if number', () => {
+    expect(isNumeric(14.88)).toBe(true);
   });
 
-  it('it should be a not a number', () => {
+  it('should if string contains number', () => {
+    expect(isNumeric('111')).toBe(true);
+  });
+
+  it('should if string contains number with units', () => {
+    expect(isNumeric('56.78px')).toBe(false);
+  });
+
+  it('should if not a number', () => {
     expect(isNumeric(NaN)).toBe(false);
   });
 
-  it('it should be a not a number', () => {
+  it('should if boolean', () => {
     expect(isNumeric(false)).toBe(false);
   });
 
-  it('it should be a not a number', () => {
+  it('should if Infinity number', () => {
     expect(isNumeric(Infinity)).toBe(false);
   });
 });
