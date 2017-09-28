@@ -1,5 +1,5 @@
 export default {
-  base: '16px',
+  base: ['16px', '33px'],
   lineHeight: 1.5,
   ratio: '45px at 6',
   tablet: {
