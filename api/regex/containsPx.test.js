@@ -1,4 +1,4 @@
-import { CONTAINS_PX } from './constants';
+import { CONTAINS_PX } from './';
 
 describe('CONTAINS_PX', () => {
   test('contains pixels', () => {
