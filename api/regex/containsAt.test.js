@@ -1,4 +1,4 @@
-import { CONTAINS_AT } from './constants';
+import { CONTAINS_AT } from './';
 
 describe('CONTAINS_AT', () => {
   test(`The string corresponds to a 
