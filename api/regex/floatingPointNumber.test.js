@@ -1,4 +1,4 @@
-import { FLOATING_POINT_NUMBER } from '../constants';
+import { FLOATING_POINT_NUMBER } from './';
 
 describe('FLOATING_POINT_NUMBER', () => {
   test('integer support', () => {
