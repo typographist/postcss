@@ -1,10 +1,11 @@
-import flatten from '../helpers/flatten';
+import { flatten } from 'lodash';
+// import flatten from '../helpers/flatten';
 import findAll from '../helpers/findAll';
 
 import { isBaseString, isBaseContainPxOrEm, isValidBases } from './baseValidator/baseValidator';
 import isValidLineHeights from './lineHeightValidator/lineHeightValidator';
 import { isValidRatios } from './ratioValidator/ratioValidator';
-import { breakpointIsString, isBreakpointContainsPxOrEm, isValidBreakpoints } from './breakpointsValidator/breakpointsValidator';
+import { breakpointIsString, isBreakpointContainsPxOrEm, isValidBreakpoints, getBreakpoints, checkContainsBreakpointKey  } from './breakpointsValidator/breakpointsValidator';
 
 
 const isValidConfig = (config) => {
@@ -12,12 +13,14 @@ const isValidConfig = (config) => {
   const lineHeighs = findAll(config, 'lineHeight');
   const ratios = findAll(config, 'ratio');
   const breaks = findAll(config, 'breakpoint');
+  const breakpoints = getBreakpoints(config);
 
   return [
     isValidBases(bases, isBaseString),
     isValidBases(bases, isBaseContainPxOrEm),
     isValidLineHeights(lineHeighs),
     isValidRatios(ratios),
+    isValidBreakpoints(breakpoints, checkContainsBreakpointKey),
     isValidBreakpoints(breaks, breakpointIsString),
     isValidBreakpoints(breaks, isBreakpointContainsPxOrEm),
   ].every(Boolean);
