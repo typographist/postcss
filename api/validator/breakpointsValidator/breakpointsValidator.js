@@ -14,7 +14,7 @@ export const breakpointIsString = (breakpoint) => {
         throw new Error('Is incorrect breakpint! Breakpoint must be a string');
     }
   } catch (err) {
-    console.log(err.message);
+    console.log(err);
     return false;
   }
 };
@@ -37,22 +37,30 @@ export const isBreakpointContainsPxOrEm = (breakpoint) => {
   }
 };
 
-function func(config) {
-  const values = Object.values(config);
-  return values.every(val => isBreakpoint(item));
-}
 
-export const isBreakpoint = (val) => {
+/**
+ * @param {object} config
+ * @return {array<object>}
+ */
+export const getBreakpoints = config => (
+  Object.values(config).filter(item => isObject(item))
+);
+
+
+/**
+ * @param {object} breakpoint
+ * @return {boolean}
+ */
+export const checkContainsBreakpointKey = (breakpoint) => {
   try {
-    if (isObject(val) && val.breakpoint) {
-      return true;
-    }
-
-    throw new Error('Breakpoint is required parametr!');
+    if (breakpoint.breakpoint) return true;
+    throw new Error('Breakpoint is required key!');
   } catch (err) {
     console.log(err);
+    return false;
   }
 };
+
 
 /**
  * @param {array<any>} breakpoints 
