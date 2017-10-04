@@ -1,4 +1,4 @@
-import getFirstBase from './getFirstBase';
+import getFirstBase from './';
 
 describe('getFirstBase', () => {
   it('should if base is array', () => {
