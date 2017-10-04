@@ -1,4 +1,4 @@
-import makeDefaultBreakpoint from './makeDefaultBreakpoint';
+import makeDefaultBreakpoint from './';
 
 const config = {
   base: ['16px', '33px'],
@@ -27,7 +27,7 @@ const config = {
 describe('makeDefaultBreakpoint', () => {
   it('should make default breakpoint', () => {
     expect(makeDefaultBreakpoint(config)).toEqual({
-      base: [16, 33],
+      base: ['16px', '33px'],
       lineHeight: 1.5,
       ratio: '45px at 6',
       name: 'default',
