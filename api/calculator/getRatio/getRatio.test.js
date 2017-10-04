@@ -1,4 +1,4 @@
-import { getFontSizeFromRatio, getTargetFromRatio, calcRatio, getRatio } from './getRatio';
+import { getFontSizeFromRatio, getTargetFromRatio, calcRatio, getRatio } from './';
 
 describe('getFontSizeFromRatio', () => {
   it('should get font size from ratio', () => {
