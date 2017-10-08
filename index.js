@@ -8,7 +8,7 @@ const defualtConfig = {
 };
 
 module.exports = postcss.plugin('new-typography', (config = defualtConfig) => {
-  const options = calculate(config);
+  const breakpoints = calculate(config);
 
   const fontSizeDecl = size => (
     postcss.decl({
@@ -18,14 +18,18 @@ module.exports = postcss.plugin('new-typography', (config = defualtConfig) => {
   );
 
   const rootRule = (fontSize) => {
-    const root = postcss.rule({ selector: ':root' });
+    const root = postcss.rule({
+      selector: ':root',
+    });
     root.append(fontSizeDecl(fontSize));
 
     return root;
   };
 
   const bodyRule = (fontSize) => {
-    const body = postcss.rule({ selector: 'body' });
+    const body = postcss.rule({
+      selector: 'body',
+    });
     body.append(fontSizeDecl(fontSize));
 
     return body;
@@ -53,20 +57,20 @@ module.exports = postcss.plugin('new-typography', (config = defualtConfig) => {
     if (parent && parent.selector !== ':root') {
       node.remove();
     } else {
-      const breakpoint = options.find(b => /^0/.test(b.breakpoint));
-      options.reverse()
-        .filter(b => b.breakpoint !== 0)
+      const breakpoint = breakpoints.find(b => /^0/.test(b.value));
+      breakpoints.reverse()
+        .filter(b => b.value !== 0)
         .map(b => node.parent.after(mediaDecl({
-          minWidth: b.breakpoint,
+          minWidth: b.value,
           fontSize: b.root,
           nestedRule: rootRule(b.root),
         })));
 
-      options.reverse()
-        .filter(b => b.breakpoint !== 0)
+      breakpoints.reverse()
+        .filter(b => b.value !== 0)
         .map(b => node.before(variableDecl({
           name: b.name,
-          value: b.breakpoint,
+          value: b.value,
         })));
 
       node.replaceWith(fontSizeDecl(breakpoint.root));
@@ -78,20 +82,20 @@ module.exports = postcss.plugin('new-typography', (config = defualtConfig) => {
     if (parent && parent.selector !== 'body') {
       node.remove();
     } else {
-      const breakpoint = options.find(b => /^0/.test(b.breakpoint));
-      options.reverse()
-        .filter(b => b.breakpoint !== 0)
+      const breakpoint = breakpoints.find(b => /^0/.test(b.value));
+      breakpoints.reverse()
+        .filter(b => b.value !== 0)
         .map(b => node.parent.after(mediaDecl({
-          minWidth: b.breakpoint,
+          minWidth: b.value,
           fontSize: b.root,
           nestedRule: bodyRule(b.base),
         })));
 
-      options.reverse()
-        .filter(b => b.breakpoint !== 0)
+      breakpoints.reverse()
+        .filter(b => b.value !== 0)
         .map(b => node.before(variableDecl({
           name: b.name,
-          value: b.breakpoint,
+          value: b.value,
         })));
       node.replaceWith(fontSizeDecl(breakpoint.root));
     }
