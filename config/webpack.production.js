@@ -11,7 +11,7 @@ export default {
     path: path.join(__dirname, '..', '_dist', 'assets'),
     publicPath: '/',
     filename: '[name].js',
-    chunkFilename: '[id].js',
+    // chunkFilename: '[id].js',
   },
   watch: false,
   devtool: false,
