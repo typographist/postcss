@@ -1,9 +1,9 @@
-import isValidConfig from '../validator/validator';
+import isValidConfig from '../validator';
 import makeDefaultBreakpoint from './makeDefaultBreakpoint';
 import { getBreakpointsName, getBreakpoints, setBreakpointName, setBreakpointValue } from './makeBreakpoints';
 import removeKey from './removeKey';
 import { getRatio } from './getRatio';
-import getValue from './getValue/';
+import getValue from './getValue';
 import stripUnit from '../helpers/stripUnit';
 import setRootSize from './setRootSize';
 
