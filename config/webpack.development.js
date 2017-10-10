@@ -7,8 +7,7 @@ const happyThreadPool = HappyPack.ThreadPool({ size: 5 });
 export default {
   output: {
     path: path.join(__dirname, '..', '_dist'),
-    publicPath: '/',
-    filename: '[name].js',
+    filename: 'new-typography.js',
   },
   watch: true,
   devtool: 'cheap-module-inline-source-map',
