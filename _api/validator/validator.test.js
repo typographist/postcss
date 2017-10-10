@@ -1,4 +1,4 @@
-import isValidConfig from './validator';
+import isValidConfig from './';
 
 const config = {
   base: ['16px', '33px'],
