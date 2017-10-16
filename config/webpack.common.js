@@ -6,7 +6,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 const happyThreadPool = HappyPack.ThreadPool({ size: 5 });
 
 export default {
-  entry: ['babel-polyfill', path.join(__dirname, '..', '/index')],
+  entry: ['babel-polyfill', path.join(__dirname, '..', '/_parser/index')],
   watchOptions: {
     argregateTimeout: 100,
   },
