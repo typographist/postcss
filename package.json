@@ -1,7 +1,7 @@
 {
   "name": "new-typography",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./_dist/new-typography",
   "license": "MIT",
   "devDependencies": {
     "eslint": "^4.4.1",
@@ -14,9 +14,6 @@
     "jest": "^21.1.0"
   },
   "dependencies": {
-    "@types/lodash": "^4.14.74",
-    "@types/node": "^8.0.26",
-    "@types/pino": "^4.7.0",
     "accoutrement-color": "^2.1.1",
     "accoutrement-init": "^1.1.0",
     "accoutrement-layout": "^2.2.0",
