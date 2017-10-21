@@ -1,11 +1,14 @@
-import isValidConfig from '../validator';
-import makeDefaultBreakpoint from './makeDefaultBreakpoint';
-import { getBreakpointsName, getBreakpoints, setBreakpointName, setBreakpointValue } from './makeBreakpoints';
-import removeKey from './removeKey';
-import { getRatio } from './getRatio';
-import getValue from './getValue';
-import stripUnit from '../helpers/stripUnit';
-import setRootSize from './setRootSize';
+const isValidConfig = require('../validator');
+const makeDefaultBreakpoint = require('./makeDefaultBreakpoint');
+const getBreakpointsName = require('./makeBreakpoints').getBreakpointsName;
+const getBreakpoints = require('./makeBreakpoints').getBreakpoints;
+const setBreakpointName = require('./makeBreakpoints').setBreakpointName;
+const setBreakpointValue = require('./makeBreakpoints').setBreakpointValue;
+const removeKey = require('./removeKey');
+const getRatio = require('./getRatio').getRatio;
+const getValue = require('./getValue');
+const stripUnit = require('../helpers/stripUnit');
+const setRootSize = require('./setRootSize');
 
 
 /**
@@ -47,4 +50,4 @@ const calculator = (config) => {
   return result;
 };
 
-export default calculator;
+module.exports = calculator;
