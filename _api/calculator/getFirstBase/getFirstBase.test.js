@@ -1,4 +1,4 @@
-import getFirstBase from './';
+const getFirstBase = require('./');
 
 describe('getFirstBase', () => {
   it('should if base is array', () => {
