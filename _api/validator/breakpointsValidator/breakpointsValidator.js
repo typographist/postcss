@@ -1,11 +1,11 @@
-import { CONTAINS_PX_OR_EM } from '../../regex';
-import isObject from '../../helpers/isObject';
+const CONTAINS_PX_OR_EM = require('../../regex').CONTAINS_PX_OR_EM;
+const isObject = require('../../helpers/isObject');
 
 /**
  * @param {any} breakpoint 
  * @return {boolean}
  */
-export const breakpointIsString = (breakpoint) => {
+const breakpointIsString = (breakpoint) => {
   try {
     switch (typeof breakpoint) {
       case 'string':
@@ -24,7 +24,7 @@ export const breakpointIsString = (breakpoint) => {
  * @param {string} breakpoint
  * @return {boolean}
  */
-export const isBreakpointContainsPxOrEm = (breakpoint) => {
+const isBreakpointContainsPxOrEm = (breakpoint) => {
   try {
     if (CONTAINS_PX_OR_EM.test(breakpoint)) {
       return true;
@@ -42,7 +42,7 @@ export const isBreakpointContainsPxOrEm = (breakpoint) => {
  * @param {object} config
  * @return {array<object>}
  */
-export const getBreakpoints = config => (
+const getBreakpoints = config => (
   Object.values(config).filter(item => isObject(item))
 );
 
@@ -51,7 +51,7 @@ export const getBreakpoints = config => (
  * @param {object} breakpoint
  * @return {boolean}
  */
-export const checkContainsBreakpointKey = (breakpoint) => {
+const checkContainsBreakpointKey = (breakpoint) => {
   try {
     if (breakpoint.breakpoint) return true;
     throw new Error('Breakpoint is required key!');
@@ -67,6 +67,15 @@ export const checkContainsBreakpointKey = (breakpoint) => {
  * @param {function} fn
  * @return {boolean}
  */
-export const isValidBreakpoints = (breakpoints, fn) => (
+const isValidBreakpoints = (breakpoints, fn) => (
   breakpoints.every(breakpoint => fn(breakpoint))
 );
+
+module.exports = {
+  breakpointIsString,
+  isBreakpointContainsPxOrEm,
+  getBreakpoints,
+  checkContainsBreakpointKey,
+  isValidBreakpoints,
+};
+
