@@ -1,4 +1,4 @@
-import { omit } from 'lodash';
+const omit = require('lodash').omit;
 
 /**
  * @param {string} key 
@@ -11,4 +11,4 @@ const removeKey = (key, breakpoints) => (
   ))
 );
 
-export default removeKey;
+module.exports = removeKey;
