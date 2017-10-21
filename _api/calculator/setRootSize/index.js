@@ -1,5 +1,5 @@
-import calcLeading from '../../helpers/calcLeading';
-import calcRoot from '../../helpers/calcRoot';
+const calcLeading = require('../../helpers/calcLeading');
+const calcRoot = require('../../helpers/calcRoot');
 
 /**
  * 
@@ -17,4 +17,4 @@ const setRootSize = breakpoints => (
   })
 );
 
-export default setRootSize;
+module.exports = setRootSize;
