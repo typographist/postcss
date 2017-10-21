@@ -1,4 +1,4 @@
-import makeDefaultBreakpoint from './';
+const makeDefaultBreakpoint = require('./');
 
 const config = {
   base: ['16px', '33px'],
