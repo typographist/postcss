@@ -1,4 +1,5 @@
-import { CONTAINS_EM } from './';
+const CONTAINS_EM = require('./').CONTAINS_EM;
+
 describe('CONTAINS_EM', () => {
   test('contains ems', () => {
     expect(CONTAINS_EM.test('12em')).toBe(true);
