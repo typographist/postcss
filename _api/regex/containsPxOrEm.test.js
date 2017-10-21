@@ -1,4 +1,4 @@
-import { CONTAINS_PX_OR_EM } from './';
+const CONTAINS_PX_OR_EM = require('./').CONTAINS_PX_OR_EM;
 
 describe('CONTAINS_PX_OR_EM', () => {
   it('should contains pixels', () => {
