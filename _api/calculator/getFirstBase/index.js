@@ -1,4 +1,4 @@
-import isArray from '../../helpers/isArray';
+const isArray = require('../../helpers/isArray');
 
 /**
  * @param {Array<number>|number} base
@@ -13,4 +13,4 @@ const getFirstBase = (base) => {
   return base;
 };
 
-export default getFirstBase;
+module.exports = getFirstBase;
