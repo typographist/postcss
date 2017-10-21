@@ -1,4 +1,4 @@
-import isArray from './';
+const isArray = require('./');
 
 describe('isArray', () => {
   it('should be the array', () => {
