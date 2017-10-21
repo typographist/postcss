@@ -1,10 +1,10 @@
-import { CONTAINS_PX_OR_EM } from '../../regex';
+const CONTAINS_PX_OR_EM = require('../../regex').CONTAINS_PX_OR_EM;
 
 /**
  * @param {any} checkBase
  * @return {boolean} 
  */
-export const isBaseString = (checkBase) => {
+const isBaseString = (checkBase) => {
   try {
     switch (typeof checkBase) {
       case 'string':
@@ -23,7 +23,7 @@ export const isBaseString = (checkBase) => {
  * @param {string} checkBase 
  * @return {boolean} 
  */
-export const isBaseContainPxOrEm = (checkBase) => {
+const isBaseContainPxOrEm = (checkBase) => {
   try {
     switch (CONTAINS_PX_OR_EM.test(checkBase)) {
       case true:
@@ -43,6 +43,13 @@ export const isBaseContainPxOrEm = (checkBase) => {
  * @param {function} fn
  * @return {boolean} 
  */
-export const isValidBases = (checkBases, fn) => (
+const isValidBases = (checkBases, fn) => (
   checkBases.every(base => fn(base))
 );
+
+module.exports = {
+  isBaseString,
+  isBaseContainPxOrEm,
+  isValidBases,
+};
+
