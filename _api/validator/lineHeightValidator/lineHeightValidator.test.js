@@ -1,4 +1,4 @@
-const lineHeight = require('./lineHeightValidator');
+const lineHeight = require('./');
 
 describe('LineHeight', () => {
   it('should be array of numbers', () => {
