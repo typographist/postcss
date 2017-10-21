@@ -1,4 +1,4 @@
-import { BROWSER_DEFAULT_FONT_SIZE } from '../../constants';
+const BROWSER_DEFAULT_FONT_SIZE = require('../../constants').BROWSER_DEFAULT_FONT_SIZE;
 
 /**
  * @param {string} val 
@@ -8,4 +8,4 @@ const toEm = px => (
   parseFloat(px) / BROWSER_DEFAULT_FONT_SIZE
 );
 
-export default toEm;
+module.exports = toEm;
