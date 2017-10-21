@@ -1,4 +1,4 @@
-import * as validators from './breakpointsValidator';
+const validators = require('./breakpointsValidator');
 
 const config = {
   base: ['16px', '33px'],
@@ -128,10 +128,5 @@ describe('isValidBreakpoints', () => {
     it('should if is breakpoint contains breakpoint key', () => {
       expect(validators.checkContainsBreakpointKey(breakpoint)).toBe(true);
     });
-  });
-
-
-  describe('', () => {
-
   });
 });
