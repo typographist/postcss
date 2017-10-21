@@ -1,4 +1,6 @@
-import { isRatioContainsAt, isValidRatio, isValidRatios } from './ratioValidator';
+const isRatioContainsAt = require('./').isRatioContainsAt;
+const isValidRatio = require('./').isValidRatio;
+const isValidRatios = require('./').isValidRatios;
 
 describe('isRatioContainsAt', () => {
   it('should be contains word at in entry string', () => {
