@@ -1,4 +1,4 @@
-import isArray from '../helpers/isArray/';
+const isArray = require('../helpers/isArray');
 
 const calcFontSize = (target, base, ratio) => {
   if (isArray(base) || base.length === 1) {
@@ -39,20 +39,7 @@ const nt = (target, breakpoint) => {
   return result;
 };
 
-export default nt;
-
-
-
-
-
-
-
-
-
-
-
-
-
+module.exports = nt;
 
 // import calculator from './calculator';
 // import { 
