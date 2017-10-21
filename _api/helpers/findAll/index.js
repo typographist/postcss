@@ -1,5 +1,5 @@
-import isArray from '../isArray';
-import isObject from '../isObject';
+const isArray = require('../isArray/');
+const isObject = require('../isObject/');
 
 const findAll = (obj, key, memo) => {
   let result = memo;
@@ -18,4 +18,4 @@ const findAll = (obj, key, memo) => {
   return result;
 };
 
-export default findAll;
+module.exports = findAll;
