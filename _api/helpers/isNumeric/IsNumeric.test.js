@@ -1,4 +1,4 @@
-import isNumeric from './';
+const isNumeric = require('./');
 
 describe('isNumeric', () => {
   it('should if number', () => {
