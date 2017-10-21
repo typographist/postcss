@@ -1,4 +1,4 @@
-import * as validators from './baseValidator';
+const validators = require('./baseValidator');
 
 describe('isBaseContainPxOrEm', () => {
   it('shoud contains px', () => {
