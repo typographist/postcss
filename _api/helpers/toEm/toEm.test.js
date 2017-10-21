@@ -1,4 +1,4 @@
-import toEm from './';
+const toEm = require('./');
 
 describe('toEm', () => {
   it('should if px', () => {
