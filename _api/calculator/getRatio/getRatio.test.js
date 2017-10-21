@@ -1,4 +1,8 @@
-import { getFontSizeFromRatio, getTargetFromRatio, calcRatio, getRatio } from './';
+const getFontSizeFromRatio = require('./').getFontSizeFromRatio;
+const getTargetFromRatio = require('./').getTargetFromRatio;
+const calcRatio = require('./').calcRatio;
+const getRatio = require('./').getRatio;
+
 
 describe('getFontSizeFromRatio', () => {
   it('should get font size from ratio', () => {
