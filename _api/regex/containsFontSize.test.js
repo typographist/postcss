@@ -1,4 +1,4 @@
-import { CONTAINS_FONT_SIZE } from './';
+const CONTAINS_FONT_SIZE = require('./').CONTAINS_FONT_SIZE;
 
 describe('CONTAINS_FONT_SIZE', () => {
   test('Find the first value in the line containing the pixels', () => {
