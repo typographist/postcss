@@ -1,4 +1,4 @@
-import toPx from './';
+const toPx = require('./');
 
 describe('toPx', () => {
   it('should if em', () => {
