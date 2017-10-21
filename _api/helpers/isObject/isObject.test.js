@@ -1,4 +1,4 @@
-import isObject from './';
+const isObject = require('./');
 
 describe('isObject', () => {
   it('should be the object', () => {
