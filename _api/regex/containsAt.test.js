@@ -1,4 +1,4 @@
-import { CONTAINS_AT } from './';
+const CONTAINS_AT = require('./').CONTAINS_AT;
 
 describe('CONTAINS_AT', () => {
   test(`The string corresponds to a 
