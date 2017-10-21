@@ -1,4 +1,4 @@
-import { CONTAINS_TARGET } from './';
+const CONTAINS_TARGET = require('./').CONTAINS_TARGET;
 
 describe('CONTAINS_TARGET', () => {
   test('Find the number after the word at', () => {
