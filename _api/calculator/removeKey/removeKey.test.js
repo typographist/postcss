@@ -1,4 +1,4 @@
-import removeKey from './';
+const removeKey = require('./');
 
 describe('removeKey', () => {
   it('should remove keys from objects', () => {
