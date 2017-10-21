@@ -1,4 +1,4 @@
-import stripUnit from './';
+const stripUnit = require('./');
 
 describe('stripUnit', () => {
   it('should if base is string in px', () => {
