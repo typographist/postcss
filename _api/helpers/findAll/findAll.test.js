@@ -1,4 +1,4 @@
-import findAll from './';
+const findAll = require('./');
 
 const obj = {
   aa: 1,
