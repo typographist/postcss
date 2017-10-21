@@ -1,4 +1,4 @@
-import calcLeading from './';
+const calcLeading = require('./');
 
 describe('calcLeading', () => {
   it('should calc leading if base is array', () => {
