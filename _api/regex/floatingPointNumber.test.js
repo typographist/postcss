@@ -1,4 +1,4 @@
-import { FLOATING_POINT_NUMBER } from './';
+const FLOATING_POINT_NUMBER = require('./').FLOATING_POINT_NUMBER;
 
 describe('FLOATING_POINT_NUMBER', () => {
   test('integer support', () => {
