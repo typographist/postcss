@@ -1,6 +1,7 @@
-import isArray from '../isArray/';
-import { CONTAINS_PX, CONTAINS_EM } from '../../regex';
-import toPx from '../toPx';
+const isArray = require('../isArray/');
+const CONTAINS_PX = require('../../regex').CONTAINS_PX;
+const CONTAINS_EM = require('../../regex').CONTAINS_EM;
+const toPx = require('../toPx');
 
 /**
  * @param {Array<string>|string} base
@@ -24,4 +25,4 @@ const stripUnit = (val) => {
   return result;
 };
 
-export default stripUnit;
+module.exports = stripUnit;
