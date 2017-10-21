@@ -1,5 +1,5 @@
-import { CONTAINS_EM } from '../../regex';
-import toPx from '../../helpers/toPx';
+const CONTAINS_EM = require('../../regex').CONTAINS_EM;
+const toPx = require('../../helpers/toPx');
 
 const getValue = (val) => {
   if (CONTAINS_EM.test(val)) {
@@ -9,4 +9,4 @@ const getValue = (val) => {
   return val;
 };
 
-export default getValue;
+module.exports = getValue;
