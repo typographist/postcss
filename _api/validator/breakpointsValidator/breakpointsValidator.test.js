@@ -1,4 +1,4 @@
-const validators = require('./breakpointsValidator');
+const validators = require('./');
 
 const config = {
   base: ['16px', '33px'],
