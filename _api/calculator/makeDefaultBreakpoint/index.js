@@ -14,4 +14,4 @@ const makeDefaultBreakpoint = (validConfig) => {
   return breakpoint;
 };
 
-export default makeDefaultBreakpoint;
+module.exports = makeDefaultBreakpoint;
