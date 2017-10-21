@@ -1,4 +1,4 @@
-import calculator from './';
+const calculator = require('./');
 
 const config = {
   base: ['16px', '33px'],
