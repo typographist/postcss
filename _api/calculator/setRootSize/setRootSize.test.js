@@ -1,4 +1,4 @@
-import setRootSize from './';
+const setRootSize = require('./');
 
 const breakpoints = [
   {
