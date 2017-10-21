@@ -1,12 +1,16 @@
-import { CONTAINS_FONT_SIZE, CONTAINS_TARGET, CONTAINS_PX, CONTAINS_EM } from '../../regex';
-import toPx from '../../helpers/toPx';
-import getFirstBase from '../getFirstBase';
+const CONTAINS_FONT_SIZE = require('../../regex').CONTAINS_FONT_SIZE;
+const CONTAINS_TARGET = require('../../regex').CONTAINS_TARGET;
+const CONTAINS_PX = require('../../regex').CONTAINS_PX;
+const CONTAINS_EM = require('../../regex').CONTAINS_EM;
+const toPx = require('../../helpers/toPx');
+const getFirstBase = require('../getFirstBase');
+
 
 /**
  * @param {string} ratio 
  * @return {string}
  */
-export const getFontSizeFromRatio = ratio => (
+const getFontSizeFromRatio = ratio => (
   ratio.match(CONTAINS_FONT_SIZE).toString()
 );
 
@@ -15,7 +19,7 @@ export const getFontSizeFromRatio = ratio => (
  * @param {string} ratio 
  * @return {number}
  */
-export const getTargetFromRatio = ratio => (
+const getTargetFromRatio = ratio => (
   Number(ratio.match(CONTAINS_TARGET).toString())
 );
 
@@ -25,7 +29,7 @@ export const getTargetFromRatio = ratio => (
  * @param {number} target
  * @return {number}
  */
-export const calcRatio = (fontSize, base, target) => {
+const calcRatio = (fontSize, base, target) => {
   const result = ((fontSize / base) ** (1 / target)).toFixed(5);
 
   return Number(result);
@@ -36,7 +40,7 @@ export const calcRatio = (fontSize, base, target) => {
  * @param {string|number} ratio 
  * @param {number} base 
  */
-export const getRatio = (ratio, base) => {
+const getRatio = (ratio, base) => {
   let result = null;
 
   if (typeof ratio === 'string') {
@@ -60,4 +64,11 @@ export const getRatio = (ratio, base) => {
   }
 
   return result;
+};
+
+module.exports = {
+  getFontSizeFromRatio,
+  getTargetFromRatio,
+  calcRatio,
+  getRatio,
 };
