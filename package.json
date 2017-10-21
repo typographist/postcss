@@ -1,7 +1,7 @@
 {
   "name": "new-typography",
   "version": "1.0.0",
-  "main": "./_dist/new-typography",
+  "main": "./index.js",
   "license": "MIT",
   "devDependencies": {
     "eslint": "^4.4.1",
@@ -66,7 +66,7 @@
     "test:watch": "jest --watch",
     "lint": "eslint **/*.js",
     "dev": "NODE_ENV=development && webpack-dev-server",
-    "build": "yarn clean && NODE_ENV=production webpack -p",
+    "build": "yarn clean && NODE_ENV=production webpack",
     "demo": "static _dist",
     "clean": "rimraf ./_dist/*"
   },
