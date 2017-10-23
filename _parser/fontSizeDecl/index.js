@@ -1,5 +1,4 @@
 const postcss = require('postcss');
-const breakpoints = calculate(config);
 
 const fontSizeDecl = size => (
   postcss.decl({
