@@ -10,7 +10,7 @@ const toEm = inPx => (
 );
 
 
-const mediaDecl = ({ minWidth, nestedRule }) => {
+const mediaDecl = ({ minWidth, fontSize, nestedRule }) => {
   const mediaWidth = toEm(minWidth);
   const rule = postcss.atRule({
     name: 'media',
