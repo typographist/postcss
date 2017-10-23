@@ -11,3 +11,4 @@ const bodyRule = (fontSize) => {
 };
 
 module.exports = bodyRule;
+
