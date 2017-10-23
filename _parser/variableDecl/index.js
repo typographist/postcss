@@ -1,9 +1,12 @@
 const postcss = require('postcss');
-const toCebabCase = require('../../_api/helpers/toCebabCase');
+
+const toCababCase = string => (
+  string.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
+);
 
 const variableDecl = ({ name, value }) => (
   postcss.decl({
-    prop: `--${toCebabCase(name)}`,
+    prop: `--${toCababCase(name)}`,
     value,
   })
 );
