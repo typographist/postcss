@@ -5,6 +5,8 @@ const rootRule = require('./_parser/rootRule');
 const bodyRule = require('./_parser/bodyRule');
 const mediaDecl = require('./_parser/mediaDecl');
 const variableDecl = require('./_parser/variableDecl');
+const rootToPersentage = require('./_parser/rootToPersentage');
+
 
 const defualtConfig = {
   base: '16px',
@@ -21,6 +23,7 @@ const plugin = postcss.plugin('new-typography', (config = defualtConfig) => {
       node.remove();
     } else {
       const breakpoint = breakpoints.find(b => /^0/.test(b.value));
+
       breakpoints
         .reverse()
         .filter(b => b.value !== '0px')
@@ -38,7 +41,7 @@ const plugin = postcss.plugin('new-typography', (config = defualtConfig) => {
           value: b.value,
         })));
 
-      node.replaceWith(fontSizeDecl(breakpoint.root));
+      node.replaceWith(fontSizeDecl(breakpoint.root, rootToPersentage));
     }
   };
 
