@@ -29,7 +29,6 @@ const plugin = postcss.plugin('new-typography', (config = defualtConfig) => {
         .filter(b => b.value !== '0px')
         .map(b => node.parent.after(mediaDecl({
           minWidth: b.value,
-          fontSize: b.root,
           nestedRule: rootRule(b.root),
         })));
 
