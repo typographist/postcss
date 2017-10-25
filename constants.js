@@ -1,0 +1,10 @@
+const HALF = 0.5;
+const BROWSER_VIEWPORT_WIDTH = '100vw';
+const BROWSER_DEFAULT_FONT_SIZE = 16;
+
+module.exports = {
+  HALF,
+  BROWSER_VIEWPORT_WIDTH,
+  BROWSER_DEFAULT_FONT_SIZE,
+};
+
