@@ -39,3 +39,18 @@ const plugin = postcss.plugin('new-typography', (config = defualtConfig) => {
 });
 
 module.exports = plugin;
+
+// toDo
+/*
+1) Breakpoints
+  a) above
+  b) below
+  c) between
+
+2) Nt
+3) Css variables support
+4) Root fluid
+5) Base fluid
+6) Nt fluid
+7) Margins for headings
+*/
