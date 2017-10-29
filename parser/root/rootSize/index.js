@@ -14,7 +14,7 @@ const rootSize = (node, breakpoints) => {
     breakpoints
       .filter(b => b.value !== '0px')
       .reverse()
-      .map(b => node.parent.after(mediaDecl({
+      .map(b => parent.after(mediaDecl({
         minWidth: b.value,
         nestedRule: rootRule(b.root),
       })));
