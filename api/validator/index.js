@@ -1,15 +1,18 @@
 const flatten = require('lodash').flatten;
-const findAll = require('../../helpers/findAll');
-const isBaseString = require('./baseValidator').isBaseString;
-const isBaseContainPxOrEm = require('./baseValidator').isBaseContainPxOrEm;
-const isValidBases = require('./baseValidator').isValidBases;
-const isValidLineHeights = require('./lineHeightValidator');
 const isValidRatios = require('./ratioValidator').isValidRatios;
-const breakpointIsString = require('./breakpointsValidator').breakpointIsString;
-const isBreakpointContainsPxOrEm = require('./breakpointsValidator').isBreakpointContainsPxOrEm;
-const isValidBreakpoints = require('./breakpointsValidator').isValidBreakpoints;
-const getBreakpoints = require('./breakpointsValidator').getBreakpoints;
-const checkContainsBreakpointKey = require('./breakpointsValidator').checkContainsBreakpointKey;
+const findAll = require('../../helpers/findAll');
+const baseValidator = require('./baseValidator');
+const isValidLineHeights = require('./lineHeightValidator');
+const breakpointsValidator = require('./breakpointsValidator');
+
+const isBaseString = baseValidator.isBaseString;
+const isBaseContainPxOrEm = baseValidator.isBaseContainPxOrEm;
+const isValidBases = baseValidator.isValidBases;
+const breakpointIsString = breakpointsValidator.breakpointIsString;
+const isBreakpointContainsPxOrEm = breakpointsValidator.isBreakpointContainsPxOrEm;
+const isValidBreakpoints = breakpointsValidator.isValidBreakpoints;
+const getBreakpoints = breakpointsValidator.getBreakpoints;
+const checkContainsBreakpointKey = breakpointsValidator.checkContainsBreakpointKey;
 
 const isValidConfig = (config) => {
   const bases = flatten(findAll(config, 'base'));
