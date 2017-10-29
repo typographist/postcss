@@ -35,6 +35,7 @@
     "happypack": "^4.0.0-beta.2",
     "html-webpack-harddisk-plugin": "^0.1.0",
     "html-webpack-plugin": "^2.30.1",
+    "humps": "^2.0.1",
     "image-webpack-loader": "^3.3.1",
     "lodash": "^4.17.4",
     "mathsass": "^0.10.1",
