@@ -1,4 +1,4 @@
-const CONTAINS_PX_OR_EM = require('../../regex').CONTAINS_PX_OR_EM;
+const CONTAINS_PX_OR_EM = require('../../../regex').CONTAINS_PX_OR_EM;
 
 /**
  * @param {any} checkBase
