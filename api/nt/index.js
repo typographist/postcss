@@ -1,7 +1,7 @@
 const isArray = require('../../helpers/isArray');
 
 const calcFontSize = (target, base, ratio) => {
-  if (isArray(base) || base.length === 1) {
+  if (!isArray(base) || base.length === 1) {
     return Math.round((ratio ** target) * base);
   }
 
@@ -21,19 +21,16 @@ const calcFontSize = (target, base, ratio) => {
     ((target / cloneBase.length) - Math.floor(target / cloneBase.length)) * cloneBase.length,
   );
 
-  return Math.round((ratio ** Math.floor(target / cloneBase.length)) * cloneBase[roundedBase]);
+  return Math.round(
+    (ratio ** Math.floor(target / cloneBase.length)) * cloneBase[roundedBase],
+  );
 };
 
 const nt = (target, breakpoint) => {
   let result = null;
   if (!calculator) return;
   if (breakpoint === undefined) {
-
-    // const defaultBreakpoint = calculator()[0];
-    // console.log(base);
-    // const base = defaultBreakpoint.base;
-    // const ratio = defaultBreakpoint.ratio;
-    // result = calcFontSize(target, base, ratio);
+    calcFontSize()
   }
 
   return result;
