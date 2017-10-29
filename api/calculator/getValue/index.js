@@ -1,4 +1,4 @@
-const CONTAINS_EM = require('../../regex').CONTAINS_EM;
+const CONTAINS_EM = require('../../../regex').CONTAINS_EM;
 const toPx = require('../../../helpers/toPx');
 
 const getValue = (val) => {
