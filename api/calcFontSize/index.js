@@ -26,11 +26,19 @@ const calculator = (target, base, ratio) => {
   );
 };
 
-const calcFontSize = (target, breakpoints, breakpoint) => {
+const calcFontSize = (target, breakpoints, breakpointName) => {
   let result = null;
-  if (breakpoint === undefined) {
-    
+  if (breakpointName === undefined) {
+    const breakpoint = breakpoints.find(b => /^0/.test(b.value));
+    const base = breakpoint.base;
+    const ratio = breakpoint.ratio;
+    result = calculator(target, base, ratio);
   }
+
+  const breakpoint = breakpoints.find(b => b.name === breakpointName);
+  const base = breakpoint.base;
+  const ratio = breakpoint.ratio;
+  result = calculator(target, base, ratio);
 
   return result;
 };
