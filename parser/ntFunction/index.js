@@ -1,13 +1,16 @@
-const CONTAINS_NT_FUNCTION = require('../../regex/').CONTAINS_NT_FUNCTION;
-const NT_FUNCTION_AND_WORDS_AND_SPACES = require('../../regex/').NT_FUNCTION_AND_WORDS_AND_SPACES;
-const FLOATING_POINT_NUMBER = require('../../regex').FLOATING_POINT_NUMBER;
+const regex = require('../../regex');
+const calcFontSize = require('../../api/calcFontSize').calcFontSize;
+
+const CONTAINS_POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER_AND_NT_UNIT =
+  regex.CONTAINS_POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER_AND_NT_UNIT;
+
+const CONTAINS_NT = regex.CONTAINS_NT;
 
 const ntFunction = (node, breakpoints, root) => {
-  root.replaceValues(CONTAINS_NT_FUNCTION, (string) => {
-    const val = string.replace(NT_FUNCTION_AND_WORDS_AND_SPACES, '');
-    const res = FLOATING_POINT_NUMBER.test(val);
+  root.replaceValues(CONTAINS_POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER_AND_NT_UNIT, (string) => {
+    const target = string.replace(CONTAINS_NT, '');
 
-    return res ? val : '';
+    return calcFontSize(target, breakpoints);
   });
 };
 

@@ -4,7 +4,8 @@ const rootSize = require('./parser/root/rootSize');
 const baseSize = require('./parser/base/baseSize');
 const above = require('./parser/breakpoints/above');
 const nt = require('./parser/ntFunction');
-const CONTAINS_NT_FUNCTION = require('./regex/').CONTAINS_NT_FUNCTION;
+const CONTAINS_POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER_AND_NT_UNIT =
+  require('./regex/').CONTAINS_POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER_AND_NT_UNIT;
 
 const defualtConfig = {
   base: '16px',
@@ -27,7 +28,7 @@ const plugin = postcss.plugin('new-typography', (config = defualtConfig) => {
         console.log('------ below');
       } else if (node.name === 'nt-between') {
         console.log('------ between');
-      } else if (CONTAINS_NT_FUNCTION.test(node.value)) {
+      } else if (CONTAINS_POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER_AND_NT_UNIT.test(node.value)) {
         nt(node, breakpoints, root);
         console.log('------ nt');
       }

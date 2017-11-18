@@ -1,31 +1,7 @@
-const calculator = require('./');
+const toRem = require('./');
+const getBase = require('../../helpers/getBase');
 
-
-const config = {
-  base: ['16px', '33px'],
-  lineHeight: 1.5,
-  ratio: '45px at 6',
-  tablet: {
-    breakpoint: '640px',
-    base: '17px',
-  },
-  desktop: {
-    breakpoint: '1024px',
-    base: '18px',
-    lineHeight: 1.7,
-    ratio: 1.333,
-  },
-  lgDesktop: {
-    breakpoint: '1200px',
-    base: '20px',
-  },
-  xlDesktop: {
-    breakpoint: '1600px',
-    base: '22px',
-  },
-};
-
-const result = [
+const breakpoints = [
   {
     root: 12,
     base: [16, 33],
@@ -68,8 +44,11 @@ const result = [
   },
 ];
 
-describe('calculator', () => {
-  it('should calculate all values', () => {
-    expect(calculator(config)).toEqual(result);
+describe('toRem', () => {
+  const base = getBase(breakpoints[0].base);
+  it('should convert to rem', () => {
+    expect(toRem(base, breakpoints[0].root)).toBe(1.3333333333333333);
   });
 });
+
+export default toRem;
