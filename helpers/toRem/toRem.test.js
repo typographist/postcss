@@ -1,5 +1,5 @@
-const toRem = require('./');
 const getBase = require('../../helpers/getBase');
+const toRem = require('./');
 
 const breakpoints = [
   {

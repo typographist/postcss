@@ -1,5 +1,6 @@
-const CONTAINS_AT = require('../../../regex').CONTAINS_AT;
 const isNumeric = require('../../../helpers/isNumeric');
+const { CONTAINS_AT } = require('../../../regex');
+
 
 /**
  * Check the line for matching the specified pattern.

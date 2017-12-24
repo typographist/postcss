@@ -1,6 +1,8 @@
-const isRatioContainsAt = require('./').isRatioContainsAt;
-const isValidRatio = require('./').isValidRatio;
-const isValidRatios = require('./').isValidRatios;
+const {
+  isRatioContainsAt,
+  isValidRatio,
+  isValidRatios,
+} = require('./');
 
 describe('isRatioContainsAt', () => {
   it('should be contains word at in entry string', () => {

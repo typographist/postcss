@@ -1,9 +1,11 @@
-const CONTAINS_FONT_SIZE = require('../../../regex/').CONTAINS_FONT_SIZE;
-const CONTAINS_TARGET = require('../../../regex/').CONTAINS_TARGET;
-const CONTAINS_PX = require('../../../regex/').CONTAINS_PX;
-const CONTAINS_EM = require('../../../regex/').CONTAINS_EM;
-const toPx = require('../../../helpers/toPx');
 const getBase = require('../../../helpers/getBase');
+const toPx = require('../../../helpers/toPx');
+const {
+  CONTAINS_FONT_SIZE,
+  CONTAINS_TARGET,
+  CONTAINS_PX,
+  CONTAINS_EM,
+} = require('../../../regex');
 
 
 /**

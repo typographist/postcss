@@ -1,5 +1,6 @@
 const isObject = require('../../../helpers/isObject');
 
+
 /**
  * @param {object} config
  * @return {array<string>}

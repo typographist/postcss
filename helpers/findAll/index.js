@@ -1,5 +1,5 @@
-const isArray = require('../isArray/');
 const isObject = require('../isObject/');
+const isArray = require('../isArray/');
 
 const findAll = (obj, key, memo) => {
   let result = memo;

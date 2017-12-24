@@ -1,5 +1,6 @@
-const CONTAINS_PX_OR_EM = require('../../../regex').CONTAINS_PX_OR_EM;
 const isObject = require('../../../helpers/isObject');
+const { CONTAINS_PX_OR_EM } = require('../../../regex');
+
 
 /**
  * @param {any} breakpoint 

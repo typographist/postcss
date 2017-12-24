@@ -1,4 +1,4 @@
-const CONTAINS_EM = require('./').CONTAINS_EM;
+const { CONTAINS_EM } = require('./');
 
 describe('CONTAINS_EM', () => {
   it('should contains ems', () => {

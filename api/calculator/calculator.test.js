@@ -1,6 +1,5 @@
 const calculator = require('./');
 
-
 const config = {
   base: ['16px', '33px'],
   lineHeight: 1.5,

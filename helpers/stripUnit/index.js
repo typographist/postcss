@@ -1,9 +1,10 @@
 const isArray = require('../isArray/');
-const regex = require('../../regex/');
-
-const CONTAINS_PX = regex.CONTAINS_PX;
-const CONTAINS_EM = regex.CONTAINS_EM;
 const toPx = require('../toPx');
+const {
+  CONTAINS_PX,
+  CONTAINS_EM,
+} = require('../../regex');
+
 
 /**
  * @param {Array<string>|string} base

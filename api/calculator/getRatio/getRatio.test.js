@@ -1,7 +1,9 @@
-const getFontSizeFromRatio = require('./').getFontSizeFromRatio;
-const getTargetFromRatio = require('./').getTargetFromRatio;
-const calcRatio = require('./').calcRatio;
-const getRatio = require('./').getRatio;
+const {
+  getFontSizeFromRatio,
+  getTargetFromRatio,
+  calcRatio,
+  getRatio,
+} = require('./');
 
 
 describe('getFontSizeFromRatio', () => {

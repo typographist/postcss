@@ -1,4 +1,4 @@
-const CONTAINS_PX = require('./').CONTAINS_PX;
+const { CONTAINS_PX } = require('./');
 
 describe('CONTAINS_PX', () => {
   it('should contains pixels', () => {

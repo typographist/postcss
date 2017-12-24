@@ -1,4 +1,4 @@
-const CONTAINS_TARGET = require('./').CONTAINS_TARGET;
+const { CONTAINS_TARGET } = require('./');
 
 describe('CONTAINS_TARGET', () => {
   it('should number after the word at', () => {

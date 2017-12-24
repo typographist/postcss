@@ -1,15 +1,16 @@
-const isValidConfig = require('../validator');
 const makeDefaultBreakpoint = require('./makeDefaultBreakpoint');
-const getBreakpointsName = require('./makeBreakpoints').getBreakpointsName;
-const getBreakpoints = require('./makeBreakpoints').getBreakpoints;
-const setBreakpointName = require('./makeBreakpoints').setBreakpointName;
-const setBreakpointValue = require('./makeBreakpoints').setBreakpointValue;
-const removeKey = require('./removeKey');
-const getRatio = require('./getRatio').getRatio;
-const getValue = require('./getValue');
 const stripUnit = require('../../helpers/stripUnit');
+const isValidConfig = require('../validator');
 const setRootSize = require('./setRootSize');
-
+const removeKey = require('./removeKey');
+const getValue = require('./getValue');
+const { getRatio } = require('./getRatio');
+const {
+  getBreakpointsName,
+  getBreakpoints,
+  setBreakpointName,
+  setBreakpointValue,
+} = require('./makeBreakpoints');
 
 /**
  * @param {object} config

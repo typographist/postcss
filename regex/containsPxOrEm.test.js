@@ -1,4 +1,4 @@
-const CONTAINS_PX_OR_EM = require('./').CONTAINS_PX_OR_EM;
+const { CONTAINS_PX_OR_EM } = require('./');
 
 describe('CONTAINS_PX_OR_EM', () => {
   it('should contains pixels', () => {

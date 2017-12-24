@@ -1,4 +1,4 @@
-const CONTAINS_AT = require('./').CONTAINS_AT;
+const { CONTAINS_AT } = require('./');
 
 describe('CONTAINS_AT', () => {
   it(`should string corresponds to a 

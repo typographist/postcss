@@ -1,4 +1,5 @@
-const BROWSER_DEFAULT_FONT_SIZE = require('../../constants').BROWSER_DEFAULT_FONT_SIZE;
+const { BROWSER_DEFAULT_FONT_SIZE } = require('../../constants');
+
 
 /**
  * 

@@ -1,6 +1,6 @@
 const postcss = require('postcss');
-const fontSizeDecl = require('../../decls/fontSizeDecl');
 const persentage = require('../../../helpers/persentage');
+const fontSizeDecl = require('../../decls/fontSizeDecl');
 
 const rootRule = (fontSize) => {
   const root = postcss.rule({

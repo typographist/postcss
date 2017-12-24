@@ -1,4 +1,4 @@
-const CONTAINS_FONT_SIZE = require('./').CONTAINS_FONT_SIZE;
+const { CONTAINS_FONT_SIZE } = require('./');
 
 describe('CONTAINS_FONT_SIZE', () => {
   it('should find the first value in the line containing the pixels', () => {

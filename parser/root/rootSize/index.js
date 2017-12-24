@@ -1,8 +1,8 @@
+const persentage = require('../../../helpers/persentage');
+const variableDecl = require('../../decls/variableDecl');
+const fontSizeDecl = require('../../decls/fontSizeDecl');
 const mediaDecl = require('../../decls/mediaDecl');
 const rootRule = require('../rootRule');
-const variableDecl = require('../../decls/variableDecl');
-const persentage = require('../../../helpers/persentage');
-const fontSizeDecl = require('../../decls/fontSizeDecl');
 
 const rootSize = (node, breakpoints) => {
   const parent = node.parent;

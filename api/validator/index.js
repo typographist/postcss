@@ -14,6 +14,10 @@ const isValidBreakpoints = breakpointsValidator.isValidBreakpoints;
 const getBreakpoints = breakpointsValidator.getBreakpoints;
 const checkContainsBreakpointKey = breakpointsValidator.checkContainsBreakpointKey;
 
+/**
+ * @param {array<object>}
+ * @return {boolean}
+ */
 const isValidConfig = (config) => {
   const bases = flatten(findAll(config, 'base'));
   const lineHeighs = findAll(config, 'lineHeight');

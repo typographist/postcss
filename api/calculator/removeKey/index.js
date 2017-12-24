@@ -1,4 +1,4 @@
-const omit = require('lodash').omit;
+const { omit } = require('lodash');
 
 /**
  * @param {string} key 
