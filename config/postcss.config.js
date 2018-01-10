@@ -1,8 +1,5 @@
-export default ({ options, env }) => ({
+export default ({ options }) => ({
   plugins: {
     autoprefixer: options.autoprefixer,
-    'postcss-flexbugs-fixes': options.flexbugsFixes,
-    'postcss-short': options.short,
-    cssnano: env === 'production' ? options.cssnano : false,
   },
 });
