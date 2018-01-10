@@ -1,7 +1,7 @@
 /**
- * @param {number|array<number>} base 
+ * @param {number|array<number>} base
  * @param {number} lineHeight
- * @return {number} 
+ * @return {number}
  */
 const calcLeading = (base, lineHeight) => {
   if (Array.isArray(base)) {

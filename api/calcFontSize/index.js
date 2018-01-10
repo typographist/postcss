@@ -2,7 +2,6 @@ const isArray = require('../../helpers/isArray');
 const getBase = require('../../helpers/getBase');
 const toRem = require('../../helpers/toRem');
 
-
 /**
  * @param {number} target
  * @param {number} base
@@ -11,30 +10,30 @@ const toRem = require('../../helpers/toRem');
  */
 const calculator = (target, base, ratio) => {
   if (!isArray(base) || base.length === 1) {
-    return Math.round((ratio ** target) * base);
+    return Math.round(ratio ** target * base);
   }
 
   const cloneBase = base.slice();
-  const baseHigh = (ratio ** 1) * cloneBase[0];
+  const baseHigh = ratio ** 1 * cloneBase[0];
 
   for (let i = 1; i < cloneBase.length; i + 1) {
     while (cloneBase[i] / 1 < cloneBase[0] / 1) {
-      cloneBase[i] *= (ratio ** 1);
+      cloneBase[i] *= ratio ** 1;
     }
     while (cloneBase[i] / 1 >= baseHigh / 1) {
-      cloneBase[i] *= (ratio ** -1);
+      cloneBase[i] *= ratio ** -1;
     }
   }
   cloneBase.sort();
   const roundedBase = Math.round(
-    ((target / cloneBase.length) - Math.floor(target / cloneBase.length)) * cloneBase.length,
+    (target / cloneBase.length - Math.floor(target / cloneBase.length)) *
+      cloneBase.length,
   );
 
   return Math.round(
-    (ratio ** Math.floor(target / cloneBase.length)) * cloneBase[roundedBase],
+    ratio ** Math.floor(target / cloneBase.length) * cloneBase[roundedBase],
   );
 };
-
 
 /**
  * @param {number} target

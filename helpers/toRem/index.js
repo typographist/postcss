@@ -5,8 +5,6 @@ const getBase = require('../getBase');
  * @param {number} rootSize
  * @return {string}
  */
-const toRem = (baseSize, rootSize) => (
-  getBase(baseSize) / rootSize
-);
+const toRem = (baseSize, rootSize) => getBase(baseSize) / rootSize;
 
 module.exports = toRem;

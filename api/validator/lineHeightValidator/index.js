@@ -6,9 +6,7 @@ const isNumeric = require('../../../helpers/isNumeric/');
  * @return {boolean}
  */
 
-const isValidLineHeights = lineHeights => (
-  lineHeights.every(lineHeight => isNumeric(lineHeight))
-);
+const isValidLineHeights = lineHeights =>
+  lineHeights.every(lineHeight => isNumeric(lineHeight));
 
 module.exports = isValidLineHeights;
-

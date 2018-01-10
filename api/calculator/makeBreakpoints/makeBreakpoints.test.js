@@ -1,8 +1,4 @@
-const {
-  getBreakpointsName,
-  getBreakpoints,
-  setBreakpointName,
-} = require('./');
+const { getBreakpointsName, getBreakpoints, setBreakpointName } = require('./');
 
 const config = {
   base: ['16px', '33px'],
@@ -67,10 +63,9 @@ describe('makeBreakpoints', () => {
 
   describe('setBreakpointName', () => {
     it('should if set breakpoints name', () => {
-      expect(setBreakpointName(
-        getBreakpoints(config),
-        getBreakpointsName(config),
-      )).toEqual([
+      expect(
+        setBreakpointName(getBreakpoints(config), getBreakpointsName(config)),
+      ).toEqual([
         {
           name: 'tablet',
           breakpoint: '640px',

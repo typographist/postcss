@@ -1,16 +1,12 @@
 const isArray = require('../isArray/');
 const toPx = require('../toPx');
-const {
-  CONTAINS_PX,
-  CONTAINS_EM,
-} = require('../../regex');
-
+const { CONTAINS_PX, CONTAINS_EM } = require('../../regex');
 
 /**
  * @param {Array<string>|string} base
  * @return {Array<number>|number}
  */
-const stripUnit = (val) => {
+const stripUnit = val => {
   let result;
 
   if (isArray(val)) {

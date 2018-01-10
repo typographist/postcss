@@ -9,16 +9,18 @@ const isBaseString = baseValidator.isBaseString;
 const isBaseContainPxOrEm = baseValidator.isBaseContainPxOrEm;
 const isValidBases = baseValidator.isValidBases;
 const breakpointIsString = breakpointsValidator.breakpointIsString;
-const isBreakpointContainsPxOrEm = breakpointsValidator.isBreakpointContainsPxOrEm;
+const isBreakpointContainsPxOrEm =
+  breakpointsValidator.isBreakpointContainsPxOrEm;
 const isValidBreakpoints = breakpointsValidator.isValidBreakpoints;
 const getBreakpoints = breakpointsValidator.getBreakpoints;
-const checkContainsBreakpointKey = breakpointsValidator.checkContainsBreakpointKey;
+const checkContainsBreakpointKey =
+  breakpointsValidator.checkContainsBreakpointKey;
 
 /**
  * @param {array<object>}
  * @return {boolean}
  */
-const isValidConfig = (config) => {
+const isValidConfig = config => {
   const bases = flatten(findAll(config, 'base'));
   const lineHeighs = findAll(config, 'lineHeight');
   const ratios = findAll(config, 'ratio');
@@ -37,4 +39,3 @@ const isValidConfig = (config) => {
 };
 
 module.exports = isValidConfig;
-

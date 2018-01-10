@@ -1,4 +1,4 @@
 {
-  "extends": "airbnb",
-  "plugins": ["jest"]
+  "extends": ["airbnb", "prettier"],
+  "plugins": ["prettier", "jest"]
 }

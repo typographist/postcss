@@ -18,7 +18,6 @@ describe('isBaseContainPxOrEm', () => {
   });
 });
 
-
 describe('isBaseString', () => {
   it('should be a string', () => {
     expect(validators.isBaseString('Yep!')).toBe(true);
@@ -29,19 +28,16 @@ describe('isBaseString', () => {
   });
 });
 
-
 describe('isValidBases', () => {
   it('should if every string in the array is string', () => {
-    expect(validators.isValidBases(
-      ['this', 'is', 'test'],
-      validators.isBaseString,
-    )).toBe(true);
+    expect(
+      validators.isValidBases(['this', 'is', 'test'], validators.isBaseString),
+    ).toBe(true);
   });
 
   it('should if every string in the array contains px or ems', () => {
-    expect(validators.isValidBases(
-      ['1em', '2em', '3em'],
-      validators.isBaseString,
-    )).toBe(true);
+    expect(
+      validators.isValidBases(['1em', '2em', '3em'], validators.isBaseString),
+    ).toBe(true);
   });
 });

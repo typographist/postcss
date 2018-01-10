@@ -1,8 +1,4 @@
-const {
-  isRatioContainsAt,
-  isValidRatio,
-  isValidRatios,
-} = require('./');
+const { isRatioContainsAt, isValidRatio, isValidRatios } = require('./');
 
 describe('isRatioContainsAt', () => {
   it('should be contains word at in entry string', () => {
@@ -13,7 +9,6 @@ describe('isRatioContainsAt', () => {
     expect(isRatioContainsAt('this is incorrect string')).toBe(false);
   });
 });
-
 
 describe('isValidRatio', () => {
   it('should typeof ratio is number', () => {

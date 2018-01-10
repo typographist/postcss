@@ -60,7 +60,6 @@ describe('breakpointIsString', () => {
   });
 });
 
-
 describe('isBreakpointContainsPxOrEm', () => {
   it('should be constains px', () => {
     expect(validators.isBreakpointContainsPxOrEm('777px')).toBe(true);
@@ -75,28 +74,33 @@ describe('isBreakpointContainsPxOrEm', () => {
   });
 });
 
-
 describe('isValidBreakpoints', () => {
   it('should be if all breakpoints is a strings', () => {
-    expect(validators.isValidBreakpoints(
-      ['string', 'number', 'otherValue'],
-      validators.breakpointIsString)).toBe(true);
+    expect(
+      validators.isValidBreakpoints(
+        ['string', 'number', 'otherValue'],
+        validators.breakpointIsString,
+      ),
+    ).toBe(true);
   });
 
   it('should be if all brekapoints contains px or ems', () => {
-    expect(validators.isValidBreakpoints(
-      ['12px', '34px', '56em'],
-      validators.isBreakpointContainsPxOrEm,
-    )).toBe(true);
+    expect(
+      validators.isValidBreakpoints(
+        ['12px', '34px', '56em'],
+        validators.isBreakpointContainsPxOrEm,
+      ),
+    ).toBe(true);
   });
 
   it('should if all breakpoints contains breakpoint key', () => {
-    expect(validators.isValidBreakpoints(
-      breakpoints,
-      validators.checkContainsBreakpointKey,
-    )).toBe(true);
+    expect(
+      validators.isValidBreakpoints(
+        breakpoints,
+        validators.checkContainsBreakpointKey,
+      ),
+    ).toBe(true);
   });
-
 
   describe('getBreakpoints', () => {
     it('should get breakpoints', () => {
@@ -122,7 +126,6 @@ describe('isValidBreakpoints', () => {
       ]);
     });
   });
-
 
   describe('checkContainsBreakpointKey', () => {
     it('should if is breakpoint contains breakpoint key', () => {

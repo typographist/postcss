@@ -7,38 +7,32 @@ const {
   CONTAINS_EM,
 } = require('../../../regex');
 
-
 /**
- * @param {string} ratio 
+ * @param {string} ratio
  * @return {string}
  */
-const getFontSizeFromRatio = ratio => (
-  ratio.match(CONTAINS_FONT_SIZE).toString()
-);
-
+const getFontSizeFromRatio = ratio =>
+  ratio.match(CONTAINS_FONT_SIZE).toString();
 
 /**
- * @param {string} ratio 
+ * @param {string} ratio
  * @return {number}
  */
-const getTargetFromRatio = ratio => (
-  Number(ratio.match(CONTAINS_TARGET).toString())
-);
+const getTargetFromRatio = ratio =>
+  Number(ratio.match(CONTAINS_TARGET).toString());
 
 /**
- * @param {number} fontSize 
- * @param {number} base 
+ * @param {number} fontSize
+ * @param {number} base
  * @param {number} target
  * @return {number}
  */
-const calcRatio = (fontSize, base, target) => (
-  (fontSize / base) ** (1 / target)
-);
+const calcRatio = (fontSize, base, target) => (fontSize / base) ** (1 / target);
 
 /**
- * 
- * @param {string|number} ratio 
- * @param {number} base 
+ *
+ * @param {string|number} ratio
+ * @param {number} base
  */
 const getRatio = (ratio, base) => {
   let result = null;

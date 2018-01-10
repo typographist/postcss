@@ -13,4 +13,3 @@ const bodyRule = (baseSize, rootSize) => {
 };
 
 module.exports = bodyRule;
-

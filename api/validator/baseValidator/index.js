@@ -2,9 +2,9 @@ const { CONTAINS_PX_OR_EM } = require('../../../regex');
 
 /**
  * @param {any} checkBase
- * @return {boolean} 
+ * @return {boolean}
  */
-const isBaseString = (checkBase) => {
+const isBaseString = checkBase => {
   try {
     switch (typeof checkBase) {
       case 'string':
@@ -18,18 +18,19 @@ const isBaseString = (checkBase) => {
   }
 };
 
-
 /**
- * @param {string} checkBase 
- * @return {boolean} 
+ * @param {string} checkBase
+ * @return {boolean}
  */
-const isBaseContainPxOrEm = (checkBase) => {
+const isBaseContainPxOrEm = checkBase => {
   try {
     switch (CONTAINS_PX_OR_EM.test(checkBase)) {
       case true:
         return true;
       default:
-        throw new Error(`${checkBase} is incorrect value! Please, use pixels or em.`);
+        throw new Error(
+          `${checkBase} is incorrect value! Please, use pixels or em.`,
+        );
     }
   } catch (err) {
     console.log(err.message);
@@ -37,19 +38,15 @@ const isBaseContainPxOrEm = (checkBase) => {
   }
 };
 
-
 /**
  * @param {array<any>} checkBases - flat array
  * @param {function} fn
- * @return {boolean} 
+ * @return {boolean}
  */
-const isValidBases = (checkBases, fn) => (
-  checkBases.every(base => fn(base))
-);
+const isValidBases = (checkBases, fn) => checkBases.every(base => fn(base));
 
 module.exports = {
   isBaseString,
   isBaseContainPxOrEm,
   isValidBases,
 };
-

@@ -1,11 +1,10 @@
 const toPx = require('../../../helpers/toPx');
 const { CONTAINS_EM } = require('../../../regex');
 
-
 /**
- * 
+ *
  */
-const getValue = (val) => {
+const getValue = val => {
   if (CONTAINS_EM.test(val)) {
     return toPx(val);
   }

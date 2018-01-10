@@ -15,8 +15,9 @@ const {
 /**
  * @param {object} config
  * @return {array<object>}
- */ 
-const calculator = (config) => {
+ */
+
+const calculator = config => {
   if (!isValidConfig(config)) return false;
 
   const firstBreakpoint = makeDefaultBreakpoint(config);
@@ -31,21 +32,24 @@ const calculator = (config) => {
   let result = [];
   result.push(firstBreakpoint);
   result = [...result, ...rawBreakpoints];
-  result = result
-    .reduce((breakpoints, item, i) => {
-      const stripBase = stripUnit(item.base);
+  result = result.reduce((breakpoints, item, i) => {
+    const stripBase = stripUnit(item.base);
 
-      return [
-        ...breakpoints,
-        {
-          ...item,
-          base: !item.base ? breakpoints[i - 1].base : stripBase,
-          lineHeight: !item.lineHeight ? breakpoints[i - 1].lineHeight : item.lineHeight,
-          ratio: !item.ratio ? breakpoints[i - 1].ratio : getRatio(item.ratio, stripBase),
-          value: getValue(item.value),
-        },
-      ];
-    }, []);
+    return [
+      ...breakpoints,
+      {
+        ...item,
+        base: !item.base ? breakpoints[i - 1].base : stripBase,
+        lineHeight: !item.lineHeight
+          ? breakpoints[i - 1].lineHeight
+          : item.lineHeight,
+        ratio: !item.ratio
+          ? breakpoints[i - 1].ratio
+          : getRatio(item.ratio, stripBase),
+        value: getValue(item.value),
+      },
+    ];
+  }, []);
   result = setRootSize(result);
 
   return result;

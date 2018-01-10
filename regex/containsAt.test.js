@@ -6,8 +6,8 @@ describe('CONTAINS_AT', () => {
         or em format as units of measurement, 
         a space, a word at, a space, 
         a negative / positive floating-point number without units of measure.`, () => {
-      expect(CONTAINS_AT.test('123px at 7')).toBe(true);
-    });
+    expect(CONTAINS_AT.test('123px at 7')).toBe(true);
+  });
 
   it('should first value contains the pixels', () => {
     expect(CONTAINS_AT.test('123px at 7')).toBe(true);

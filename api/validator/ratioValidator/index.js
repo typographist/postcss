@@ -1,12 +1,11 @@
 const isNumeric = require('../../../helpers/isNumeric');
 const { CONTAINS_AT } = require('../../../regex');
 
-
 /**
  * Check the line for matching the specified pattern.
- * @param {string} ratio 
+ * @param {string} ratio
  */
-const isRatioContainsAt = (ratio) => {
+const isRatioContainsAt = ratio => {
   try {
     if (CONTAINS_AT.test(ratio)) return true;
     throw new Error(`${ratio} is incorrect value! The string must have a 
@@ -19,13 +18,12 @@ const isRatioContainsAt = (ratio) => {
   }
 };
 
-
 /**
  * Validation ratio
  * @param {any} ratio
- * @return {boolean} 
+ * @return {boolean}
  */
-const isValidRatio = (ratio) => {
+const isValidRatio = ratio => {
   try {
     switch (typeof ratio) {
       case 'number':
@@ -42,16 +40,14 @@ const isValidRatio = (ratio) => {
 };
 
 /**
-* @param {any} checkRatios
-* @return {boolean}
-*/
-const isValidRatios = checkRatios => (
-  checkRatios.every(ratio => isValidRatio(ratio))
-);
+ * @param {any} checkRatios
+ * @return {boolean}
+ */
+const isValidRatios = checkRatios =>
+  checkRatios.every(ratio => isValidRatio(ratio));
 
 module.exports = {
   isRatioContainsAt,
   isValidRatio,
   isValidRatios,
 };
-

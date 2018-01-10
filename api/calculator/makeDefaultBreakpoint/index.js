@@ -2,7 +2,7 @@
  * @param {object} validConfig
  * @return {object}
  */
-const makeDefaultBreakpoint = (validConfig) => {
+const makeDefaultBreakpoint = validConfig => {
   const breakpoint = {};
   const { base, lineHeight, ratio } = validConfig;
   breakpoint.base = base;

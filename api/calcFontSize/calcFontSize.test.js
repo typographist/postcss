@@ -56,7 +56,9 @@ describe('calcFontSize', () => {
   });
 
   it('should breakpoints name === tablet', () => {
-    expect(calcFontSize(6, breakpoints, 'tablet')).toBe('3.6923076923076925rem');
+    expect(calcFontSize(6, breakpoints, 'tablet')).toBe(
+      '3.6923076923076925rem',
+    );
   });
 
   it('should breakpoints name === desktop', () => {
@@ -64,11 +66,14 @@ describe('calcFontSize', () => {
   });
 
   it('should breakpoints name === lgDesktop', () => {
-    expect(calcFontSize(6, breakpoints, 'lgDesktop')).toBe('6.588235294117647rem');
+    expect(calcFontSize(6, breakpoints, 'lgDesktop')).toBe(
+      '6.588235294117647rem',
+    );
   });
 
   it('should breakpoints name === xlDesktop', () => {
-    expect(calcFontSize(6, breakpoints, 'xlDesktop')).toBe('6.473684210526316rem');
+    expect(calcFontSize(6, breakpoints, 'xlDesktop')).toBe(
+      '6.473684210526316rem',
+    );
   });
 });
-

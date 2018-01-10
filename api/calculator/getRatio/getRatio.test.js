@@ -5,13 +5,11 @@ const {
   getRatio,
 } = require('./');
 
-
 describe('getFontSizeFromRatio', () => {
   it('should get font size from ratio', () => {
     expect(getFontSizeFromRatio('45.5px at 7')).toBe('45.5px');
   });
 });
-
 
 describe('getTargetFromRatio', () => {
   it('should get target from ratio', () => {
