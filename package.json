@@ -25,9 +25,6 @@
     "jest": "^21.2.1"
   },
   "dependencies": {
-    "accoutrement-color": "^2.1.1",
-    "accoutrement-init": "^1.1.0",
-    "accoutrement-layout": "^2.2.0",
     "assets-webpack-plugin": "^3.5.1",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.26.0",
@@ -58,7 +55,6 @@
     "rimraf": "^2.6.1",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
-    "ts-loader": "^2.3.4",
     "typescript": "^2.4.2",
     "url-loader": "^0.5.9",
     "webpack": "^3.5.4",
