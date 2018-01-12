@@ -1,5 +1,5 @@
 node_modules/
-_dist/
+dist/
 design/
 coverage/
 .DS_Store

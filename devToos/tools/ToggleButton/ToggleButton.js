@@ -1,10 +1,10 @@
+/* eslint-env browser */
 const { createStore } = require('redux');
-const { toggleRhythm, setRhythm } = require('../actions');
-const { toNormalCase } = require('../../helpers');
-const verticalRhythm = require('../reducers');
-require('../devTools.scss');
+const { toggleRhythm, setRhythm } = require('../../actions');
+const { toNormalCase } = require('../../../helpers');
+const verticalRhythm = require('../../reducers');
 
-const store = createStore(verticalRhythm, 'offRhythm');
+const store = createStore(verticalRhythm);
 
 // BUTTON COMPONENT
 /**
@@ -14,7 +14,6 @@ const store = createStore(verticalRhythm, 'offRhythm');
  */
 
 const defaultOptions = {
-  elemClassName: 'toggle-button',
   zIndex: 1000,
   bgColor: 'black',
 };
@@ -83,15 +82,15 @@ class Button {
   }
 
   render() {
-    const { elemClassName, zIndex, bgColor } = this.options;
-    const buttonElem = global.document.createElement('button');
+    const { zIndex, bgColor } = this.options;
+    const buttonElem = document.createElement('button');
     const state = store.getState();
     buttonElem.textContent = toNormalCase(state);
     buttonElem.style.cssText = `
       z-index: ${zIndex};
       background-color: ${bgColor};
     `;
-    buttonElem.classList.add(elemClassName);
+    buttonElem.classList.add('typographist-button');
 
     buttonElem.addEventListener('click', () => {
       Button.handleClick();
@@ -102,9 +101,11 @@ class Button {
       buttonElem.textContent = toNormalCase($state);
     });
 
-    global.window.addEventListener('keydown', this.handleKeyDown);
-    global.window.addEventListener('keyup', this.handleKeyUp);
+    window.addEventListener('keydown', this.handleKeyDown);
+    window.addEventListener('keyup', this.handleKeyUp);
 
     return buttonElem;
   }
 }
+
+module.exports = Button;

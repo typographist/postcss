@@ -1,4 +1,8 @@
+const { createStore } = require('redux');
 const Button = require('./ToggleButton');
+const verticalRhythm = require('../../reducers');
+
+const store = createStore(verticalRhythm);
 
 const addButtonFor = (elem, options) => {
   const btn = new Button(options);
