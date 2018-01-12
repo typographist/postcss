@@ -1,5 +1,4 @@
-const calculator = require('./').calculator;
-const calcFontSize = require('./').calcFontSize;
+const { calculator, calcFontSize } = require('./');
 
 const breakpoints = [
   {
