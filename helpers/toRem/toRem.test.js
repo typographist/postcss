@@ -50,5 +50,3 @@ describe('toRem', () => {
     expect(toRem(base, breakpoints[0].root)).toBe(1.3333333333333333);
   });
 });
-
-export default toRem;

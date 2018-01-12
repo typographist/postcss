@@ -1,0 +1,51 @@
+#root {
+  height: 1px;
+  min-height: 100vh;
+}
+
+.toggle-button {
+  position: fixed;
+  display: flex;
+  top: 2rem;
+  right: 1rem;
+  padding: 0rem 1.5rem 0.1rem 1.5rem;
+  align-content: center;
+  white-space: nowrap;
+  border-radius: 2rem;
+  font-size: 1rem;
+  line-height: 1.9rem;
+  color: white;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  border-color: transparent;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.toggle-button:focus {
+  outline: none;
+}
+
+[data-rhythm='single'],
+[data-rhythm='double'] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+[data-rhythm='single'] {
+  background-image: linear-gradient(to bottom, rgba(0, 170, 255, 0.3) 1px, transparent 0);
+  background-position: left top;
+  background-repeat: repeat;
+  background-size: 100% 2rem;
+}
+
+[data-rhythm='double'] {
+  background-image: linear-gradient(to bottom, rgba(0, 170, 255, 0.3) 1px, transparent 0, transparent 1rem, rgba(0, 170, 255, 0.3) 1rem, transparent calc(0.5 * 2rem + 1px), transparent 2rem);
+  background-position: left top;
+  background-repeat: repeat;
+  background-size: 100% 2rem;
+}
+
