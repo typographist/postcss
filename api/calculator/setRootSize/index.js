@@ -1,5 +1,4 @@
-const calcLeading = require('../../../helpers/calcLeading');
-const calcRoot = require('../../../helpers/calcRoot');
+const { calcLeading, calcRoot } = require('../../../helpers');
 
 /**
  * @param {array<object>} breakpoints

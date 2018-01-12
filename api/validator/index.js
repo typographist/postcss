@@ -1,6 +1,6 @@
 const flatten = require('lodash').flatten;
 const isValidRatios = require('./ratioValidator').isValidRatios;
-const findAll = require('../../helpers/findAll');
+const { findAll } = require('../../helpers');
 const baseValidator = require('./baseValidator');
 const isValidLineHeights = require('./lineHeightValidator');
 const breakpointsValidator = require('./breakpointsValidator');

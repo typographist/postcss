@@ -1,5 +1,5 @@
 const postcss = require('postcss');
-const persentage = require('../../../helpers/persentage');
+const { percentage } = require('../../../helpers');
 const fontSizeDecl = require('../../decls/fontSizeDecl');
 
 const rootRule = fontSize => {
@@ -7,7 +7,7 @@ const rootRule = fontSize => {
     selector: ':root',
   });
 
-  const rootSize = `${persentage(fontSize)}%`;
+  const rootSize = `${percentage(fontSize)}%`;
   root.append(fontSizeDecl(rootSize));
 
   return root;

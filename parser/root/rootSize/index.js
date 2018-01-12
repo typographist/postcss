@@ -1,4 +1,4 @@
-const persentage = require('../../../helpers/persentage');
+const { percentage } = require('../../../helpers');
 const variableDecl = require('../../decls/variableDecl');
 const fontSizeDecl = require('../../decls/fontSizeDecl');
 const mediaDecl = require('../../decls/mediaDecl');
@@ -32,7 +32,7 @@ const rootSize = (node, breakpoints) => {
       ),
     );
 
-    const fontSize = `${persentage(breakpoint.root)}%`;
+    const fontSize = `${percentage(breakpoint.root)}%`;
     node.replaceWith(fontSizeDecl(fontSize));
   }
 };

@@ -1,5 +1,4 @@
-const getBase = require('../../../helpers/getBase');
-const toPx = require('../../../helpers/toPx');
+const { getBase, toPx } = require('../../../helpers');
 const {
   CONTAINS_FONT_SIZE,
   CONTAINS_TARGET,

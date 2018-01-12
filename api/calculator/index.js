@@ -1,5 +1,5 @@
 const makeDefaultBreakpoint = require('./makeDefaultBreakpoint');
-const stripUnit = require('../../helpers/stripUnit');
+const { stripUnit } = require('../../helpers');
 const isValidConfig = require('../validator');
 const setRootSize = require('./setRootSize');
 const removeKey = require('./removeKey');

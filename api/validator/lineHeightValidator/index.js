@@ -1,4 +1,4 @@
-const isNumeric = require('../../../helpers/isNumeric/');
+const { isNumeric } = require('../../../helpers');
 
 /**
  * Check whether all the values of the number?

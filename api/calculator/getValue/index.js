@@ -1,4 +1,4 @@
-const toPx = require('../../../helpers/toPx');
+const { toPx } = require('../../../helpers');
 const { CONTAINS_EM } = require('../../../regex');
 
 /**

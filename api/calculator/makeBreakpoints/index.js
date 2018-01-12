@@ -1,4 +1,4 @@
-const isObject = require('../../../helpers/isObject');
+const { isObject } = require('../../../helpers');
 
 /**
  * @param {object} config

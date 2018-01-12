@@ -1,4 +1,4 @@
-const isObject = require('../../../helpers/isObject');
+const { isObject } = require('../../../helpers');
 const { CONTAINS_PX_OR_EM } = require('../../../regex');
 
 /**

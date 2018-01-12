@@ -1,6 +1,4 @@
-const isArray = require('../../helpers/isArray');
-const getBase = require('../../helpers/getBase');
-const toRem = require('../../helpers/toRem');
+const { isArray, getBase, toRem } = require('../../helpers');
 
 /**
  * @param {number} target

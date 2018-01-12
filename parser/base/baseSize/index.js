@@ -1,7 +1,7 @@
 const lineHeightDecl = require('../../decls/lineHeightDecl');
 const fontSizeDecl = require('../../decls/fontSizeDecl');
 const mediaDecl = require('../../decls/mediaDecl');
-const toRem = require('../../../helpers/toRem');
+const { toRem } = require('../../../helpers');
 const bodyRule = require('../bodyRule');
 
 const baseSize = (node, breakpoints) => {

@@ -1,4 +1,4 @@
-const isNumeric = require('../../../helpers/isNumeric');
+const { isNumeric } = require('../../../helpers');
 const { CONTAINS_AT } = require('../../../regex');
 
 /**
