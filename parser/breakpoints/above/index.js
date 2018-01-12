@@ -1,5 +1,5 @@
 const postcss = require('postcss');
-const mediaDecl = require('../../decls/mediaDecl');
+const { mediaDecl } = require('../../decls');
 
 const parentRule = (parent, nodes) => {
   const selectorName = postcss.rule({

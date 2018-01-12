@@ -1,6 +1,6 @@
 const postcss = require('postcss');
 const { percentage } = require('../../../helpers');
-const fontSizeDecl = require('../../decls/fontSizeDecl');
+const { fontSizeDecl } = require('../../decls');
 
 const rootRule = fontSize => {
   const root = postcss.rule({

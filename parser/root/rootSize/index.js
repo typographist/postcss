@@ -1,7 +1,5 @@
 const { percentage } = require('../../../helpers');
-const variableDecl = require('../../decls/variableDecl');
-const fontSizeDecl = require('../../decls/fontSizeDecl');
-const mediaDecl = require('../../decls/mediaDecl');
+const { variableDecl, fontSizeDecl, mediaDecl } = require('../../decls/');
 const rootRule = require('../rootRule');
 
 const rootSize = (node, breakpoints) => {

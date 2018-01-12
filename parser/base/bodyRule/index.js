@@ -1,5 +1,5 @@
 const postcss = require('postcss');
-const fontSizeDecl = require('../../decls/fontSizeDecl');
+const { fontSizeDecl } = require('../../decls');
 const { toRem } = require('../../../helpers');
 
 const bodyRule = (baseSize, rootSize) => {
