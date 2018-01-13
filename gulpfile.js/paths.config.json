@@ -1,0 +1,26 @@
+{
+  "root": {
+    "src": "./devTools/",
+    "dist": "./dist/",
+    "tasks": "./tasks/",
+    "serve": "./dist/**/*.*",
+    "debug": "./npm-debug.log"
+  },
+
+  "src": {
+    "styles": {
+      "entry": "./devTools/styles/main.scss"
+    },
+    "tools": "./devTools/tools.js"
+  },
+
+  "dist": {
+    "all": "./dist",
+    "AllJs": "./dist/*.js",
+    "AllCss": "./dist/*.css"
+  },
+
+  "watch": {
+    "styles": "./devTools/**/*.scss"
+  }
+}

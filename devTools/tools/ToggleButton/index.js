@@ -108,4 +108,25 @@ class Button {
   }
 }
 
-module.exports = Button;
+const addButtonFor = (elem, options) => {
+  const btn = new Button(options);
+  elem.append(btn.render());
+
+  store.subscribe(() => {
+    const state = store.getState();
+
+    switch (state) {
+      case 'singleRhythm':
+        elem.setAttribute('data-rhythm', 'single');
+        break;
+      case 'doubleRhythm':
+        elem.setAttribute('data-rhythm', 'double');
+        break;
+      default:
+        elem.setAttribute('data-rhythm', 'off');
+        break;
+    }
+  });
+};
+
+module.exports = addButtonFor;

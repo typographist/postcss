@@ -1,3 +1,11 @@
+%vertical-rhythm {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
 @mixin vertical-rhythm_single($color: $thythm-color) {
   background-image: linear-gradient(to bottom, $color 1px, transparent 0);
   background-position: left top;

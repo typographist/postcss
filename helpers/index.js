@@ -13,8 +13,6 @@ const toNormalCase = require('./toNormalCase');
 const toPx = require('./toPx');
 const toRem = require('./toRem');
 
-console.log('test', toNormalCase('camelCase'));
-
 module.exports = {
   calcLeading,
   calcRoot,
