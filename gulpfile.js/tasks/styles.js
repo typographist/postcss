@@ -12,7 +12,7 @@ gulp.task('styles', () =>
     $.if(IS_DEVELOPMENT, $.sourcemaps.init()),
     $.sass(),
     $.if(IS_DEVELOPMENT, $.sourcemaps.write()),
-    $.if(IS_DEVELOPMENT, gulp.dest(paths.root.dist)),
-    $.if(!IS_DEVELOPMENT, gulp.dest(paths.root.src)),
+    $.if(IS_DEVELOPMENT, gulp.dest(paths.root.src)),
+    $.if(!IS_DEVELOPMENT, gulp.dest(paths.root.dist)),
   ).on('error', $.notify.onError()),
 );

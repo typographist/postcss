@@ -8,7 +8,7 @@
     "test:watch": "jest --watch",
     "lint": "eslint **/*.js",
     "start": "NODE_ENV=development gulp",
-    "build": "NODE_ENV=production gulp buildProduction"
+    "build": "NODE_ENV=production gulp build:production"
   },
   "devDependencies": {
     "babel-loader": "^7.1.2",
@@ -22,7 +22,9 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-prettier": "^2.4.0",
     "gulp": "^4.0.0",
+    "gulp-changed": "^3.2.0",
     "gulp-if": "^2.0.2",
+    "gulp-ignore": "^2.0.2",
     "gulp-load-plugins": "^1.5.0",
     "gulp-notify": "^3.1.0",
     "gulp-sass": "^3.1.0",

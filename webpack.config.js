@@ -6,12 +6,12 @@ const IS_DEVELOPMENT =
 
 module.exports = {
   entry: {
-    addButtonFor: join(__dirname, 'devTools/tools.js'),
+    addButtonFor: join(__dirname, 'devToolsSrc/tools.js'),
   },
   watch: IS_DEVELOPMENT,
   devtool: IS_DEVELOPMENT ? 'cheap-module-inline-source-map' : false,
   output: {
-    path: join(__dirname, '/dist'),
+    path: join(__dirname, '/devToolsSrc/'),
     filename: 'bundle.js',
   },
   module: {

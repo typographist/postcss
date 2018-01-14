@@ -6,7 +6,7 @@ gulp.task('serve', () => {
   browserSync.init({
     open: false,
     notify: false,
-    server: paths.root.dist,
+    server: paths.root.src,
   });
 
   browserSync.watch([paths.root.serve]).on('change', browserSync.reload);
