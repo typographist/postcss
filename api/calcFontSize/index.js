@@ -6,7 +6,7 @@ const { isArray, getBase, toRem } = require('../../helpers');
  * @param {number} ratio
  * @return {number}
  */
-const calculator = (target, base, ratio) => {
+const store = (target, base, ratio) => {
   if (!isArray(base) || base.length === 1) {
     return Math.round(ratio ** target * base);
   }
@@ -44,23 +44,20 @@ const calcFontSize = (target, breakpoints, breakpointName) => {
   if (breakpointName === undefined) {
     const breakpoint = breakpoints.find(b => /^0/.test(b.value));
     const base = getBase(breakpoint.base);
-    const ratio = breakpoint.ratio;
-    const root = breakpoint.root;
-    result = calculator(target, base, ratio);
+    const { ratio, root } = breakpoint;
+    result = store(target, base, ratio);
 
     return `${toRem(result, root)}rem`;
   }
 
   const breakpoint = breakpoints.find(b => b.name === breakpointName);
-  const base = breakpoint.base;
-  const ratio = breakpoint.ratio;
-  const root = breakpoint.root;
-  result = calculator(target, base, ratio);
+  const { base, ratio, root } = breakpoint;
+  result = store(target, base, ratio);
 
   return `${toRem(result, root)}rem`;
 };
 
 module.exports = {
-  calculator,
+  store,
   calcFontSize,
 };

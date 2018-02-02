@@ -1,5 +1,5 @@
 const postcss = require('postcss');
-const calculate = require('./api/calculator');
+const calculate = require('./api/store');
 const rootSize = require('./parser/root/rootSize');
 const baseSize = require('./parser/base/baseSize');
 const above = require('./parser/breakpoints/above');

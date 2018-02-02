@@ -1,4 +1,4 @@
-const calculator = require('./');
+const store = require('./');
 
 const config = {
   base: ['16px', '33px'],
@@ -67,8 +67,8 @@ const result = [
   },
 ];
 
-describe('calculator', () => {
+describe('store', () => {
   it('should calculate all values', () => {
-    expect(calculator(config)).toEqual(result);
+    expect(store(config)).toEqual(result);
   });
 });

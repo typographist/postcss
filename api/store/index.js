@@ -17,7 +17,7 @@ const {
  * @return {array<object>}
  */
 
-const calculator = config => {
+const store = config => {
   if (!isValidConfig(config)) return false;
 
   const firstBreakpoint = makeDefaultBreakpoint(config);
@@ -55,4 +55,4 @@ const calculator = config => {
   return result;
 };
 
-module.exports = calculator;
+module.exports = store;
