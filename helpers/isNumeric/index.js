@@ -3,6 +3,6 @@
  * @param {any} num
  * @return {boolean}
  */
-const isNumeric = num => !isNaN(parseFloat(num)) && isFinite(num);
+const isNumeric = num => !Number.isNaN(parseFloat(num)) && isFinite(num);
 
 module.exports = isNumeric;

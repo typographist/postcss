@@ -1,4 +1,4 @@
-const HALF = require('../../constants').HALF;
+const { HALF } = require('../../constants');
 
 const calcRoot = val => Math.round(val * HALF);
 

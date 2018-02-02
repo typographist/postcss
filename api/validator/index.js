@@ -1,20 +1,19 @@
-const flatten = require('lodash').flatten;
-const isValidRatios = require('./ratioValidator').isValidRatios;
+const { flatten } = require('lodash');
+const { isValidRatios } = require('./ratioValidator');
 const { findAll } = require('../../helpers');
-const baseValidator = require('./baseValidator');
+const {
+  isBaseString,
+  isBaseContainPxOrEm,
+  isValidBases,
+} = require('./baseValidator');
 const isValidLineHeights = require('./lineHeightValidator');
-const breakpointsValidator = require('./breakpointsValidator');
-
-const isBaseString = baseValidator.isBaseString;
-const isBaseContainPxOrEm = baseValidator.isBaseContainPxOrEm;
-const isValidBases = baseValidator.isValidBases;
-const breakpointIsString = breakpointsValidator.breakpointIsString;
-const isBreakpointContainsPxOrEm =
-  breakpointsValidator.isBreakpointContainsPxOrEm;
-const isValidBreakpoints = breakpointsValidator.isValidBreakpoints;
-const getBreakpoints = breakpointsValidator.getBreakpoints;
-const checkContainsBreakpointKey =
-  breakpointsValidator.checkContainsBreakpointKey;
+const {
+  breakpointIsString,
+  isBreakpointContainsPxOrEm,
+  isValidBreakpoints,
+  getBreakpoints,
+  checkContainsBreakpointKey,
+} = require('./breakpointsValidator');
 
 /**
  * @param {array<object>}

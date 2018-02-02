@@ -3,7 +3,7 @@ const { variableDecl, fontSizeDecl, mediaDecl } = require('../../decls/');
 const rootRule = require('../rootRule');
 
 const rootSize = (node, breakpoints) => {
-  const parent = node.parent;
+  const { parent } = node;
   if (parent && parent.selector !== ':root') {
     node.remove();
   } else {

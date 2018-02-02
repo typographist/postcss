@@ -3,7 +3,7 @@ const { toRem } = require('../../../helpers');
 const bodyRule = require('../bodyRule');
 
 const baseSize = (node, breakpoints) => {
-  const parent = node.parent;
+  const { parent } = node;
   if (parent && parent.selector !== 'body') {
     node.remove();
   } else {
