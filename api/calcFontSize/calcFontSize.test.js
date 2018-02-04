@@ -1,4 +1,4 @@
-const { store, calcFontSize } = require('./');
+const { calculator, calcFontSize } = require('./');
 
 const breakpoints = [
   {
@@ -43,9 +43,9 @@ const breakpoints = [
   },
 ];
 
-describe('store', () => {
+describe('calculator', () => {
   it('should get font-size from 6 position', () => {
-    expect(store(6, 12, 1.5)).toBe(137);
+    expect(calculator(6, 12, 1.5)).toBe(137);
   });
 });
 
