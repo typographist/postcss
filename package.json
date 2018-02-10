@@ -39,7 +39,7 @@
   "dependencies": {
     "humps": "^2.0.1",
     "lodash": "^4.17.4",
-    "postcss": "^6.0.16",
+    "postcss": "^6.0.17",
     "redux": "^3.7.2"
   },
   "jest": {
