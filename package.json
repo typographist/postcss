@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "test": "jest",
-    "test:watch": "jest --watch",
+    "test:watch": "jest --watchAll",
     "lint": "eslint **/*.js",
     "start": "NODE_ENV=development gulp",
     "build": "NODE_ENV=production gulp build:production"
