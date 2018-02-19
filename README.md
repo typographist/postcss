@@ -1,4 +1,5 @@
-# New Typography - Coming soon!
+# Typographist - Coming soon!
+
 Be free, Create!
 
 Library for the rapid construction of interfaces with high quality typography.
