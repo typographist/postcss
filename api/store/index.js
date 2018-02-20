@@ -30,6 +30,7 @@ const store = config => {
   const rawBreakpoints = removeKey('breakpoint', breakpointsWithValues);
 
   let result = [];
+
   result.push(firstBreakpoint);
   result = [...result, ...rawBreakpoints];
   result = result.reduce((breakpoints, item, i) => {
