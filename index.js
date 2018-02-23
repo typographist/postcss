@@ -1,4 +1,5 @@
 const postcss = require('postcss');
+const transformTRoot = require('./lib/transformTRoot');
 const transformMsUnit = require('./lib/transformMsUnit');
 
 const defualtConfig = {
@@ -11,7 +12,12 @@ const plugin = postcss.plugin(
   'new-typography',
   (config = defualtConfig) => root => {
     root.walk(node => {
-      if (transformMsUnit.test(node)) transformMsUnit(node, config);
+      if (transformTRoot.test(node)) {
+        transformTRoot(node, config);
+      }
+      if (transformMsUnit.test(node, config)) {
+        transformMsUnit(node, config);
+      }
     });
   },
 );
