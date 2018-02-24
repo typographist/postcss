@@ -1,7 +1,5 @@
 const postcss = require('postcss');
-const transformTRoot = require('./lib/transformTRoot');
-const transformMsUnit = require('./lib/transformMsUnit');
-const transformTBase = require('./lib/transformTBase');
+const transform = require('./lib/transform');
 
 const defaultConfig = {
   base: '16px',
@@ -13,16 +11,7 @@ const plugin = postcss.plugin(
   'new-typography',
   (config = defaultConfig) => root => {
     root.walk(node => {
-      if (transformTRoot.test(node)) {
-        transformTRoot(node, config);
-      }
-
-      if (transformTBase.test(node)) {
-        transformTBase(node, config);
-      }
-      if (transformMsUnit.test(node, config)) {
-        transformMsUnit(node, config);
-      }
+      transform(node, config);
     });
   },
 );
