@@ -38,9 +38,9 @@ module.exports = (node, config) => {
     transformBubblingAtrule(node);
   }
 
-  if (transformTAbove.test(node)) {
-    transformTAbove(node, config);
-  }
+  // if (transformTAbove.test(node)) {
+  //   transformTAbove(node, config);
+  // }
 
   // if (transformTBelow.test(node)) {
   //   transformTBelow(node, config);

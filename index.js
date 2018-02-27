@@ -1,5 +1,5 @@
 const postcss = require('postcss');
-const transform = require('./lib/transform');
+const transform = require('./transformator/transform');
 
 const defaultConfig = {
   base: '16px',
