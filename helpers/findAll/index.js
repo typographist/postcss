@@ -5,7 +5,8 @@ const findAll = (obj, key, memo) => {
   let result = memo;
   if (!isArray(memo)) result = [];
 
-  for (let i in obj) {
+  /* eslint-disable no-restricted-syntax */
+  for (const i in obj) {
     if (Object.prototype.hasOwnProperty.call(obj, i)) {
       if (i === key) {
         result.push(obj[i]);
@@ -17,5 +18,6 @@ const findAll = (obj, key, memo) => {
 
   return result;
 };
+/* eslint-enable */
 
 module.exports = findAll;

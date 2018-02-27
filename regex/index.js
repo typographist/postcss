@@ -6,7 +6,7 @@ const CONTAINS_PX_OR_EM = /-?\b\d+(\.\d+)?(px|em)/;
 const CONTAINS_AT = /-?\b\d+(\.\d+)?(px|em) at -?\d+(\.\d+)??\b/;
 const CONTAINS_FONT_SIZE = /\b-?\d+(\.\d+)?(px|em)\b/gi;
 const CONTAINS_TARGET = /-?\b\d+(\.\d+)?\b\s*$/g;
-const CONTAINS_POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER_AND_NT_UNIT = /^-?\d+(\.\d+)?nt$/;
+
 const CONTAINS_NT = /nt/;
 
 module.exports = {
@@ -18,6 +18,5 @@ module.exports = {
   CONTAINS_AT,
   CONTAINS_FONT_SIZE,
   CONTAINS_TARGET,
-  CONTAINS_POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER_AND_NT_UNIT,
   CONTAINS_NT,
 };

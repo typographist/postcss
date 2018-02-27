@@ -1,9 +1,7 @@
 const postcss = require('postcss');
 
-const fontSizeDecl = size =>
+module.exports = size =>
   postcss.decl({
     prop: 'font-size',
     value: size,
   });
-
-module.exports = fontSizeDecl;
