@@ -10,10 +10,8 @@ module.exports = (node, config) => {
   if ([parent, !isRootRule].every(Boolean)) {
     node.remove();
   } else if (transformTRoot.test(node)) {
-    console.log('breakpoints from root', breakpoints);
     transformTRoot(node, breakpoints);
   } else if (transformTRootFluid.test(node)) {
-    console.log('breakpoints from fluid', breakpoints);
     transformTRootFluid(node, breakpoints);
   }
 };
