@@ -1,6 +1,7 @@
-const { camelize } = require('humps');
-const makeBreakpointsModel = require('../../../utils/makeBreakpointsModel/');
 const { HAS_EM, HAS_PX } = require('../../../constants/regexes');
+const isInvalidBetweenFunction = require('./isInvalidBetweenFunction');
+const { camelize } = require('humps');
+const makeBreakpointsModel = require('../../../utils/makeBreakpointsModel');
 const {
   checkIsBreakpointName,
   getBreakpointsList,
@@ -24,27 +25,18 @@ module.exports = (node, config) => {
   postcssNode.name = 'media';
 
   try {
-    if (
-      [
-        !checkIsBreakpointName(breakpointsNames, lowerBreakpoint),
-        !HAS_PX.test(lowerBreakpoint),
-        !HAS_EM.test(lowerBreakpoint),
-      ].every(Boolean)
-    ) {
+    if (isInvalidBetweenFunction.test(node)) {
       postcssNode.remove();
-      throw new Error(`
-          ${lowerBreakpoint} is invalid first argument in @t-between function!
-          Use ${breakpointsList} or the value in pixels or in ems.
-        `);
+      isInvalidBetweenFunction(postcssNode, lowerBreakpoint, breakpointsList);
     }
 
     if (checkIsBreakpointName(breakpointsNames, lowerBreakpoint)) {
       if (checkIsBreakpointName(breakpointsNames, upperBreakpoint)) {
-        const getBreakpoint = breakpointName =>
+        const getBreakpointCell = breakpointName =>
           breakpoints.find(item => item.name === breakpointName);
 
         const calcBreakpoint = breakpointName =>
-          `${toEm(parseFloat(getBreakpoint(breakpointName).value))}em`;
+          `${toEm(parseFloat(getBreakpointCell(breakpointName).value))}em`;
 
         const lowerBreak = calcBreakpoint(breakpointsValues[0]);
         const upperBreak = calcBreakpoint(breakpointsValues[1]);
