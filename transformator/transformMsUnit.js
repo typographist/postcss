@@ -1,5 +1,5 @@
 const { camelize } = require('humps');
-const { calcFontSize } = require('../api/calcFontSize');
+const { fromMsToRem } = require('../api/fromMsToRem');
 const store = require('../api/store');
 const {
   HAS_FONT_SIZE,
@@ -41,7 +41,7 @@ module.exports = (node, config) => {
 
   try {
     if (isRoot) {
-      postcssNode.value = calcFontSize(target, breakpoints);
+      postcssNode.value = fromMsToRem(target, breakpoints);
     } else if ([isTAbove, isTBelow, isTOnly].some(Boolean)) {
       const atruleRawValue = camelize(removeBrackets(atruleParams));
       const isBreakpointName = checkIsBreakpointName(
@@ -50,7 +50,7 @@ module.exports = (node, config) => {
       );
 
       if (isBreakpointName) {
-        postcssNode.value = calcFontSize(target, breakpoints, atruleRawValue);
+        postcssNode.value = fromMsToRem(target, breakpoints, atruleRawValue);
       } else {
         closestRule.remove();
         throw new Error(

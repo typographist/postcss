@@ -39,7 +39,7 @@ const calcModularScale = (target, base, ratio) => {
  * @param {string} breakpointName
  * @return {number}
  */
-const calcFontSize = (target, breakpoints, breakpointName) => {
+const fromMsToRem = (target, breakpoints, breakpointName) => {
   let result = null;
   if (breakpointName === undefined) {
     const breakpoint = breakpoints.find(b => /^0/.test(b.value));
@@ -59,5 +59,5 @@ const calcFontSize = (target, breakpoints, breakpointName) => {
 
 module.exports = {
   calcModularScale,
-  calcFontSize,
+  fromMsToRem,
 };
