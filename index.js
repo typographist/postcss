@@ -1,6 +1,6 @@
 const postcss = require('postcss');
-const transform = require('./transformator/transform');
-const transformMsUnit = require('./transformator/transformMsUnit');
+const transformAtrules = require('./cssTransformator/transformAtrules');
+const transformMsUnit = require('./cssTransformator/transformMsUnit');
 const ratios = require('./constants/ratios');
 
 const defaultConfig = {
@@ -18,7 +18,7 @@ const typographist = postcss.plugin(
       }
     });
     root.walk(node => {
-      transform(node, config);
+      transformAtrules(node, config);
     });
   },
 );
