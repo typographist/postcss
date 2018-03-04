@@ -1,6 +1,6 @@
 const { camelize } = require('humps');
 const store = require('../api/store');
-const { CONTAINS_EM, CONTAINS_PX } = require('./constants');
+const { HAS_EM, HAS_PX } = require('./constants');
 const {
   checkIsBreakpointName,
   getBreakpointsNames,
@@ -31,10 +31,10 @@ module.exports = (node, config) => {
       const breakpointValue = `${toEm(parseFloat(breakpoint.value))}em`;
 
       postcssNode.params = `screen and (${breakpointProp}: ${breakpointValue})`;
-    } else if (CONTAINS_PX.test(atruleRawValue)) {
+    } else if (HAS_PX.test(atruleRawValue)) {
       const breakpointValue = `${toEm(parseFloat(atruleRawValue))}em`;
       postcssNode.params = `screen and (${breakpointProp}: ${breakpointValue})`;
-    } else if (CONTAINS_EM.test(atruleRawValue)) {
+    } else if (HAS_EM.test(atruleRawValue)) {
       postcssNode.params = `screen and (${breakpointProp}: ${atruleRawValue})`;
     } else {
       postcssNode.remove();

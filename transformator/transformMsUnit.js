@@ -2,7 +2,7 @@ const { camelize } = require('humps');
 const { calcFontSize } = require('../api/calcFontSize');
 const store = require('../api/store');
 const {
-  CONTAINS_FONT_SIZE,
+  HAS_FONT_SIZE,
   MS_UNIT,
   POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER_WITH_MS_UNIT_MEASURE,
 } = require('./constants');
@@ -69,7 +69,7 @@ module.exports = (node, config) => {
 };
 
 module.exports.test = node => {
-  const hasFontSize = CONTAINS_FONT_SIZE.test(node.prop);
+  const hasFontSize = HAS_FONT_SIZE.test(node.prop);
   const hasTUnit = POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER_WITH_MS_UNIT_MEASURE.test(
     node.value,
   );

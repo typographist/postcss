@@ -1,6 +1,6 @@
 const { camelize } = require('humps');
 const store = require('../api/store');
-const { CONTAINS_EM, CONTAINS_PX } = require('./constants');
+const { HAS_EM, HAS_PX } = require('./constants');
 const {
   checkIsBreakpointName,
   getBreakpointsList,
@@ -27,8 +27,8 @@ module.exports = (node, config) => {
     if (
       [
         !checkIsBreakpointName(breakpointsNames, lowerBreakpoint),
-        !CONTAINS_PX.test(lowerBreakpoint),
-        !CONTAINS_EM.test(lowerBreakpoint),
+        !HAS_PX.test(lowerBreakpoint),
+        !HAS_EM.test(lowerBreakpoint),
       ].every(Boolean)
     ) {
       postcssNode.remove();
@@ -58,8 +58,8 @@ module.exports = (node, config) => {
       }
     }
 
-    if (CONTAINS_PX.test(lowerBreakpoint)) {
-      if (CONTAINS_PX.test(upperBreakpoint)) {
+    if (HAS_PX.test(lowerBreakpoint)) {
+      if (HAS_PX.test(upperBreakpoint)) {
         const calcBreakpoint = breakpointName =>
           `${toEm(parseFloat(breakpointName))}em`;
 
@@ -72,22 +72,22 @@ module.exports = (node, config) => {
         throw new Error(
           `
             ${upperBreakpoint} is invalid second argument in @t-between function!
-            If the first argument breakpoint contains pixels,
-            then the second argument must contain pixels.
+            If the first argument of @t-between function has pixels,
+            then the second argument must has pixels.
           `,
         );
       }
     }
 
-    if (CONTAINS_EM.test(lowerBreakpoint)) {
-      if (CONTAINS_EM.test(upperBreakpoint)) {
+    if (HAS_EM.test(lowerBreakpoint)) {
+      if (HAS_EM.test(upperBreakpoint)) {
         postcssNode.params = `screen and (min-width: ${lowerBreakpoint}) and (max-width: ${upperBreakpoint})`;
       } else {
         postcssNode.remove();
         throw new Error(
           `
             ${upperBreakpoint} is invalid second argument in @t-between function!
-            If the first argument breakpoint contains ems, then the second argument must contain ems.
+            If the first argument of @t-between function has ems, then the second argument must has ems.
           `,
         );
       }

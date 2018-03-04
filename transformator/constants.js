@@ -1,15 +1,15 @@
 const ALL_ROUND_BRACKETS = /[()]/g;
-const CONTAINS_EM = /-?\b\d+(\.\d+)?em/;
-const CONTAINS_FONT_SIZE = /^font-size$/;
-const CONTAINS_PX = /\d+px/;
+const HAS_EM = /-?\b\d+(\.\d+)?em/;
+const HAS_FONT_SIZE = /^font-size$/;
+const HAS_PX = /\d+px/;
 const MS_UNIT = /ms/;
 const POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER_WITH_MS_UNIT_MEASURE = /^-?\d+(\.\d+)?ms$/;
 
 module.exports = {
   ALL_ROUND_BRACKETS,
-  CONTAINS_EM,
-  CONTAINS_FONT_SIZE,
-  CONTAINS_PX,
+  HAS_EM,
+  HAS_FONT_SIZE,
+  HAS_PX,
   MS_UNIT,
   POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER_WITH_MS_UNIT_MEASURE,
 };
