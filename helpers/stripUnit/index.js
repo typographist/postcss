@@ -1,6 +1,6 @@
 const isArray = require('../isArray/');
 const toPx = require('../toPx');
-const { CONTAINS_PX, CONTAINS_EM } = require('../../regex');
+const { HAS_PX, HAS_EM } = require('../../constants/regexes');
 
 /**
  * @param {Array<string>|string} base
@@ -12,11 +12,11 @@ const stripUnit = val => {
   if (isArray(val)) {
     result = val.map(item => stripUnit(item));
   } else if (typeof val === 'string') {
-    if (CONTAINS_PX.test(val)) {
+    if (HAS_PX.test(val)) {
       result = parseFloat(val);
     }
 
-    if (CONTAINS_EM.test(val)) {
+    if (HAS_EM.test(val)) {
       result = toPx(val);
     }
   }

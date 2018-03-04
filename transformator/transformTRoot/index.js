@@ -1,10 +1,10 @@
-const store = require('../../api/store');
+const makeBreakpointsModel = require('../../makeBreakpointsModel');
 const transformTRootFluid = require('./transformTRootFluid');
 const transformTRoot = require('./transformTRoot');
 
 module.exports = (node, config) => {
   const { parent } = node;
-  const breakpoints = store(config);
+  const breakpoints = makeBreakpointsModel(config);
   const isRootRule = parent.selector === ':root';
 
   if ([parent, !isRootRule].every(Boolean)) {

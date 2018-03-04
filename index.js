@@ -16,7 +16,6 @@ const plugin = postcss.plugin(
         transformMsUnit(decl, config);
       }
     });
-
     root.walk(node => {
       transform(node, config);
     });

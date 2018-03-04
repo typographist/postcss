@@ -1,6 +1,6 @@
 const { camelize } = require('humps');
-const store = require('../api/store');
-const { HAS_EM, HAS_PX } = require('./constants');
+const makeBreakpointsModel = require('../makeBreakpointsModel');
+const { HAS_EM, HAS_PX } = require('../constants/regexes');
 const {
   checkIsBreakpointName,
   getBreakpointsList,
@@ -11,8 +11,8 @@ const { toEm } = require('../helpers');
 
 module.exports = (node, config) => {
   const postcssNode = node;
-  const breakpoints = store(config);
-  const breakpointsNames = getBreakpointsNames(store, config);
+  const breakpoints = makeBreakpointsModel(config);
+  const breakpointsNames = getBreakpointsNames(makeBreakpointsModel, config);
   const breakpointsValues = removeBrackets(postcssNode.params)
     .split(', ')
     .map(item => camelize(item));

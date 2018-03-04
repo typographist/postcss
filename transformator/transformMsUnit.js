@@ -1,11 +1,11 @@
 const { camelize } = require('humps');
-const { fromMsToRem } = require('../api/fromMsToRem');
-const store = require('../api/store');
+const { msToRem } = require('../msToRem');
+const makeBreakpointsModel = require('../makeBreakpointsModel');
 const {
   HAS_FONT_SIZE,
   MS_UNIT,
   POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER_WITH_MS_UNIT_MEASURE,
-} = require('./constants');
+} = require('../constants/regexes');
 const {
   checkIsBreakpointName,
   getBreakpointsList,
@@ -28,7 +28,7 @@ const getClosestRule = node => {
 
 module.exports = (node, config) => {
   const postcssNode = node;
-  const breakpoints = store(config);
+  const breakpoints = makeBreakpointsModel(config);
   const closestRule = getClosestRule(node);
   const { type, params: atruleParams, name } = closestRule;
   const isRoot = type === 'root';
@@ -36,12 +36,12 @@ module.exports = (node, config) => {
   const isTBelow = name === 't-below';
   const isTOnly = name === 't-only';
   const target = node.value.replace(MS_UNIT, '');
-  const breakpointsNames = getBreakpointsNames(store, config);
+  const breakpointsNames = getBreakpointsNames(makeBreakpointsModel, config);
   const breakpointsList = getBreakpointsList(breakpointsNames);
 
   try {
     if (isRoot) {
-      postcssNode.value = fromMsToRem(target, breakpoints);
+      postcssNode.value = msToRem(target, breakpoints);
     } else if ([isTAbove, isTBelow, isTOnly].some(Boolean)) {
       const atruleRawValue = camelize(removeBrackets(atruleParams));
       const isBreakpointName = checkIsBreakpointName(
@@ -50,7 +50,7 @@ module.exports = (node, config) => {
       );
 
       if (isBreakpointName) {
-        postcssNode.value = fromMsToRem(target, breakpoints, atruleRawValue);
+        postcssNode.value = msToRem(target, breakpoints, atruleRawValue);
       } else {
         closestRule.remove();
         throw new Error(
@@ -73,5 +73,6 @@ module.exports.test = node => {
   const hasTUnit = POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER_WITH_MS_UNIT_MEASURE.test(
     node.value,
   );
+
   return [hasFontSize, hasTUnit].every(Boolean);
 };

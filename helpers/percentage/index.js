@@ -5,6 +5,4 @@ const { BROWSER_DEFAULT_FONT_SIZE } = require('../../constants');
  * @param {number|string} val
  * @return {number}
  */
-const percentage = val => parseFloat(val) / BROWSER_DEFAULT_FONT_SIZE * 100;
-
-module.exports = percentage;
+module.exports = val => parseFloat(val) / BROWSER_DEFAULT_FONT_SIZE * 100;

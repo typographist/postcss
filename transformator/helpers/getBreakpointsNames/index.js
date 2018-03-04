@@ -1,5 +1,5 @@
-module.exports = (store, config) => {
-  const breakpoints = store(config);
+module.exports = (makeBreakpointsModel, config) => {
+  const breakpoints = makeBreakpointsModel(config);
 
   return breakpoints
     .filter(b => b.name !== 'default')

@@ -2,7 +2,7 @@ const postcss = require('postcss');
 const { mediaAtrule } = require('./atrules');
 const { fontSizeDecl, lineHeightDecl } = require('./decls');
 const { toRem } = require('../helpers');
-const store = require('../api/store');
+const makeBreakpointsModel = require('../makeBreakpointsModel');
 
 const bodyRule = (baseSize, rootSize) => {
   const body = postcss.rule({
@@ -16,7 +16,7 @@ const bodyRule = (baseSize, rootSize) => {
 
 module.exports = (node, config) => {
   const { parent } = node;
-  const breakpoints = store(config);
+  const breakpoints = makeBreakpointsModel(config);
 
   if (parent && parent.selector !== 'body') {
     node.remove();

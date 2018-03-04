@@ -1,6 +1,6 @@
 const { camelize } = require('humps');
-const store = require('../api/store');
-const { HAS_EM, HAS_PX } = require('./constants');
+const makeBreakpointsModel = require('../makeBreakpointsModel');
+const { HAS_EM, HAS_PX } = require('../constants/regexes');
 const {
   checkIsBreakpointName,
   getBreakpointsNames,
@@ -9,10 +9,10 @@ const {
 } = require('./helpers');
 const { toEm } = require('../helpers');
 
-module.exports = (node, config) => {
+const getTAboveOrTBelowParams = (node, config) => {
   const postcssNode = node;
-  const breakpoints = store(config);
-  const breakpointsNames = getBreakpointsNames(store, config);
+  const breakpoints = makeBreakpointsModel(config);
+  const breakpointsNames = getBreakpointsNames(makeBreakpointsModel, config);
   const atruleRawValue = camelize(removeBrackets(postcssNode.params));
   const isBreakpointName = checkIsBreakpointName(
     breakpointsNames,
@@ -21,36 +21,41 @@ module.exports = (node, config) => {
 
   const isTAbove = postcssNode.name === 't-above';
   const breakpointProp = isTAbove ? 'min-width' : 'max-width';
-  const functionName = isTAbove ? '@t-above' : '@t-below';
-
-  postcssNode.name = 'media';
+  const atruleName = isTAbove ? '@t-above' : '@t-below';
+  let result = null;
 
   try {
     if (isBreakpointName) {
       const breakpoint = breakpoints.find(b => b.name === atruleRawValue);
-      const breakpointValue = `${toEm(parseFloat(breakpoint.value))}em`;
+      const breakpointValue = `${toEm(breakpoint.value)}em`;
 
-      postcssNode.params = `screen and (${breakpointProp}: ${breakpointValue})`;
+      result = `screen and (${breakpointProp}: ${breakpointValue})`;
     } else if (HAS_PX.test(atruleRawValue)) {
-      const breakpointValue = `${toEm(parseFloat(atruleRawValue))}em`;
-      postcssNode.params = `screen and (${breakpointProp}: ${breakpointValue})`;
+      const breakpointValue = `${toEm(atruleRawValue)}em`;
+      result = `screen and (${breakpointProp}: ${breakpointValue})`;
     } else if (HAS_EM.test(atruleRawValue)) {
-      postcssNode.params = `screen and (${breakpointProp}: ${atruleRawValue})`;
+      result = `screen and (${breakpointProp}: ${atruleRawValue})`;
     } else {
       postcssNode.remove();
 
       const breakpointsList = getBreakpointsList(breakpointsNames);
       const rawValue = removeBrackets(postcssNode.params);
-      throw new Error(
-        `
-          ${rawValue} is invalid argument in ${functionName} function!
+      throw new Error(`
+          ${rawValue} is invalid argument in ${atruleName} function!
           Use ${breakpointsList} or the value in pixels or in ems.
-        `,
-      );
+        `);
     }
   } catch (err) {
     console.warn(err.message);
   }
+
+  return result;
+};
+
+module.exports = (node, config) => {
+  const postcssNode = node;
+  postcssNode.name = 'media';
+  postcssNode.params = getTAboveOrTBelowParams(node, config);
 };
 
 module.exports.test = node => {
