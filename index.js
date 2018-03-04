@@ -1,6 +1,7 @@
 const postcss = require('postcss');
 const transform = require('./transformator/transform');
 const transformMsUnit = require('./transformator/transformMsUnit');
+const ratios = require('./constants/ratios');
 
 const defaultConfig = {
   base: '16px',
@@ -8,7 +9,7 @@ const defaultConfig = {
   ratio: 1.333,
 };
 
-const plugin = postcss.plugin(
+const typographist = postcss.plugin(
   'new-typography',
   (config = defaultConfig) => root => {
     root.walkDecls(decl => {
@@ -22,4 +23,7 @@ const plugin = postcss.plugin(
   },
 );
 
-module.exports = plugin;
+module.exports = {
+  typographist,
+  ratios,
+};
