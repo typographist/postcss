@@ -1,4 +1,6 @@
-module.exports = (makeBreakpointsModel, config) => {
+const makeBreakpointsModel = require('../../makeBreakpointsModel');
+
+module.exports = config => {
   const breakpoints = makeBreakpointsModel(config);
 
   return breakpoints
