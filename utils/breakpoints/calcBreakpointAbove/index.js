@@ -1,3 +1,4 @@
+const { camelize } = require('humps');
 const getBreakpointValue = require('../getBreakpointValue');
 const { toEm } = require('../../../helpers');
 
@@ -8,7 +9,8 @@ const { toEm } = require('../../../helpers');
  * @return {string} value of the breakpoint convert to em.
  */
 module.exports = (breakName, config) => {
-  const breakValue = getBreakpointValue(breakName, config);
+  const camelizeBreakName = camelize(breakName);
+  const breakValue = getBreakpointValue(camelizeBreakName, config);
 
   return `${toEm(breakValue)}em`;
 };

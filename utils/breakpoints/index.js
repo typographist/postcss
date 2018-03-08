@@ -1,19 +1,27 @@
-const above = name => {
-  const breakValue = getBreakpointValue(name);
-  return `min-width: ${breakValue}`;
-};
+const breakpointsToCebabCase = require('./breakpointsToCebabCase');
+const calcBreakpointAbove = require('./calcBreakpointAbove');
+const calcBreakpointBelow = require('./calcBreakpointBelow');
+const calcBreakpointOnly = require('./calcBreakpointOnly');
+const calcBreakpointBetween = require('./calcBreakpointsBetween');
+const checkIsBreakpointName = require('./checkIsBreakpointName');
+const getBreakpointMax = require('./getBreakpointMax');
+const getBreakpointValue = require('./getBreakpointValue');
+const getNameOfMinBreakpoint = require('./getNameOfMinBreakpoint');
+const getNameOfNextBreakpoint = require('./getNameOfNextBreakpoint');
+const getNamesOfBreakpoints = require('./getNamesOfBreakpoints');
+const removeRoundBrackets = require('./removeRoundBrackets');
 
-const below = name => {
-  const nextBreakName = getBreakpointNext(name);
-
-  try {
-    if (nextBreakName) {
-      const breakValue = getBreakpointMax(name);
-      return `max-width: ${breakValue}`;
-    }
-
-    throw new Error(`${name} is iccorrect value! `);
-  } catch (err) {
-    console.log(err.message);
-  }
+module.exports = {
+  breakpointsToCebabCase,
+  calcBreakpointAbove,
+  calcBreakpointBelow,
+  calcBreakpointOnly,
+  calcBreakpointBetween,
+  checkIsBreakpointName,
+  getBreakpointMax,
+  getBreakpointValue,
+  getNameOfMinBreakpoint,
+  getNameOfNextBreakpoint,
+  getNamesOfBreakpoints,
+  removeRoundBrackets,
 };

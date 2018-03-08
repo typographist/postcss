@@ -3,7 +3,7 @@ const { userConfig } = require('../../mocks');
 
 describe('Utils of breakpoints', () => {
   describe('getNamesOfBreakpoints', () => {
-    it('should', () => {
+    it('should get names of breakpoints', () => {
       expect(getNamesOfBreakpoints(userConfig)).toEqual([
         'tablet',
         'desktop',

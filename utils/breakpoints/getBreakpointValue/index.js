@@ -10,5 +10,9 @@ const makeBreakpointsModel = require('../../makeBreakpointsModel');
 module.exports = (breakName, config) => {
   const breakpoints = makeBreakpointsModel(config);
 
-  return parseFloat(breakpoints.find(b => b.name === breakName).value);
+  if (breakpoints.find(b => b.name === breakName)) {
+    return parseFloat(breakpoints.find(b => b.name === breakName).value);
+  }
+
+  return null;
 };

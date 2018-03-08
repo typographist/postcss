@@ -1,7 +1,7 @@
 const { mediaAtrule } = require('../../atrules');
 const getRootRule = require('./getRootRule');
 const { variableDecl, fontSizeDecl } = require('../../decls');
-const { removeBrackets } = require('../../helpers');
+const { removeBrackets } = require();
 const { percentage, toEm } = require('../../../helpers');
 
 module.exports = (node, breakpoints) => {
