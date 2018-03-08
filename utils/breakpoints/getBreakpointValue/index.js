@@ -4,7 +4,7 @@ const makeBreakpointsModel = require('../../makeBreakpointsModel');
  *
  * @param {string} breakName Breakpoint name.
  * @param {object} config User configuration.
- * @return {array<Number>} An array containing the values of breakpoints.
+ * @return {number} breakpoint value.
  */
 
 module.exports = (breakName, config) => {

@@ -9,7 +9,7 @@ const {
 const {
   checkIsBreakpointName,
   getBreakpointsList,
-  getBreakpointsNames,
+  getNamesOfBreakpoints,
   removeBrackets,
 } = require('./helpers');
 
@@ -36,8 +36,11 @@ module.exports = (node, config) => {
   const isTBelow = name === 't-below';
   const isTOnly = name === 't-only';
   const target = node.value.replace(MS_UNIT, '');
-  const breakpointsNames = getBreakpointsNames(makeBreakpointsModel, config);
-  const breakpointsList = getBreakpointsList(breakpointsNames);
+  const namesOfBreakpoints = getNamesOfBreakpoints(
+    makeBreakpointsModel,
+    config,
+  );
+  const breakpointsList = getBreakpointsList(namesOfBreakpoints);
 
   try {
     if (isRoot) {
@@ -45,7 +48,7 @@ module.exports = (node, config) => {
     } else if ([isTAbove, isTBelow, isTOnly].some(Boolean)) {
       const atruleRawValue = camelize(removeBrackets(atruleParams));
       const isBreakpointName = checkIsBreakpointName(
-        breakpointsNames,
+        namesOfBreakpoints,
         atruleRawValue,
       );
 

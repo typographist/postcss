@@ -3,7 +3,7 @@ const makeBreakpointsModel = require('../../../utils/makeBreakpointsModel/');
 const { HAS_EM, HAS_PX } = require('../../../constants/regexes');
 const {
   checkIsBreakpointName,
-  getBreakpointsNames,
+  getNamesOfBreakpoints,
   removeBrackets,
   getBreakpointsList,
 } = require('../../helpers');
@@ -12,10 +12,13 @@ const { toEm } = require('../../../helpers');
 const getTAboveOrTBelowParams = (node, config) => {
   const postcssNode = node;
   const breakpoints = makeBreakpointsModel(config);
-  const breakpointsNames = getBreakpointsNames(makeBreakpointsModel, config);
+  const namesOfBreakpoints = getNamesOfBreakpoints(
+    makeBreakpointsModel,
+    config,
+  );
   const atruleRawValue = camelize(removeBrackets(postcssNode.params));
   const isBreakpointName = checkIsBreakpointName(
-    breakpointsNames,
+    namesOfBreakpoints,
     atruleRawValue,
   );
 
@@ -38,7 +41,7 @@ const getTAboveOrTBelowParams = (node, config) => {
     } else {
       postcssNode.remove();
 
-      const breakpointsList = getBreakpointsList(breakpointsNames);
+      const breakpointsList = getBreakpointsList(namesOfBreakpoints);
       const rawValue = removeBrackets(postcssNode.params);
       throw new Error(`
           ${rawValue} is invalid argument in ${atruleName} function!

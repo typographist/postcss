@@ -11,9 +11,9 @@ module.exports = (node, lowerBreakpoint, breakpointsList) => {
   );
 };
 
-module.exports.test = (lowerBreakpoint, breakpointsNames) =>
+module.exports.test = (lowerBreakpoint, namesOfBreakpoints) =>
   [
-    !checkIsBreakpointName(breakpointsNames, lowerBreakpoint),
+    !checkIsBreakpointName(namesOfBreakpoints, lowerBreakpoint),
     !HAS_PX.test(lowerBreakpoint),
     !HAS_EM.test(lowerBreakpoint),
   ].every(Boolean);

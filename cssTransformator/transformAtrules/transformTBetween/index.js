@@ -5,7 +5,7 @@ const makeBreakpointsModel = require('../../../utils/makeBreakpointsModel');
 const {
   checkIsBreakpointName,
   getBreakpointsList,
-  getBreakpointsNames,
+  getNamesOfBreakpoints,
   removeBrackets,
 } = require('../../helpers');
 const { toEm } = require('../../../helpers');
@@ -13,14 +13,17 @@ const { toEm } = require('../../../helpers');
 module.exports = (node, config) => {
   const postcssNode = node;
   const breakpoints = makeBreakpointsModel(config);
-  const breakpointsNames = getBreakpointsNames(makeBreakpointsModel, config);
+  const namesOfBreakpoints = getNamesOfBreakpoints(
+    makeBreakpointsModel,
+    config,
+  );
   const breakpointsValues = removeBrackets(postcssNode.params)
     .split(', ')
     .map(item => camelize(item));
 
   const lowerBreakpoint = breakpointsValues[0];
   const upperBreakpoint = breakpointsValues[1];
-  const breakpointsList = getBreakpointsList(breakpointsNames);
+  const breakpointsList = getBreakpointsList(namesOfBreakpoints);
 
   postcssNode.name = 'media';
 
@@ -30,8 +33,8 @@ module.exports = (node, config) => {
       isInvalidBetweenFunction(postcssNode, lowerBreakpoint, breakpointsList);
     }
 
-    if (checkIsBreakpointName(breakpointsNames, lowerBreakpoint)) {
-      if (checkIsBreakpointName(breakpointsNames, upperBreakpoint)) {
+    if (checkIsBreakpointName(namesOfBreakpoints, lowerBreakpoint)) {
+      if (checkIsBreakpointName(namesOfBreakpoints, upperBreakpoint)) {
         const getBreakpointCell = breakpointName =>
           breakpoints.find(item => item.name === breakpointName);
 

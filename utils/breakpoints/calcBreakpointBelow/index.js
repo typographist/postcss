@@ -1,33 +1,35 @@
-const getNameOfNextBreakpoint = require('../getNameOfNextBreakpoint');
+const { camelize, decamelize } = require('humps');
 const getBreakpointMax = require('../getBreakpointMax');
 const getNamesOfBreakpoints = require('../getNamesOfBreakpoints');
 const { toEm } = require('../../../helpers');
 
 /**
- *
- * @param {string} breakName Breakpoint name.
+ * The function takes the names of breakpoints in the camel-case notation. Valid are all breakpoints specified in the user configuration except the last one.
+ * @param {string} upperBreakName Breakpoint name.
  * @param {array<Object>} config User configuration.
- * @return {number} value of the next breakpoint - 0.02px;
+ * @return {string|null} Value of the next breakpoint - 0.02px and convert to em. Or null, if the name of the last breakpoint is set.
  */
-module.exports = (breakName, config) => {
-  const upperBreak = getNameOfNextBreakpoint(breakName);
-  const breakpointsNames = getNamesOfBreakpoints(config);
-  const lastName = breakpointsNames[breakpointsNames.length - 1];
-  const penultimateName = breakpointsNames[breakpointsNames.length - 2];
-  let result = null;
+module.exports = (upperBreakName, config) => {
+  const camelizeUpperBreakName = camelize(upperBreakName);
+  const namesOfBreakpoints = getNamesOfBreakpoints(config);
+  const lastBreakName = namesOfBreakpoints[namesOfBreakpoints.length - 1];
+  const penultimateName = namesOfBreakpoints[namesOfBreakpoints.length - 2];
+  const decamelizePenultimateName = decamelize(penultimateName, {
+    separator: '-',
+  });
+  let result;
 
   try {
-    if (upperBreak !== lastName) {
-      const maxBreakVal = getBreakpointMax(breakName);
+    if (camelizeUpperBreakName !== lastBreakName) {
+      const maxBreakVal = getBreakpointMax(camelizeUpperBreakName, config);
       result = `${toEm(maxBreakVal)}em`;
+    } else {
+      result = null;
+      throw new Error(`
+          ${upperBreakName} is incorrect value! Use ${decamelizePenultimateName} as a maximum breakpoint in @t-below function.
+        `);
     }
-    throw new Error(
-      `
-        ${breakName} is invalid value! Use ${penultimateName} as a maximum value.
-      `,
-    );
   } catch (err) {
-    result = null;
     console.log(err.message);
   }
 
