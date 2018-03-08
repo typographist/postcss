@@ -1,11 +1,11 @@
-const getBreakpointNext = require('../getBreakpointNext');
+const getNameOfNextBreakpoint = require('../getNameOfNextBreakpoint');
 const getBreakpointValue = require('../getBreakpointValue');
-const getBreakpointMin = require('../getBreakpointMin');
+const getNameOfMinBreakpoint = require('../getNameOfMinBreakpoint');
 
 module.exports = (name, config) => {
-  const next = getBreakpointNext(name, config);
+  const next = getNameOfNextBreakpoint(name, config);
 
   return next
-    ? getBreakpointValue(getBreakpointMin(next), config) - 0.02
+    ? getBreakpointValue(getNameOfMinBreakpoint(next), config) - 0.02
     : null;
 };

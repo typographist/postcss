@@ -1,6 +1,14 @@
 const makeBreakpointsModel = require('../../makeBreakpointsModel');
 
-module.exports = (name, config) => {
+/**
+ *
+ * @param {string} breakName Breakpoint name.
+ * @param {object} config User configuration.
+ * @return {array<Number>} An array containing the values of breakpoints.
+ */
+
+module.exports = (breakName, config) => {
   const breakpoints = makeBreakpointsModel(config);
-  return parseFloat(breakpoints.find(b => b.name === name).value);
+
+  return parseFloat(breakpoints.find(b => b.name === breakName).value);
 };

@@ -17,17 +17,3 @@ const below = name => {
     console.log(err.message);
   }
 };
-
-const between = (lower, upper) => {
-  const lowerBreak = getBreakpointValue(lower);
-  const upperBreak = getBreakpointMax(upper);
-
-  return `min-width: ${lowerBreak} max-width: ${upperBreak}`;
-};
-
-const only = name => {
-  const lowerBreak = getBreakpointValue(name);
-  const upperBreak = getBreakpointMax(name);
-
-  return `min-width: ${lowerBreak} max-width: ${upperBreak}`;
-};
