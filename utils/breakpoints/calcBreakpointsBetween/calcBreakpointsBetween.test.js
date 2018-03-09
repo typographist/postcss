@@ -13,7 +13,7 @@ describe('Utils of breakpoints', () => {
     it('should if invalid breakpoint', () => {
       expect(
         calcBreakpointsBetween('lg-desktop', 'xl-desktop', userConfig),
-      ).toBe(null);
+      ).toBe('75em');
     });
   });
 });
