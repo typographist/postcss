@@ -1,7 +1,9 @@
 const transformBubblingAtrule = require('./transformBubblingAtrule');
 const transformTAbove = require('./transformTAbove');
 const transformTBase = require('./transformTBase');
+const transformTBelow = require('./transformTBelow');
 const transformTBetween = require('./transformTBetween');
+const transformTOnly = require('./transformTOnly');
 const transformTRoot = require('./transformTRoot');
 
 module.exports = (node, config) => {
@@ -21,7 +23,15 @@ module.exports = (node, config) => {
     transformTAbove(node, config);
   }
 
+  if (transformTBelow.test(node)) {
+    transformTBelow(node, config);
+  }
+
   if (transformTBetween.test(node)) {
     transformTBetween(node, config);
+  }
+
+  if (transformTOnly.test(node)) {
+    transformTOnly(node, config);
   }
 };

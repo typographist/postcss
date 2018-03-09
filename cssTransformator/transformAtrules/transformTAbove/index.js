@@ -1,71 +1,62 @@
 const { camelize } = require('humps');
-const makeBreakpointsModel = require('../../../utils/makeBreakpointsModel/');
+const { toEm } = require('../../../helpers');
 const { HAS_EM, HAS_PX } = require('../../../constants/regexes');
 const {
+  breakpointsToCebabCase,
+  calcBreakpointAbove,
   checkIsBreakpointName,
   getNamesOfBreakpoints,
-  removeBrackets,
-  getBreakpointsList,
-} = require('../../helpers');
-const { toEm } = require('../../../helpers');
+  removeRoundBrackets,
+} = require('../../../utils/breakpoints');
 
-const getTAboveOrTBelowParams = (node, config) => {
+const calcParamsOfAtruleAbove = (node, config) => {
   const postcssNode = node;
-  const breakpoints = makeBreakpointsModel(config);
-  const namesOfBreakpoints = getNamesOfBreakpoints(
-    makeBreakpointsModel,
-    config,
+  const namesOfBreakpoints = getNamesOfBreakpoints(config);
+  const paramsWithoutBrackets = camelize(
+    removeRoundBrackets(postcssNode.params),
   );
-  const atruleRawValue = camelize(removeBrackets(postcssNode.params));
   const isBreakpointName = checkIsBreakpointName(
     namesOfBreakpoints,
-    atruleRawValue,
+    paramsWithoutBrackets,
   );
-
-  const isTAbove = postcssNode.name === 't-above';
-  const breakpointProp = isTAbove ? 'min-width' : 'max-width';
-  const atruleName = isTAbove ? '@t-above' : '@t-below';
   let result = null;
 
   try {
     if (isBreakpointName) {
-      const breakpoint = breakpoints.find(b => b.name === atruleRawValue);
-      const breakpointValue = `${toEm(breakpoint.value)}em`;
-
-      result = `screen and (${breakpointProp}: ${breakpointValue})`;
-    } else if (HAS_PX.test(atruleRawValue)) {
-      const breakpointValue = `${toEm(atruleRawValue)}em`;
-      result = `screen and (${breakpointProp}: ${breakpointValue})`;
-    } else if (HAS_EM.test(atruleRawValue)) {
-      result = `screen and (${breakpointProp}: ${atruleRawValue})`;
+      result = `screen and (min-width: ${calcBreakpointAbove(
+        paramsWithoutBrackets,
+        config,
+      )})`;
+    } else if (HAS_PX.test(paramsWithoutBrackets)) {
+      const breakpointValue = `${toEm(paramsWithoutBrackets)}em`;
+      result = `screen and (min-width: ${breakpointValue})`;
+    } else if (HAS_EM.test(paramsWithoutBrackets)) {
+      result = `screen and (min-width: ${paramsWithoutBrackets})`;
     } else {
       postcssNode.remove();
-
-      const breakpointsList = getBreakpointsList(namesOfBreakpoints);
-      const rawValue = removeBrackets(postcssNode.params);
+      const breakpointsList = breakpointsToCebabCase(namesOfBreakpoints);
+      const valueWithoutBrackets = removeRoundBrackets(postcssNode.params);
       throw new Error(`
-          ${rawValue} is invalid argument in ${atruleName} function!
+          ${valueWithoutBrackets} is invalid argument in @t-above function!
           Use ${breakpointsList} or the value in pixels or in ems.
         `);
     }
   } catch (err) {
     console.warn(err.message);
   }
-
   return result;
 };
 
 module.exports = (node, config) => {
   const postcssNode = node;
   postcssNode.name = 'media';
-  postcssNode.params = getTAboveOrTBelowParams(node, config);
+  postcssNode.params = calcParamsOfAtruleAbove(node, config);
 };
 
 module.exports.test = node => {
   const { type, name } = node;
   const isAtrule = type === 'atrule';
   const isTAbove = name === 't-above';
-  const isTBelow = name === 't-below';
 
-  return [isAtrule, isTAbove || isTBelow].every(Boolean);
+  return [isAtrule, isTAbove].every(Boolean);
 };

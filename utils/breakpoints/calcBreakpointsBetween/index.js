@@ -14,30 +14,19 @@ const { toEm } = require('../../../helpers');
 module.exports = (lowerBreakName, upperBreakName, config) => {
   const camelizeLower = camelize(lowerBreakName);
   const camelizeUpper = camelize(upperBreakName);
-  const lowerBreak = getBreakpointValue(camelizeLower, config);
   const namesOfBreakpoints = getNamesOfBreakpoints(config);
+  const lowerBreakValue = getBreakpointValue(camelizeLower, config);
   const lastBreakName = namesOfBreakpoints[namesOfBreakpoints.length - 1];
-  const penultimateName = namesOfBreakpoints[namesOfBreakpoints.length - 2];
-  const decamelizePenultimateName = decamelize(penultimateName, {
-    separator: '-',
-  });
   let result;
-
   try {
     if (camelizeUpper !== lastBreakName) {
-      const upperBreak = getBreakpointMax(camelizeUpper, config);
-      result = [`${toEm(lowerBreak)}em`, `${toEm(upperBreak)}em`];
+      const upperBreakValue = getBreakpointMax(camelizeUpper, config);
+      result = [`${toEm(lowerBreakValue)}em`, `${toEm(upperBreakValue)}em`];
     } else {
-      result = null;
-      throw new Error(
-        `
-        ${upperBreakName} is incorrect value! Use ${decamelizePenultimateName} as a maximum breakpoint in @t-between function.
-        `,
-      );
+      result = `${toEm(lowerBreakValue)}em`;
     }
   } catch (err) {
-    console.log(err.message);
+    console.warn(err.message);
   }
-
   return result;
 };

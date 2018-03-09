@@ -13,24 +13,11 @@ module.exports = (upperBreakName, config) => {
   const camelizeUpperBreakName = camelize(upperBreakName);
   const namesOfBreakpoints = getNamesOfBreakpoints(config);
   const lastBreakName = namesOfBreakpoints[namesOfBreakpoints.length - 1];
-  const penultimateName = namesOfBreakpoints[namesOfBreakpoints.length - 2];
-  const decamelizePenultimateName = decamelize(penultimateName, {
-    separator: '-',
-  });
-  let result;
+  let result = null;
 
-  try {
-    if (camelizeUpperBreakName !== lastBreakName) {
-      const maxBreakVal = getBreakpointMax(camelizeUpperBreakName, config);
-      result = `${toEm(maxBreakVal)}em`;
-    } else {
-      result = null;
-      throw new Error(`
-          ${upperBreakName} is incorrect value! Use ${decamelizePenultimateName} as a maximum breakpoint in @t-below function.
-        `);
-    }
-  } catch (err) {
-    console.log(err.message);
+  if (camelizeUpperBreakName !== lastBreakName) {
+    const maxBreakVal = getBreakpointMax(camelizeUpperBreakName, config);
+    result = `${toEm(maxBreakVal)}em`;
   }
 
   return result;

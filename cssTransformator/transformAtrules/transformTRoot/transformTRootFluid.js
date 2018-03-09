@@ -1,7 +1,7 @@
 const { mediaAtrule } = require('../../atrules');
 const getRootRule = require('./getRootRule');
 const { variableDecl, fontSizeDecl } = require('../../decls');
-const { removeBrackets } = require();
+const { removeRoundBrackets } = require('../../../utils/breakpoints');
 const { percentage, toEm } = require('../../../helpers');
 
 module.exports = (node, breakpoints) => {
@@ -69,7 +69,7 @@ module.exports = (node, breakpoints) => {
 module.exports.test = node => {
   const { parent } = node;
   const isRootRule = parent.selector === ':root';
-  const hasFluid = removeBrackets(node.params) === 'fluid';
+  const hasFluid = removeRoundBrackets(node.params) === 'fluid';
 
   return [parent, isRootRule, hasFluid].every(Boolean);
 };

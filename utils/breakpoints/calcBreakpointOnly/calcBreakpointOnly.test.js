@@ -9,9 +9,5 @@ describe('Utils of breakpoints', () => {
         '99.99875em',
       ]);
     });
-
-    it('should if invalid breakpoint', () => {
-      expect(calcBreakpointOnly('xl-desktop', userConfig)).toBe(null);
-    });
   });
 });

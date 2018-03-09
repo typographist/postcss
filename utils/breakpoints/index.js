@@ -2,7 +2,7 @@ const breakpointsToCebabCase = require('./breakpointsToCebabCase');
 const calcBreakpointAbove = require('./calcBreakpointAbove');
 const calcBreakpointBelow = require('./calcBreakpointBelow');
 const calcBreakpointOnly = require('./calcBreakpointOnly');
-const calcBreakpointBetween = require('./calcBreakpointsBetween');
+const calcBreakpointsBetween = require('./calcBreakpointsBetween');
 const checkIsBreakpointName = require('./checkIsBreakpointName');
 const getBreakpointMax = require('./getBreakpointMax');
 const getBreakpointValue = require('./getBreakpointValue');
@@ -16,7 +16,7 @@ module.exports = {
   calcBreakpointAbove,
   calcBreakpointBelow,
   calcBreakpointOnly,
-  calcBreakpointBetween,
+  calcBreakpointsBetween,
   checkIsBreakpointName,
   getBreakpointMax,
   getBreakpointValue,

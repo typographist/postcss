@@ -7,11 +7,11 @@ const {
   POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER_WITH_MS_UNIT_MEASURE,
 } = require('../constants/regexes');
 const {
+  breakpointsToCebabCase,
   checkIsBreakpointName,
-  getBreakpointsList,
   getNamesOfBreakpoints,
-  removeBrackets,
-} = require('./helpers');
+  removeRoundBrackets,
+} = require('../utils/breakpoints');
 
 const getClosestRule = node => {
   let selectorParent = node.parent;
@@ -36,17 +36,14 @@ module.exports = (node, config) => {
   const isTBelow = name === 't-below';
   const isTOnly = name === 't-only';
   const target = node.value.replace(MS_UNIT, '');
-  const namesOfBreakpoints = getNamesOfBreakpoints(
-    makeBreakpointsModel,
-    config,
-  );
-  const breakpointsList = getBreakpointsList(namesOfBreakpoints);
+  const namesOfBreakpoints = getNamesOfBreakpoints(config);
+  const breakpointsList = breakpointsToCebabCase(namesOfBreakpoints);
 
   try {
     if (isRoot) {
       postcssNode.value = msToRem(target, breakpoints);
     } else if ([isTAbove, isTBelow, isTOnly].some(Boolean)) {
-      const atruleRawValue = camelize(removeBrackets(atruleParams));
+      const atruleRawValue = camelize(removeRoundBrackets(atruleParams));
       const isBreakpointName = checkIsBreakpointName(
         namesOfBreakpoints,
         atruleRawValue,
@@ -57,7 +54,7 @@ module.exports = (node, config) => {
       } else {
         closestRule.remove();
         throw new Error(
-          `${atruleRawValue} is invalid breakpoint name. use ${breakpointsList} to convert ms to rem`,
+          `${atruleRawValue} is invalid breakpoint name. Use ${breakpointsList} to convert ms to rem`,
         );
       }
     } else if ([!isRoot, !isTAbove, !isTBelow, !isTOnly].every(Boolean)) {
