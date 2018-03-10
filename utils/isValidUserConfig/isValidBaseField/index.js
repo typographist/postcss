@@ -2,7 +2,7 @@ const { HAS_PX_OR_EM } = require('../../../constants/regexes');
 
 /**
  * @param {any} checkBase
- * @return {boolean}
+ * @return {boolean} String or not.
  */
 const isBaseString = checkBase => {
   try {
@@ -22,7 +22,7 @@ const isBaseString = checkBase => {
  * @param {string} checkBase
  * @return {boolean}
  */
-const isBaseContainPxOrEm = checkBase => {
+const baseHasPxOrEm = checkBase => {
   try {
     switch (HAS_PX_OR_EM.test(checkBase)) {
       case true:
@@ -47,6 +47,6 @@ const isValidBases = (checkBases, fn) => checkBases.every(base => fn(base));
 
 module.exports = {
   isBaseString,
-  isBaseContainPxOrEm,
+  baseHasPxOrEm,
   isValidBases,
 };

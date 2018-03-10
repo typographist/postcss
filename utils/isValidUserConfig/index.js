@@ -3,7 +3,7 @@ const { isValidRatios } = require('./isValidRatioField');
 const { findAll } = require('../../helpers');
 const {
   isBaseString,
-  isBaseContainPxOrEm,
+  baseHasPxOrEm,
   isValidBases,
 } = require('./isValidBaseField');
 const isValidLineHeightField = require('./isValidLineHeightField');
@@ -16,8 +16,9 @@ const {
 } = require('./isValidBreakpointsField');
 
 /**
- * @param {array<object>}
- * @return {boolean}
+ * The function validates the user config.
+ * @param {Object} config User configuration.
+ * @return {boolean} valid or invalid user configuration.
  */
 module.exports = config => {
   const bases = flatten(findAll(config, 'base'));
@@ -28,7 +29,7 @@ module.exports = config => {
 
   return [
     isValidBases(bases, isBaseString),
-    isValidBases(bases, isBaseContainPxOrEm),
+    isValidBases(bases, baseHasPxOrEm),
     isValidLineHeightField(lineHeights),
     isValidRatios(ratios),
     isValidBreakpointsField(breakpoints, breakpointHasBreakpointKey),
