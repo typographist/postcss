@@ -1,5 +1,6 @@
 const postcss = require('postcss');
 const { mediaAtrule } = require('../../atrules');
+const { FIRST_BREAKPOINT } = require('../../../constants');
 const { fontSizeDecl, lineHeightDecl } = require('../../decls');
 const { toRem } = require('../../../helpers');
 const {
@@ -23,7 +24,7 @@ module.exports = (node, config) => {
   if (parent && parent.selector !== 'body') {
     node.remove();
   } else {
-    const breakpoint = breakpoints.find(b => /^0/.test(b.value));
+    const breakpoint = breakpoints.find(b => FIRST_BREAKPOINT.test(b.value));
 
     breakpoints
       .filter(b => b.value !== '0px')

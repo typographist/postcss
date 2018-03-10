@@ -1,5 +1,6 @@
-const { getBase, toRem } = require('../../helpers/');
 const calcFontSize = require('./calcFontSize');
+const FIRST_BREAKPOINT = require('../../constants');
+const { getBase, toRem } = require('../../helpers/');
 
 /**
  * @param {number} target
@@ -12,7 +13,7 @@ module.exports = (target, breakpoints, breakpointName) => {
   let fontSize = null;
 
   if (breakpointName === undefined) {
-    const breakpoint = breakpoints.find(b => /^0/.test(b.value));
+    const breakpoint = breakpoints.find(b => FIRST_BREAKPOINT.test(b.value));
     const base = getBase(breakpoint.base);
     const { ratio, root } = breakpoint;
     fontSize = calcFontSize(target, base, ratio);
