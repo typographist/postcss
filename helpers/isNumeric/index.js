@@ -5,7 +5,5 @@
  */
 
 /* eslint-disable no-restricted-globals */
-const isNumeric = num => !Number.isNaN(parseFloat(num)) && isFinite(num);
+module.exports = num => !Number.isNaN(parseFloat(num)) && isFinite(num);
 /* eslint-enable */
-
-module.exports = isNumeric;

@@ -4,8 +4,8 @@
   "main": "./index.js",
   "license": "MIT",
   "scripts": {
-    "test": "jest",
-    "test:watch": "jest --watchAll",
+    "unit": "jest",
+    "unit:watch": "jest --watch",
     "lint": "eslint **/*.js",
     "start": "NODE_ENV=development gulp",
     "build": "NODE_ENV=production gulp build:production"
@@ -38,7 +38,8 @@
   },
   "dependencies": {
     "humps": "^2.0.1",
-    "lodash": "^4.17.4",
+    "lodash.flatten": "^4.4.0",
+    "lodash.omit": "^4.5.0",
     "postcss": "^6.0.19",
     "redux": "^3.7.2"
   },

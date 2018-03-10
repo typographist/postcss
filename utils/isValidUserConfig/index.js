@@ -1,4 +1,4 @@
-const { flatten } = require('lodash');
+const flatten = require('lodash.flatten');
 const { isValidRatios } = require('./isValidRatioField');
 const { findAll } = require('../../helpers');
 const {

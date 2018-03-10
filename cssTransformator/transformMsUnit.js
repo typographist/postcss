@@ -1,6 +1,6 @@
 const { camelize } = require('humps');
 const msToRem = require('../utils/modularScale/msToRem');
-const makeBreakpointsModel = require('../utils/makeBreakpointsModel');
+const { makeBreakpointsModel } = require('../utils/makeBreakpointsModel');
 const {
   HAS_FONT_SIZE,
   MS_UNIT,

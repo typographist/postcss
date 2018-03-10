@@ -2,7 +2,9 @@ const postcss = require('postcss');
 const { mediaAtrule } = require('../../atrules');
 const { fontSizeDecl, lineHeightDecl } = require('../../decls');
 const { toRem } = require('../../../helpers');
-const makeBreakpointsModel = require('../../../utils/makeBreakpointsModel/');
+const {
+  makeBreakpointsModel,
+} = require('../../../utils/makeBreakpointsModel/');
 
 const bodyRule = (baseSize, rootSize) => {
   const body = postcss.rule({

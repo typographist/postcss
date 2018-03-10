@@ -1,4 +1,4 @@
-const { camelize, decamelize } = require('humps');
+const { camelize } = require('humps');
 const getBreakpointValue = require('../getBreakpointValue');
 const getBreakpointMax = require('../getBreakpointMax');
 const getNamesOfBreakpoints = require('../getNamesOfBreakpoints');

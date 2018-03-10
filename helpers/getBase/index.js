@@ -3,6 +3,4 @@
  * @return {number}
  */
 
-const getBase = base => (Array.isArray(base) ? base[0] : base);
-
-module.exports = getBase;
+module.exports = base => (Array.isArray(base) ? base[0] : base);
