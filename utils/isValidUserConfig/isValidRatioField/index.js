@@ -2,8 +2,9 @@ const { isNumeric } = require('../../../helpers');
 const { HAS_AT } = require('../../../constants/regexes');
 
 /**
- * Check the line for matching the specified pattern.
- * @param {string} ratio
+ * The function checks if there is a word at at ration
+ * @param {string} ratio Ration from user configuration.
+ * @return {boolean} contained 'at' or not.
  */
 const ratioHasAt = ratio => {
   let result = null;
@@ -16,7 +17,7 @@ const ratioHasAt = ratio => {
       throw new Error(
         `
         ${ratio} is incorrect value. The string must have a positive or negative integer, 
-        or a floating-point number in units of px or em,a space, a word at, a space, 
+        or a floating-point number in units of px or em,a space, a word 'at', a space, 
         a positive or negative floating point number without units of measure.
         `,
       );
@@ -28,24 +29,27 @@ const ratioHasAt = ratio => {
 };
 
 /**
- * Validation ratio
- * @param {any} ratio
- * @return {boolean}
+ * Ratio is string or number?
+ * @param {any} ratio Ratio from user configuration.
+ * @return {boolean} yes or not.
  */
 const isValidRatio = ratio => {
+  let result = null;
+
   try {
-    switch (typeof ratio) {
-      case 'number':
-        return isNumeric(ratio);
-      case 'string':
-        return ratioHasAt(ratio);
-      default:
-        throw new Error('Typeof ratio must be string or number');
+    if (typeof ratio === 'number') {
+      result = isNumeric(ratio);
+    } else if (typeof ratio === 'string') {
+      result = ratioHasAt(ratio);
+    } else {
+      result = false;
+      throw new Error('Typeof ratio must be string or number');
     }
   } catch (err) {
-    console.log(err);
-    return false;
+    console.warn(err.message);
   }
+
+  return result;
 };
 
 /**

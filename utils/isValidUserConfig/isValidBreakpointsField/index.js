@@ -2,65 +2,82 @@ const { isObject } = require('../../../helpers');
 const { HAS_PX_OR_EM } = require('../../../constants/regexes');
 
 /**
- * @param {any} breakpoint
- * @return {boolean}
+ * Check breakpoint is string or not.
+ * @param {any} breakpoint Breakpoint value from user configuration.
+ * @return {boolean} String or not.
  */
 const breakpointIsString = breakpoint => {
+  let result = null;
+
   try {
-    switch (typeof breakpoint) {
-      case 'string':
-        return true;
-      default:
-        throw new Error('Is incorrect breakpint! Breakpoint must be a string');
+    if (typeof breakpoint === 'string') {
+      result = true;
+    } else {
+      result = false;
+      throw new Error('Is incorrect breakpint! Breakpoint must be a string');
     }
   } catch (err) {
-    console.log(err);
-    return false;
+    console.warn(err.message);
   }
+
+  return result;
 };
 
 /**
- * @param {string} breakpoint
- * @return {boolean}
+ * Check base has px or em.
+ * @param {string} breakpoint Breakpoint from user configuration.
+ * @return {boolean} Has or not.
  */
 const breakpointHasPxOrEm = breakpoint => {
+  let result = null;
+
   try {
     if (HAS_PX_OR_EM.test(breakpoint)) {
-      return true;
+      result = true;
+    } else {
+      result = false;
+      throw new Error(
+        `${breakpoint} is incorrect value! Please, use pixels or em.`,
+      );
     }
-
-    throw new Error(
-      `${breakpoint} is incorrect value! Please, use pixels or em.`,
-    );
   } catch (err) {
-    console.log(err);
-    return false;
+    console.warn(err.message);
   }
+
+  return result;
 };
 
 /**
- * @param {object} config
- * @return {array<object>}
+ * @param {Object} config User configuration.
+ * @return {Array<Object>} Array of breakpoints objects.
  */
 const getBreakpoints = config =>
   Object.values(config).filter(item => isObject(item));
 
 /**
- * @param {object} breakpoint
- * @return {boolean}
+ * Checking for a key named breakpoint in a breakpoint object.
+ * @param {Object} breakpoint Object of breakpoint from user configuration.
+ * @return {boolean} Is there or not.
  */
-const breakpointHasBreakpointKey = breakpoint => {
+const breakpointHasBreakpointKey = objectOfBreakpoint => {
+  let result = null;
+
   try {
-    if (breakpoint.breakpoint) return true;
-    throw new Error('Breakpoint is required key!');
+    if (objectOfBreakpoint.breakpoint) {
+      result = true;
+    } else {
+      result = false;
+      throw new Error('Breakpoint is required key!');
+    }
   } catch (err) {
-    console.log(err);
-    return false;
+    console.warn(err.message);
   }
+
+  return result;
 };
 
 /**
- * @param {array<any>} breakpoints
+ * @param {Array<any>} breakpoints
  * @param {function} fn
  * @return {boolean}
  */

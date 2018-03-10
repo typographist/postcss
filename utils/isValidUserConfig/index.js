@@ -21,10 +21,12 @@ const {
  * @return {boolean} valid or invalid user configuration.
  */
 module.exports = config => {
-  const bases = flatten(findAll(config, 'base'));
-  const lineHeights = findAll(config, 'lineHeight');
-  const ratios = findAll(config, 'ratio');
-  const breaks = findAll(config, 'breakpoint');
+  const findAllValues = val => findAll(config, val);
+
+  const bases = flatten(findAllValues('base'));
+  const lineHeights = findAllValues('lineHeight');
+  const ratios = findAllValues('ratio');
+  const breaks = findAllValues('breakpoint');
   const breakpoints = getBreakpoints(config);
 
   return [

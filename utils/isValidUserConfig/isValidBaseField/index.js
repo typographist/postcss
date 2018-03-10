@@ -1,47 +1,53 @@
 const { HAS_PX_OR_EM } = require('../../../constants/regexes');
 
 /**
- * @param {any} checkBase
+ * Check base is string or not.
+ * @param {any} base base
  * @return {boolean} String or not.
  */
-const isBaseString = checkBase => {
+const isBaseString = base => {
+  let result = null;
+
   try {
-    switch (typeof checkBase) {
-      case 'string':
-        return true;
-      default:
-        throw new Error('Base value must be a string or Array<string>!');
+    if (typeof base === 'string') {
+      result = true;
+    } else {
+      result = false;
+      throw new Error('Base value must be a string or array of strings.');
     }
   } catch (err) {
-    console.log(err.message);
-    return false;
+    console.warn(err.message);
   }
+
+  return result;
 };
 
 /**
- * @param {string} checkBase
- * @return {boolean}
+ * Case has pixels or em.
+ * @param {string} base Base from user configuration.
+ * @return {boolean} has or not.
  */
-const baseHasPxOrEm = checkBase => {
+const baseHasPxOrEm = base => {
+  let result = null;
   try {
-    switch (HAS_PX_OR_EM.test(checkBase)) {
-      case true:
-        return true;
-      default:
-        throw new Error(
-          `${checkBase} is incorrect value! Please, use pixels or em.`,
-        );
+    if (HAS_PX_OR_EM.test(base)) {
+      result = true;
+    } else {
+      result = false;
+      throw new Error(`${base} is incorrect value! Please, use pixels or em.`);
     }
   } catch (err) {
     console.log(err.message);
-    return false;
   }
+
+  return result;
 };
 
 /**
- * @param {array<any>} checkBases - flat array
- * @param {function} fn
- * @return {boolean}
+ * Checking the array of bases to match all specified conditions.
+ * @param {array<any>} checkBases - Flat array or bases.
+ * @param {function} fn Function specifying check condition.
+ * @return {boolean} Valid or not.
  */
 const isValidBases = (checkBases, fn) => checkBases.every(base => fn(base));
 

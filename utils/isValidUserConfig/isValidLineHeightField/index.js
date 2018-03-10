@@ -1,12 +1,10 @@
 const { isNumeric } = require('../../../helpers');
 
 /**
- * Check whether all the values of the number?
- * @param {array<any>} lineHeights
- * @return {boolean}
+ * Check lineHeights number or not.
+ * @param {Array<any>} lineHeights Array of lineHeights
+ * @return {boolean} Number or not.
  */
 
-const isValidLineHeights = lineHeights =>
+module.exports = lineHeights =>
   lineHeights.every(lineHeight => isNumeric(lineHeight));
-
-module.exports = isValidLineHeights;
