@@ -1,0 +1,23 @@
+.typographist-button {
+  position: fixed;
+  display: flex;
+  top: 2rem;
+  right: 1rem;
+  padding: 0rem 1.5rem 0.1rem 1.5rem;
+  align-content: center;
+  white-space: nowrap;
+  border-radius: 2rem;
+  font-size: 1rem;
+  line-height: 1.9rem;
+  color: $white;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  background-color: #000;
+  box-shadow: 0 14px 28px rgba($black, 0.25), 0 10px 10px rgba($black, 0.22);
+  border-color: transparent;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+}
