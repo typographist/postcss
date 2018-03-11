@@ -156,6 +156,8 @@ class RhythmToggleButton {
   }
 }
 
-const button = new RhythmToggleButton();
+const button = new RhythmToggleButton({
+  root: 'fluid',
+});
 
 button.addTo('.wrap');

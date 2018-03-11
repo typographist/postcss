@@ -894,7 +894,9 @@ RhythmToggleButton.prototype.render = function render () {
   return buttonElem;
 };
 
-var button = new RhythmToggleButton();
+var button = new RhythmToggleButton({
+  root: 'fluid',
+});
 
 button.addTo('.wrap');
 
