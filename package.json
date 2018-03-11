@@ -40,8 +40,7 @@
     "humps": "^2.0.1",
     "lodash.flatten": "^4.4.0",
     "lodash.omit": "^4.5.0",
-    "postcss": "^6.0.19",
-    "redux": "^3.7.2"
+    "postcss": "^6.0.19"
   },
   "jest": {
     "collectCoverage": true
