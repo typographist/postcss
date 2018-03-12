@@ -21,6 +21,7 @@ const calcParamsOfAtruleBelow = (node, config) => {
 
   try {
     if (isBreakpointName) {
+      // Redo it! The function should only count the result.
       if (calcBreakpointBelow(paramsWithoutBrackets, config)) {
         result = `screen and (max-width: ${calcBreakpointBelow(
           paramsWithoutBrackets,
@@ -29,11 +30,17 @@ const calcParamsOfAtruleBelow = (node, config) => {
       } else {
         postcssNode.remove();
         const penultimateBreakName = namesOfBreakpoints
-          .map(item => decamelize(item, { separator: '-' }))
+          .map(item =>
+            decamelize(item, {
+              separator: '-',
+            }),
+          )
           .filter((item, i, arr) => item === arr[arr.length - 2]);
-        throw new Error(`
+        throw new Error(
+          `
           ${paramsWithoutBrackets} is incorrect parameter in @t-below. Use ${penultimateBreakName} as a maximum breakpoint.
-          `);
+          `,
+        );
       }
     } else if (HAS_PX.test(paramsWithoutBrackets)) {
       const breakpointValue = `${toEm(paramsWithoutBrackets)}em`;
@@ -50,10 +57,12 @@ const calcParamsOfAtruleBelow = (node, config) => {
         .join(', ');
 
       const valueWithoutBrackets = removeRoundBrackets(postcssNode.params);
-      throw new Error(`
+      throw new Error(
+        `
           ${valueWithoutBrackets} is incorrect parameter in @t-below.
           Use ${breakpointsList} or the value in pixels or in ems.
-        `);
+        `,
+      );
     }
   } catch (err) {
     console.warn(err.message);
