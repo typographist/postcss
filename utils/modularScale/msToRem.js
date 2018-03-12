@@ -1,5 +1,5 @@
 const calcFontSize = require('./calcFontSize');
-const FIRST_BREAKPOINT = require('../../constants');
+const { FIRST_BREAKPOINT } = require('../../constants');
 const { getBase, toRem } = require('../../helpers/');
 
 /**
