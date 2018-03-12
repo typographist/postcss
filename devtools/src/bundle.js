@@ -534,7 +534,7 @@ var calcLeading = function (base, lineHeight) {
 var HALF = 0.5;
 var BROWSER_VIEWPORT_WIDTH = '100vw';
 var BROWSER_DEFAULT_FONT_SIZE = 16;
-var FIRST_BREAKPOINT = /^/;
+var FIRST_BREAKPOINT = /^0/;
 
 var constants = {
   HALF: HALF,
@@ -893,12 +893,6 @@ RhythmToggleButton.prototype.render = function render () {
 
   return buttonElem;
 };
-
-// const button = new RhythmToggleButton({
-//   root: 'fluid',
-// });
-
-// button.addTo('.wrap');
 
 return RhythmToggleButton;
 
