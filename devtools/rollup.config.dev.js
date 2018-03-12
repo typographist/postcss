@@ -6,10 +6,11 @@ const sass = require('rollup-plugin-sass');
 const serve = require('rollup-plugin-serve');
 
 module.exports = {
-  input: './src/components/rhythmToggleButton/demo.js',
+  input: './src/components/RhythmToggleButton/index.js',
   output: {
     file: './src/bundle.js',
     format: 'umd',
+    name: 'RhythmToggleButton',
   },
   plugins: [
     buble({

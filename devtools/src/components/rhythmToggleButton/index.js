@@ -1,11 +1,16 @@
 import { createStore } from 'redux';
-import { toggleRhythm, setRhythm } from '../../actions';
+import {
+  toggleAdaptiveRhythm,
+  toggleFluidRhythm,
+  setRhythm,
+} from '../../actions';
 import { toNormalCase } from '../../../../helpers';
 import verticalRhythm from '../../reducers';
+import '../../styles/main.scss';
 
 const store = createStore(verticalRhythm);
 
-// BUTTON COMPONENT
+// TOGGLE RHYTHM BUTTON COMPONENT
 /**
  * @param {string} elemClassName
  * @param {number} zIndex
@@ -13,14 +18,13 @@ const store = createStore(verticalRhythm);
  */
 
 const defaultOptions = {
-  zIndex: 1000,
   root: 'adaptive',
-  bgColor: 'black',
+  zIndex: 1000,
 };
 
-class Button {
+class RhythmToggleButton {
   constructor(options) {
-    this.options = Button.getOptions(options);
+    this.options = RhythmToggleButton.getOptions(options);
 
     /**
      * @param {number} 83 - Single rhythm key
@@ -58,8 +62,16 @@ class Button {
     e.preventDefault();
   }
 
-  static handleClick() {
-    store.dispatch(toggleRhythm());
+  handleClick() {
+    const { root } = this.options;
+
+    if (root === 'adaptive') {
+      store.dispatch(toggleAdaptiveRhythm());
+    }
+
+    if (root === 'fluid') {
+      store.dispatch(toggleFluidRhythm());
+    }
   }
 
   handleKeyDown(e) {
@@ -73,14 +85,14 @@ class Button {
       const KEY_R = this.keyMap[82];
 
       if (root === 'adaptive') {
-        if (KEY_S && KEY_R) Button.setSingleRhythm(e);
-        if (KEY_D && KEY_R) Button.setDoubleRhythm(e);
-        if (KEY_O && KEY_R) Button.setOffRhythm(e);
+        if (KEY_S && KEY_R) RhythmToggleButton.setSingleRhythm(e);
+        if (KEY_D && KEY_R) RhythmToggleButton.setDoubleRhythm(e);
+        if (KEY_O && KEY_R) RhythmToggleButton.setOffRhythm(e);
       }
 
       if (root === 'fluid') {
-        if (KEY_S && KEY_R) Button.setSingleRhythm(e);
-        if (KEY_O && KEY_R) Button.setOffRhythm(e);
+        if (KEY_S && KEY_R) RhythmToggleButton.setSingleRhythm(e);
+        if (KEY_O && KEY_R) RhythmToggleButton.setOffRhythm(e);
       }
     }
   }
@@ -93,19 +105,43 @@ class Button {
     }
   }
 
+  addTo(elem) {
+    const parentElem = document.querySelector(elem);
+    const renderedBtn = this.render();
+    const theFirstChild = parentElem.firstChild;
+    parentElem.insertBefore(renderedBtn, theFirstChild);
+
+    const toggleRhythm = () => {
+      const state = store.getState();
+
+      switch (state) {
+        case 'singleRhythm':
+          parentElem.setAttribute('data-rhythm', 'single');
+          break;
+        case 'doubleRhythm':
+          parentElem.setAttribute('data-rhythm', 'double');
+          break;
+        default:
+          parentElem.setAttribute('data-rhythm', 'off');
+          break;
+      }
+    };
+
+    store.subscribe(toggleRhythm);
+  }
+
   render() {
-    const { zIndex, bgColor } = this.options;
+    const { zIndex } = this.options;
     const buttonElem = document.createElement('button');
     const state = store.getState();
     buttonElem.textContent = toNormalCase(state);
     buttonElem.style.cssText = `
       z-index: ${zIndex};
-      background-color: ${bgColor};
     `;
     buttonElem.classList.add('typographist-button');
 
     buttonElem.addEventListener('click', () => {
-      Button.handleClick();
+      this.handleClick();
     });
 
     store.subscribe(() => {
@@ -120,27 +156,4 @@ class Button {
   }
 }
 
-const rhythmToggleButton = (elem, options) => {
-  const btn = new Button(options);
-  elem.append(btn.render());
-
-  const toggleAdaptiveRhythm = () => {
-    const state = store.getState();
-
-    switch (state) {
-      case 'singleRhythm':
-        elem.setAttribute('data-rhythm', 'single');
-        break;
-      case 'doubleRhythm':
-        elem.setAttribute('data-rhythm', 'double');
-        break;
-      default:
-        elem.setAttribute('data-rhythm', 'off');
-        break;
-    }
-  };
-
-  store.subscribe(toggleAdaptiveRhythm);
-};
-
-module.exports = rhythmToggleButton;
+export default RhythmToggleButton;

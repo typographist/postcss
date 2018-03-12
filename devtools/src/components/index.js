@@ -1,5 +1,5 @@
-const rhythmToggleButton = require('./rhythmToggleButton');
+import RhythmToggleButton from './RhythmToggleButton/index';
 
-module.exports = {
-  rhythmToggleButton,
+export default {
+  RhythmToggleButton,
 };

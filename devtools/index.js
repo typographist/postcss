@@ -1,8 +1,4 @@
-(function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-	typeof define === 'function' && define.amd ? define(factory) :
-	(global.RhythmToggleButton = factory());
-}(this, (function () { 'use strict';
+'use strict';
 
 /** Detect free variable `global` from Node.js. */
 var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
@@ -493,6 +489,21 @@ var ActionTypes = {
  * @param {String} message The warning message.
  * @returns {void}
  */
+function warning(message) {
+  /* eslint-disable no-console */
+  if (typeof console !== 'undefined' && typeof console.error === 'function') {
+    console.error(message);
+  }
+  /* eslint-enable no-console */
+  try {
+    // This error was thrown as a convenience so that if you enable
+    // "break on all exceptions" in your console,
+    // it would pause the execution at this line.
+    throw new Error(message);
+    /* eslint-disable no-empty */
+  } catch (e) {}
+  /* eslint-enable no-empty */
+}
 
 /**
  * Composes single-argument functions from right to left. The rightmost
@@ -504,6 +515,16 @@ var ActionTypes = {
  * from right to left. For example, compose(f, g, h) is identical to doing
  * (...args) => f(g(h(...args))).
  */
+
+/*
+* This is a dummy function to check if the function name has been altered by minification.
+* If the function has been minified and NODE_ENV !== 'production', warn the user.
+*/
+function isCrushed() {}
+
+if ("development" !== 'production' && typeof isCrushed.name === 'string' && isCrushed.name !== 'isCrushed') {
+  warning('You are currently using minified code outside of NODE_ENV === \'production\'. ' + 'This means that you are running a slower development build of Redux. ' + 'You can use loose-envify (https://github.com/zertosh/loose-envify) for browserify ' + 'or DefinePlugin for webpack (http://stackoverflow.com/questions/30030031) ' + 'to ensure you have the correct code for your production build.');
+}
 
 var toggleAdaptiveRhythm = function () { return ({
   type: 'TOGGLE_ADAPTIVE_RHYTHM',
@@ -894,12 +915,8 @@ RhythmToggleButton.prototype.render = function render () {
   return buttonElem;
 };
 
-// const button = new RhythmToggleButton({
-//   root: 'fluid',
-// });
+var index = {
+  RhythmToggleButton: RhythmToggleButton,
+};
 
-// button.addTo('.wrap');
-
-return RhythmToggleButton;
-
-})));
+module.exports = index;

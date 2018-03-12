@@ -5,12 +5,13 @@
   "license": "MIT",
   "scripts": {
     "start": "npm run clean:dev && rollup --config ./rollup.config.dev.js",
-    "build": "clean:build && rollup --config rollup.config.prod.js",
-    "clean:dev": "rimraf ./src/bundle.js ./src/main.css",
-    "clean:build": "rimraf ./devtools/index.js ./devtools/main.css"
+    "build": "npm run clean:build && rollup --config ./rollup.config.prod.js",
+    "clean:dev": "rimraf ./src/main.css",
+    "clean:build": "rimraf ./typographist-devtools.css"
   },
   "dependencies": {
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "rollup-plugin-multi-entry": "^2.0.2"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",
