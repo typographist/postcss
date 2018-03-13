@@ -41,8 +41,8 @@ const getNamesOfBreakpoints = config =>
  * @param {Function} fn getNamesOfBreakpoints function.
  * @return {Array<Object>} An array with objects of breakpoints, not including the first breakpoint.
  */
-const makeBreakpoints = (config, fn) => {
-  const namesOfBreakpoints = fn(config);
+const makeBreakpoints = (config) => {
+  const namesOfBreakpoints = getNamesOfBreakpoints(config);
 
   return Object.values(config)
     .filter(b => isObject(b) && b.breakpoint)
@@ -51,6 +51,7 @@ const makeBreakpoints = (config, fn) => {
         name: namesOfBreakpoints[i],
         value: b.breakpoint,
       }))
+      // Remove breakpoint key.
     .map(b => omit(b, 'breakpoint'));
 };
 
@@ -67,7 +68,7 @@ const makeBreakpointsModel = config => {
 
   return [
     ...makeFirstBreakpoint(config),
-    ...makeBreakpoints(config, getNamesOfBreakpoints),
+    ...makeBreakpoints(config),
   ]
     .reduce((breakpoint, item, i) => {
       const stripBase = stripUnit(item.base);
