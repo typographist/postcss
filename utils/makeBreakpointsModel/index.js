@@ -16,11 +16,16 @@ const isValidUserConfig = require('../isValidUserConfig');
  */
 const makeFirstBreakpoint = config =>
   [{}]
-    .map(item => ({ ...item, base: config.base }))
-    .map(item => ({ ...item, lineHeight: config.lineHeight }))
-    .map(item => ({ ...item, ratio: config.ratio }))
-    .map(item => ({ ...item, value: '0px' }))
-    .map(item => ({ ...item, name: 'default' }));
+    .map(item => (
+      {
+        ...item,
+        base: config.base,
+        lineHeight: config.lineHeight,
+        ratio: config.ratio,
+        value: '0px',
+        name: 'default',
+      }
+    ));
 
 /**
  * @param {Object} config User configuration.
@@ -41,10 +46,14 @@ const makeBreakpoints = (config, fn) => {
 
   return Object.values(config)
     .filter(b => isObject(b) && b.breakpoint)
-    .map((b, i) => ({ ...b, name: namesOfBreakpoints[i] }))
-    .map(b => ({ ...b, value: b.breakpoint }))
+    .map((b, i) => (
+      { ...b,
+        name: namesOfBreakpoints[i],
+        value: b.breakpoint,
+      }))
     .map(b => omit(b, 'breakpoint'));
 };
+
 
 /**
  * @param {string} value The value of the breakpoint in pixels or em.
@@ -68,44 +77,16 @@ const makeBreakpointsModel = config => {
         {
           ...item,
           base: !item.base ? breakpoint[i - 1].base : stripBase,
-        },
-      ];
-    }, [])
-    .reduce(
-      (breakpoint, item, i) => [
-        ...breakpoint,
-        {
-          ...item,
           lineHeight: !item.lineHeight
-            ? breakpoint[i - 1].lineHeight
-            : item.lineHeight,
-        },
-      ],
-      [],
-    )
-    .reduce((breakpoint, item, i) => {
-      const stripBase = stripUnit(item.base);
-
-      return [
-        ...breakpoint,
-        {
-          ...item,
+          ? breakpoint[i - 1].lineHeight
+          : item.lineHeight,
           ratio: !item.ratio
             ? breakpoint[i - 1].ratio
             : getRatio(item.ratio, stripBase),
+          value: toPxValueOfBreakpoint(item.value),
         },
       ];
     }, [])
-    .reduce(
-      (breakpoint, item) => [
-        ...breakpoint,
-        {
-          ...item,
-          value: toPxValueOfBreakpoint(item.value),
-        },
-      ],
-      [],
-    )
     .map(item => {
       const leading = calcLeading(item.base, item.lineHeight);
 
