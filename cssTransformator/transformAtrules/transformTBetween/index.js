@@ -61,9 +61,11 @@ module.exports = (node, config) => {
           .filter(item => item !== lowerBreak)
           .join(', ');
 
-        throw new Error(`
+        throw new Error(
+          `
           ${upperBreak} is invalid second parameter in @t-between. Use ${recommendedBreaks}
-          `);
+          `,
+        );
       }
     }
 
