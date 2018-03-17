@@ -10,11 +10,13 @@ const {
 } = require('../../../utils/breakpoints');
 const { isArray, toEm } = require('../../../helpers');
 
-module.exports = (node, config) => {
-  const postcssNode = node;
+module.exports = (atrule, config) => {
+  const postcssAtrule = atrule;
   const namesOfBreakpoints = getNamesOfBreakpoints(config);
   const breakpointsList = breakpointsToCebabCase(namesOfBreakpoints);
-  const breakpointsValues = removeRoundBrackets(postcssNode.params).split(', ');
+  const breakpointsValues = removeRoundBrackets(postcssAtrule.params).split(
+    ', ',
+  );
   const lowerBreak = breakpointsValues[0];
   const upperBreak = breakpointsValues[1];
   const camelizeLowerBreak = camelize(lowerBreak);
@@ -27,12 +29,12 @@ module.exports = (node, config) => {
     namesOfBreakpoints,
     camelizeUpperBreak,
   );
-  postcssNode.name = 'media';
+  postcssAtrule.name = 'media';
 
   try {
     if (isInvalidFirstParameter.test(lowerBreak, config)) {
-      postcssNode.remove(upperBreak);
-      isInvalidFirstParameter(postcssNode, lowerBreak, breakpointsList);
+      postcssAtrule.remove(upperBreak);
+      isInvalidFirstParameter(postcssAtrule, lowerBreak, breakpointsList);
     }
 
     if (namesOfBreakpointsHasLowerBreakpoint) {
@@ -46,17 +48,17 @@ module.exports = (node, config) => {
         if (isArray(calculatedBreaks)) {
           const calculatedLowerBreak = calculatedBreaks[0];
           const calculatedUpperBreak = calculatedBreaks[1];
-          postcssNode.params = `screen and (min-width: ${calculatedLowerBreak}) and (max-width: ${calculatedUpperBreak})`;
+          postcssAtrule.params = `screen and (min-width: ${calculatedLowerBreak}) and (max-width: ${calculatedUpperBreak})`;
         } else if (typeof calculatedBreaks === 'string') {
           const calculatedLowerBreak = calcBreakpointsBetween(
             lowerBreak,
             upperBreak,
             config,
           );
-          postcssNode.params = `screen and (min-width: ${calculatedLowerBreak})`;
+          postcssAtrule.params = `screen and (min-width: ${calculatedLowerBreak})`;
         }
       } else {
-        postcssNode.remove();
+        postcssAtrule.remove();
         const recommendedBreaks = namesOfBreakpoints
           .filter(item => item !== lowerBreak)
           .join(', ');
@@ -71,11 +73,11 @@ module.exports = (node, config) => {
 
     if (HAS_PX.test(lowerBreak)) {
       if (HAS_PX.test(upperBreak)) {
-        postcssNode.params = `screen and (min-width: ${toEm(
+        postcssAtrule.params = `screen and (min-width: ${toEm(
           lowerBreak,
         )}em) and (max-width: ${toEm(upperBreak)}em)`;
       } else {
-        postcssNode.remove();
+        postcssAtrule.remove();
         throw new Error(
           `
             ${upperBreak} is invalid second parameter in @t-between.
@@ -88,9 +90,9 @@ module.exports = (node, config) => {
 
     if (HAS_EM.test(lowerBreak)) {
       if (HAS_EM.test(upperBreak)) {
-        postcssNode.params = `screen and (min-width: ${lowerBreak}) and (max-width: ${upperBreak})`;
+        postcssAtrule.params = `screen and (min-width: ${lowerBreak}) and (max-width: ${upperBreak})`;
       } else {
-        postcssNode.remove();
+        postcssAtrule.remove();
         throw new Error(
           `
             ${upperBreak} is invalid second parameter in @t-between.
@@ -104,5 +106,4 @@ module.exports = (node, config) => {
   }
 };
 
-module.exports.test = node =>
-  [node.type === 'atrule', node.name === 't-between'].every(Boolean);
+module.exports.test = atrule => atrule.name === 't-between';

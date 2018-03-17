@@ -8,11 +8,11 @@ const {
   removeRoundBrackets,
 } = require('../../../utils/breakpoints');
 
-const calcParamsOfAtruleAbove = (node, config) => {
-  const postcssNode = node;
+const calcParamsOfAtruleAbove = (atrule, config) => {
+  const postcssAtrule = atrule;
   const namesOfBreakpoints = getNamesOfBreakpoints(config);
   const paramWithoutBrackets = camelize(
-    removeRoundBrackets(postcssNode.params),
+    removeRoundBrackets(postcssAtrule.params),
   );
   const isBreakpointName = checkIsBreakpointName(
     namesOfBreakpoints,
@@ -35,10 +35,10 @@ const calcParamsOfAtruleAbove = (node, config) => {
         result = `screen and (min-width: ${breakValue})`;
       }
     } else {
-      postcssNode.remove();
+      postcssAtrule.remove();
 
       const breakpointsList = breakpointsToCebabCase(namesOfBreakpoints);
-      const valueWithoutBrackets = removeRoundBrackets(postcssNode.params);
+      const valueWithoutBrackets = removeRoundBrackets(postcssAtrule.params);
       throw new Error(
         `
           ${valueWithoutBrackets} is incorrect parameter in @t-only.
@@ -53,15 +53,9 @@ const calcParamsOfAtruleAbove = (node, config) => {
 };
 
 module.exports = (node, config) => {
-  const postcssNode = node;
-  postcssNode.name = 'media';
-  postcssNode.params = calcParamsOfAtruleAbove(node, config);
+  const postcssAtrule = node;
+  postcssAtrule.name = 'media';
+  postcssAtrule.params = calcParamsOfAtruleAbove(node, config);
 };
 
-module.exports.test = node => {
-  const { type, name } = node;
-  const isAtrule = type === 'atrule';
-  const isTOnly = name === 't-only';
-
-  return [isAtrule, isTOnly].every(Boolean);
-};
+module.exports.test = atrule => atrule.name === 't-only';

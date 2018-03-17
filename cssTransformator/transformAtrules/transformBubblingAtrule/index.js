@@ -21,9 +21,8 @@ module.exports = node => {
 };
 
 module.exports.test = node => {
-  const { parent, type } = node;
+  const { parent } = node;
   return (
-    type === 'atrule' &&
     ['t-above', 't-below', 't-between', 't-only'].some(Boolean) &&
     parent &&
     parent.type === 'rule'

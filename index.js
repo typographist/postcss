@@ -1,6 +1,7 @@
 const postcss = require('postcss');
 const transformAtrules = require('./cssTransformator/transformAtrules');
 const transformMsUnit = require('./cssTransformator/transformMsUnit');
+const transformNestedRules = require('./cssTransformator/transformNestedRules');
 const ratios = require('./constants/ratios');
 
 const defaultConfig = {
@@ -13,12 +14,24 @@ const typographist = postcss.plugin(
   'new-typography',
   (config = defaultConfig) => root => {
     root.walkDecls(decl => {
-      if (transformMsUnit.test(decl, config)) {
+      if (transformMsUnit.test(decl)) {
         transformMsUnit(decl, config);
       }
     });
-    root.walk(node => {
-      transformAtrules(node, config);
+
+    root.walkAtRules(atrule => {
+      transformAtrules(atrule, config);
+    });
+
+    root.walkRules(rule => {
+      if (transformNestedRules.test(rule)) {
+        transformNestedRules(rule);
+      }
+    });
+
+    // Remove empty rules.
+    root.walkRules(rule => {
+      if (!rule.nodes.length) rule.remove();
     });
   },
 );

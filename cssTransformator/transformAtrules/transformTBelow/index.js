@@ -8,10 +8,10 @@ const {
   removeRoundBrackets,
 } = require('../../../utils/breakpoints');
 
-const calcParamsOfAtruleBelow = (node, config) => {
-  const postcssNode = node;
+const calcParamsOfAtruleBelow = (atrule, config) => {
+  const postcssAtrule = atrule;
   const namesOfBreakpoints = getNamesOfBreakpoints(config);
-  const paramsWithoutBrackets = removeRoundBrackets(postcssNode.params);
+  const paramsWithoutBrackets = removeRoundBrackets(postcssAtrule.params);
   const isBreakpointName = checkIsBreakpointName(
     namesOfBreakpoints,
     camelize(paramsWithoutBrackets),
@@ -28,7 +28,7 @@ const calcParamsOfAtruleBelow = (node, config) => {
           config,
         )})`;
       } else {
-        postcssNode.remove();
+        postcssAtrule.remove();
         const penultimateBreakName = namesOfBreakpoints
           .map(item =>
             decamelize(item, {
@@ -48,7 +48,7 @@ const calcParamsOfAtruleBelow = (node, config) => {
     } else if (HAS_EM.test(paramsWithoutBrackets)) {
       result = `screen and (max-width: ${paramsWithoutBrackets})`;
     } else {
-      postcssNode.remove();
+      postcssAtrule.remove();
 
       // Without the last value.
       const breakpointsList = namesOfBreakpoints
@@ -56,7 +56,7 @@ const calcParamsOfAtruleBelow = (node, config) => {
         .filter((item, i, arr) => item !== arr[arr.length - 1])
         .join(', ');
 
-      const valueWithoutBrackets = removeRoundBrackets(postcssNode.params);
+      const valueWithoutBrackets = removeRoundBrackets(postcssAtrule.params);
       throw new Error(
         `
           ${valueWithoutBrackets} is incorrect parameter in @t-below.
@@ -71,11 +71,10 @@ const calcParamsOfAtruleBelow = (node, config) => {
   return result;
 };
 
-module.exports = (node, config) => {
-  const postcssNode = node;
-  postcssNode.name = 'media';
-  postcssNode.params = calcParamsOfAtruleBelow(node, config);
+module.exports = (atrule, config) => {
+  const postcssAtrule = atrule;
+  postcssAtrule.name = 'media';
+  postcssAtrule.params = calcParamsOfAtruleBelow(atrule, config);
 };
 
-module.exports.test = node =>
-  [node.type === 'atrule', node.name === 't-below'].every(Boolean);
+module.exports.test = atrule => atrule.name === 't-below';

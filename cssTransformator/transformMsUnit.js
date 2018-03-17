@@ -68,10 +68,10 @@ module.exports = (node, config) => {
   }
 };
 
-module.exports.test = node => {
-  const hasFontSize = HAS_FONT_SIZE.test(node.prop);
+module.exports.test = decl => {
+  const hasFontSize = HAS_FONT_SIZE.test(decl.prop);
   const hasTUnit = POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER_WITH_MS_UNIT_MEASURE.test(
-    node.value,
+    decl.value,
   );
 
   return [hasFontSize, hasTUnit].every(Boolean);

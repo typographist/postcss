@@ -6,32 +6,32 @@ const transformTBetween = require('./transformTBetween');
 const transformTOnly = require('./transformTOnly');
 const transformTRoot = require('./transformTRoot');
 
-module.exports = (node, config) => {
-  if (transformTRoot.test(node)) {
-    transformTRoot(node, config);
+module.exports = (atrule, config) => {
+  if (transformTRoot.test(atrule)) {
+    transformTRoot(atrule, config);
   }
 
-  if (transformTBase.test(node)) {
-    transformTBase(node, config);
+  if (transformTBase.test(atrule)) {
+    transformTBase(atrule, config);
   }
 
-  if (transformBubblingAtrule.test(node)) {
-    transformBubblingAtrule(node);
+  if (transformBubblingAtrule.test(atrule)) {
+    transformBubblingAtrule(atrule);
   }
 
-  if (transformTAbove.test(node)) {
-    transformTAbove(node, config);
+  if (transformTAbove.test(atrule)) {
+    transformTAbove(atrule, config);
   }
 
-  if (transformTBelow.test(node)) {
-    transformTBelow(node, config);
+  if (transformTBelow.test(atrule)) {
+    transformTBelow(atrule, config);
   }
 
-  if (transformTBetween.test(node)) {
-    transformTBetween(node, config);
+  if (transformTBetween.test(atrule)) {
+    transformTBetween(atrule, config);
   }
 
-  if (transformTOnly.test(node)) {
-    transformTOnly(node, config);
+  if (transformTOnly.test(atrule)) {
+    transformTOnly(atrule, config);
   }
 };

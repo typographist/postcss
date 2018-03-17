@@ -17,12 +17,12 @@ const bodyRule = (baseSize, rootSize) => {
   return body;
 };
 
-module.exports = (node, config) => {
-  const { parent } = node;
+module.exports = (atrule, config) => {
+  const { parent } = atrule;
   const breakpoints = makeBreakpointsModel(config);
 
   if (parent && parent.selector !== 'body') {
-    node.remove();
+    atrule.remove();
   } else {
     const breakpoint = breakpoints.find(b => FIRST_BREAKPOINT.test(b.value));
 
@@ -39,13 +39,8 @@ module.exports = (node, config) => {
       );
 
     const fontSize = `${toRem(breakpoint.base, breakpoint.root)}rem`;
-    node.replaceWith(fontSizeDecl(fontSize), lineHeightDecl());
+    atrule.replaceWith(fontSizeDecl(fontSize), lineHeightDecl());
   }
 };
 
-module.exports.test = node => {
-  const isAtrule = node.type === 'atrule';
-  const isTBase = node.name === 't-base';
-
-  return [isAtrule, isTBase].every(Boolean);
-};
+module.exports.test = atrule => atrule.name === 't-base';

@@ -2,23 +2,18 @@ const { makeBreakpointsModel } = require('../../../utils/makeBreakpointsModel');
 const transformTRootFluid = require('./transformTRootFluid');
 const transformTRootWithoutFluid = require('./transformTRootWithoutFluid');
 
-module.exports = (node, config) => {
-  const { parent } = node;
+module.exports = (atrule, config) => {
+  const { parent } = atrule;
   const breakpoints = makeBreakpointsModel(config);
   const isRootRule = parent.selector === ':root';
 
   if ([parent, !isRootRule].every(Boolean)) {
-    node.remove();
-  } else if (transformTRootWithoutFluid.test(node)) {
-    transformTRootWithoutFluid(node, breakpoints);
-  } else if (transformTRootFluid.test(node)) {
-    transformTRootFluid(node, breakpoints);
+    atrule.remove();
+  } else if (transformTRootWithoutFluid.test(atrule)) {
+    transformTRootWithoutFluid(atrule, breakpoints);
+  } else if (transformTRootFluid.test(atrule)) {
+    transformTRootFluid(atrule, breakpoints);
   }
 };
 
-module.exports.test = node => {
-  const isAtrule = node.type === 'atrule';
-  const isTRoot = node.name === 't-root';
-
-  return [isAtrule, isTRoot].every(Boolean);
-};
+module.exports.test = atrule => atrule.name === 't-root';

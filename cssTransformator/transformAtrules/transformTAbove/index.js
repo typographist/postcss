@@ -9,11 +9,11 @@ const {
   removeRoundBrackets,
 } = require('../../../utils/breakpoints');
 
-const calcParamsOfAtruleAbove = (node, config) => {
-  const postcssNode = node;
+const calcParamsOfAtruleAbove = (atrule, config) => {
+  const postcssAtrule = atrule;
   const namesOfBreakpoints = getNamesOfBreakpoints(config);
   const paramsWithoutBrackets = camelize(
-    removeRoundBrackets(postcssNode.params),
+    removeRoundBrackets(postcssAtrule.params),
   );
   const isBreakpointName = checkIsBreakpointName(
     namesOfBreakpoints,
@@ -33,9 +33,9 @@ const calcParamsOfAtruleAbove = (node, config) => {
     } else if (HAS_EM.test(paramsWithoutBrackets)) {
       result = `screen and (min-width: ${paramsWithoutBrackets})`;
     } else {
-      postcssNode.remove();
+      postcssAtrule.remove();
       const breakpointsList = breakpointsToCebabCase(namesOfBreakpoints);
-      const valueWithoutBrackets = removeRoundBrackets(postcssNode.params);
+      const valueWithoutBrackets = removeRoundBrackets(postcssAtrule.params);
       throw new Error(`
           ${valueWithoutBrackets} is invalid argument in @t-above function!
           Use ${breakpointsList} or the value in pixels or in ems.
@@ -47,16 +47,10 @@ const calcParamsOfAtruleAbove = (node, config) => {
   return result;
 };
 
-module.exports = (node, config) => {
-  const postcssNode = node;
+module.exports = (atrule, config) => {
+  const postcssNode = atrule;
   postcssNode.name = 'media';
-  postcssNode.params = calcParamsOfAtruleAbove(node, config);
+  postcssNode.params = calcParamsOfAtruleAbove(atrule, config);
 };
 
-module.exports.test = node => {
-  const { type, name } = node;
-  const isAtrule = type === 'atrule';
-  const isTAbove = name === 't-above';
-
-  return [isAtrule, isTAbove].every(Boolean);
-};
+module.exports.test = atrule => atrule.name === 't-above';
