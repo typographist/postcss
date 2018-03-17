@@ -58,7 +58,7 @@ describe('makeBreakpointsModel', () => {
 
   describe('makeBreakpoints function', () => {
     it('should an array with objects of breakpoints without first breakpoint', () => {
-      expect(makeBreakpoints(config, getNamesOfBreakpoints)).toEqual([
+      expect(makeBreakpoints(config)).toEqual([
         {
           base: '17px',
           name: 'tablet',
