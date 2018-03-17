@@ -1,8 +1,10 @@
 const postcss = require('postcss');
 const parser = require('postcss-selector-parser');
 const cleanNode = require('./cssTransformator/utils/cleanNode');
-// const transformAtrules = require('./cssTransformator/transformAtrules');
-// const transformMsUnit = require('./cssTransformator/transformMsUnit');
+const transformAtrules = require('./cssTransformator/transformAtrules');
+const transformTAbove = require('./cssTransformator/transformAtrules/transformTAbove');
+const transfromTBelow = require('./cssTransformator/transformAtrules/transformTBelow');
+const transformMsUnit = require('./cssTransformator/transformMsUnit');
 const ratios = require('./constants/ratios');
 
 const parse = str => {
@@ -81,8 +83,14 @@ const atruleChilds = (rule, atrule) => {
   }
 };
 
-const processRule = r => {
+/**
+ *
+ * @param {Object} r css rule.
+ * @param {Object} config User configuration.
+ */
+const processRule = (r, config) => {
   const rule = r;
+  cleanNode(rule);
   const namesOfAtrule = [
     'media',
     'supports',
@@ -93,23 +101,35 @@ const processRule = r => {
     't-only',
     't-between',
   ];
+
   let unwrapped = false;
-  cleanNode(rule);
   rule.each(ch => {
     const child = ch;
-    let after = rule;
     cleanNode(child);
-    cleanNode(after);
+    let after = rule;
     if (child.type === 'rule') {
       unwrapped = true;
       child.selectors = selectors(rule, child);
       after = pickComment(child.prev(), after);
       after.after(child);
       after = child;
+    } else if (child.type === 'decl') {
+      if (transformMsUnit.test(child)) {
+        transformMsUnit(child, config);
+      }
     } else if (child.type === 'atrule') {
       if (namesOfAtrule.indexOf(child.name) !== -1) {
         unwrapped = true;
         atruleChilds(rule, child);
+
+        if (transformTAbove.test(child)) {
+          transformTAbove(child, config);
+        }
+
+        if (transfromTBelow.test(child)) {
+          transfromTBelow(child, config);
+        }
+
         after = pickComment(child.prev(), after);
         after.after(child);
         after = child;
@@ -126,7 +146,7 @@ const typographist = postcss.plugin('typographist', config => {
   const process = node => {
     node.each(child => {
       if (child.type === 'rule') {
-        processRule(child);
+        processRule(child, config);
       } else if (child.type === 'atrule') {
         process(child);
       }

@@ -36,10 +36,12 @@ const calcParamsOfAtruleAbove = (node, config) => {
       postcssNode.remove();
       const breakpointsList = breakpointsToCebabCase(namesOfBreakpoints);
       const valueWithoutBrackets = removeRoundBrackets(postcssNode.params);
-      throw new Error(`
+      throw new Error(
+        `
           ${valueWithoutBrackets} is invalid argument in @t-above function!
           Use ${breakpointsList} or the value in pixels or in ems.
-        `);
+        `,
+      );
     }
   } catch (err) {
     console.warn(err.message);
