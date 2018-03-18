@@ -898,7 +898,7 @@ RhythmToggleButton.prototype.render = function render () {
   var state = store.getState();
   buttonElem.textContent = helpers_12(state);
   buttonElem.style.cssText = "\n      z-index: " + zIndex + ";\n    ";
-  buttonElem.classList.add('typographist-button');
+  buttonElem.setAttribute('data-button', 'typographist');
 
   buttonElem.addEventListener('click', function () {
     this$1.handleClick();
