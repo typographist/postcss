@@ -10,8 +10,8 @@ const defaultConfig = {
   ratio: 1.333,
 };
 
-const typographist = postcss.plugin(
-  'new-typography',
+module.exports = postcss.plugin(
+  'typographist',
   (config = defaultConfig) => root => {
     root.walkDecls(decl => {
       if (transformMsUnit.test(decl)) {
@@ -35,8 +35,3 @@ const typographist = postcss.plugin(
     });
   },
 );
-
-module.exports = {
-  typographist,
-  ratios,
-};
