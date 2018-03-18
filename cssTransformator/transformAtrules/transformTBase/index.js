@@ -1,7 +1,7 @@
 const postcss = require('postcss');
 const { mediaAtrule } = require('../../atrules');
-const { FIRST_BREAKPOINT } = require('../../../constants');
 const { fontSizeDecl, lineHeightDecl } = require('../../decls');
+const { getFirstBreakpoint } = require('../../../utils/breakpoints');
 const { toRem } = require('../../../helpers');
 const {
   makeBreakpointsModel,
@@ -24,7 +24,7 @@ module.exports = (atrule, config) => {
   if (parent && parent.selector !== 'body') {
     atrule.remove();
   } else {
-    const breakpoint = breakpoints.find(b => FIRST_BREAKPOINT.test(b.value));
+    const firstBreakpoint = getFirstBreakpoint(breakpoints);
 
     breakpoints
       .filter(b => b.value !== '0px')
@@ -38,7 +38,7 @@ module.exports = (atrule, config) => {
         ),
       );
 
-    const fontSize = `${toRem(breakpoint.base, breakpoint.root)}rem`;
+    const fontSize = `${toRem(firstBreakpoint.base, firstBreakpoint.root)}rem`;
     atrule.replaceWith(fontSizeDecl(fontSize), lineHeightDecl());
   }
 };

@@ -1,15 +1,15 @@
 const { mediaAtrule } = require('../../atrules');
-const { FIRST_BREAKPOINT } = require('../../../constants');
 const { variableDecl, fontSizeDecl } = require('../../decls');
 const getRootRule = require('./getRootRule');
 const { percentage, toEm } = require('../../../helpers');
-const { removeRoundBrackets } = require('../../../utils/breakpoints');
+const {
+  getFirstBreakpoint,
+  removeRoundBrackets,
+} = require('../../../utils/breakpoints');
 
-module.exports = (node, breakpoints) => {
-  const { parent } = node;
-  const defaultBreakpoint = breakpoints.find(b =>
-    FIRST_BREAKPOINT.test(b.value),
-  );
+module.exports = (atrule, breakpoints) => {
+  const { parent } = atrule;
+  const firstBreakpoint = getFirstBreakpoint(breakpoints);
 
   breakpoints
     .filter(b => b.value !== '0px')
@@ -58,21 +58,21 @@ module.exports = (node, breakpoints) => {
     });
 
   breakpoints.filter(b => b.value !== '0px').map(b =>
-    node.before(
+    atrule.before(
       variableDecl({
         name: b.name,
         value: b.value,
       }),
     ),
   );
-  const fontSize = `${percentage(defaultBreakpoint.root)}%`;
-  node.replaceWith(fontSizeDecl(fontSize));
+  const fontSize = `${percentage(firstBreakpoint.root)}%`;
+  atrule.replaceWith(fontSizeDecl(fontSize));
 };
 
-module.exports.test = node => {
-  const { parent } = node;
+module.exports.test = atrule => {
+  const { parent, params } = atrule;
   const isRootRule = parent.selector === ':root';
-  const hasFluid = removeRoundBrackets(node.params) === 'fluid';
+  const hasFluid = removeRoundBrackets(params) === 'fluid';
 
   return [parent, isRootRule, hasFluid].every(Boolean);
 };

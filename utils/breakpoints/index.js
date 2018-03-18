@@ -6,6 +6,7 @@ const calcBreakpointsBetween = require('./calcBreakpointsBetween');
 const checkIsBreakpointName = require('./checkIsBreakpointName');
 const getBreakpointMax = require('./getBreakpointMax');
 const getBreakpointValue = require('./getBreakpointValue');
+const getFirstBreakpoint = require('./getFirstBreakpoint');
 const getNameOfMinBreakpoint = require('./getNameOfMinBreakpoint');
 const getNameOfNextBreakpoint = require('./getNameOfNextBreakpoint');
 const getNamesOfBreakpoints = require('./getNamesOfBreakpoints');
@@ -20,6 +21,7 @@ module.exports = {
   checkIsBreakpointName,
   getBreakpointMax,
   getBreakpointValue,
+  getFirstBreakpoint,
   getNameOfMinBreakpoint,
   getNameOfNextBreakpoint,
   getNamesOfBreakpoints,
