@@ -1,5 +1,8 @@
 const { mediaAtrule } = require('../../atrules');
-const { removeRoundBrackets } = require('../../../utils/breakpoints');
+const {
+  getFirstBreakpoint,
+  removeRoundBrackets,
+} = require('../../../utils/breakpoints');
 
 const { variableDecl, fontSizeDecl } = require('../../decls');
 const getRootRule = require('./getRootRule');
@@ -7,7 +10,7 @@ const { percentage } = require('../../../helpers');
 
 module.exports = (atrule, breakpoints) => {
   const { parent } = atrule;
-  const firstBreakpoint = breakpoints.find(b => FIRST_BREAKPOINT.test(b.value));
+  const firstBreakpoint = getFirstBreakpoint(breakpoints);
 
   breakpoints
     .filter(b => b.value !== '0px')

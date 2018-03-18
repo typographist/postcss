@@ -1,29 +1,33 @@
 const cleanNode = require('../../utils/cleanNode');
 const transformAfterNodes = require('../../utils/transformAfterNodes');
 
-module.exports = node => {
-  cleanNode(node);
-  transformAfterNodes(node);
+module.exports = atrule => {
+  cleanNode(atrule);
+  transformAfterNodes(atrule);
 
-  const innerNodes = node.nodes.slice(0).map(cleanNode);
+  const innerNodes = atrule.nodes.slice(0).map(cleanNode);
   const parentCloneForNodesWithinAtrule = cleanNode(
-    node.parent.clone(),
+    atrule.parent.clone(),
   ).removeAll();
 
-  node.prepend(parentCloneForNodesWithinAtrule);
+  atrule.prepend(parentCloneForNodesWithinAtrule);
   parentCloneForNodesWithinAtrule.append(innerNodes);
 
-  const parent = node.parent.after(node);
+  const parent = atrule.parent.after(atrule);
 
   if (!parent.nodes.length) {
     parent.remove();
   }
 };
 
-module.exports.test = node => {
-  const { parent } = node;
+module.exports.test = atrule => {
+  const { parent, name } = atrule;
+  const isTAbove = name === 't-above';
+  const isTBelow = name === 't-below';
+  const isTOnly = name === 't-only';
+  const isTBetween = name === 't-between';
   return (
-    ['t-above', 't-below', 't-between', 't-only'].some(Boolean) &&
+    [isTAbove, isTBelow, isTOnly, isTBetween].some(Boolean) &&
     parent &&
     parent.type === 'rule'
   );

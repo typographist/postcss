@@ -1,7 +1,7 @@
 const { FIRST_BREAKPOINT } = require('../../../constants');
 
 /**
- * @param {Object} breakpoints Object of breakpoints.
+ * @param {Array<Object>} breakpoints Array of breakpoints.
  * @return {Object} The first breakpoint from breakpoints.
  */
 module.exports = breakpoints =>
