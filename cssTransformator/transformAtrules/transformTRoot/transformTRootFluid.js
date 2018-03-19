@@ -73,6 +73,24 @@ module.exports.test = atrule => {
   const { parent, params } = atrule;
   const isRootRule = parent.selector === ':root';
   const hasFluid = removeRoundBrackets(params) === 'fluid';
+  let result = null;
 
-  return [parent, isRootRule, hasFluid].every(Boolean);
+  if ([parent, isRootRule].every(Boolean)) {
+    try {
+      if (hasFluid) {
+        result = true;
+      } else {
+        result = false;
+        throw new Error(`
+        "${removeRoundBrackets(
+          params,
+        )}" is incorrect value of @t-root. Use "fluid".
+          `);
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
+
+  return result;
 };
