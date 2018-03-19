@@ -81,11 +81,14 @@ module.exports.test = atrule => {
         result = true;
       } else {
         result = false;
-        throw new Error(`
-        "${removeRoundBrackets(
-          params,
-        )}" is incorrect value of @t-root. Use "fluid".
-          `);
+        atrule.remove();
+        throw new Error(
+          `
+          "${removeRoundBrackets(
+            params,
+          )}" is incorrect value of @t-root. Use @t-root(fluid).
+          `,
+        );
       }
     } catch (err) {
       console.log(err.message);

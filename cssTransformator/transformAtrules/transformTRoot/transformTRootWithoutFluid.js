@@ -40,7 +40,7 @@ module.exports = (atrule, breakpoints) => {
 module.exports.test = atrule => {
   const { parent, params } = atrule;
   const isRootRule = parent.selector === ':root';
-  const hasFluid = removeRoundBrackets(params) === 'fluid';
+  const isEmptyParams = removeRoundBrackets(params) === '';
 
-  return [parent, isRootRule, !hasFluid].every(Boolean);
+  return [parent, isRootRule, isEmptyParams].every(Boolean);
 };
