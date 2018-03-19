@@ -1,6 +1,8 @@
 const { HAS_EM, HAS_PX } = require('../../../constants/regexes');
-const { checkIsBreakpointName } = require('../../../utils/breakpoints');
-const { getNamesOfBreakpoints } = require('../../../utils/breakpoints');
+const {
+  checkIsBreakpointName,
+  getNamesOfBreakpoints,
+} = require('../../../api/breakpoints');
 
 module.exports = (node, lowerBreakpoint, breakpointsList) => {
   node.remove();

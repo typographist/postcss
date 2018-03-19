@@ -5,7 +5,7 @@ const { percentage, toEm } = require('../../../helpers');
 const {
   getFirstBreakpoint,
   removeRoundBrackets,
-} = require('../../../utils/breakpoints');
+} = require('../../../api/breakpoints');
 
 module.exports = (atrule, breakpoints) => {
   const { parent } = atrule;

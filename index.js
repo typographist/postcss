@@ -1,7 +1,9 @@
 const postcss = require('postcss');
-const transformAtrules = require('./cssTransformator/transformAtrules');
-const transformMsUnit = require('./cssTransformator/transformMsUnit');
-const transformNestedRules = require('./cssTransformator/transformNestedRules');
+const {
+  transformAtrules,
+  transformMsUnit,
+  transformNestedRules,
+} = require('./transformator');
 const ratios = require('./constants/ratios');
 
 const defaultConfig = {

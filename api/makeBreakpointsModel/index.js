@@ -8,7 +8,7 @@ const {
 } = require('../../helpers');
 const { HAS_EM } = require('../../constants/regexes');
 const { getRatio } = require('./getRatio');
-const isValidUserConfig = require('../isValidUserConfig');
+const isValidUserConfig = require('../userConfigValidator');
 
 /**
  * @param {Object} config User configuration.

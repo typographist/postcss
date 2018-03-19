@@ -5,11 +5,9 @@ const {
   POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER_WITH_MS_UNIT_MEASURE,
 } = require('../../../constants/regexes');
 const { fontSizeDecl } = require('../../decls');
-const { removeRoundBrackets } = require('../../../utils/breakpoints');
-const msToRem = require('../../../utils/modularScale/msToRem');
-const {
-  makeBreakpointsModel,
-} = require('../../../utils/makeBreakpointsModel/');
+const { removeRoundBrackets } = require('../../../api/breakpoints');
+const msToRem = require('../../../api/modularScale/msToRem');
+const { makeBreakpointsModel } = require('../../../api/makeBreakpointsModel');
 
 const setParentSelector = parent => {
   const rule = postcss.rule({

@@ -2,7 +2,7 @@ const { mediaAtrule } = require('../../atrules');
 const {
   getFirstBreakpoint,
   removeRoundBrackets,
-} = require('../../../utils/breakpoints');
+} = require('../../../api/breakpoints');
 
 const { variableDecl, fontSizeDecl } = require('../../decls');
 const getRootRule = require('./getRootRule');

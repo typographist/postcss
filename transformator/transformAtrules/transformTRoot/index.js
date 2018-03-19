@@ -1,4 +1,4 @@
-const { makeBreakpointsModel } = require('../../../utils/makeBreakpointsModel');
+const { makeBreakpointsModel } = require('../../../api/makeBreakpointsModel');
 const transformTRootFluid = require('./transformTRootFluid');
 const transformTRootWithoutFluid = require('./transformTRootWithoutFluid');
 

@@ -1,6 +1,6 @@
 const { camelize } = require('humps');
-const msToRem = require('../utils/modularScale/msToRem');
-const { makeBreakpointsModel } = require('../utils/makeBreakpointsModel');
+const msToRem = require('../api/modularScale/msToRem');
+const { makeBreakpointsModel } = require('../api/makeBreakpointsModel');
 const {
   HAS_FONT_SIZE,
   MS_UNIT,
@@ -11,7 +11,7 @@ const {
   checkIsBreakpointName,
   getNamesOfBreakpoints,
   removeRoundBrackets,
-} = require('../utils/breakpoints');
+} = require('../api/breakpoints');
 
 const getClosestRule = node => {
   let selectorParent = node.parent;

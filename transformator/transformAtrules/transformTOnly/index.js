@@ -6,7 +6,7 @@ const {
   checkIsBreakpointName,
   getNamesOfBreakpoints,
   removeRoundBrackets,
-} = require('../../../utils/breakpoints');
+} = require('../../../api/breakpoints');
 
 const calcParamsOfAtruleAbove = (atrule, config) => {
   const postcssAtrule = atrule;

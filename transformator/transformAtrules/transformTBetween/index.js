@@ -7,7 +7,7 @@ const {
   checkIsBreakpointName,
   getNamesOfBreakpoints,
   removeRoundBrackets,
-} = require('../../../utils/breakpoints');
+} = require('../../../api/breakpoints');
 const { isArray, toEm } = require('../../../helpers');
 
 module.exports = (atrule, config) => {
