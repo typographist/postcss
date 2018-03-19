@@ -58,12 +58,14 @@ module.exports.test = atrule => {
       if (hasNumberWithMsUnit) {
         result = true;
       } else {
+        atrule.remove();
         result = false;
-        throw new Error(`
-          "${removeRoundBrackets(
-            params,
-          )}" is incorrect value. Use positive or negative floating point number with ms unit measure.
-          `);
+        throw new Error(
+          `
+          "${removeRoundBrackets(params)}" is incorrect value for @t-font-size. 
+          Use positive or negative floating point number with ms unit measure. For example @t-font-size(2ms).
+          `,
+        );
       }
     } catch (err) {
       console.warn(err.message);

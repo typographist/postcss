@@ -6,8 +6,7 @@ module.exports = (node, lowerBreakpoint, breakpointsList) => {
   node.remove();
   throw new Error(
     `
-    ${lowerBreakpoint} is invalid first parameter in @t-between!
-    Use ${breakpointsList} or the value in pixels or in ems.
+    "${lowerBreakpoint}" is incorrect first parameter of @t-between. Use "${breakpointsList}" or the value in pixels or in ems.
     `,
   );
 };

@@ -1,4 +1,4 @@
-const { camelize } = require('humps');
+const { camelize, decamelize } = require('humps');
 const { toEm } = require('../../../helpers');
 const { HAS_EM, HAS_PX } = require('../../../constants/regexes');
 const {
@@ -19,6 +19,7 @@ const calcParamsOfAtruleAbove = (atrule, config) => {
     namesOfBreakpoints,
     paramsWithoutBrackets,
   );
+
   let result = null;
 
   try {
@@ -33,13 +34,19 @@ const calcParamsOfAtruleAbove = (atrule, config) => {
     } else if (HAS_EM.test(paramsWithoutBrackets)) {
       result = `screen and (min-width: ${paramsWithoutBrackets})`;
     } else {
+      result = '';
       postcssAtrule.remove();
-      const breakpointsList = breakpointsToCebabCase(namesOfBreakpoints);
+      const breakpointLine = breakpointsToCebabCase(namesOfBreakpoints);
       const valueWithoutBrackets = removeRoundBrackets(postcssAtrule.params);
-      throw new Error(`
-          ${valueWithoutBrackets} is invalid argument in @t-above function!
-          Use ${breakpointsList} or the value in pixels or in ems.
-        `);
+      const exampleBreak = decamelize(namesOfBreakpoints[2], {
+        separator: '-',
+      });
+      throw new Error(
+        `
+          "${valueWithoutBrackets}" is invalid argument of @t-above. Use "${breakpointLine}" or the value in pixels or in ems. 
+          For example @t-above(${exampleBreak}) or @t-above(800px) or @t-above(40em).
+        `,
+      );
     }
   } catch (err) {
     console.warn(err.message);

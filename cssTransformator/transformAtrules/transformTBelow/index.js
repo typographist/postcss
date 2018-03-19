@@ -48,19 +48,23 @@ const calcParamsOfAtruleBelow = (atrule, config) => {
     } else if (HAS_EM.test(paramsWithoutBrackets)) {
       result = `screen and (max-width: ${paramsWithoutBrackets})`;
     } else {
+      result = '';
       postcssAtrule.remove();
 
       // Without the last value.
-      const breakpointsList = namesOfBreakpoints
+      const breakpointLine = namesOfBreakpoints
         .map(item => decamelize(item, { separator: '-' }))
         .filter((item, i, arr) => item !== arr[arr.length - 1])
         .join(', ');
 
       const valueWithoutBrackets = removeRoundBrackets(postcssAtrule.params);
+      const exampleBreak = decamelize(namesOfBreakpoints[2], {
+        separator: '-',
+      });
       throw new Error(
         `
-          ${valueWithoutBrackets} is incorrect parameter in @t-below.
-          Use ${breakpointsList} or the value in pixels or in ems.
+          "${valueWithoutBrackets}" is incorrect parameter of @t-below. Use "${breakpointLine}" or the value in pixels or in ems.
+          For example @t-below(${exampleBreak}) or @t-below(800px) or @t-below(40em)
         `,
       );
     }

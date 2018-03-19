@@ -1,4 +1,4 @@
-const { camelize } = require('humps');
+const { camelize, decamelize } = require('humps');
 const { isArray } = require('../../../helpers');
 const {
   breakpointsToCebabCase,
@@ -35,14 +35,19 @@ const calcParamsOfAtruleAbove = (atrule, config) => {
         result = `screen and (min-width: ${breakValue})`;
       }
     } else {
+      result = '';
       postcssAtrule.remove();
 
-      const breakpointsList = breakpointsToCebabCase(namesOfBreakpoints);
+      const breakpointLine = breakpointsToCebabCase(namesOfBreakpoints);
       const valueWithoutBrackets = removeRoundBrackets(postcssAtrule.params);
+      const exampleBreak = decamelize(namesOfBreakpoints[2], {
+        separator: '-',
+      });
+
       throw new Error(
         `
-          ${valueWithoutBrackets} is incorrect parameter in @t-only.
-          Use ${breakpointsList}.
+          "${valueWithoutBrackets}" is incorrect parameter of @t-only. Use ${breakpointLine}.
+          For example @t-only(${exampleBreak}).
         `,
       );
     }
