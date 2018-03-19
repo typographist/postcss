@@ -1,13 +1,12 @@
 const postcss = require('postcss');
 const { mediaAtrule } = require('../../atrules');
-const { MS_UNIT } = require('../../../constants/regexes');
-const { fontSizeDecl } = require('../../decls');
 const {
-  getFirstBreakpoint,
-  removeRoundBrackets,
-} = require('../../../utils/breakpoints');
+  MS_UNIT,
+  POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER_WITH_MS_UNIT_MEASURE,
+} = require('../../../constants/regexes');
+const { fontSizeDecl } = require('../../decls');
+const { removeRoundBrackets } = require('../../../utils/breakpoints');
 const msToRem = require('../../../utils/modularScale/msToRem');
-const { percentage } = require('../../../helpers');
 const {
   makeBreakpointsModel,
 } = require('../../../utils/makeBreakpointsModel/');
@@ -23,7 +22,6 @@ const setParentSelector = parent => {
 module.exports = (atrule, config) => {
   const { parent, params } = atrule;
   const breakpoints = makeBreakpointsModel(config);
-  const firstBreakpoint = getFirstBreakpoint(breakpoints);
 
   const target = parseFloat(removeRoundBrackets(params).replace(MS_UNIT, ''));
 
@@ -46,9 +44,31 @@ module.exports = (atrule, config) => {
 };
 
 module.exports.test = atrule => {
-  const isTFontSize = atrule.name === 't-font-size';
-  const hasParent = atrule.parent;
-  const hasParams = atrule.params;
+  const { name, parent, params } = atrule;
+  const isTFontSize = name === 't-font-size';
+  const hasParent = parent;
+  const hasParams = params;
+  const hasNumberWithMsUnit = POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER_WITH_MS_UNIT_MEASURE.test(
+    removeRoundBrackets(params),
+  );
+  let result = null;
 
-  return [isTFontSize, hasParent, hasParams].every(Boolean);
+  if ([isTFontSize, hasParent, hasParams].every(Boolean)) {
+    try {
+      if (hasNumberWithMsUnit) {
+        result = true;
+      } else {
+        result = false;
+        throw new Error(`
+          "${removeRoundBrackets(
+            params,
+          )}" is incorrect value. Use positive or negative floating point number with ms unit measure.
+          `);
+      }
+    } catch (err) {
+      console.warn(err.message);
+    }
+  }
+
+  return result;
 };
