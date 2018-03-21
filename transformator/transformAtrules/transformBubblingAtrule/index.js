@@ -28,7 +28,8 @@ module.exports = atrule => {
 };
 
 /**
- * Verify the name atrule. If the name contains "t-above", "t-below", "t-only" or "t-between" return true, else return false.
+ * Verify the name atrule. If the name contains
+ * "t-above", "t-below", "t-only" or "t-between" return true, else return false.
  *
  * @param {Object} atrule Css atrule.
  * @return {boolean} Corresponds to the specified pattern or not.
