@@ -1,5 +1,5 @@
 const getNameOfNextBreakpoint = require('./');
-const { userConfig } = require('../../mocks');
+const { userConfig } = require('../../../helpersForTests/mocks');
 
 describe('Utils of breakpoints', () => {
   describe('getNameOfNextBreakpoint', () => {
