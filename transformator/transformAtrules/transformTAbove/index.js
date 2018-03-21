@@ -9,6 +9,18 @@ const {
   removeRoundBrackets,
 } = require('../../../api/breakpoints');
 
+/**
+ *  !!! @t-above takes the names of breakpoints, values in pixels or em.
+ *
+ * The function converts the value of @ t-above depending on its contents.
+ * If these are breakpoint names or the value contains pixels, we convert them to em,
+ * if the value is specified in em, we output the value as is.
+ * If the value does not match one of the conditions, we warn the user about the error.
+ *
+ * @param {Object} atrule Css atrule.
+ * @param {Object} config User configuration.
+ * @return {string} String with "min-width: " value convertible to em.
+ */
 const calcParamsOfAtruleAbove = (atrule, config) => {
   const postcssAtrule = atrule;
   const namesOfBreakpoints = getNamesOfBreakpoints(config);
@@ -54,10 +66,24 @@ const calcParamsOfAtruleAbove = (atrule, config) => {
   return result;
 };
 
+/**
+ * Replacement @t-above with @media screen and (min-width: "blablabla")
+ *
+ * @example @t-above(1000px) => @media screen and (min-width: 62.5em)
+ * @param {Object} atrule Css atrule.
+ * @param {*} config User configuration.
+ * @return {void}
+ */
 module.exports = (atrule, config) => {
   const postcssNode = atrule;
   postcssNode.name = 'media';
   postcssNode.params = calcParamsOfAtruleAbove(atrule, config);
 };
 
+/**
+ * Check for content in the name atrule the values of t-above.
+ *
+ * @param {Object} atrule Css atrule.
+ * @return {boolean} Contains or not.
+ */
 module.exports.test = atrule => atrule.name === 't-above';

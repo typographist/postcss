@@ -3,7 +3,6 @@ const transformTAbove = require('./transformTAbove');
 const transformTBase = require('./transformTBase');
 const transformTBelow = require('./transformTBelow');
 const transformTBetween = require('./transformTBetween');
-const transformFontSize = require('./transformTFontSize');
 const transformTOnly = require('./transformTOnly');
 const transformTRoot = require('./transformTRoot');
 
@@ -30,10 +29,6 @@ module.exports = (atrule, config) => {
 
   if (transformTBetween.test(atrule)) {
     transformTBetween(atrule, config);
-  }
-
-  if (transformFontSize.test(atrule)) {
-    transformFontSize(atrule, config);
   }
 
   if (transformTOnly.test(atrule)) {

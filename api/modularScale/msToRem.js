@@ -1,6 +1,6 @@
 const calcFontSize = require('./calcFontSize');
 const { getFirstBreakpoint } = require('../breakpoints');
-const { getBase, toRem } = require('../../helpers/');
+const { getBase, toRem } = require('../../helpers');
 
 /**
  * @param {number} target

@@ -1,3 +1,8 @@
+/**
+ *
+ * @param {Object} node Css node.
+ * @return {Object} Cleaned node.
+ */
 module.exports = node => {
   const postcssNode = node;
   postcssNode.raws = {

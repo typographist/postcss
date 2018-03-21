@@ -1,8 +1,8 @@
 const postcss = require('postcss');
 const {
   transformAtrules,
-  transformMsUnit,
-  transformNestedRules,
+  transformDecls,
+  transformNestedRule,
 } = require('./transformator');
 const ratios = require('./constants/ratios');
 
@@ -12,13 +12,11 @@ const defaultConfig = {
   ratio: 1.333,
 };
 
-module.exports = postcss.plugin(
+const typographist = postcss.plugin(
   'typographist',
   (config = defaultConfig) => root => {
     root.walkDecls(decl => {
-      if (transformMsUnit.test(decl)) {
-        transformMsUnit(decl, config);
-      }
+      transformDecls(decl, config);
     });
 
     root.walkAtRules(atrule => {
@@ -26,8 +24,8 @@ module.exports = postcss.plugin(
     });
 
     root.walkRules(rule => {
-      if (transformNestedRules.test(rule)) {
-        transformNestedRules(rule);
+      if (transformNestedRule.test(rule)) {
+        transformNestedRule(rule);
       }
     });
 
@@ -37,3 +35,8 @@ module.exports = postcss.plugin(
     });
   },
 );
+
+module.exports = {
+  typographist,
+  ratios,
+};

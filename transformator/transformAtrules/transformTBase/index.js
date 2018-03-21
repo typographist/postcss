@@ -5,7 +5,12 @@ const { getFirstBreakpoint } = require('../../../api/breakpoints');
 const { toRem } = require('../../../helpers');
 const { makeBreakpointsModel } = require('../../../api/makeBreakpointsModel');
 
-const bodyRule = (baseSize, rootSize) => {
+/**
+ * @param {number} baseSize Base font-size.
+ * @param {number} rootSize Root root-size.
+ * @return {string} Body rule with font-size for each breakpoint.
+ */
+const createBodyRuleWithDecls = (baseSize, rootSize) => {
   const body = postcss.rule({
     selector: 'body',
   });
@@ -15,6 +20,13 @@ const bodyRule = (baseSize, rootSize) => {
   return body;
 };
 
+/**
+ * If t-body atrule is specified outside the body rule, delete it.
+ * If t-body atrule is specified in body rule, replace it with the font-size weighted values for each breakpoint.
+ *
+ * @param {Object} atrule @t-base atrule.
+ * @param {Object} config User configuration.
+ */
 module.exports = (atrule, config) => {
   const { parent } = atrule;
   const breakpoints = makeBreakpointsModel(config);
@@ -31,7 +43,7 @@ module.exports = (atrule, config) => {
         parent.after(
           mediaAtrule({
             minWidth: b.value,
-            nestedRule: bodyRule(b.base, b.root),
+            nestedRule: createBodyRuleWithDecls(b.base, b.root),
           }),
         ),
       );
@@ -41,4 +53,10 @@ module.exports = (atrule, config) => {
   }
 };
 
+/**
+ * Does atrule have a @t-base value.
+ *
+ * @param {Object} atrule Css atrule.
+ * @return {boolean} is @t-base or not.
+ */
 module.exports.test = atrule => atrule.name === 't-base';
