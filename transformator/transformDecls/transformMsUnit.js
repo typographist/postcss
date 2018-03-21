@@ -13,8 +13,13 @@ const {
   removeRoundBrackets,
 } = require('../../api/breakpoints');
 
-const getClosestRule = node => {
-  let selectorParent = node.parent;
+/**
+ *
+ * @param {Object} decl Css declaration.
+ * @return {Object} Closest rule.
+ */
+const getClosestRule = decl => {
+  let selectorParent = decl.parent;
 
   while (selectorParent && selectorParent.type !== 'atrule') {
     selectorParent = selectorParent.parent;
@@ -26,16 +31,22 @@ const getClosestRule = node => {
   return selectorParent;
 };
 
-module.exports = (node, config) => {
-  const postcssNode = node;
+/**
+ * @example font-size: "number"ms => "number"rem.
+ * @param {Object} decl Css declaration.
+ * @param {Object} config User configuration.
+ * @return {void}
+ */
+module.exports = (decl, config) => {
+  const postcssNode = decl;
   const breakpoints = makeBreakpointsModel(config);
-  const closestRule = getClosestRule(node);
+  const closestRule = getClosestRule(decl);
   const { type, params: atruleParams, name } = closestRule;
   const isRoot = type === 'root';
   const isTAbove = name === 't-above';
   const isTBelow = name === 't-below';
   const isTOnly = name === 't-only';
-  const target = node.value.replace(MS_UNIT, '');
+  const target = decl.value.replace(MS_UNIT, '');
   const namesOfBreakpoints = getNamesOfBreakpoints(config);
   const breakpointsList = breakpointsToCebabCase(namesOfBreakpoints);
 
@@ -68,6 +79,12 @@ module.exports = (node, config) => {
   }
 };
 
+/**
+ * Check whether the declaration has a font-size property
+ * and whether its value is a positive or negative floating-point number and a unit of measurement ms.
+ * @param {Object} decl Css declaration.
+ * @return {boolean} Contains or not.
+ */
 module.exports.test = decl => {
   const hasFontSize = HAS_FONT_SIZE.test(decl.prop);
   const hasMsUnit = POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER_WITH_MS_UNIT_MEASURE.test(

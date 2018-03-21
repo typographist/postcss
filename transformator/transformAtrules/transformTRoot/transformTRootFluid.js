@@ -7,6 +7,13 @@ const {
   removeRoundBrackets,
 } = require('../../../api/breakpoints');
 
+/**
+ * The function replaces @t-root(fluid) with the liquid font size for each breakpoint.
+ *
+ * @param {Object} atrule @t-root(fluid)
+ * @param {Array<Object>} breakpoints Array of breakpoint objects.
+ * @return {void}
+ */
 module.exports = (atrule, breakpoints) => {
   const { parent } = atrule;
   const firstBreakpoint = getFirstBreakpoint(breakpoints);
@@ -69,6 +76,14 @@ module.exports = (atrule, breakpoints) => {
   atrule.replaceWith(fontSizeDecl(fontSize));
 };
 
+/**
+ * Check if the @ t-root parameters contain the value "fluid".
+ * Check is "root" the parent selector.
+ * If yes, return "true" if not, warn the user about the error.
+ *
+ * @param {Object} atrule Css atrule.
+ * @return {boolean} Contains "fluid" or not.
+ */
 module.exports.test = atrule => {
   const { parent, params } = atrule;
   const isRootRule = parent.selector === ':root';

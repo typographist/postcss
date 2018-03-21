@@ -10,6 +10,19 @@ const {
 } = require('../../../api/breakpoints');
 const { isArray, toEm } = require('../../../helpers');
 
+/**
+ * !!! @ t-between takes the names of breakpoints, values in pixels or em.
+ *
+ * The function checks whether the @ t-below values match the specified pattern.
+ * If so, it converts the values into em. If not, deletes @ t-below and warns the user about the error.
+ *
+ * Replacement @t-between with @media screen and (min-width: "blablabla") and (max-width: "blablabla")
+ *
+ * @example @t-between(1000px, 2000px) => @media screen and (min-width: 62.5em) and (max-width: 125em)
+ * @param {Object} atrule @t-between atrule.
+ * @param {Object} config User configuration.
+ * @return {void}
+ */
 module.exports = (atrule, config) => {
   const postcssAtrule = atrule;
   const namesOfBreakpoints = getNamesOfBreakpoints(config);
@@ -103,4 +116,9 @@ module.exports = (atrule, config) => {
   }
 };
 
+/**
+ ** Check atrule name have a @t-between value.
+ * @param {Object} atrule Css atrule.
+ * @return {boolean} Contains @t-between or not.
+ */
 module.exports.test = atrule => atrule.name === 't-between';

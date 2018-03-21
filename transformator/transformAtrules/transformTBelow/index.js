@@ -8,6 +8,17 @@ const {
   removeRoundBrackets,
 } = require('../../../api/breakpoints');
 
+/**
+ * !!! @t-below takes the names of breakpoints, values in pixels or em.
+ *
+ * Checking the values of @t-below.
+ * If the value contains a breakpoint name or is specified in pixels, we convert it to em.
+ * If specified in em, leave it as is.
+ * If the value does not match any of the specified patterns, we warn the user of the error.
+ * @param {Object} atrule Css atrule.
+ * @param {Object} config User configuration.
+ * @return {string} @media screen and (max-with: calculated value)
+ */
 const calcParamsOfAtruleBelow = (atrule, config) => {
   const postcssAtrule = atrule;
   const namesOfBreakpoints = getNamesOfBreakpoints(config);
@@ -75,10 +86,22 @@ const calcParamsOfAtruleBelow = (atrule, config) => {
   return result;
 };
 
+/**
+ * Replacement @t-below with @media screen and (max-width: "blablabla")
+ * @example @-below(1000px) => @media screen and (max-width: 62.5em)
+ * @param {Object} atrule @t-blow atrule.
+ * @param {Object} config User configuration.
+ * @return {void}
+ */
 module.exports = (atrule, config) => {
   const postcssAtrule = atrule;
   postcssAtrule.name = 'media';
   postcssAtrule.params = calcParamsOfAtruleBelow(atrule, config);
 };
 
+/**
+ * Check atrule name have a @t-below value.
+ * @param {Object} atrule Css atrule.
+ * @return {boolean} Contains @t-below or not.
+ */
 module.exports.test = atrule => atrule.name === 't-below';

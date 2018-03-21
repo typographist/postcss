@@ -1,11 +1,8 @@
 const postcss = require('postcss');
 
-/**
- * Create css selector
- */
-module.exports = () => {
+module.exports = parent => {
   const rule = postcss.rule({
-    selector: ':root',
+    selector: parent.selector,
   });
 
   return rule;

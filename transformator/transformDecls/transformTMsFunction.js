@@ -1,27 +1,34 @@
-const postcss = require('postcss');
-const { mediaAtrule } = require('../atrules');
 const { makeBreakpointsModel } = require('../../api/makeBreakpointsModel');
-const { HAS_FONT_SIZE } = require('../../constants/regexes');
+const msToRem = require('../../api/modularScale/msToRem');
+const { mediaAtrule } = require('../atrules');
+const {
+  HAS_FONT_SIZE,
+  HAS_TMS_FUNCTION_WITH_VALUE,
+  ROUND_BRACKETS_AND_TMS_FUNCTION,
+} = require('../../constants/regexes');
 const { fontSizeDecl } = require('../decls');
 const { isNumeric } = require('../../helpers');
-const msToRem = require('../../api/modularScale/msToRem');
+const { setParentSelector } = require('../selectors');
 
-const replaceTMsAndRoundBrackets = valueWithTMs =>
-  valueWithTMs.replace(/[()tms-]/g, '');
+/**
+ * @example t-ms(12) => 12
+ * @param {string} tMsFunctionWithVal t-ms function with value.
+ * @return {string} Raw value without t-ms function.
+ */
+const replaceRoundBracketsAndTMsFunction = tMsFunctionWithVal =>
+  tMsFunctionWithVal.replace(ROUND_BRACKETS_AND_TMS_FUNCTION, '');
 
-const setParentSelector = parent => {
-  const rule = postcss.rule({
-    selector: parent.selector,
-  });
-
-  return rule;
-};
-
+/**
+ *
+ * @param {Object} decl Css declaration.
+ * @param {Object} config User configuration.
+ * @return {void}
+ */
 module.exports = (decl, config) => {
   const { value, parent } = decl;
   const breakpoints = makeBreakpointsModel(config);
 
-  const target = replaceTMsAndRoundBrackets(value);
+  const target = replaceRoundBracketsAndTMsFunction(value);
 
   breakpoints
     .filter(b => b.value !== '0px')
@@ -41,14 +48,21 @@ module.exports = (decl, config) => {
   decl.replaceWith(fontSizeDecl(fontSize));
 };
 
+/**
+ * Does the font-size have a t-ms function? If it contains, check the contents of the function.
+ * If the contents is a number, return true, otherwise return false and warn about the user error.
+ * @example font-size: t-ms(2) => true.
+ * @param {Object} decl Css declaration.
+ * @return {boolean}
+ */
 module.exports.test = decl => {
   const { prop, value } = decl;
   const hasFontSize = HAS_FONT_SIZE.test(prop);
-  const hasTMsFunction = /^t-ms\(.+?\)$/.test(value);
+  const hasTMsFunction = HAS_TMS_FUNCTION_WITH_VALUE.test(value);
   let result = null;
 
   if ((hasFontSize, hasTMsFunction)) {
-    const msValue = replaceTMsAndRoundBrackets(value);
+    const msValue = replaceRoundBracketsAndTMsFunction(value);
 
     try {
       if (isNumeric(msValue)) {
