@@ -1,17 +1,17 @@
 const { camelize } = require('humps');
-const msToRem = require('../../api/modularScale/msToRem');
-const { makeBreakpointsModel } = require('../../api/makeBreakpointsModel');
+const msToRem = require('../../../api/modularScale/msToRem');
+const { makeBreakpointsModel } = require('../../../api/makeBreakpointsModel');
 const {
   HAS_FONT_SIZE,
   MS_UNIT,
   POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER_WITH_MS_UNIT_MEASURE,
-} = require('../../constants/regexes');
+} = require('../../../constants/regexes');
 const {
   breakpointsToCebabCase,
   checkIsBreakpointName,
   getNamesOfBreakpoints,
   removeRoundBrackets,
-} = require('../../api/breakpoints');
+} = require('../../../api/breakpoints');
 
 /**
  *
