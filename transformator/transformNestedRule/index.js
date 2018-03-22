@@ -1,6 +1,6 @@
-const { AMPERSAND, HAS_AMPERSAND } = require('../constants/regexes');
-const cleanNode = require('./utils/cleanNode');
-const transformAfterNodes = require('./utils/transformAfterNodes');
+const { AMPERSAND, HAS_AMPERSAND } = require('../../constants/regexes');
+const cleanNode = require('../utils/cleanNode');
+const transformAfterNodes = require('../utils/transformAfterNodes');
 
 /**
  * @example &__inner => __inner
