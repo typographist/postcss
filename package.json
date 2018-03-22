@@ -4,11 +4,9 @@
   "main": "./index.js",
   "license": "MIT",
   "scripts": {
-    "unit": "jest",
-    "unit:watch": "jest --watch",
-    "lint": "eslint **/*.js",
-    "start": "NODE_ENV=development gulp",
-    "build": "NODE_ENV=production gulp build:production"
+    "unit": "node-env jest",
+    "unit:watch": "node-env jest --watch",
+    "lint": "node-env eslint **/*.js"
   },
   "devDependencies": {
     "babel-loader": "^7.1.2",
@@ -37,6 +35,7 @@
     "webpack": "^3.10.0"
   },
   "dependencies": {
+    "cross-env": "^5.1.4",
     "humps": "^2.0.1",
     "lodash.flatten": "^4.4.0",
     "lodash.omit": "^4.5.0",
