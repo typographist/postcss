@@ -1,8 +1,7 @@
 {
   "name": "typographist",
-  "version": "1.1.8",
-  "description":
-    "Toolkit for the rapid construction of interfaces with high quality typography.",
+  "version": "1.1.9",
+  "description": "Toolkit for the rapid construction of interfaces with high quality typography.",
   "keywords": [
     "css",
     "design",
@@ -55,7 +54,6 @@
   },
   "dependencies": {
     "cross-env": "^5.1.4",
-    "humps": "^2.0.1",
     "lodash.flatten": "^4.4.0",
     "lodash.omit": "^4.5.0",
     "postcss": "^6.0.19"
