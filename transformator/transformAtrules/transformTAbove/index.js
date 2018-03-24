@@ -1,5 +1,4 @@
-const { camelize, decamelize } = require('humps');
-const { toEm } = require('../../../helpers');
+const { toEm, camelize, decamelize } = require('../../../helpers');
 const { HAS_EM, HAS_PX } = require('../../../constants/regexes');
 const {
   breakpointsToCebabCase,

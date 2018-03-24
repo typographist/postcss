@@ -1,5 +1,5 @@
 const postcss = require('postcss');
-const { decamelize } = require('humps');
+const { decamelize } = require('../../helpers');
 
 /**
  *

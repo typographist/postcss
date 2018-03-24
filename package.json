@@ -40,9 +40,9 @@
   },
   "main": "./index.js",
   "scripts": {
-    "unit": "node-env jest",
-    "unit:watch": "node-env jest --watch",
-    "lint": "node-env eslint **/*.js"
+    "unit": "cross-env jest",
+    "unit:watch": "cross-env jest --watch",
+    "lint": "cross-env eslint **/*.js"
   },
   "devDependencies": {
     "eslint": "^4.15.0",

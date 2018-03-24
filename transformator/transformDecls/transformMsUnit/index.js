@@ -1,4 +1,4 @@
-const { camelize } = require('humps');
+const { camelize } = require('../../../helpers');
 const msToRem = require('../../../api/modularScale/msToRem');
 const { makeBreakpointsModel } = require('../../../api/makeBreakpointsModel');
 const {

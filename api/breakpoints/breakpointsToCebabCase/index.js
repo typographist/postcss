@@ -1,4 +1,4 @@
-const { decamelize } = require('humps');
+const { decamelize } = require('../../../helpers');
 
 /**
  *

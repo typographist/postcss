@@ -1,6 +1,8 @@
 const calcLeading = require('./calcLeading');
 const calcRoot = require('./calcRoot');
 const findAll = require('./findAll');
+const camelize = require('./camelize');
+const decamelize = require('./decamelize');
 const getBase = require('./getBase');
 const isArray = require('./isArray');
 const isNumeric = require('./isNumeric');
@@ -16,6 +18,8 @@ const toRem = require('./toRem');
 module.exports = {
   calcLeading,
   calcRoot,
+  camelize,
+  decamelize,
   findAll,
   getBase,
   isArray,

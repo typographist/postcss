@@ -1,5 +1,4 @@
-const { camelize, decamelize } = require('humps');
-const { isArray } = require('../../../helpers');
+const { isArray, camelize, decamelize } = require('../../../helpers');
 const {
   breakpointsToCebabCase,
   calcBreakpointOnly,

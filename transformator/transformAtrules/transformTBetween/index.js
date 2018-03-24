@@ -1,4 +1,4 @@
-const { camelize } = require('humps');
+const { camelize } = require('../../../helpers');
 const { HAS_EM, HAS_PX } = require('../../../constants/regexes');
 const isInvalidFirstParameter = require('./isInvalidFirstParameter');
 const {
