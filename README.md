@@ -213,7 +213,7 @@ npm i typographist
   ## CSS
   ### Postcss syntax hightlight
   If you use vscode as the code editor. To avoid conflicts with the linter and to correctly postcss syntax highlighting, install the plugin <a href="https://marketplace.visualstudio.com/items?itemName=ricard.PostCSS#review-details" target="_blank">PostCSS syntax</a>
-  ### Syntax peculiarity (@t- or t-)
+  ### Syntax peculiarity
   Syntax peculiarity. All that belongs to the Typographist begins with @t- or t-. Most likely you already thought that without these prefixes it would be more convenient to write the code, but in the future when the code becomes more, it will help to avoid confusion. You can always understand what exactly belongs to the typographist.
 
   ### Root font size
