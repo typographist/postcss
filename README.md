@@ -7,8 +7,15 @@ Be free, create!
 - [getting Started](#getting-started)
   - [installation](#installation)
   - [configuration](#configuration)
+    - [base](#base)
+    - [line-height](#line-height)
+    - [ratio](#ratio)
+    - [breakpoint](#breakpoint)
     - [typographist with webpack](#typographist-with-webpack)
     - [typographist with gulp](#typographist-with-gulp)
+  CSS
+  - [root font-size](#root-font-size)
+
 
 ## Introduction
 
@@ -197,4 +204,12 @@ npm i typographist
       gulp.dest('./outputDir/'),
     ).on('error', notify.onError()),
   );
+  ```
+
+  ### Root font-size
+  Set the root font-size.
+  ```
+    :root {
+      @t-root;
+    }
   ```
