@@ -78,6 +78,7 @@ npm i typographist
   const sourcemaps = require('gulp-sourcemaps');
   const rename = require('gulp-rename');
   const cssnano = require('gulp-cssnano');
+  const notify = require('gulp-notify);
   const combine = require('stream-combiner2').obj;
   const { typographist, ratios } = require('typographist');
 
@@ -115,6 +116,6 @@ npm i typographist
       gulpIf(!IS_DEVELOPMENT, combine(cssnano())),
       rename('main.css'),
       gulp.dest('./outputDir/'),
-    ).on('error', $.notify.onError()),
+    ).on('error', notify.onError()),
   );
   ```
