@@ -1,13 +1,14 @@
 # Typographist <img src="https://postcss.github.io/postcss/logo.svg" alt="PostCSS Logo" width="90" height="90" align="right">
+Be free, create!
 
 ## Documentation
 
-- [Introduction](#introduction)
-- [Getting Started](#getting-started)
-  - [Installation](#installation)
-  - [Configuration](#configuration)
-    - [Typographist with Webpack](#typographist-with-webpack)
-    - [Typographist with Gulp](#typographist-with-gulp)
+- [introduction](#introduction)
+- [getting Started](#getting-started)
+  - [installation](#installation)
+  - [configuration](#configuration)
+    - [typographist with webpack](#typographist-with-webpack)
+    - [typographist with gulp](#typographist-with-gulp)
 
 ## Introduction
 
