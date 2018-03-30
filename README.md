@@ -18,6 +18,7 @@ Be free, create!
   - [syntax peculiarity](#syntax peculiarity)
   - [root font size](#root-font-size)
   - [base font size](#base-font-size)
+  - [ms unit](#ms-unit)
 
 
 
@@ -107,24 +108,24 @@ npm i typographist
 
   ```js
     typographist({
-    base: '16px',
-    lineHeight: 1.4,
-    ratio: ratios.MINOR_SECOND,
-    tablet: {
-      breakpoint: '768px',
-      base: '17px',
-      ratio: ratios.MAJOR_SECOND,
-    },
-    desktop: {
-      breakpoint: '992px',
-      base: '18px',
-      ratio: ratios.MINOR_THIRD,
-    },
-    lgDesktop: {
-      breakpoint: '1200px',
-      base: '20px',
-    },
-  }),
+      base: '16px',
+      lineHeight: 1.4,
+      ratio: ratios.MINOR_SECOND,
+      tablet: {
+        breakpoint: '768px',
+        base: '17px',
+        ratio: ratios.MAJOR_SECOND,
+      },
+      desktop: {
+        breakpoint: '992px',
+        base: '18px',
+        ratio: ratios.MINOR_THIRD,
+      },
+      lgDesktop: {
+        breakpoint: '1200px',
+        base: '20px',
+      },
+    }),
   ```
   
   If you carefully monitor everything, you probably noticed that I did not set a ratio for a breakpoint named lgDesktop. All right. As mentioned earlier, this value will be inherited from the previous breakpoint.
@@ -133,10 +134,45 @@ npm i typographist
   #### Typographist with Webpack
   You need to create a postcss.config.js
   ```js
-  const { typographist, ratios } = require('typographist');
+    const { typographist, ratios } = require('typographist');
 
-  module.exports = () => ({
-    plugins: [
+    module.exports = () => ({
+      plugins: [
+        typographist({
+          base: '16px',
+          lineHeight: 1.4,
+          ratio: ratios.MINOR_SECOND,
+          tablet: {
+            breakpoint: '768px',
+            base: '17px',
+            ratio: ratios.MAJOR_SECOND,
+          },
+          desktop: {
+            breakpoint: '992px',
+            base: '18px',
+            ratio: ratios.MINOR_THIRD,
+          },
+          lgDesktop: {
+            breakpoint: '1200px',
+            base: '20px',
+          },
+        }),
+      ],
+    });
+  ```
+  #### Typographist with Gulp
+  ```js
+    const gulp = require('gulp');
+    const gulpIf = require('gulp-if');
+    const postcss = require('gulp-postcss');
+    const sourcemaps = require('gulp-sourcemaps');
+    const rename = require('gulp-rename');
+    const cssnano = require('gulp-cssnano');
+    const notify = require('gulp-notify');
+    const combine = require('stream-combiner2').obj;
+    const { typographist, ratios } = require('typographist');
+
+    const processors = [
       typographist({
         base: '16px',
         lineHeight: 1.4,
@@ -156,58 +192,22 @@ npm i typographist
           base: '20px',
         },
       }),
-    ],
-  });
+    ];
 
-  ```
-  #### Typographist with Gulp
-  ```js
-  const gulp = require('gulp');
-  const gulpIf = require('gulp-if');
-  const postcss = require('gulp-postcss');
-  const sourcemaps = require('gulp-sourcemaps');
-  const rename = require('gulp-rename');
-  const cssnano = require('gulp-cssnano');
-  const notify = require('gulp-notify');
-  const combine = require('stream-combiner2').obj;
-  const { typographist, ratios } = require('typographist');
+    const IS_DEVELOPMENT =
+      !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
 
-  const processors = [
-    typographist({
-      base: '16px',
-      lineHeight: 1.4,
-      ratio: ratios.MINOR_SECOND,
-      tablet: {
-        breakpoint: '768px',
-        base: '17px',
-        ratio: ratios.MAJOR_SECOND,
-      },
-      desktop: {
-        breakpoint: '992px',
-        base: '18px',
-        ratio: ratios.MINOR_THIRD,
-      },
-      lgDesktop: {
-        breakpoint: '1200px',
-        base: '20px',
-      },
-    }),
-  ];
-
-  const IS_DEVELOPMENT =
-    !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
-
-  gulp.task('styles', () =>
-    combine(
-      gulp.src('./entryDir/entry.css'),
-      gulpIf(IS_DEVELOPMENT, sourcemaps.init()),
-      postcss(processors),
-      gulpIf(IS_DEVELOPMENT, sourcemaps.write()),
-      gulpIf(!IS_DEVELOPMENT, combine(cssnano())),
-      rename('main.css'),
-      gulp.dest('./outputDir/'),
-    ).on('error', notify.onError()),
-  );
+    gulp.task('styles', () =>
+      combine(
+        gulp.src('./entryDir/entry.css'),
+        gulpIf(IS_DEVELOPMENT, sourcemaps.init()),
+        postcss(processors),
+        gulpIf(IS_DEVELOPMENT, sourcemaps.write()),
+        gulpIf(!IS_DEVELOPMENT, combine(cssnano())),
+        rename('main.css'),
+        gulp.dest('./outputDir/'),
+      ).on('error', notify.onError()),
+    );
   ```
 
   ## CSS
@@ -228,26 +228,26 @@ npm i typographist
   Output
   ```css
     :root {
-    --tablet: 768px;
-    --desktop: 992px;
-    --lg-desktop: 1200px;
-    font-size: 68.75%;
-  }
-  @media  screen and (min-width: 48em) {
-    :root {
-      font-size: 75%;
+      --tablet: 768px;
+      --desktop: 992px;
+      --lg-desktop: 1200px;
+      font-size: 68.75%;
     }
-  }
-  @media  screen and (min-width: 62em) {
-    :root {
-      font-size: 81.25%;
+    @media  screen and (min-width: 48em) {
+      :root {
+        font-size: 75%;
+      }
     }
-  }
-  @media  screen and (min-width: 75em) {
-    :root {
-      font-size: 87.5%;
+    @media  screen and (min-width: 62em) {
+      :root {
+        font-size: 81.25%;
+      }
     }
-  }
+    @media  screen and (min-width: 75em) {
+      :root {
+        font-size: 87.5%;
+      }
+    }
   ```
   Using the @ t-root directive, we calculated the size of the root font for each breakpoint. Also now we have the opportunity to link our css and javascript with native css variables. The value of each breakpoint is converted to em.
 
@@ -262,24 +262,42 @@ npm i typographist
   Output
   ```css
     body {
-    font-size: 1.4545454545454546rem;
-    line-height: 2rem;
-  }
-  @media  screen and (min-width: 48em) {
-    body {
-      font-size: 1.4166666666666667rem;
+      font-size: 1.4545454545454546rem;
+      line-height: 2rem;
     }
-  }
-  @media  screen and (min-width: 62em) {
-    body {
-      font-size: 1.3846153846153846rem;
+    @media  screen and (min-width: 48em) {
+      body {
+        font-size: 1.4166666666666667rem;
+      }
     }
-  }
-  @media  screen and (min-width: 75em) {
-    body {
-      font-size: 1.4285714285714286rem;
+    @media  screen and (min-width: 62em) {
+      body {
+        font-size: 1.3846153846153846rem;
+      }
     }
-  }
+    @media  screen and (min-width: 75em) {
+      body {
+        font-size: 1.4285714285714286rem;
+      }
+    }
   ```
   The @ t-base directive sets the size of the base font to rem for each breakpoint, and also sets line-height: 2rem.
+
+  ### Ms unit
+  Set position in Modular Scale.
+
+  <img src="/docs/images/msunit.jpg" alt="position in modular scale">
+
+  input
+  ```css
+    h1 {
+      font-size: 6ms;
+    }
+  ```
+  Output
+  ```css
+    h1 {
+      font-size: 2.1818181818181817rem;
+    }
+  ```
 
