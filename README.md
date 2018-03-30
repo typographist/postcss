@@ -5,11 +5,11 @@ Be free, Create!
 ## Documentation
 
 - [Introduction](#introduction)
-  - [What is a Typogrpahist](#what-is-a-typographist)
-  - [Base type & line-height](#base-type-&-line-height)
-  - [Root font-size = ½ line-height](#root-font-size-=-½-line-height)
 - [Getting Started](#getting-started)
   - [Installation](#installation)
+  - [Configuration](#configuration)
+    - [Typographist with Webpack](#typographist-with-webpack)
+    - [Typographist with Gulp](#typographist-with-gulp)
 
 ## Introduction
 
@@ -30,12 +30,90 @@ Typographist works by setting the root font-size as half the line-height of the 
 ### Installation
 
 To install the stable version:
-
-If you use yarn 
+Use yarn or npm
 ```
 yarn add typographist
 ```
-or
 ```
   npm i typographist
 ```
+
+### Configuration
+  #### Typographist with Webpack
+  **postcss.config.js**
+  ```js
+  const { typographist, ratios } = require('typographist');
+
+  module.exports = () => ({
+    plugins: [
+      typographist({
+        base: '16px',
+        lineHeight: 1.4,
+        ratio: ratios.MINOR_SECOND,
+        tablet: {
+          breakpoint: '768px',
+          base: '17px',
+          ratio: ratios.MAJOR_SECOND,
+        },
+        desktop: {
+          breakpoint: '992px',
+          base: '18px',
+          ratio: ratios.MINOR_THIRD,
+        },
+        lgDesktop: {
+          breakpoint: '1200px',
+          base: '20px',
+        },
+      }),
+    ],
+  });
+
+  ```
+  #### Typographist with Gulp
+  ```js
+  const gulp = require('gulp');
+  const gulpIf = require('gulp-if');
+  const postcss = require('gulp-postcss');
+  const sourcemaps = require('gulp-sourcemaps');
+  const rename = require('gulp-rename');
+  const cssnano = require('gulp-cssnano');
+  const combine = require('stream-combiner2').obj;
+  const { typographist, ratios } = require('typographist');
+
+  const processors = [
+    typographist({
+      base: '16px',
+      lineHeight: 1.4,
+      ratio: ratios.MINOR_SECOND,
+      tablet: {
+        breakpoint: '768px',
+        base: '17px',
+        ratio: ratios.MAJOR_SECOND,
+      },
+      desktop: {
+        breakpoint: '992px',
+        base: '18px',
+        ratio: ratios.MINOR_THIRD,
+      },
+      lgDesktop: {
+        breakpoint: '1200px',
+        base: '20px',
+      },
+    }),
+  ]
+
+  const IS_DEVELOPMENT =
+    !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
+
+  gulp.task('styles', () =>
+    combine(
+      gulp.src('./entryDir/entry.css'),
+      gulpIf(IS_DEVELOPMENT, sourcemaps.init()),
+      postcss(processors),
+      gulpIf(IS_DEVELOPMENT, sourcemaps.write()),
+      gulpIf(!IS_DEVELOPMENT, combine(cssnano())),
+      rename('main.css'),
+      gulp.dest('./outputDir/'),
+    ).on('error', $.notify.onError()),
+  );
+  ```
