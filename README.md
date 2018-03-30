@@ -101,7 +101,7 @@ npm i typographist
         base: '20px',
       },
     }),
-  ]
+  ];
 
   const IS_DEVELOPMENT =
     !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
