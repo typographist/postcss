@@ -35,7 +35,7 @@ Use yarn or npm
 yarn add typographist
 ```
 ```
-  npm i typographist
+npm i typographist
 ```
 
 ### Configuration
