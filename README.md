@@ -40,7 +40,7 @@ yarn add typographist
 
 ### Configuration
   #### Typographist with Webpack
-  **postcss.config.js**
+  postcss.config.js
   ```js
   const { typographist, ratios } = require('typographist');
 
