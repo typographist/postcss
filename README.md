@@ -9,7 +9,7 @@ Be free, Create!
   - [Base type & line-height](#base-type-&-line-height)
   - [Root font-size = ½ line-height](#root-font-size-=-½-line-height)
 - [Getting Started](#getting-started)
-  1. [Installation](#installation)
+  - [Installation](#installation)
 
 ## Introduction
 
