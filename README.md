@@ -52,7 +52,8 @@ npm i typographist
   import { typographist, ratios } from 'typographis';
   ```
 
-  2. Set font size for standard paragraph text. For example, I will install 16px, but you can choose one that you like. Feel free to constantly experiment.
+  2. Set font size for standard paragraph text. For example, I will install 16px, but you can choose one that you like. 
+  Feel free to constantly experiment.
   ```js
     typographist({
       base: '16px'
