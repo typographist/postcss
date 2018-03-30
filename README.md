@@ -41,32 +41,32 @@ npm i typographist
 ### Configuration
   1. Connect Typographist
 
-  with requireJs
+  requireJs
   ```js
-  const {typographist, ratios} = require('typographist');
+  const { typographist, ratios } = require('typographist');
   ```
 
-  with es6 modules
+  es6 modules
   ```js
-  import { typographist, ratios } from 'typographis';
+  import { typographist, ratios } from 'typographist';
   ```
 
-  2. Set font size for standard paragraph text. For example, I will install 16px, but you can choose one that you like. 
-  Feel free to constantly experiment.
+  2. Set font size for standard paragraph text. For example, I set 16px, but you can choose one that you like. Feel free to constantly experiment.
+    Base is set for each breakpoint.
   ```js
     typographist({
       base: '16px'
     });
 
   ```
-  3. Set the line-height.
+  3. Set the line-height. For example, I set 1.4. It is not necessary to specify at each breakpoint. Each next breakpoint inherits the value of line-height from the previous breakpoint.
   ```js
     typographist({
       base: '16px',
       lineHeight: 1.4,
     });
   ```
-  4. Set the ratio
+  4. Set the ratio. To do this, we use Tim Brown's [Modular Scale](http://www.modularscale.com/). For example, I set a ratio equal to the minor second [Let's see what happened](http://www.modularscale.com/?1&em&1.067). It is not necessary to specify at each breakpoint. Each next breakpoint inherits the value of line-height from the previous breakpoint.
   ```js
     typographist({
         base: '16px',
