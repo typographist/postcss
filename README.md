@@ -13,6 +13,7 @@ Be free, create!
     - [breakpoint](#breakpoint)
     - [typographist with webpack](#typographist-with-webpack)
     - [typographist with gulp](#typographist-with-gulp)
+  
   CSS
   - [root font-size](#root-font-size)
 
@@ -205,6 +206,8 @@ npm i typographist
     ).on('error', notify.onError()),
   );
   ```
+
+  ## CSS
 
   ### Root font-size
   Set the root font-size.
