@@ -2,6 +2,15 @@
 
 Be free, Create!
 
+## Documentation
+
+- [Introduction](#introduction)
+  - [What is a Typogrpahist](#what-is-a-typographist)
+  - [Base type & line-height](#base-type-&-line-height)
+  - [Root font-size = ½ line-height](#root-font-size-=-½-line-height)
+- [Getting Started](#getting-started)
+  - [Installation](#installation)
+
 ## Introduction
 
 ### What is a Typographist?
@@ -16,3 +25,17 @@ The correct vertical rhythm leads to a constant distance between the elements, w
 ### Root font-size = ½ line-height
 
 Typographist works by setting the root font-size as half the line-height of the standard paragraph text. The height of the baseline grid is then effectively set at 2rem, with increments at each 1rem. This makes it a pleasant and easy tool for creating harmony of content in your layout and typography. This is based off a technique for setting text in print documents.
+
+## Getting Started
+### Installation
+
+To install the stable version:
+
+If you use yarn 
+```
+yarn add typographist
+```
+or
+```
+  npm i typographist
+```
