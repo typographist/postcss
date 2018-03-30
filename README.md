@@ -15,7 +15,10 @@ Be free, create!
     - [typographist with gulp](#typographist-with-gulp)
   
   CSS
-  - [root font-size](#root-font-size)
+  - [syntax peculiarity](#syntax peculiarity)
+  - [root font size](#root-font-size)
+  - [base font size](#base-font-size)
+
 
 
 ## Introduction
@@ -208,11 +211,75 @@ npm i typographist
   ```
 
   ## CSS
+  ### Postcss syntax hightlight
+  If you use vscode as the code editor. To avoid conflicts with the linter and to correctly postcss syntax highlighting, install the plugin <a href="https://marketplace.visualstudio.com/items?itemName=ricard.PostCSS#review-details" target="_blank">PostCSS syntax</a>
+  ### Syntax peculiarity (@t- or t-)
+  Syntax peculiarity. All that belongs to the Typographist begins with @t- or t-. Most likely you already thought that without these prefixes it would be more convenient to write the code, but in the future when the code becomes more, it will help to avoid confusion. You can always understand what exactly belongs to the typographist.
 
-  ### Root font-size
+  ### Root font size
+  Input
   Set the root font-size.
-  ```
+  ```css
     :root {
       @t-root;
     }
   ```
+
+  Output
+  ```css
+    :root {
+    --tablet: 768px;
+    --desktop: 992px;
+    --lg-desktop: 1200px;
+    font-size: 68.75%;
+  }
+  @media  screen and (min-width: 48em) {
+    :root {
+      font-size: 75%;
+    }
+  }
+  @media  screen and (min-width: 62em) {
+    :root {
+      font-size: 81.25%;
+    }
+  }
+  @media  screen and (min-width: 75em) {
+    :root {
+      font-size: 87.5%;
+    }
+  }
+  ```
+  Using the @ t-root directive, we calculated the size of the root font for each breakpoint. Also now we have the opportunity to link our css and javascript with native css variables. The value of each breakpoint is converted to em.
+
+  ### Base font size
+  Input
+  ```css
+    body {
+      @t-base;
+    }
+  ```
+
+  Output
+  ```css
+    body {
+    font-size: 1.4545454545454546rem;
+    line-height: 2rem;
+  }
+  @media  screen and (min-width: 48em) {
+    body {
+      font-size: 1.4166666666666667rem;
+    }
+  }
+  @media  screen and (min-width: 62em) {
+    body {
+      font-size: 1.3846153846153846rem;
+    }
+  }
+  @media  screen and (min-width: 75em) {
+    body {
+      font-size: 1.4285714285714286rem;
+    }
+  }
+  ```
+  The @ t-base directive sets the size of the base font to rem for each breakpoint, and also sets line-height: 2rem.
+
