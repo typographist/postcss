@@ -15,7 +15,7 @@ Be free, Create!
 
 ### What is a Typographist?
 
-The Typographist is a progressive toolkit for web designers and developers that allows you to build interfaces with responsive graphics. Having absorbed the best qualities of [Sassline](https://github.com/jakegiltsoff/sassline, 'Sassline') and [Gutenberg](https://github.com/matejlatin/Gutenberg, 'Gutenberg'), it significantly simplifies the process of improving typography on the web.
+The Typographist is a mobile first progressive toolkit for web designers and developers that allows you to build interfaces with responsive graphics. Having absorbed the best qualities of [Sassline](https://github.com/jakegiltsoff/sassline, 'Sassline') and [Gutenberg](https://github.com/matejlatin/Gutenberg, 'Gutenberg'), it significantly simplifies the process of improving typography on the web.
 His idea is to give the developer the most simple, powerful and flexible tool that will take over all the routine work in the form of complex calculations. The Typographist builds a basic grid to establish the correct vertical rhythm on the basis of rem, and also establishes macro-tipography, which allows paying special attention to micro-tipographic details. Also the toolkit is perfectly combined with css grid layout.
 
 ### Base type & line-height
