@@ -78,7 +78,7 @@ npm i typographist
   const sourcemaps = require('gulp-sourcemaps');
   const rename = require('gulp-rename');
   const cssnano = require('gulp-cssnano');
-  const notify = require('gulp-notify);
+  const notify = require('gulp-notify');
   const combine = require('stream-combiner2').obj;
   const { typographist, ratios } = require('typographist');
 
