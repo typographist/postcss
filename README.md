@@ -13,7 +13,6 @@ Be free, create!
 ## Introduction
 
 ### What is a Typographist?
-<a href="https://github.com/matejlatin/Gutenberg" target="_blank" title="Gutenberg">Gutenberg</a>
 
 The Typographist is a mobile first progressive toolkit for web designers and developers that allows you to build interfaces with responsive graphics. Having absorbed the best qualities of <a href="https://github.com/jakegiltsoff/sassline" target="_blank" title="Sassline">Sassline</a> and <a href="https://github.com/matejlatin/Gutenberg" target="_blank" title="Gutenberg">Gutenberg</a>, it significantly simplifies the process of improving typography on the web.
 His idea is to give the developer the most simple, powerful and flexible tool that will take over all the routine work in the form of complex calculations. The Typographist builds a basic grid to establish the correct vertical rhythm on the basis of rem, and also establishes macro-tipography, which allows paying special attention to micro-tipographic details. Also the toolkit is perfectly combined with css grid layout.
@@ -70,7 +69,7 @@ npm i typographist
   ```
 
   #### Ratio
-  4. Set the ratio. To do this, we use Tim Brown's <a href="http://www.modularscale.com/" target="_blank" title"Modular Scale">Modular Scale</a>. For example, I set a ratio equal to the minor second (~1.067) <a href="http://www.modularscale.com/?16&px&1.067" target="_blank" title="Let's see what happened">Let's see what happened</a>. It is not necessary to specify at each breakpoint. Each next breakpoint inherits the value of line-height from the previous breakpoint.
+  4. Set the ratio. To do this, we use Tim Brown's <a href="http://www.modularscale.com/" target="_blank" title="Modular Scale">Modular Scale</a>. For example, I set a ratio equal to the minor second (~1.067) <a href="http://www.modularscale.com/?16&px&1.067" target="_blank" title="Let's see what happened">Let's see what happened</a>. It is not necessary to specify at each breakpoint. Each next breakpoint inherits the value of line-height from the previous breakpoint.
   ```js
     typographist({
         base: '16px',
