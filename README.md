@@ -24,7 +24,7 @@ The correct vertical rhythm leads to a constant distance between the elements, w
 
 ### Root font-size = ½ line-height
 
-Typographist works by setting the root font-size as half the line-height of the standard paragraph text. The height of the baseline grid is then effectively set at 2rem, with increments at each 1rem. This makes it a pleasant and easy tool for creating harmony of content in your layout and typography. This is based off a technique for setting text in print documents.
+Typographist works by setting the root font-size as half the line-height of the standard paragraph text. The height of the baseline grid is then effectively set at 2, with increments at each 1rem. This makes it a pleasant and easy tool for creating harmony of content in your layout and typography. This is based off a technique for setting text in print documents.
 
 ## Getting Started
 ### Installation
@@ -40,8 +40,54 @@ npm i typographist
 ```
 
 ### Configuration
+  1. Connect Typographist
+
+  with requireJs
+  ```js
+  const {typographist, ratios} = require('typographist');
+  ```
+
+  with es6 modules
+  ```js
+  import { typographist, ratios } from 'typographis';
+  ```
+
+  2. Set font size for standard paragraph text. For example, I will install 16px, but you can choose one that you like. Feel free to constantly experiment.
+  ```js
+    typographist({
+      base: '16px'
+    });
+
+  ```
+  3. Set the line-height.
+  ```js
+    typographist({
+      base: '16px',
+      lineHeight: 1.4,
+    });
+  ```
+  4. Set the ratio
+  ```js
+    typographist({
+        base: '16px',
+        lineHeight: 1.4,
+        ratio: ratios.MINOR_SECOND
+    });
+  ```
+
+  5. Set the breakpoint name and breakpoint value.
+  ```js
+    typographist({
+        base: '16px',
+        lineHeight: 1.4,
+        ratio: ratios.MINOR_SECOND,
+        tablet: {
+          breakpoint: '768px',
+        }
+    });
+  ```
   #### Typographist with Webpack
-  postcss.config.js
+  You need to create a postcss.config.js
   ```js
   const { typographist, ratios } = require('typographist');
 
