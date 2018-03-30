@@ -30,6 +30,7 @@ Typographist works by setting the root font-size as half the line-height of the 
 ### Installation
 
 To install the stable version:
+
 Use yarn or npm
 ```
 yarn add typographist
