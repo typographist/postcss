@@ -15,7 +15,7 @@ Be free, create!
     - [typographist with gulp](#typographist-with-gulp)
   
   CSS
-  - [syntax peculiarity](#syntax peculiarity)
+  - [syntax peculiarity](#syntax-peculiarity)
   - [root font size](#root-font-size)
   - [base font size](#base-font-size)
   - [ms unit](#ms-unit)
