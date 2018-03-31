@@ -71,66 +71,89 @@ npm i typographist
   2. Set font size for standard paragraph text. For example, I set 16px, but you can choose one that you like. Feel free to constantly experiment.
     Base is set for each breakpoint.
   ```js
-    typographist({
-      base: '16px'
-    });
+  typographist({
+    base: '16px'
+  });
   ```
 
   #### Line-height
   3. Set the line-height. For example, I set 1.4. It is not necessary to specify at each breakpoint. Each next breakpoint inherits the value of line-height from the previous breakpoint.
   ```js
-    typographist({
-      base: '16px',
-      lineHeight: 1.4,
-    });
+  typographist({
+    base: '16px',
+    lineHeight: 1.4,
+  });
   ```
 
   #### Ratio
   4. Set the ratio. To do this, we use Tim Brown's <a href="http://www.modularscale.com/" target="_blank" title="Modular Scale">Modular Scale</a>. For example, I set a ratio equal to the minor second (~1.067) <a href="http://www.modularscale.com/?16&px&1.067" target="_blank" title="Let's see what happened">Let's see what happened</a>. It is not necessary to specify at each breakpoint. Each next breakpoint inherits the value of line-height from the previous breakpoint.
   ```js
-    typographist({
-        base: '16px',
-        lineHeight: 1.4,
-        ratio: ratios.MINOR_SECOND
-    });
+  typographist({
+      base: '16px',
+      lineHeight: 1.4,
+      ratio: ratios.MINOR_SECOND
+  });
   ```
 
   #### Breakpoint
   5. Set the breakpoint name and breakpoint value.
+
   ```js
-    typographist({
-        base: '16px',
-        lineHeight: 1.4,
-        ratio: ratios.MINOR_SECOND,
-        tablet: {
-          breakpoint: '768px',
-        }
-    });
+  typographist({
+      base: '16px',
+      lineHeight: 1.4,
+      ratio: ratios.MINOR_SECOND,
+      tablet: {
+        breakpoint: '768px',
+      }
+  });
+  ```
+ You are not at all limited in choosing a breakpoint name, and you can specify just how many breakpoints you need. If you are used to naming breakpoints as in bootstrap. Nothing prevents you from using the usual names.
+
+
+  ```js
+  typographist({
+      base: '16px',
+      lineHeight: 1.4,
+      ratio: ratios.MINOR_SECOND,
+      sm: {
+        // your code
+      },
+      md: {
+        // your code
+      },
+      lg: {
+        // your code
+      },
+      xl: {
+        // you code
+      }
+  });
   ```
 
 
   6. Let's set base, line-height, and ratio for each breakpoint. For the tablet, I set the ratio to a <a href="http://www.modularscale.com/?17&px&1.125" target="_blank" title="major second">major second</a> = 1.125. For the desktop it will be equal to the <a href="http://www.modularscale.com/?18&px&1.2" target="_blank" title="minor third">minor third</a> = 1.2.
 
   ```js
-    typographist({
-      base: '16px',
-      lineHeight: 1.4,
-      ratio: ratios.MINOR_SECOND,
-      tablet: {
-        breakpoint: '768px',
-        base: '17px',
-        ratio: ratios.MAJOR_SECOND,
-      },
-      desktop: {
-        breakpoint: '992px',
-        base: '18px',
-        ratio: ratios.MINOR_THIRD,
-      },
-      lgDesktop: {
-        breakpoint: '1200px',
-        base: '20px',
-      },
-    }),
+  typographist({
+    base: '16px',
+    lineHeight: 1.4,
+    ratio: ratios.MINOR_SECOND,
+    tablet: {
+      breakpoint: '768px',
+      base: '17px',
+      ratio: ratios.MAJOR_SECOND,
+    },
+    desktop: {
+      breakpoint: '992px',
+      base: '18px',
+      ratio: ratios.MINOR_THIRD,
+    },
+    lgDesktop: {
+      breakpoint: '1200px',
+      base: '20px',
+    },
+  }),
   ```
   
   If you carefully monitor everything, you probably noticed that I did not set a ratio for a breakpoint named lgDesktop. All right. As mentioned earlier, this value will be inherited from the previous breakpoint.
@@ -139,45 +162,10 @@ npm i typographist
   #### Typographist with Webpack
   You need to create a postcss.config.js
   ```js
-    const { typographist, ratios } = require('typographist');
+  const { typographist, ratios } = require('typographist');
 
-    module.exports = () => ({
-      plugins: [
-        typographist({
-          base: '16px',
-          lineHeight: 1.4,
-          ratio: ratios.MINOR_SECOND,
-          tablet: {
-            breakpoint: '768px',
-            base: '17px',
-            ratio: ratios.MAJOR_SECOND,
-          },
-          desktop: {
-            breakpoint: '992px',
-            base: '18px',
-            ratio: ratios.MINOR_THIRD,
-          },
-          lgDesktop: {
-            breakpoint: '1200px',
-            base: '20px',
-          },
-        }),
-      ],
-    });
-  ```
-  #### Typographist with Gulp
-  ```js
-    const gulp = require('gulp');
-    const gulpIf = require('gulp-if');
-    const postcss = require('gulp-postcss');
-    const sourcemaps = require('gulp-sourcemaps');
-    const rename = require('gulp-rename');
-    const cssnano = require('gulp-cssnano');
-    const notify = require('gulp-notify');
-    const combine = require('stream-combiner2').obj;
-    const { typographist, ratios } = require('typographist');
-
-    const processors = [
+  module.exports = () => ({
+    plugins: [
       typographist({
         base: '16px',
         lineHeight: 1.4,
@@ -197,22 +185,57 @@ npm i typographist
           base: '20px',
         },
       }),
-    ];
+    ],
+  });
+  ```
+  #### Typographist with Gulp
+  ```js
+  const gulp = require('gulp');
+  const gulpIf = require('gulp-if');
+  const postcss = require('gulp-postcss');
+  const sourcemaps = require('gulp-sourcemaps');
+  const rename = require('gulp-rename');
+  const cssnano = require('gulp-cssnano');
+  const notify = require('gulp-notify');
+  const combine = require('stream-combiner2').obj;
+  const { typographist, ratios } = require('typographist');
 
-    const IS_DEVELOPMENT =
-      !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
+  const processors = [
+    typographist({
+      base: '16px',
+      lineHeight: 1.4,
+      ratio: ratios.MINOR_SECOND,
+      tablet: {
+        breakpoint: '768px',
+        base: '17px',
+        ratio: ratios.MAJOR_SECOND,
+      },
+      desktop: {
+        breakpoint: '992px',
+        base: '18px',
+        ratio: ratios.MINOR_THIRD,
+      },
+      lgDesktop: {
+        breakpoint: '1200px',
+        base: '20px',
+      },
+    }),
+  ];
 
-    gulp.task('styles', () =>
-      combine(
-        gulp.src('./entryDir/entry.css'),
-        gulpIf(IS_DEVELOPMENT, sourcemaps.init()),
-        postcss(processors),
-        gulpIf(IS_DEVELOPMENT, sourcemaps.write()),
-        gulpIf(!IS_DEVELOPMENT, combine(cssnano())),
-        rename('main.css'),
-        gulp.dest('./outputDir/'),
-      ).on('error', notify.onError()),
-    );
+  const IS_DEVELOPMENT =
+    !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
+
+  gulp.task('styles', () =>
+    combine(
+      gulp.src('./entryDir/entry.css'),
+      gulpIf(IS_DEVELOPMENT, sourcemaps.init()),
+      postcss(processors),
+      gulpIf(IS_DEVELOPMENT, sourcemaps.write()),
+      gulpIf(!IS_DEVELOPMENT, combine(cssnano())),
+      rename('main.css'),
+      gulp.dest('./outputDir/'),
+    ).on('error', notify.onError()),
+  );
   ```
 
   ## CSS
@@ -225,67 +248,67 @@ npm i typographist
   Input
   Set the root font-size.
   ```css
-    :root {
-      @t-root;
-    }
+  :root {
+    @t-root;
+  }
   ```
 
   Output
   ```css
+  :root {
+    --tablet: 768px;
+    --desktop: 992px;
+    --lg-desktop: 1200px;
+    font-size: 68.75%;
+  }
+  @media  screen and (min-width: 48em) {
     :root {
-      --tablet: 768px;
-      --desktop: 992px;
-      --lg-desktop: 1200px;
-      font-size: 68.75%;
+      font-size: 75%;
     }
-    @media  screen and (min-width: 48em) {
-      :root {
-        font-size: 75%;
-      }
+  }
+  @media  screen and (min-width: 62em) {
+    :root {
+      font-size: 81.25%;
     }
-    @media  screen and (min-width: 62em) {
-      :root {
-        font-size: 81.25%;
-      }
+  }
+  @media  screen and (min-width: 75em) {
+    :root {
+      font-size: 87.5%;
     }
-    @media  screen and (min-width: 75em) {
-      :root {
-        font-size: 87.5%;
-      }
-    }
+  }
   ```
   Using the @ t-root directive, we calculated the size of the root font for each breakpoint. Also now we have the opportunity to link our css and javascript with native css variables. The value of each breakpoint is converted to em.
 
   Input
   ```css
-    :root {
-      @t-root (fluid);
-    }
+  :root {
+    @t-root (fluid);
+  }
   ```
 
   Output
   ```css
+  :root {
+  --tablet: 768px;
+  --desktop: 992px;
+  --lg-desktop: 1200px;
+  font-size: 68.75%;
+  }
+  @media  screen and (min-width: 48em) {
     :root {
-    --tablet: 768px;
-    --desktop: 992px;
-    --lg-desktop: 1200px;
-    font-size: 68.75%;
+      font-size: calc(68.75% + 2 * ((100vw - 48em) / 224));
     }
-    @media  screen and (min-width: 48em) {
-      :root {
-        font-size: calc(68.75% + 2 * ((100vw - 48em) / 224));
-      }
+  }
+  @media  screen and (min-width: 62em) {
+    :root {
+      font-size: calc(81.25% + 1 * ((100vw - 62em) / 208));
     }
-    @media  screen and (min-width: 62em) {
-      :root {
-        font-size: calc(81.25% + 1 * ((100vw - 62em) / 208));
-      }
+  }
+  @media  screen and (min-width: 75em) {
+    :root {
+      font-size: 87.5%;
     }
-    @media  screen and (min-width: 75em) {
-      :root {
-        font-size: 87.5%;
-      }
-    }
+  }
   ```
   Now our font and layout have become rubber. It is possible to have precise control over responsive typography. Using calc() and viewport units you can create fluid type that scales perfectly between specific pixel values, within a specific viewport range.
   This was made possible by <a href="https://github.com/MadeByMike" target="_blank" title="Mike Riethmuller">Mike Riethmuller</a>  and his formula.
@@ -293,32 +316,32 @@ npm i typographist
   ### Base font size
   Input
   ```css
-    body {
-      @t-base;
-    }
+  body {
+    @t-base;
+  }
   ```
 
   Output
   ```css
+  body {
+    font-size: 1.4545454545454546rem;
+    line-height: 2rem;
+  }
+  @media  screen and (min-width: 48em) {
     body {
-      font-size: 1.4545454545454546rem;
-      line-height: 2rem;
+      font-size: 1.4166666666666667rem;
     }
-    @media  screen and (min-width: 48em) {
-      body {
-        font-size: 1.4166666666666667rem;
-      }
+  }
+  @media  screen and (min-width: 62em) {
+    body {
+      font-size: 1.3846153846153846rem;
     }
-    @media  screen and (min-width: 62em) {
-      body {
-        font-size: 1.3846153846153846rem;
-      }
+  }
+  @media  screen and (min-width: 75em) {
+    body {
+      font-size: 1.4285714285714286rem;
     }
-    @media  screen and (min-width: 75em) {
-      body {
-        font-size: 1.4285714285714286rem;
-      }
-    }
+  }
   ```
   The @ t-base directive sets the size of the base font to rem for each breakpoint, and also sets line-height: 2rem.
 
@@ -328,76 +351,76 @@ npm i typographist
 
   Input
   ```css
-    .your-class {
-      @t-above(desktop) {
-        /* your code */
-      }
+  .your-class {
+    @t-above(desktop) {
+      /* your code */
     }
+  }
   ```
 
   Output
   ```css
-    @media screen and (min-width: 62em) {
-      .your-class {
-        /* your code */
-      }
+  @media screen and (min-width: 62em) {
+    .your-class {
+      /* your code */
     }
+  }
 
   ```
   #### @t-below
   @t-above takes as parameters the names of breakpoints, values in pixels or ems.
     Input
   ```css
-    .your-class {
-      @t-below(desktop) {
-        /* your code */
-      }
+  .your-class {
+    @t-below(desktop) {
+      /* your code */
     }
+  }
   ```
 
   Output
   ```css
-    @media screen and (max-width: 74.99875em) {
-      .your-class {
-        /* your code */ 
-      }
+  @media screen and (max-width: 74.99875em) {
+    .your-class {
+      /* your code */ 
     }
+  }
   ```
   #### @t-only
   @t-above takes as parameters parameters only the names of breakpoints.
     Input
   ```css
-    .your-class {
-      @t-only (desktop) {
-        /* your code */
-    }
+  .your-class {
+    @t-only (desktop) {
+      /* your code */
+  }
   ```
 
   Output
   ```css
-    @media screen and (min-width: 62em) and (max-width: 74.99875em) {
-      .test {
-        /* your code */
-      }
+  @media screen and (min-width: 62em) and (max-width: 74.99875em) {
+    .test {
+      /* your code */
     }
+  }
   ```
   #### @t-between
   @t-between takes as parameters the names of breakpoints, values in pixels or ems.
 
     Input
   ```css
-    .your-class @t-between(tablet, desktop) {
-      /* your code */
-    }
+  .your-class @t-between(tablet, desktop) {
+    /* your code */
+  }
   ```
 
   Output
   ```css
-    @media screen and (min-width: 48em) and (max-width: 74.99875em) {
-      .your-class {
-        /* your code */
-      }
+  @media screen and (min-width: 48em) and (max-width: 74.99875em) {
+    .your-class {
+      /* your code */
     }
+  }
   ```
 
   ### Ms unit
@@ -408,42 +431,42 @@ npm i typographist
 
   input
   ```css
-    h1 {
+  h1 {
+    font-size: 6ms;
+
+    @-above(tablet) {
       font-size: 6ms;
-
-      @-above(tablet) {
-        font-size: 6ms;
-      }
-
-      @t-above(desktop) {
-        font-size: 6ms;
-      }
-
-      @t-above(lg-desktop) {
-        font-size: 6ms;
-      }
     }
+
+    @t-above(desktop) {
+      font-size: 6ms;
+    }
+
+    @t-above(lg-desktop) {
+      font-size: 6ms;
+    }
+  }
   ```
   Output
   ```css
+  h1 {
+    font-size: 2.1818181818181817rem
+  }
+  @media screen and (min-width: 48em) {
     h1 {
-      font-size: 2.1818181818181817rem
+      font-size: 2.8333333333333335rem;
     }
-    @media screen and (min-width: 48em) {
-      h1 {
-        font-size: 2.8333333333333335rem;
-      }
+  }
+  @media screen and (min-width: 62em) {
+    h1 {
+      font-size: 4.153846153846154rem;
     }
-    @media screen and (min-width: 62em) {
-      h1 {
-        font-size: 4.153846153846154rem;
-      }
+  }
+  @media screen and (min-width: 75em) {
+    h1 {
+      font-size: 4.285714285714286rem;
     }
-    @media screen and (min-width: 75em) {
-      h1 {
-        font-size: 4.285714285714286rem;
-      }
-    }
+  }
   ```
   Ms unit is converted to rem.
 
@@ -454,31 +477,31 @@ npm i typographist
 
   Input
   ```css
-    h1 {
-      font-size: t-ms(6)
-    }
+  h1 {
+    font-size: t-ms(6)
+  }
   ```
 
   Output
   ```css
+  h1 {
+    font-size: 2.1818181818181817rem
+  }
+  @media screen and (min-width: 48em) {
     h1 {
-      font-size: 2.1818181818181817rem
+      font-size: 2.8333333333333335rem;
     }
-    @media screen and (min-width: 48em) {
-      h1 {
-        font-size: 2.8333333333333335rem;
-      }
+  }
+  @media screen and (min-width: 62em) {
+    h1 {
+      font-size: 4.153846153846154rem;
     }
-    @media screen and (min-width: 62em) {
-      h1 {
-        font-size: 4.153846153846154rem;
-      }
+  }
+  @media screen and (min-width: 75em) {
+    h1 {
+      font-size: 4.285714285714286rem;
     }
-    @media screen and (min-width: 75em) {
-      h1 {
-        font-size: 4.285714285714286rem;
-      }
-    }
+  }
   ```
 
   ### Nesting
@@ -486,37 +509,37 @@ npm i typographist
 
   Input
   ```css
-    .your-class {
-      border: 1px solid gray;
+  .your-class {
+    border: 1px solid gray;
 
-      &__inner {
-        padding: 1rem;
-      }
-
-      &__inner_active {
-        background-color: rebeccapurple;
-      }
-
-      &:hover {
-        border: 1px solid black;
-      }
+    &__inner {
+      padding: 1rem;
     }
+
+    &__inner_active {
+      background-color: rebeccapurple;
+    }
+
+    &:hover {
+      border: 1px solid black;
+    }
+  }
   ```
 
   Output
   ```css
-    .your-class {
-      border: 1px solid gray
-    }
-    .your-class__inner {
-      padding: 1rem;
-    }
-    .your-class__inner_active {
-      background-color: rebeccapurple;
-    }
-    .your-class:hover {
-      border: 1px solid black;
-    }
+  .your-class {
+    border: 1px solid gray
+  }
+  .your-class__inner {
+    padding: 1rem;
+  }
+  .your-class__inner_active {
+    background-color: rebeccapurple;
+  }
+  .your-class:hover {
+    border: 1px solid black;
+  }
   ```
 
   <h2><a href="https://maxinakenty.github.io/" target="_blank" title="Demo">Demo</a></h2>
@@ -525,220 +548,220 @@ npm i typographist
 
   typography.css
   ```css
-    :root {
-      @t-root;
-    }
+  :root {
+    @t-root;
+  }
 
-    body {
-      @t-base;
-    }
+  body {
+    @t-base;
+  }
 
-    h1 {
-      font-size: t-ms(6);
-    }
+  h1 {
+    font-size: t-ms(6);
+  }
 
-    h2 {
-      font-size: t-ms(5);
-    }
+  h2 {
+    font-size: t-ms(5);
+  }
 
-    h3 {
-      font-size: t-ms(4);
-    }
+  h3 {
+    font-size: t-ms(4);
+  }
 
-    h4 {
-      font-size: t-ms(3);
-    }
+  h4 {
+    font-size: t-ms(3);
+  }
 
-    h5 {
-      font-size: t-ms(2);
-    }
+  h5 {
+    font-size: t-ms(2);
+  }
 
-    h6 {
-      font-size: t-ms(1);
-    }
+  h6 {
+    font-size: t-ms(1);
+  }
   ```
 
   in your main.css
   ```css
+  :root {
+    --tablet: 768px;
+    --desktop: 992px;
+    --lg-desktop: 1200px;
+    font-size: 68.75%;
+  }
+
+  @media screen and (min-width: 48em) {
     :root {
-      --tablet: 768px;
-      --desktop: 992px;
-      --lg-desktop: 1200px;
-      font-size: 68.75%;
+      font-size: 75%;
     }
+  }
 
-    @media screen and (min-width: 48em) {
-      :root {
-        font-size: 75%;
-      }
+  @media screen and (min-width: 62em) {
+    :root {
+      font-size: 81.25%;
     }
+  }
 
-    @media screen and (min-width: 62em) {
-      :root {
-        font-size: 81.25%;
-      }
+  @media screen and (min-width: 75em) {
+    :root {
+      font-size: 87.5%;
     }
+  }
 
-    @media screen and (min-width: 75em) {
-      :root {
-        font-size: 87.5%;
-      }
-    }
+  body {
+    font-size: 1.4545454545454546rem;
+    line-height: 2rem;
+  }
 
+  @media screen and (min-width: 48em) {
     body {
-      font-size: 1.4545454545454546rem;
-      line-height: 2rem;
+      font-size: 1.4166666666666667rem;
     }
+  }
 
-    @media screen and (min-width: 48em) {
-      body {
-        font-size: 1.4166666666666667rem;
-      }
+  @media screen and (min-width: 62em) {
+    body {
+      font-size: 1.3846153846153846rem;
     }
+  }
 
-    @media screen and (min-width: 62em) {
-      body {
-        font-size: 1.3846153846153846rem;
-      }
+  @media screen and (min-width: 75em) {
+    body {
+      font-size: 1.4285714285714286rem;
     }
+  }
 
-    @media screen and (min-width: 75em) {
-      body {
-        font-size: 1.4285714285714286rem;
-      }
-    }
+  h1 {
+    font-size: 2.1818181818181817rem;
+  }
 
+  @media screen and (min-width: 48em) {
     h1 {
-      font-size: 2.1818181818181817rem;
+      font-size: 2.8333333333333335rem;
     }
+  }
 
-    @media screen and (min-width: 48em) {
-      h1 {
-        font-size: 2.8333333333333335rem;
-      }
+  @media screen and (min-width: 62em) {
+    h1 {
+      font-size: 4.153846153846154rem;
     }
+  }
 
-    @media screen and (min-width: 62em) {
-      h1 {
-        font-size: 4.153846153846154rem;
-      }
+  @media screen and (min-width: 75em) {
+    h1 {
+      font-size: 4.285714285714286rem;
     }
+  }
 
-    @media screen and (min-width: 75em) {
-      h1 {
-        font-size: 4.285714285714286rem;
-      }
-    }
+  h2 {
+    font-size: 2rem;
+  }
 
+  @media screen and (min-width: 48em) {
     h2 {
+      font-size: 2.5833333333333335rem;
+    }
+  }
+
+  @media screen and (min-width: 62em) {
+    h2 {
+      font-size: 3.4615384615384617rem;
+    }
+  }
+
+  @media screen and (min-width: 75em) {
+    h2 {
+      font-size: 3.5714285714285716rem;
+    }
+  }
+
+  h3 {
+    font-size: 1.9090909090909092rem;
+  }
+
+  @media screen and (min-width: 48em) {
+    h3 {
+      font-size: 2.25rem;
+    }
+  }
+
+  @media screen and (min-width: 62em) {
+    h3 {
+      font-size: 2.8461538461538463rem;
+    }
+  }
+
+  @media screen and (min-width: 75em) {
+    h3 {
+      font-size: 2.9285714285714284rem;
+    }
+  }
+
+  h4 {
+    font-size: 1.7272727272727273rem;
+  }
+
+  @media screen and (min-width: 48em) {
+    h4 {
       font-size: 2rem;
     }
+  }
 
-    @media screen and (min-width: 48em) {
-      h2 {
-        font-size: 2.5833333333333335rem;
-      }
-    }
-
-    @media screen and (min-width: 62em) {
-      h2 {
-        font-size: 3.4615384615384617rem;
-      }
-    }
-
-    @media screen and (min-width: 75em) {
-      h2 {
-        font-size: 3.5714285714285716rem;
-      }
-    }
-
-    h3 {
-      font-size: 1.9090909090909092rem;
-    }
-
-    @media screen and (min-width: 48em) {
-      h3 {
-        font-size: 2.25rem;
-      }
-    }
-
-    @media screen and (min-width: 62em) {
-      h3 {
-        font-size: 2.8461538461538463rem;
-      }
-    }
-
-    @media screen and (min-width: 75em) {
-      h3 {
-        font-size: 2.9285714285714284rem;
-      }
-    }
-
+  @media screen and (min-width: 62em) {
     h4 {
-      font-size: 1.7272727272727273rem;
+      font-size: 2.3846153846153846rem;
     }
+  }
 
-    @media screen and (min-width: 48em) {
-      h4 {
-        font-size: 2rem;
-      }
+  @media screen and (min-width: 75em) {
+    h4 {
+      font-size: 2.5rem;
     }
+  }
 
-    @media screen and (min-width: 62em) {
-      h4 {
-        font-size: 2.3846153846153846rem;
-      }
-    }
+  h5 {
+    font-size: 1.6363636363636365rem;
+  }
 
-    @media screen and (min-width: 75em) {
-      h4 {
-        font-size: 2.5rem;
-      }
-    }
-
+  @media screen and (min-width: 48em) {
     h5 {
-      font-size: 1.6363636363636365rem;
+      font-size: 1.8333333333333333rem;
     }
+  }
 
-    @media screen and (min-width: 48em) {
-      h5 {
-        font-size: 1.8333333333333333rem;
-      }
+  @media screen and (min-width: 62em) {
+    h5 {
+      font-size: 2rem;
     }
+  }
 
-    @media screen and (min-width: 62em) {
-      h5 {
-        font-size: 2rem;
-      }
+  @media screen and (min-width: 75em) {
+    h5 {
+      font-size: 2.0714285714285716rem;
     }
+  }
 
-    @media screen and (min-width: 75em) {
-      h5 {
-        font-size: 2.0714285714285716rem;
-      }
-    }
+  h6 {
+    font-size: 1.5454545454545454rem;
+  }
 
+  @media screen and (min-width: 48em) {
     h6 {
-      font-size: 1.5454545454545454rem;
+      font-size: 1.5833333333333333rem;
     }
+  }
 
-    @media screen and (min-width: 48em) {
-      h6 {
-        font-size: 1.5833333333333333rem;
-      }
+  @media screen and (min-width: 62em) {
+    h6 {
+      font-size: 1.6923076923076923rem;
     }
+  }
 
-    @media screen and (min-width: 62em) {
-      h6 {
-        font-size: 1.6923076923076923rem;
-      }
+  @media screen and (min-width: 75em) {
+    h6 {
+      font-size: 1.7142857142857142rem;
     }
-
-    @media screen and (min-width: 75em) {
-      h6 {
-        font-size: 1.7142857142857142rem;
-      }
-    }
+  }
   ```
 
 
