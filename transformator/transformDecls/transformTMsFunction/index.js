@@ -42,7 +42,7 @@ module.exports = (decl, config) => {
           ),
         }),
       ),
-    );
+  );
 
   const fontSize = msToRem(target, breakpoints);
   decl.replaceWith(fontSizeDecl(fontSize));
@@ -69,6 +69,7 @@ module.exports.test = decl => {
         result = true;
       } else {
         result = false;
+        decl.parent.remove();
         throw new Error(
           `"${msValue}" is incorrect value of t-ms function. Use numbers. For example t-ms(3).`,
         );
