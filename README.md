@@ -22,6 +22,7 @@ Be free, create!
   - [breakpoints](#breakpoints)
   - [ms unit](#ms-unit)
   - [t-ms function](#t-ms-function)
+  - [nesting](#nesting)
 
 
 
@@ -478,4 +479,263 @@ npm i typographist
       }
     }
   ```
+
+  ### Nesting
+  Inheritance the name of the parent class. Do this as you are used to in sass, less and stylus.
+
+  Input
+  ```css
+    .your-class {
+      border: 1px solid gray;
+
+      &__inner {
+        padding: 1rem;
+      }
+
+      &__inner_active {
+        background-color: rebeccapurple;
+      }
+
+      &:hover {
+        border: 1px solid black;
+      }
+    }
+  ```
+
+  Output
+  ```css
+    .your-class {
+      border: 1px solid gray
+    }
+    .your-class__inner {
+      padding: 1rem;
+    }
+    .your-class__inner_active {
+      background-color: rebeccapurple;
+    }
+    .your-class:hover {
+      border: 1px solid black;
+    }
+  ```
+
+  ### Result
+
+  typography.css
+  ```css
+    :root {
+      @t-root;
+    }
+
+    body {
+      @t-base;
+    }
+
+    h1 {
+      font-size: t-ms(6);
+    }
+
+    h2 {
+      font-size: t-ms(5);
+    }
+
+    h3 {
+      font-size: t-ms(4);
+    }
+
+    h4 {
+      font-size: t-ms(3);
+    }
+
+    h5 {
+      font-size: t-ms(2);
+    }
+
+    h6 {
+      font-size: t-ms(1);
+    }
+  ```
+
+  in your main.css
+  ```css
+    :root {
+      --tablet: 768px;
+      --desktop: 992px;
+      --lg-desktop: 1200px;
+      font-size: 68.75%;
+    }
+
+    @media screen and (min-width: 48em) {
+      :root {
+        font-size: 75%;
+      }
+    }
+
+    @media screen and (min-width: 62em) {
+      :root {
+        font-size: 81.25%;
+      }
+    }
+
+    @media screen and (min-width: 75em) {
+      :root {
+        font-size: 87.5%;
+      }
+    }
+
+    body {
+      font-size: 1.4545454545454546rem;
+      line-height: 2rem;
+    }
+
+    @media screen and (min-width: 48em) {
+      body {
+        font-size: 1.4166666666666667rem;
+      }
+    }
+
+    @media screen and (min-width: 62em) {
+      body {
+        font-size: 1.3846153846153846rem;
+      }
+    }
+
+    @media screen and (min-width: 75em) {
+      body {
+        font-size: 1.4285714285714286rem;
+      }
+    }
+
+    h1 {
+      font-size: 2.1818181818181817rem;
+    }
+
+    @media screen and (min-width: 48em) {
+      h1 {
+        font-size: 2.8333333333333335rem;
+      }
+    }
+
+    @media screen and (min-width: 62em) {
+      h1 {
+        font-size: 4.153846153846154rem;
+      }
+    }
+
+    @media screen and (min-width: 75em) {
+      h1 {
+        font-size: 4.285714285714286rem;
+      }
+    }
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    @media screen and (min-width: 48em) {
+      h2 {
+        font-size: 2.5833333333333335rem;
+      }
+    }
+
+    @media screen and (min-width: 62em) {
+      h2 {
+        font-size: 3.4615384615384617rem;
+      }
+    }
+
+    @media screen and (min-width: 75em) {
+      h2 {
+        font-size: 3.5714285714285716rem;
+      }
+    }
+
+    h3 {
+      font-size: 1.9090909090909092rem;
+    }
+
+    @media screen and (min-width: 48em) {
+      h3 {
+        font-size: 2.25rem;
+      }
+    }
+
+    @media screen and (min-width: 62em) {
+      h3 {
+        font-size: 2.8461538461538463rem;
+      }
+    }
+
+    @media screen and (min-width: 75em) {
+      h3 {
+        font-size: 2.9285714285714284rem;
+      }
+    }
+
+    h4 {
+      font-size: 1.7272727272727273rem;
+    }
+
+    @media screen and (min-width: 48em) {
+      h4 {
+        font-size: 2rem;
+      }
+    }
+
+    @media screen and (min-width: 62em) {
+      h4 {
+        font-size: 2.3846153846153846rem;
+      }
+    }
+
+    @media screen and (min-width: 75em) {
+      h4 {
+        font-size: 2.5rem;
+      }
+    }
+
+    h5 {
+      font-size: 1.6363636363636365rem;
+    }
+
+    @media screen and (min-width: 48em) {
+      h5 {
+        font-size: 1.8333333333333333rem;
+      }
+    }
+
+    @media screen and (min-width: 62em) {
+      h5 {
+        font-size: 2rem;
+      }
+    }
+
+    @media screen and (min-width: 75em) {
+      h5 {
+        font-size: 2.0714285714285716rem;
+      }
+    }
+
+    h6 {
+      font-size: 1.5454545454545454rem;
+    }
+
+    @media screen and (min-width: 48em) {
+      h6 {
+        font-size: 1.5833333333333333rem;
+      }
+    }
+
+    @media screen and (min-width: 62em) {
+      h6 {
+        font-size: 1.6923076923076923rem;
+      }
+    }
+
+    @media screen and (min-width: 75em) {
+      h6 {
+        font-size: 1.7142857142857142rem;
+      }
+    }
+  ```
+
 
