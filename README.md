@@ -19,6 +19,7 @@ Be free, create!
   - [syntax peculiarity](#syntax-peculiarity)
   - [root font size](#root-font-size)
   - [base font size](#base-font-size)
+  - [breakpoints](#breakpoints)
   - [ms unit](#ms-unit)
 
 
@@ -252,6 +253,40 @@ npm i typographist
   ```
   Using the @ t-root directive, we calculated the size of the root font for each breakpoint. Also now we have the opportunity to link our css and javascript with native css variables. The value of each breakpoint is converted to em.
 
+  Input
+  ```css
+    :root {
+      @t-root (fluid);
+    }
+  ```
+
+  Output
+  ```css
+    :root {
+    --tablet: 768px;
+    --desktop: 992px;
+    --lg-desktop: 1200px;
+    font-size: 68.75%;
+    }
+    @media  screen and (min-width: 48em) {
+      :root {
+        font-size: calc(68.75% + 2 * ((100vw - 48em) / 224));
+      }
+    }
+    @media  screen and (min-width: 62em) {
+      :root {
+        font-size: calc(81.25% + 1 * ((100vw - 62em) / 208));
+      }
+    }
+    @media  screen and (min-width: 75em) {
+      :root {
+        font-size: 87.5%;
+      }
+    }
+  ```
+  Now our font and layout have become rubber. It is possible to have precise control over responsive typography. Using calc() and viewport units you can create fluid type that scales perfectly between specific pixel values, within a specific viewport range.
+  This was made possible by <a href="https://github.com/MadeByMike" target="_blank" title="Mike Riethmuller">Mike Riethmuller</a>  and his formula.
+
   ### Base font size
   Input
   ```css
@@ -284,21 +319,162 @@ npm i typographist
   ```
   The @ t-base directive sets the size of the base font to rem for each breakpoint, and also sets line-height: 2rem.
 
-  ### Ms unit
-  Set position in Modular Scale.
+    ### Breakpoints
+  #### @t-above
+  @t-above takes as parameters the names of breakpoints, values in pixels or ems.
 
+  Input
+  ```css
+    .your-class {
+      @t-above(desktop) {
+        /* your code */
+      }
+    }
+  ```
+
+  Output
+  ```css
+    @media screen and (min-width: 62em) {
+      .your-class {
+        /* your code */
+      }
+    }
+
+  ```
+  #### @t-below
+  @t-above takes as parameters the names of breakpoints, values in pixels or ems.
+    Input
+  ```css
+    .your-class {
+      @t-below(desktop) {
+        /* your code */
+      }
+    }
+  ```
+
+  Output
+  ```css
+    @media screen and (max-width: 74.99875em) {
+      .your-class {
+        /* your code */ 
+      }
+    }
+  ```
+  #### @t-only
+  @t-above takes as parameters parameters only the names of breakpoints.
+    Input
+  ```css
+    .your-class {
+      @t-only (desktop) {
+        /* your code */
+    }
+  ```
+
+  Output
+  ```css
+    @media screen and (min-width: 62em) and (max-width: 74.99875em) {
+      .test {
+        /* your code */
+      }
+    }
+  ```
+  #### @t-between
+  @t-between takes as parameters the names of breakpoints, values in pixels or ems.
+
+    Input
+  ```css
+    .your-class @t-between(tablet, desktop) {
+      /* your code */
+    }
+  ```
+
+  Output
+  ```css
+    @media screen and (min-width: 48em) and (max-width: 74.99875em) {
+      .your-class {
+        /* your code */
+      }
+    }
+  ```
+
+  ### Ms unit
+  Set the font size from the position in the modular scale. 
   <img src="/docs/images/msunit.jpg" alt="position in modular scale">
+
+  To convert mts to rem, use directives @t-above, @t-below, or @t-only.
 
   input
   ```css
     h1 {
       font-size: 6ms;
+
+      @-above(tablet) {
+        font-size: 6ms;
+      }
+
+      @t-above(desktop) {
+        font-size: 6ms;
+      }
+
+      @t-above(lg-desktop) {
+        font-size: 6ms;
+      }
     }
   ```
   Output
   ```css
     h1 {
-      font-size: 2.1818181818181817rem;
+      font-size: 2.1818181818181817rem
+    }
+    @media screen and (min-width: 48em) {
+      h1 {
+        font-size: 2.8333333333333335rem;
+      }
+    }
+    @media screen and (min-width: 62em) {
+      h1 {
+        font-size: 4.153846153846154rem;
+      }
+    }
+    @media screen and (min-width: 75em) {
+      h1 {
+        font-size: 4.285714285714286rem;
+      }
+    }
+  ```
+  Ms unit is converted to rem.
+
+  This approach is useful if you want to dramatically increase the font size on any of the breakpoints, but in most cases it is too cumbersome and we force you to duplicate the code every time. For this I have something better for you!
+
+  ### t-ms function
+  Just t-ms function to do the same much faster and gracefully.
+
+  Input
+  ```css
+    h1 {
+      font-size: t-ms(6)
+    }
+  ```
+
+  Output
+  ```css
+    h1 {
+      font-size: 2.1818181818181817rem
+    }
+    @media screen and (min-width: 48em) {
+      h1 {
+        font-size: 2.8333333333333335rem;
+      }
+    }
+    @media screen and (min-width: 62em) {
+      h1 {
+        font-size: 4.153846153846154rem;
+      }
+    }
+    @media screen and (min-width: 75em) {
+      h1 {
+        font-size: 4.285714285714286rem;
+      }
     }
   ```
 
