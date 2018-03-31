@@ -34,11 +34,11 @@
 The Typographist is a mobile first progressive toolkit for web designers and developers that allows you to build interfaces with responsive graphics. Having absorbed the best qualities of <a href="https://github.com/jakegiltsoff/sassline" target="_blank" title="Sassline">Sassline</a> and <a href="https://github.com/matejlatin/Gutenberg" target="_blank" title="Gutenberg">Gutenberg</a>, it significantly simplifies the process of improving typography on the web.
 His idea is to give the developer the most simple, powerful and flexible tool that will take over all the routine work in the form of complex calculations. The Typographist builds a basic grid to establish the correct vertical rhythm on the basis of rem, and also establishes macro-tipography, which allows paying special attention to micro-tipographic details. Also the toolkit is perfectly combined with css grid layout.
 
-### Base type & line-height
+### Base type * line-height = leading
 
 The correct vertical rhythm leads to a constant distance between the elements, which helps to clarify the structure and order of the contents and to associate it with other elements. The ultimate goal of the program is to draw the reader's attention to the text and improve the readability in general.
 
-### Root font-size = ½ line-height
+### Root font-size = ½ leading
 
 Typographist works by setting the root font-size as half the line-height of the standard paragraph text. The height of the baseline grid is then effectively set at 2, with increments at each 1rem. This makes it a pleasant and easy tool for creating harmony of content in your layout and typography. This is based off a technique for setting text in print documents.
 
