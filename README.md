@@ -517,6 +517,8 @@ npm i typographist
     }
   ```
 
+  ## [DEMO](https://maxinakenty.github.io/, 'demo')
+
   ### Result
 
   typography.css
