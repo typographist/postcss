@@ -21,6 +21,7 @@ Be free, create!
   - [base font size](#base-font-size)
   - [breakpoints](#breakpoints)
   - [ms unit](#ms-unit)
+  - [t-ms function](#t-ms-function)
 
 
 
