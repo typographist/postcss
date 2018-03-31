@@ -517,7 +517,7 @@ npm i typographist
     }
   ```
 
-  ## [DEMO](https://maxinakenty.github.io/, 'demo')
+  <h2><a href="https://maxinakenty.github.io/" target="_blank" title="Demo">Demo</a></h2>
 
   ### Result
 
