@@ -1,5 +1,4 @@
-# Typographist <img src="https://postcss.github.io/postcss/logo.svg" alt="PostCSS Logo" width="90" height="90" align="right">
-Be free, create!
+# Typographist <span>Be free, create!</span><img src="https://postcss.github.io/postcss/logo.svg" alt="PostCSS Logo" width="90" height="90" align="right">
 
 ## Documentation
 
