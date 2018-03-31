@@ -1,6 +1,7 @@
 # Typographist <img src="https://postcss.github.io/postcss/logo.svg" alt="PostCSS Logo" width="90" height="90" align="right">
 
 <h2><a href="https://maxinakenty.github.io/" target="_blank" title="Demo">Demo</a></h2>
+
 ## Documentation
 
 - [introduction](#introduction)
