@@ -320,7 +320,7 @@ npm i typographist
   ```
   The @ t-base directive sets the size of the base font to rem for each breakpoint, and also sets line-height: 2rem.
 
-    ### Breakpoints
+  ### Breakpoints
   #### @t-above
   @t-above takes as parameters the names of breakpoints, values in pixels or ems.
 
