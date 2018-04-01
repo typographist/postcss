@@ -95,6 +95,26 @@ npm i typographist
   });
   ```
 
+  | function         | ratio   | decimal value |
+  |------------------|:-------:|:-------------:|
+  | AUGMENTED_FOURTH |  1:√2   |    1.41421    |
+  | DOUBLE_OCTAVE    |  1:4    |       4       |
+  | GOLDEN_SECTION   | 1:1.618 |   1.618034    |
+  | MAJOR_ELEVENTH   |  3:8    |  2.666666667  | 
+  | MAJOR_SECOND     |  8:9    |     1.125     |
+  | MAJOR_SEVENTH    |  8:15   |     1.875     |
+  | MAJOR_SIXTH      |   3:5   |  1.666666667  |
+  | MAJOR_TENTH      |   2:5   |      2.5      |
+  | MAJOR_THIRD      |   4:5   |     1.25      |
+  | MAJOR_TWELFTH    |   1:3   |       3       |
+  | MINOR_SECOND     |  15:16  |  1.066666667  |
+  | MINOR_SEVENTH    |   9:16  |  1.777777778  |
+  | MINOR_THIRD      |   5:6   |      1.2      |
+  | OCTAVE           |   1:2   |       2       |
+  | PERFECT_FIFTH    |   2:3   |      1.5      |
+  | PERFECT_FOURTH   |   3:4   |  1.333333333  |
+  | PHI              | 1:1.618 |    1.618034   |
+
   #### Breakpoint
   5. Set the breakpoint name and breakpoint value.
 
@@ -159,6 +179,7 @@ npm i typographist
   If you carefully monitor everything, you probably noticed that I did not set a ratio for a breakpoint named lgDesktop. All right. As mentioned earlier, this value will be inherited from the previous breakpoint.
 
   I hope it was not difficult for you. The idea of such a simple configuration I borrowed from <a href="https://github.com/scottkellum" target="_blank" title="Skott Kellum">Skott Kellum</a> and his remarkable project <a href="https://github.com/modularscale/modularscale-sass" target="_blank" title="modularscale-sass">modularscale-sass</a>. Well? Fasten your seat belts. Now the fun begins.)
+
   #### Typographist with Webpack
   You need to create a postcss.config.js
   ```js
