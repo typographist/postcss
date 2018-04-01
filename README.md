@@ -21,8 +21,8 @@
   - [root font size](#root-font-size)
   - [base font size](#base-font-size)
   - [breakpoints](#breakpoints)
-  - [ms unit](#ms-unit)
-  - [t-ms function](#t-ms-function)
+  - [step unit](#step-unit)
+  - [t-step function](#t-step-function)
   - [nesting](#nesting)
 
 
@@ -423,7 +423,7 @@ npm i typographist
   }
   ```
 
-  ### Ms unit
+  ### Step unit
   Set the font size from the position in the modular scale. 
   <img src="/docs/images/msunit.jpg" alt="position in modular scale">
 
@@ -432,18 +432,18 @@ npm i typographist
   input
   ```css
   h1 {
-    font-size: 6ms;
+    font-size: 6step;
 
     @-above(tablet) {
-      font-size: 6ms;
+      font-size: 6step;
     }
 
     @t-above(desktop) {
-      font-size: 6ms;
+      font-size: 6step;
     }
 
     @t-above(lg-desktop) {
-      font-size: 6ms;
+      font-size: 6step;
     }
   }
   ```
@@ -468,17 +468,17 @@ npm i typographist
     }
   }
   ```
-  Ms unit is converted to rem.
+  Step unit is converted to rem.
 
   This approach is useful if you want to dramatically increase the font size on any of the breakpoints, but in most cases it is too cumbersome and we force you to duplicate the code every time. For this I have something better for you!
 
-  ### t-ms function
-  Just t-ms function to do the same much faster and gracefully.
+  ### t-step function
+  Just t-step function to do the same much faster and gracefully.
 
   Input
   ```css
   h1 {
-    font-size: t-ms(6)
+    font-size: t-step(6)
   }
   ```
 
@@ -557,27 +557,27 @@ npm i typographist
   }
 
   h1 {
-    font-size: t-ms(6);
+    font-size: t-step(6);
   }
 
   h2 {
-    font-size: t-ms(5);
+    font-size: t-step(5);
   }
 
   h3 {
-    font-size: t-ms(4);
+    font-size: t-step(4);
   }
 
   h4 {
-    font-size: t-ms(3);
+    font-size: t-step(3);
   }
 
   h5 {
-    font-size: t-ms(2);
+    font-size: t-step(2);
   }
 
   h6 {
-    font-size: t-ms(1);
+    font-size: t-step(1);
   }
   ```
 
