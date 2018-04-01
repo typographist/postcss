@@ -95,6 +95,7 @@ npm i typographist
   });
   ```
 
+  ##### Ratios
   | function         | ratio   | decimal value |
   |------------------|:-------:|:-------------:|
   | AUGMENTED_FOURTH |  1:√2   |    1.41421    |
