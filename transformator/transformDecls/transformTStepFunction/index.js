@@ -1,10 +1,10 @@
 const { makeBreakpointsModel } = require('../../../api/makeBreakpointsModel');
-const msToRem = require('../../../api/modularScale/msToRem');
+const stepToRem = require('../../../api/modularScale/stepToRem');
 const { mediaAtrule } = require('../../atrules');
 const {
   HAS_FONT_SIZE,
-  HAS_TMS_FUNCTION_WITH_VALUE,
-  ROUND_BRACKETS_AND_TMS_FUNCTION,
+  HAS_TSTEP_FUNCTION_WITH_VALUE,
+  ROUND_BRACKETS_AND_TSTEP_FUNCTION,
 } = require('../../../constants/regexes');
 const { fontSizeDecl } = require('../../decls');
 const { isNumeric } = require('../../../helpers');
@@ -15,8 +15,8 @@ const { setParentSelector } = require('../../selectors');
  * @param {string} tMsFunctionWithVal t-ms function with value.
  * @return {string} Raw value without t-ms function.
  */
-const replaceRoundBracketsAndTMsFunction = tMsFunctionWithVal =>
-  tMsFunctionWithVal.replace(ROUND_BRACKETS_AND_TMS_FUNCTION, '');
+const replaceRoundBracketsAndTStepFunction = tMsFunctionWithVal =>
+  tMsFunctionWithVal.replace(ROUND_BRACKETS_AND_TSTEP_FUNCTION, '');
 
 /**
  *
@@ -28,7 +28,7 @@ module.exports = (decl, config) => {
   const { value, parent } = decl;
   const breakpoints = makeBreakpointsModel(config);
 
-  const target = replaceRoundBracketsAndTMsFunction(value);
+  const target = replaceRoundBracketsAndTStepFunction(value);
 
   breakpoints
     .filter(b => b.value !== '0px')
@@ -38,13 +38,13 @@ module.exports = (decl, config) => {
         mediaAtrule({
           minWidth: b.value,
           nestedRule: setParentSelector(parent).append(
-            fontSizeDecl(msToRem(target, breakpoints, b.name)),
+            fontSizeDecl(stepToRem(target, breakpoints, b.name)),
           ),
         }),
       ),
   );
 
-  const fontSize = msToRem(target, breakpoints);
+  const fontSize = stepToRem(target, breakpoints);
   decl.replaceWith(fontSizeDecl(fontSize));
 };
 
@@ -58,11 +58,11 @@ module.exports = (decl, config) => {
 module.exports.test = decl => {
   const { prop, value } = decl;
   const hasFontSize = HAS_FONT_SIZE.test(prop);
-  const hasTMsFunction = HAS_TMS_FUNCTION_WITH_VALUE.test(value);
+  const hasTStepFunction = HAS_TSTEP_FUNCTION_WITH_VALUE.test(value);
   let result = null;
 
-  if ((hasFontSize, hasTMsFunction)) {
-    const msValue = replaceRoundBracketsAndTMsFunction(value);
+  if ((hasFontSize, hasTStepFunction)) {
+    const msValue = replaceRoundBracketsAndTStepFunction(value);
 
     try {
       if (isNumeric(msValue)) {

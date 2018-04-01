@@ -2,12 +2,12 @@ const run = require('../../../helpersForTests/run');
 const { userConfig } = require('../../../helpersForTests/mocks');
 
 describe('transformator', () => {
-  describe('transform ms unit function', () => {
-    it('should transform from ms to rem if @t-above atrule is set.', () => {
+  describe('transform step unit function', () => {
+    it('should transform from step to rem if @t-above atrule is set.', () => {
       const source = `
         .test {
           @t-above(desktop) {
-            font-size: 2ms;
+            font-size: 2step;
           }
         }`;
 
@@ -21,11 +21,11 @@ describe('transformator', () => {
       return run(source, compiled, userConfig);
     });
 
-    it('should transform ms to rem if @t-below is set.', () => {
+    it('should transform step to rem if @t-below is set.', () => {
       const source = `
         .test {
           @t-below(desktop) {
-            font-size: 2ms;
+            font-size: 2step;
           }
         }`;
 
@@ -39,11 +39,11 @@ describe('transformator', () => {
       return run(source, compiled, userConfig);
     });
 
-    it('should transform ms to rem if @t-only is set.', () => {
+    it('should transform step to rem if @t-only is set.', () => {
       const source = `
         .test {
           @t-only(desktop) {
-            font-size: 2ms;
+            font-size: 2step;
           }
         }`;
 

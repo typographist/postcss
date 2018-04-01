@@ -2,12 +2,13 @@ const run = require('../../../helpersForTests/run');
 const { userConfig } = require('../../../helpersForTests/mocks');
 
 describe('transformator', () => {
-  describe('transform t-ms function', () => {
-    it('should replace the t-ms function with the font size in rem for each breakpoint', () => {
+  describe('transform t-step function', () => {
+    it('should replace the t-step function with the font size in rem for each breakpoint', () => {
       const source = `
         h1 {
-          font-size: t-ms(6);
+          font-size: t-step(6);
         }`;
+
       const compiled = `
         h1 {
           font-size: 2.4rem;

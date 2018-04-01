@@ -1,5 +1,5 @@
-const transformMsUnit = require('./transformMsUnit');
-const transformTMsFunction = require('./transformTMsFunction');
+const transformStepUnit = require('./transformStepUnit');
+const transformTStepFunction = require('./transformTStepFunction');
 
 /**
  * Processing css declarations depending on the given conditions.
@@ -8,11 +8,11 @@ const transformTMsFunction = require('./transformTMsFunction');
  * @return {void}
  */
 module.exports = (decl, config) => {
-  if (transformMsUnit.test(decl)) {
-    transformMsUnit(decl, config);
+  if (transformStepUnit.test(decl)) {
+    transformStepUnit(decl, config);
   }
 
-  if (transformTMsFunction.test(decl)) {
-    transformTMsFunction(decl, config);
+  if (transformTStepFunction.test(decl)) {
+    transformTStepFunction(decl, config);
   }
 };

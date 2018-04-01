@@ -1,10 +1,10 @@
 const { camelize } = require('../../../helpers');
-const msToRem = require('../../../api/modularScale/msToRem');
+const stepToRem = require('../../../api/modularScale/stepToRem');
 const { makeBreakpointsModel } = require('../../../api/makeBreakpointsModel');
 const {
   HAS_FONT_SIZE,
-  MS_UNIT,
-  POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER_WITH_MS_UNIT_MEASURE,
+  STEP_UNIT,
+  POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER_WITH_STEP_UNIT_MEASURE,
 } = require('../../../constants/regexes');
 const {
   breakpointsToCebabCase,
@@ -46,13 +46,13 @@ module.exports = (decl, config) => {
   const isTAbove = name === 't-above';
   const isTBelow = name === 't-below';
   const isTOnly = name === 't-only';
-  const target = decl.value.replace(MS_UNIT, '');
+  const target = decl.value.replace(STEP_UNIT, '');
   const namesOfBreakpoints = getNamesOfBreakpoints(config);
   const breakpointsList = breakpointsToCebabCase(namesOfBreakpoints);
 
   try {
     if (isRoot) {
-      postcssNode.value = msToRem(target, breakpoints);
+      postcssNode.value = stepToRem(target, breakpoints);
     } else if ([isTAbove, isTBelow, isTOnly].some(Boolean)) {
       const atruleRawValue = camelize(removeRoundBrackets(atruleParams));
       const isBreakpointName = checkIsBreakpointName(
@@ -61,7 +61,7 @@ module.exports = (decl, config) => {
       );
 
       if (isBreakpointName) {
-        postcssNode.value = msToRem(target, breakpoints, atruleRawValue);
+        postcssNode.value = stepToRem(target, breakpoints, atruleRawValue);
       } else {
         closestRule.remove();
         throw new Error(
@@ -87,9 +87,9 @@ module.exports = (decl, config) => {
  */
 module.exports.test = decl => {
   const hasFontSize = HAS_FONT_SIZE.test(decl.prop);
-  const hasMsUnit = POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER_WITH_MS_UNIT_MEASURE.test(
+  const hasStepUnit = POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER_WITH_STEP_UNIT_MEASURE.test(
     decl.value,
   );
 
-  return [hasFontSize, hasMsUnit].every(Boolean);
+  return [hasFontSize, hasStepUnit].every(Boolean);
 };

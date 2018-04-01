@@ -1,5 +1,5 @@
 const calcFontSize = require('./calcFontSize');
-const msToRem = require('./msToRem');
+const stepToRem = require('./stepToRem');
 
 const breakpoints = [
   {
@@ -50,24 +50,24 @@ describe('calcFontSize', () => {
   });
 });
 
-describe('msToRem', () => {
+describe('stepToRem', () => {
   it('should the argument breakpointName is not specified', () => {
-    expect(msToRem(6, breakpoints)).toBe('3.75rem');
+    expect(stepToRem(6, breakpoints)).toBe('3.75rem');
   });
 
   it('should breakpoints name === tablet', () => {
-    expect(msToRem(6, breakpoints, 'tablet')).toBe('3.6923076923076925rem');
+    expect(stepToRem(6, breakpoints, 'tablet')).toBe('3.6923076923076925rem');
   });
 
   it('should breakpoints name === desktop', () => {
-    expect(msToRem(6, breakpoints, 'desktop')).toBe('6.3125rem');
+    expect(stepToRem(6, breakpoints, 'desktop')).toBe('6.3125rem');
   });
 
   it('should breakpoints name === lgDesktop', () => {
-    expect(msToRem(6, breakpoints, 'lgDesktop')).toBe('6.588235294117647rem');
+    expect(stepToRem(6, breakpoints, 'lgDesktop')).toBe('6.588235294117647rem');
   });
 
   it('should breakpoints name === xlDesktop', () => {
-    expect(msToRem(6, breakpoints, 'xlDesktop')).toBe('6.473684210526316rem');
+    expect(stepToRem(6, breakpoints, 'xlDesktop')).toBe('6.473684210526316rem');
   });
 });

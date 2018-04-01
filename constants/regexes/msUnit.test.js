@@ -1,13 +1,13 @@
-const { MS_UNIT } = require('./');
+const { STEP_UNIT } = require('./');
 
 describe('regexes', () => {
-  describe('MS_UNIT', () => {
-    it('should find ms unit', () => {
-      expect(MS_UNIT.test('ms')).toBe(true);
+  describe('STEP_UNIT', () => {
+    it('should find step unit', () => {
+      expect(STEP_UNIT.test('step')).toBe(true);
     });
 
-    it('should not find ms unit', () => {
-      expect(MS_UNIT.test('fake!')).toBe(false);
+    it('should not find step unit', () => {
+      expect(STEP_UNIT.test('fake!')).toBe(false);
     });
   });
 });
