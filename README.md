@@ -181,6 +181,7 @@ npm i typographist
 
   I hope it was not difficult for you. The idea of such a simple configuration I borrowed from <a href="https://github.com/scottkellum" target="_blank" title="Skott Kellum">Skott Kellum</a> and his remarkable project <a href="https://github.com/modularscale/modularscale-sass" target="_blank" title="modularscale-sass">modularscale-sass</a>. Well? Fasten your seat belts. Now the fun begins.)
 
+
   #### Typographist with Webpack
   You need to create a postcss.config.js
   ```js
@@ -210,6 +211,7 @@ npm i typographist
     ],
   });
   ```
+
   #### Typographist with Gulp
   ```js
   const gulp = require('gulp');
