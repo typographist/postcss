@@ -1,4 +1,4 @@
-const isArray = require('../isArray/');
+const isArray = require('../isArray');
 const toPx = require('../toPx');
 const { HAS_PX, HAS_EM } = require('../../constants/regexes');
 

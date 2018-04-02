@@ -1,6 +1,5 @@
-const flatten = require('lodash.flatten');
 const { isValidRatios } = require('./isValidRatioField');
-const { findAll } = require('../../helpers');
+const { findAll, flatten } = require('../../helpers');
 const {
   isBaseString,
   baseHasPxOrEm,

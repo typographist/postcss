@@ -1,13 +1,13 @@
 const calcLeading = require('./calcLeading');
 const calcRoot = require('./calcRoot');
 const findAll = require('./findAll');
+const flatten = require('./flatten');
 const camelize = require('./camelize');
 const decamelize = require('./decamelize');
 const getBase = require('./getBase');
 const isArray = require('./isArray');
 const isNumeric = require('./isNumeric');
 const isObject = require('./isObject');
-const makeArray = require('./makeArray');
 const percentage = require('./percentage');
 const stripUnit = require('./stripUnit');
 const toEm = require('./toEm');
@@ -21,11 +21,11 @@ module.exports = {
   camelize,
   decamelize,
   findAll,
+  flatten,
   getBase,
   isArray,
   isNumeric,
   isObject,
-  makeArray,
   percentage,
   stripUnit,
   toEm,
