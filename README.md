@@ -411,8 +411,11 @@ npm i typographist
   }
   ```
   #### @t-only
-  @t-above takes as parameters parameters only the names of breakpoints.
-    Input
+
+  @t-only takes as parameters parameters only the names of breakpoints.
+
+  Input
+
   ```css
   .your-class {
     @t-only (desktop) {
@@ -431,7 +434,8 @@ npm i typographist
   #### @t-between
   @t-between takes as parameters the names of breakpoints, values in pixels or ems.
 
-    Input
+  Input
+  
   ```css
   .your-class @t-between(tablet, desktop) {
     /* your code */
