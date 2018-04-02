@@ -65,7 +65,7 @@ class RhythmToggleButton {
   handleClick() {
     const { root } = this.options;
 
-    if (root === 'adaptive') {
+    if (!root) {
       store.dispatch(toggleAdaptiveRhythm());
     }
 
@@ -84,7 +84,7 @@ class RhythmToggleButton {
       const KEY_O = this.keyMap[79];
       const KEY_R = this.keyMap[82];
 
-      if (root === 'adaptive') {
+      if (!root) {
         if (KEY_S && KEY_R) RhythmToggleButton.setSingleRhythm(e);
         if (KEY_D && KEY_R) RhythmToggleButton.setDoubleRhythm(e);
         if (KEY_O && KEY_R) RhythmToggleButton.setOffRhythm(e);
