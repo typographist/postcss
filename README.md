@@ -794,7 +794,7 @@ npm i typographist
 
 MIT License
 
-Copyright (c) [2018] [Maxim Alyoshin]
+Copyright (c) 2018 Maxim Alyoshin
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
