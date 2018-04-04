@@ -54,7 +54,6 @@
   },
   "dependencies": {
     "cross-env": "^5.1.4",
-    "lodash.omit": "^4.5.0",
     "postcss": "^6.0.19"
   },
   "jest": {

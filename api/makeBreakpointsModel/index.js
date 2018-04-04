@@ -1,4 +1,3 @@
-const omit = require('lodash.omit');
 const {
   toPx,
   calcLeading,
@@ -50,7 +49,10 @@ const makeBreakpoints = config => {
         value: b.breakpoint,
       }))
       // Remove the key with the name breakpoint.
-      .map(b => omit(b, 'breakpoint'))
+      .map(b => {
+        const { breakpoint, ...withoutBreakpoint } = b;
+        return withoutBreakpoint;
+      })
   );
 };
 
