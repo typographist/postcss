@@ -392,7 +392,7 @@ npm i typographist
 
   ```
   #### @t-below
-  @t-above takes as parameters the names of breakpoints, values in pixels or ems.
+  @t-below takes as parameters the names of breakpoints, values in pixels or ems.
     Input
   ```css
   .your-class {
