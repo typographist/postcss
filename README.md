@@ -177,9 +177,9 @@ npm i typographist
   }),
   ```
   
-  If you carefully monitor everything, you probably noticed that I did not set a ratio for a breakpoint named lgDesktop. All right. As mentioned earlier, this value will be inherited from the previous breakpoint.
+  If you carefully monitored everything, you probably noticed that I did not set a ratio for a breakpoint named lgDesktop. All right. As mentioned earlier, this value will be inherited from the previous breakpoint.
 
-  I hope it was not difficult for you. The idea of such a simple configuration I borrowed from <a href="https://github.com/scottkellum" target="_blank" title="Skott Kellum">Skott Kellum</a> and his remarkable project <a href="https://github.com/modularscale/modularscale-sass" target="_blank" title="modularscale-sass">modularscale-sass</a>. Well? Fasten your seat belts. Now the fun begins.)
+  I hope it was not difficult for you. The idea of such a simple configuration I borrowed from <a href="https://github.com/scottkellum" target="_blank" title="Skott Kellum">Skott Kellum</a> and his remarkable project <a href="https://github.com/modularscale/modularscale-sass" target="_blank" title="modularscale-sass">modularscale-sass</a>. Well? Fasten your seat belts. This is where the fun begins.)
 
 
   #### Typographist with Webpack
@@ -266,7 +266,7 @@ npm i typographist
   ### Postcss syntax hightlight
   If you use vscode as the code editor. To avoid conflicts with the linter and to correctly postcss syntax highlighting, install the plugin <a href="https://marketplace.visualstudio.com/items?itemName=ricard.PostCSS#review-details" target="_blank">PostCSS syntax</a>.
   ### Syntax peculiarity
-  Syntax peculiarity. All that belongs to the Typographist begins with @t- or t-. Most likely you already thought that without these prefixes it would be more convenient to write the code, but in the future when the code becomes more, it will help to avoid confusion. You can always understand what exactly belongs to the typographist.
+  Syntax peculiarity. All that belongs to the Typographist begins with @t- or t-. Most likely you already thought that without these prefixes it would be more convenient to write the code, but in the future when when there is more code, it will help to avoid confusion. You can always understand what exactly belongs to the typographist.
 
   ### Root font size
   Input
@@ -301,7 +301,7 @@ npm i typographist
     }
   }
   ```
-  Using the @ t-root directive, we calculated the size of the root font for each breakpoint. Also now we have the opportunity to link our css and javascript with native css variables. The value of each breakpoint is converted to em.
+  Using the @ t-root directive, we calculated the size of the root font for each breakpoint. Also now we have the opportunity to link our css and javascript to native css variables. The value of each breakpoint is converted to em.
 
   Input
   ```css
@@ -334,7 +334,7 @@ npm i typographist
     }
   }
   ```
-  Now our font and layout have become rubber. It is possible to have precise control over responsive typography. Using calc() and viewport units you can create fluid type that scales perfectly between specific pixel values, within a specific viewport range.
+  Now our font and layout have become elastic. It is possible to have precise control over responsive typography. Using calc() and viewport units you can create fluid type that scales perfectly between specific pixel values, within a specific viewport range.
   This was made possible by <a href="https://github.com/MadeByMike" target="_blank" title="Mike Riethmuller">Mike Riethmuller</a>  and his formula.
 
   ### Base font size
@@ -455,7 +455,7 @@ npm i typographist
   Set the font size from the position in the modular scale. 
   <img src="/docs/images/msunit.jpg" alt="position in modular scale">
 
-  To convert mts to rem, use directives @t-above, @t-below, or @t-only.
+  To convert step to rem, use directives @t-above, @t-below, or @t-only.
 
   input
   ```css
@@ -501,12 +501,12 @@ npm i typographist
   This approach is useful if you want to dramatically increase the font size on any of the breakpoints, but in most cases it is too cumbersome and we force you to duplicate the code every time. For this I have something better for you!
 
   ### t-step function
-  Just t-step function to do the same much faster and gracefully.
+  With t-step function we do the same much faster and more gracefully.
 
   Input
   ```css
   h1 {
-    font-size: t-step(6)
+    font-size: t-step(6);
   }
   ```
 
@@ -794,7 +794,7 @@ npm i typographist
 
 MIT License
 
-Copyright (c) [2018] [Maxim Alyoshin]
+Copyright (c) 2018 Maxim Alyoshin
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
