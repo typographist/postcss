@@ -1,7 +1,8 @@
 {
   "name": "typographist",
-  "version": "2.0.5",
-  "description": "Toolkit for the rapid construction of interfaces with high quality typography.",
+  "version": "2.0.6",
+  "description":
+    "Toolkit for the rapid construction of interfaces with high quality typography.",
   "keywords": [
     "css",
     "design",
