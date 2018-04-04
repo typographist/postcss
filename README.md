@@ -453,6 +453,7 @@ npm i typographist
 
   ### Step unit
   Set the font size from the position in the modular scale. 
+  
   <img src="/docs/images/msunit.jpg" alt="position in modular scale">
 
   To convert step to rem, use directives @t-above, @t-below, or @t-only.
