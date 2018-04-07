@@ -4,19 +4,26 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start":
-      "cross-env nodemon --watch ./config ./node_modules/.bin/webpack-dev-server",
-    "build":
-      "npm run clean && cross-env NODE_ENV=production webpack -p && npm run demo",
+    "start": "cross-env nodemon --watch ./config ./node_modules/.bin/webpack-dev-server",
+    "build": "npm run clean && cross-env NODE_ENV=production webpack -p && npm run demo",
     "demo": "cross-env static -a 0.0.0.0 dist",
     "clean": "cross-env rimraf dist",
     "unit:watch": "cross-env jest --watch"
   },
   "jest": {
     "collectCoverage": true,
-    "transform": { "^.+\\.js$": "./node_modules/babel-jest" },
-    "testFileExtensions": ["es6", "js"],
-    "moduleFileExtensions": ["js", "json", "es6"]
+    "transform": {
+      "^.+\\.js$": "./node_modules/babel-jest"
+    },
+    "testFileExtensions": [
+      "es6",
+      "js"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "es6"
+    ]
   },
   "dependencies": {
     "accoutrement-color": "^2.2.2",
@@ -55,7 +62,6 @@
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-hot-loader": "^4.0.0-beta.15",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",

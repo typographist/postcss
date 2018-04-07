@@ -2,7 +2,6 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { hot } from 'react-hot-loader';
 import rootReducer from '../reducer';
 import Typographist from '../containers/Typographist';
 import RhythmToggle from '../containers/RhythmToggleButton';
@@ -24,4 +23,4 @@ const Root = () => (
   </Provider>
 );
 
-export default hot(module)(Root);
+export default Root;
