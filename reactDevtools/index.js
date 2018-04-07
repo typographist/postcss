@@ -1,11 +1,9 @@
-import verticalRhythm from './_source/src/ducks/verticalRhythm';
-import excludeReducer from './_source/src/excludeReducer';
-import RhythmToggleButton from './_source/src/containers/RhythmToggleButton';
-import Typographist from './_source/src/containers/Typographist';
+import _verticalRhythm from './verticalRhythm';
+import _excludeReducer from './excludeReducer';
+import _RhythmToggleButton from './RhythmToggleButton';
+import _Typographist from './Typographist';
 
-module.exports = {
-  verticalRhythm,
-  excludeReducer,
-  RhythmToggleButton,
-  Typographist,
-};
+export const verticalRhythm = _verticalRhythm;
+export const excludeReducer = _excludeReducer;
+export const RhythmToggleButton = _RhythmToggleButton;
+export const Typographist = _Typographist;
