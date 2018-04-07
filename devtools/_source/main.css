@@ -27,13 +27,13 @@
   left: 0; }
 
 [data-rhythm='single'] {
-  background-image: linear-gradient(to bottom, rgba(0, 170, 255, 0.3) 1px, transparent 0);
+  background-image: linear-gradient(to bottom, rhythm-color 1px, transparent 0);
   background-position: left top;
   background-repeat: repeat;
   background-size: 100% 2rem; }
 
 [data-rhythm='double'] {
-  background-image: linear-gradient(to bottom, rgba(0, 170, 255, 0.3) 1px, transparent 0, transparent 1rem, rgba(0, 170, 255, 0.3) 1rem, transparent calc(0.5 * 2rem + 1px), transparent 2rem);
+  background-image: linear-gradient(to bottom, rhythm-color 1px, transparent 0, transparent 1rem, rhythm-color 1rem, transparent calc(0.5 * 2rem + 1px), transparent 2rem);
   background-position: left top;
   background-repeat: repeat;
   background-size: 100% 2rem; }

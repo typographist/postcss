@@ -6,7 +6,7 @@ const resolve = require('rollup-plugin-node-resolve');
 const sass = require('rollup-plugin-sass');
 
 module.exports = {
-  input: './src/components/index.js',
+  input: './_source/components/index.js',
   output: {
     file: './index.js',
     format: 'cjs',
