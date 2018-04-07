@@ -138,7 +138,7 @@ class RhythmToggleButton {
     buttonElem.style.cssText = `
       z-index: ${zIndex};
     `;
-    buttonElem.setAttribute('data-button', 'typographist');
+    buttonElem.setAttribute('data-name', 'typographist');
 
     buttonElem.addEventListener('click', () => {
       this.handleClick();
