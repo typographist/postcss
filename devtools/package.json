@@ -4,10 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "cross-env clean:dev && rollup --config ./rollup.config.dev.js",
-    "build": "cross-env clean:build && rollup --config ./rollup.config.prod.js",
-    "clean:dev": "cross-env rimraf ./src/main.css",
-    "clean:build": "cross-env rimraf ./typographist-devtools.css"
+    "start": "npm run clean:dev && rollup --config ./rollup.config.dev.js",
+    "build": "npm run clean:build && rollup --config ./rollup.config.prod.js",
+    "clean:dev": "cross-env rimraf ./_src/main.css",
+    "clean:build": "cross-env rimraf ./devtools.css"
   },
   "dependencies": {
     "cross-env": "^5.1.4",

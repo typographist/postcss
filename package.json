@@ -50,10 +50,11 @@
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-prettier": "^2.4.0",
+    "eslint-plugin-prettier": "^2.6.0",
     "jest": "^21.2.1"
   },
   "dependencies": {
+    "babel-eslint": "^8.2.2",
     "cross-env": "^5.1.4",
     "postcss": "^6.0.19"
   },

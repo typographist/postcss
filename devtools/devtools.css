@@ -1,4 +1,4 @@
-[data-button='typographist'] {
+[data-name='typographist'] {
   position: fixed;
   display: flex;
   top: 2rem;
@@ -16,7 +16,7 @@
   border-color: transparent;
   text-decoration: none;
   cursor: pointer; }
-  [data-button='typographist']:focus {
+  [data-name='typographist']:focus {
     outline: none; }
 
 [data-rhythm='single'], [data-rhythm='double'] {

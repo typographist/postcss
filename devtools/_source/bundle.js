@@ -582,12 +582,52 @@ var findAll = function (obj, key, memo) {
 
 var findAll_1 = findAll;
 
-/**
- * @param {Array<number>|number} base
- * @return {number}
- */
+var flatten = function (arrayOfArrays) { return arrayOfArrays.reduce(
+    function (acc, current) { return acc.concat(isArray(current) ? flatten(current) : current); },
+    []
+  ); };
 
-var getBase = function (base) { return (Array.isArray(base) ? base[0] : base); };
+var flatten_1 = flatten;
+
+var ALL_ROUND_BRACKETS = /[()]/g;
+var AMPERSAND = /&/;
+var DASH_HYPHEN_WHITESPACE_ANY_CHARACTERS = /[-_\s]+(.)?/g;
+var HAS_AMPERSAND = /^&/;
+var HAS_AT = /-?\b\d+(\.\d+)?(px|em) at -?\d+(\.\d+)??\b/;
+var HAS_EM = /-?\b\d+(\.\d+)?em/;
+var HAS_FONT_SIZE = /^font-size$/;
+var HAS_FONT_SIZE_VAL = /\b-?\d+(\.\d+)?(px|em)\b/gi;
+var HAS_PX = /-?\b\d+(\.\d+)?px/;
+var HAS_PX_OR_EM = /-?\b\d+(\.\d+)?(px|em)/;
+var HAS_REM = /-?\b\d+(\.\d+)?rem/;
+var HAS_TARGET = /-?\b\d+(\.\d+)?\b\s*$/g;
+var HAS_TSTEP_FUNCTION_WITH_VALUE = /^t-step\(.+?\)$/;
+var STEP_UNIT = /step/;
+var POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER = /^-?\d+(\.\d+)?$/;
+var POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER_WITH_STEP_UNIT_MEASURE = /^-?\d+(\.\d+)?step$/;
+var ROUND_BRACKETS_AND_TSTEP_FUNCTION = /[()tstep-]/g;
+var SEPARATE_STRING_INTO_WORDS_WITH_CAPITAL_LETTER = /(?=[A-Z])/;
+
+var regexes = {
+  ALL_ROUND_BRACKETS: ALL_ROUND_BRACKETS,
+  AMPERSAND: AMPERSAND,
+  DASH_HYPHEN_WHITESPACE_ANY_CHARACTERS: DASH_HYPHEN_WHITESPACE_ANY_CHARACTERS,
+  HAS_AMPERSAND: HAS_AMPERSAND,
+  HAS_AT: HAS_AT,
+  HAS_EM: HAS_EM,
+  HAS_FONT_SIZE: HAS_FONT_SIZE,
+  HAS_FONT_SIZE_VAL: HAS_FONT_SIZE_VAL,
+  HAS_PX: HAS_PX,
+  HAS_PX_OR_EM: HAS_PX_OR_EM,
+  HAS_REM: HAS_REM,
+  HAS_TARGET: HAS_TARGET,
+  HAS_TSTEP_FUNCTION_WITH_VALUE: HAS_TSTEP_FUNCTION_WITH_VALUE,
+  STEP_UNIT: STEP_UNIT,
+  POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER: POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER,
+  POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER_WITH_STEP_UNIT_MEASURE: POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER_WITH_STEP_UNIT_MEASURE,
+  ROUND_BRACKETS_AND_TSTEP_FUNCTION: ROUND_BRACKETS_AND_TSTEP_FUNCTION,
+  SEPARATE_STRING_INTO_WORDS_WITH_CAPITAL_LETTER: SEPARATE_STRING_INTO_WORDS_WITH_CAPITAL_LETTER,
+};
 
 /**
  * Check for a number
@@ -598,7 +638,63 @@ var getBase = function (base) { return (Array.isArray(base) ? base[0] : base); }
 /* eslint-disable no-restricted-globals */
 var isNumeric = function (num) { return !Number.isNaN(parseFloat(num)) && isFinite(num); };
 
-var makeArray = function (length) { return Array.from({ length: length }, function (item, i) { return i; }); };
+var DASH_HYPHEN_WHITESPACE_ANY_CHARACTERS$1 = regexes.DASH_HYPHEN_WHITESPACE_ANY_CHARACTERS;
+
+
+/**
+ * @example camelize('Hello_World') => 'HelloWorld'
+ * @param {string} value Decamelize string.
+ * @return {string} Camelize string.
+ */
+var camelize = function (value) {
+  var string = value;
+  if (isNumeric(string)) {
+    return string;
+  }
+  string = string.replace(
+    DASH_HYPHEN_WHITESPACE_ANY_CHARACTERS$1,
+    function (match, chr) { return (chr ? chr.toUpperCase() : ''); }
+  );
+  // Ensure 1st char is always lowercase
+  return string.substr(0, 1).toLowerCase() + string.substr(1);
+};
+
+var SEPARATE_STRING_INTO_WORDS_WITH_CAPITAL_LETTER$1 = regexes.SEPARATE_STRING_INTO_WORDS_WITH_CAPITAL_LETTER;
+
+/**
+ * @example HelloWorld => Hello_world
+ * @param {string} string String.
+ * @param {Object} [options] User options.
+ * @param {string} [options.separator] separating line.
+ * @param {regex|string} [options.split] line break.
+ * @return {string}
+ *
+ */
+var separateWords = function (string, options) {
+  if ( options === void 0 ) options = {};
+
+  var separator = options.separator || '_';
+  var split = options.split || SEPARATE_STRING_INTO_WORDS_WITH_CAPITAL_LETTER$1;
+
+  return string.split(split).join(separator);
+};
+
+/**
+ * @example decamelize('helloWorld', {separator: '-'}) => 'hello_world'
+ * @param {string} string
+ * @param {Object} [options] User options.
+ * @param {string} [options.separator] separating line.
+ * @param {regex|string} [options.split] line break.
+ * @return {string} Decamelize string.
+ */
+var decamelize = function (string, options) { return separateWords(string, options).toLowerCase(); };
+
+/**
+ * @param {Array<number>|number} base
+ * @return {number}
+ */
+
+var getBase = function (base) { return (Array.isArray(base) ? base[0] : base); };
 
 var BROWSER_DEFAULT_FONT_SIZE$1 = constants.BROWSER_DEFAULT_FONT_SIZE;
 
@@ -616,34 +712,6 @@ var BROWSER_DEFAULT_FONT_SIZE$2 = constants.BROWSER_DEFAULT_FONT_SIZE;
  * @return {number}
  */
 var toPx = function (inEms) { return parseFloat(inEms) * BROWSER_DEFAULT_FONT_SIZE$2; };
-
-var ALL_ROUND_BRACKETS = /[()]/g;
-var HAS_PX = /-?\b\d+(\.\d+)?px/;
-var HAS_REM = /-?\b\d+(\.\d+)?rem/;
-var HAS_EM = /-?\b\d+(\.\d+)?em/;
-var HAS_PX_OR_EM = /-?\b\d+(\.\d+)?(px|em)/;
-var HAS_AT = /-?\b\d+(\.\d+)?(px|em) at -?\d+(\.\d+)??\b/;
-var HAS_FONT_SIZE = /^font-size$/;
-var HAS_FONT_SIZE_VAL = /\b-?\d+(\.\d+)?(px|em)\b/gi;
-var HAS_TARGET = /-?\b\d+(\.\d+)?\b\s*$/g;
-var MS_UNIT = /ms/;
-var POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER = /^-?\d+(\.\d+)?$/;
-var POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER_WITH_MS_UNIT_MEASURE = /^-?\d+(\.\d+)?ms$/;
-
-var regexes = {
-  ALL_ROUND_BRACKETS: ALL_ROUND_BRACKETS,
-  HAS_PX: HAS_PX,
-  HAS_REM: HAS_REM,
-  HAS_EM: HAS_EM,
-  HAS_PX_OR_EM: HAS_PX_OR_EM,
-  HAS_AT: HAS_AT,
-  HAS_FONT_SIZE: HAS_FONT_SIZE,
-  HAS_FONT_SIZE_VAL: HAS_FONT_SIZE_VAL,
-  HAS_TARGET: HAS_TARGET,
-  MS_UNIT: MS_UNIT,
-  POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER: POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER,
-  POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER_WITH_MS_UNIT_MEASURE: POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER_WITH_MS_UNIT_MEASURE,
-};
 
 var HAS_PX$1 = regexes.HAS_PX;
 var HAS_EM$1 = regexes.HAS_EM;
@@ -696,12 +764,14 @@ var toRem = function (baseSize, rootSize) { return getBase(baseSize) / rootSize;
 var helpers = {
   calcLeading: calcLeading,
   calcRoot: calcRoot,
+  camelize: camelize,
+  decamelize: decamelize,
   findAll: findAll_1,
+  flatten: flatten_1,
   getBase: getBase,
   isArray: isArray,
   isNumeric: isNumeric,
   isObject: isObject,
-  makeArray: makeArray,
   percentage: percentage,
   stripUnit: stripUnit_1,
   toEm: toEm,
@@ -709,7 +779,7 @@ var helpers = {
   toPx: toPx,
   toRem: toRem,
 };
-var helpers_12 = helpers.toNormalCase;
+var helpers_14 = helpers.toNormalCase;
 
 var verticalRhythm = function (state, action) {
   if ( state === void 0 ) state = 'offRhythm';
@@ -800,7 +870,7 @@ RhythmToggleButton.prototype.handleClick = function handleClick () {
   var ref = this.options;
     var root = ref.root;
 
-  if (root === 'adaptive') {
+  if (!root) {
     store.dispatch(toggleAdaptiveRhythm());
   }
 
@@ -820,7 +890,7 @@ RhythmToggleButton.prototype.handleKeyDown = function handleKeyDown (e) {
     var KEY_O = this.keyMap[79];
     var KEY_R = this.keyMap[82];
 
-    if (root === 'adaptive') {
+    if (!root) {
       if (KEY_S && KEY_R) { RhythmToggleButton.setSingleRhythm(e); }
       if (KEY_D && KEY_R) { RhythmToggleButton.setDoubleRhythm(e); }
       if (KEY_O && KEY_R) { RhythmToggleButton.setOffRhythm(e); }
@@ -875,7 +945,7 @@ RhythmToggleButton.prototype.render = function render () {
     var zIndex = ref.zIndex;
   var buttonElem = document.createElement('button');
   var state = store.getState();
-  buttonElem.textContent = helpers_12(state);
+  buttonElem.textContent = helpers_14(state);
   buttonElem.style.cssText = "\n      z-index: " + zIndex + ";\n    ";
   buttonElem.setAttribute('data-button', 'typographist');
 
@@ -885,7 +955,7 @@ RhythmToggleButton.prototype.render = function render () {
 
   store.subscribe(function () {
     var $state = store.getState();
-    buttonElem.textContent = helpers_12($state);
+    buttonElem.textContent = helpers_14($state);
   });
 
   window.addEventListener('keydown', this.handleKeyDown);

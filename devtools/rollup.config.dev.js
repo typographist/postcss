@@ -6,9 +6,9 @@ const sass = require('rollup-plugin-sass');
 const serve = require('rollup-plugin-serve');
 
 module.exports = {
-  input: './src/components/RhythmToggleButton/index.js',
+  input: './_source/components/RhythmToggleButton/index.js',
   output: {
-    file: './src/bundle.js',
+    file: './_source/bundle.js',
     format: 'umd',
     name: 'RhythmToggleButton',
   },
@@ -18,12 +18,12 @@ module.exports = {
     }),
     commonjs(),
     resolve(),
-    serve('src'),
+    serve('_source'),
     replace({
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),
     sass({
-      output: './src/main.css',
+      output: './_source/main.css',
     }),
   ],
 };
