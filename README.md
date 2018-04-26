@@ -463,7 +463,7 @@ npm i typographist
   h1 {
     font-size: 6step;
 
-    @-above(tablet) {
+    @t-above(tablet) {
       font-size: 6step;
     }
 

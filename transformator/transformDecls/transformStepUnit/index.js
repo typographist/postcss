@@ -65,13 +65,13 @@ module.exports = (decl, config) => {
       } else {
         closestRule.remove();
         throw new Error(
-          `${atruleRawValue} is invalid breakpoint name. Use ${breakpointsList} to convert ms to rem`,
+          `${atruleRawValue} is invalid breakpoint name. Use ${breakpointsList} to convert step to rem`,
         );
       }
     } else if ([!isRoot, !isTAbove, !isTBelow, !isTOnly].every(Boolean)) {
       closestRule.remove();
       throw new Error(
-        'Use the @t-above or @t-below or @t-only to calculate the ms value',
+        'Use the @t-above or @t-below or @t-only to calculate the step value',
       );
     }
   } catch (err) {
