@@ -4,10 +4,10 @@
 
 ## Documentation
 
-- [introduction](#introduction)
-- [getting Started](#getting-started)
-  - [installation](#installation)
-  - [configuration](#configuration)
+- [Introduction](#introduction)
+- [Getting Started](#getting-started)
+  - [Installation](#installation)
+  - [Configuration](#configuration)
     - [base](#base)
     - [line-height](#line-height)
     - [ratio](#ratio)
@@ -16,14 +16,14 @@
     - [typographist with gulp](#typographist-with-gulp)
   
   CSS
-  - [postcss syntax hightlight](#postcss-syntax-hightlight)
-  - [syntax peculiarity](#syntax-peculiarity)
-  - [root font size](#root-font-size)
-  - [base font size](#base-font-size)
-  - [breakpoints](#breakpoints)
-  - [step unit](#step-unit)
-  - [t-step function](#t-step-function)
-  - [nesting](#nesting)
+  - [PostCSS syntax hightlight](#postcss-syntax-hightlight)
+  - [Syntax peculiarity](#syntax-peculiarity)
+  - [Root font size](#root-font-size)
+  - [Base font size](#base-font-size)
+  - [Breakpoints](#breakpoints)
+  - [Step unit](#step-unit)
+  - [T-step function](#t-step-function)
+  - [Nesting](#nesting)
 
 
 
@@ -32,7 +32,7 @@
 ### What is a Typographist?
 
 The Typographist is a mobile first progressive toolkit for web designers and developers that allows you to build interfaces with responsive graphics. Having absorbed the best qualities of <a href="https://github.com/jakegiltsoff/sassline" target="_blank" title="Sassline">Sassline</a> and <a href="https://github.com/matejlatin/Gutenberg" target="_blank" title="Gutenberg">Gutenberg</a>, it significantly simplifies the process of improving typography on the web.
-His idea is to give the developer the most simple, powerful and flexible tool that will take over all the routine work in the form of complex calculations. The Typographist builds a basic grid to establish the correct vertical rhythm on the basis of rem, and also establishes macro-tipography, which allows paying special attention to micro-tipographic details. Also the toolkit is perfectly combined with css grid layout.
+The framework's objective is to provide developers with the most simple, powerful and flexible tool that will take over all the routine work in the form of complex calculations. The Typographist builds a basic grid to establish the correct vertical rhythm on the basis of rem, and also establishes macro-tipography, which allows paying special attention to micro-tipographic details. Also the toolkit is perfectly combined with css grid layout.
 
 ### Base type * line-height = leading
 
@@ -129,7 +129,7 @@ npm i typographist
       }
   });
   ```
- You are not at all limited in choosing a breakpoint name, and you can specify just how many breakpoints you need. If you are used to naming breakpoints as in bootstrap. Nothing prevents you from using the usual names.
+ You are free to choose any breakpoint name, and you can specify just how many breakpoints you need. If you are used to naming breakpoints as in bootstrap, nothing prevents you from using the usual names.
 
 
   ```js
@@ -177,7 +177,7 @@ npm i typographist
   }),
   ```
   
-  If you carefully monitored everything, you probably noticed that I did not set a ratio for a breakpoint named lgDesktop. All right. As mentioned earlier, this value will be inherited from the previous breakpoint.
+  You probably noticed that I did not set a ratio for a breakpoint named lgDesktop. It's all right. As mentioned earlier, this value will be inherited from the previous breakpoint.
 
   I hope it was not difficult for you. The idea of such a simple configuration I borrowed from <a href="https://github.com/scottkellum" target="_blank" title="Skott Kellum">Skott Kellum</a> and his remarkable project <a href="https://github.com/modularscale/modularscale-sass" target="_blank" title="modularscale-sass">modularscale-sass</a>. Well? Fasten your seat belts. This is where the fun begins.)
 
