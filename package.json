@@ -1,8 +1,7 @@
 {
   "name": "typographist",
   "version": "3.0.0",
-  "description":
-    "Toolkit for the rapid construction of interfaces with high quality typography.",
+  "description": "Toolkit for the rapid construction of interfaces with high quality typography.",
   "keywords": [
     "css",
     "design",
@@ -50,6 +49,7 @@
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jest": "^21.17.0",
     "eslint-plugin-prettier": "^2.6.0",
     "jest": "^21.2.1"
   },

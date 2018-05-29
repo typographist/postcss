@@ -1,4 +1,12 @@
 {
   "extends": ["airbnb-base", "prettier"],
-  "plugins": ["prettier"]
+  "plugins": ["prettier", "jest"],
+  "env": {
+    "node": true,
+    "mocha": true,
+    "jasmine": true
+  },
+  "rules": {
+    "import/no-extraneous-dependencies": 0
+  }
 }
