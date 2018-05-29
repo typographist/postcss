@@ -21,10 +21,9 @@ module.exports = atrule => {
   parentCloneForNodesWithinAtrule.append(innerNodes);
 
   const parent = atrule.parent.after(atrule);
+  cleanNode(atrule);
 
-  if (!parent.nodes.length) {
-    parent.remove();
-  }
+  if (!parent.nodes.length) parent.remove();
 };
 
 /**
@@ -36,13 +35,6 @@ module.exports = atrule => {
  */
 module.exports.test = atrule => {
   const { parent, name } = atrule;
-  const isTAbove = name === 't-above';
-  const isTBelow = name === 't-below';
-  const isTOnly = name === 't-only';
-  const isTBetween = name === 't-between';
-  return (
-    [isTAbove, isTBelow, isTOnly, isTBetween].some(Boolean) &&
-    parent &&
-    parent.type === 'rule'
-  );
+  const listOfAtrules = ['t-above', 't-below', 't-only', 't-between'];
+  return listOfAtrules.includes(name) && parent && parent.type === 'rule';
 };

@@ -1,4 +1,5 @@
 const { mediaAtrule } = require('../../atrules');
+const cleanNode = require('../../utils/cleanNode');
 const {
   getFirstBreakpoint,
   removeRoundBrackets,
@@ -38,6 +39,7 @@ module.exports = (atrule, breakpoints) => {
       }),
     ),
   );
+
   const fontSize = `${percentage(firstBreakpoint.root)}%`;
   atrule.replaceWith(fontSizeDecl(fontSize));
 };

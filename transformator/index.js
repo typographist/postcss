@@ -1,9 +1,11 @@
 const transformAtrules = require('./transformAtrules');
 const transformDecls = require('./transformDecls');
-const transformNestedRule = require('./transformNestedRule');
+const transfromBubblingRule = require('./transformBubblingRule');
+const transformNestedRules = require('./transformNestedRules');
 
 module.exports = {
   transformAtrules,
   transformDecls,
-  transformNestedRule,
+  transformNestedRules,
+  transfromBubblingRule,
 };

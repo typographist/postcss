@@ -8,7 +8,8 @@ describe('transformator', () => {
       .test {
         font-size: 1rem;
 
-        &__inner {
+        &__inner,
+        &__overlay {
           font-size: 2rem;
         }
       }`;
@@ -17,7 +18,8 @@ describe('transformator', () => {
       .test {
         font-size: 1rem
       }
-.test__inner {
+.test__inner,
+        .test__overlay {
         font-size: 2rem;
 }`;
 

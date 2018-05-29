@@ -37,7 +37,7 @@ const baseHasPxOrEm = base => {
       throw new Error(`${base} is incorrect value! Please, use pixels or em.`);
     }
   } catch (err) {
-    console.log(err.message);
+    console.warn(err.message);
   }
 
   return result;

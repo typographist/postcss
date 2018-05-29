@@ -106,7 +106,7 @@ module.exports.test = atrule => {
         );
       }
     } catch (err) {
-      console.log(err.message);
+      console.warn(err.message);
     }
   }
 

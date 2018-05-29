@@ -2,7 +2,8 @@ const postcss = require('postcss');
 const {
   transformAtrules,
   transformDecls,
-  transformNestedRule,
+  transformNestedRules,
+  transfromBubblingRule,
 } = require('./transformator');
 const ratios = require('./constants/ratios');
 
@@ -24,8 +25,12 @@ const typographist = postcss.plugin(
     });
 
     root.walkRules(rule => {
-      if (transformNestedRule.test(rule)) {
-        transformNestedRule(rule);
+      if (transformNestedRules.test(rule)) {
+        transformNestedRules(rule);
+      }
+
+      if (transfromBubblingRule.test(rule)) {
+        transfromBubblingRule(rule);
       }
     });
 

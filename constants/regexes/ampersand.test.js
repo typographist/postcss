@@ -1,9 +1,9 @@
-const { AMPERSAND } = require('./');
+const { ALL_AMPERSANDS } = require('./');
 
 describe('regexes', () => {
-  describe('AMPERSAND', () => {
+  describe('ALL_AMPERSANDS', () => {
     it('should find an ampersand', () => {
-      expect(AMPERSAND.test('&')).toBe(true);
+      expect(ALL_AMPERSANDS.test('&')).toBe(true);
     });
   });
 });

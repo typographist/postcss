@@ -1,7 +1,7 @@
 const ALL_ROUND_BRACKETS = /[()]/g;
-const AMPERSAND = /&/;
+const ALL_AMPERSANDS = /&/g;
 const DASH_HYPHEN_WHITESPACE_ANY_CHARACTERS = /[-_\s]+(.)?/g;
-const HAS_AMPERSAND = /^&/;
+const HAS_AMPERSAND = /&/;
 const HAS_AT = /-?\b\d+(\.\d+)?(px|em) at -?\d+(\.\d+)??\b/;
 const HAS_EM = /-?\b\d+(\.\d+)?em/;
 const HAS_FONT_SIZE = /^font-size$/;
@@ -19,7 +19,7 @@ const SEPARATE_STRING_INTO_WORDS_WITH_CAPITAL_LETTER = /(?=[A-Z])/;
 
 module.exports = {
   ALL_ROUND_BRACKETS,
-  AMPERSAND,
+  ALL_AMPERSANDS,
   DASH_HYPHEN_WHITESPACE_ANY_CHARACTERS,
   HAS_AMPERSAND,
   HAS_AT,
