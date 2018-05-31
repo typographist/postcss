@@ -1,4 +1,4 @@
-<a href="https://maxinakenty.github.io/" target="_blank" title="Demo">Demo</a>;
+<a href="https://maxinakenty.github.io/" target="_blank" title="Demo">Demo</a>
 
 # Typographist
 
