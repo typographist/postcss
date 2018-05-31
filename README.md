@@ -1,6 +1,6 @@
-# Typographist
+<a href="https://maxinakenty.github.io/" target="_blank" title="Demo">Demo</a>;
 
-<h2><a href="https://maxinakenty.github.io/" target="_blank" title="Demo">Demo</a></h2>
+# Typographist
 
 ## Documentation
 
@@ -79,7 +79,6 @@ import { typographist, ratios } from 'typographist';
 2.  Set font size for standard paragraph text. For example, I set 16px, but you can choose one that you like. Feel free to constantly experiment.
     Base is set for each breakpoint.
 
-
 ```js
 typographist({
   base: '16px',
@@ -89,7 +88,6 @@ typographist({
 #### Line-height
 
 3.  Set the line-height. For example, I set 1.4. It is not necessary to specify at each breakpoint. Each next breakpoint inherits the value of line-height from the previous breakpoint.
-
 
 ```js
 typographist({
@@ -101,7 +99,6 @@ typographist({
 #### Ratio
 
 4.  Set the ratio. To do this, we use Tim Brown's <a href="http://www.modularscale.com/" target="_blank" title="Modular Scale">Modular Scale</a>. For example, I set a ratio equal to the minor second (~1.067) <a href="http://www.modularscale.com/?16&px&1.067" target="_blank" title="Let's see what happened">Let's see what happened</a>. It is not necessary to specify at each breakpoint. Each next breakpoint inherits the value of line-height from the previous breakpoint.
-
 
 ```js
 typographist({
@@ -137,7 +134,6 @@ typographist({
 
 5.  Set the breakpoint name and breakpoint value.
 
-
 ```js
 typographist({
   base: '16px',
@@ -172,7 +168,6 @@ typographist({
 ```
 
 6.  Let's set base, line-height, and ratio for each breakpoint. For the tablet, I set the ratio to a <a href="http://www.modularscale.com/?17&px&1.125" target="_blank" title="major second">major second</a> = 1.125. For the desktop it will be equal to the <a href="http://www.modularscale.com/?18&px&1.2" target="_blank" title="minor third">minor third</a> = 1.2.
-
 
 ```js
 typographist({
