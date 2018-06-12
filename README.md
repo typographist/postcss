@@ -51,11 +51,11 @@ To install the stable version:
 Use yarn or npm
 
 ```
-yarn add typographist
+yarn add postcss typographist
 ```
 
 ```
-npm i typographist
+npm i postcss typographist
 ```
 
 ### Configuration
