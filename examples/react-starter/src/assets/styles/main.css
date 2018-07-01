@@ -1,0 +1,23 @@
+@import 'normalize.css';
+@import './vars';
+@import './global';
+@import './typography';
+
+.container {
+  margin: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  max-width: 500px;
+
+  @t-above (tablet) {
+    max-width: 600px;
+  }
+
+  @t-above (desktop) {
+    max-width: 700px;
+  }
+
+  @t-above (lg-desktop) {
+    max-width: 740px;
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["airbnb", "prettier"],
+  "plugins": ["prettier", "jest"],
+  "parserOptions": {
+    "allowImportExportEverywhere": true
+  },
+  "env": {
+    "node": true,
+    "browser": true,
+    "mocha": true,
+    "jasmine": true
+  },
+  "rules": {
+    "import/no-extraneous-dependencies": 0,
+    "react/jsx-filename-extension": 0,
+    "react/jsx-one-expression-per-line": 0
+  }
+}

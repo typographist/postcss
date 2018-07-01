@@ -1,0 +1,1 @@
+# Typographist static starter

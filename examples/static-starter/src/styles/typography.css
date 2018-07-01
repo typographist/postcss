@@ -1,0 +1,102 @@
+:root {
+  @t-root;
+}
+
+body {
+  @t-base;
+  font-style: normal;
+  font-weight: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  font-size: t-step(6);
+  line-height: 4rem;
+  margin-top: 8rem;
+  margin-bottom: 0;
+
+  @t-above (tablet) {
+    margin-bottom: 1rem;
+  }
+
+  @t-above (desktop) {
+    margin-bottom: 2rem;
+  }
+}
+
+h2 {
+  font-size: t-step(4);
+  line-height: 3rem;
+  margin-top: 5rem;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-size: t-step(3);
+  line-height: 3rem;
+  margin-top: 4rem;
+  margin-bottom: 1rem;
+}
+
+h4 {
+  font-size: t-step(2);
+  line-height: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+h5 {
+  font-size: t-step(1);
+  line-height: 2rem;
+  margin-top: 5rem;
+  margin-bottom: 1rem;
+}
+
+h6 {
+  font-size: t-step(0);
+  font-style: italic;
+  line-height: 2rem;
+  margin-top: 5rem;
+  margin-bottom: 1rem;
+}
+
+p {
+  margin-top: 0;
+}
+
+p,
+img {
+  margin-bottom: 2rem;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  transition: color 0.1s, background-color 0.1s;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 50%,
+    var(--link-color) 50%
+  );
+  background-position: 0 93%;
+  background-repeat: repeat-x;
+  background-size: 100% 0.15rem;
+  text-shadow: 0.1rem 0 var(--body-bg), 0.15rem 0 var(--body-bg),
+    -0.1rem 0 var(--body-bg), -0.15rem 0 var(--body-bg);
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: var(--link-color-hover);
+    text-decoration: none;
+    background-image: none;
+  }
+}
