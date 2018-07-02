@@ -47,8 +47,8 @@
   },
   "main": "./index.js",
   "scripts": {
-    "unit": "cross-env jest",
     "unit:watch": "cross-env jest --watch",
+    "test:unit": "nodemon --watch . --exec 'jest --watch || true'",
     "lint": "cross-env eslint **/*.js"
   },
   "devDependencies": {
@@ -58,7 +58,8 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jest": "^21.17.0",
     "eslint-plugin-prettier": "^2.6.0",
-    "jest": "^23.0.1"
+    "jest": "^23.0.1",
+    "nodemon": "^1.17.5"
   },
   "dependencies": {
     "cross-env": "^5.1.4",

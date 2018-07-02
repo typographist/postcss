@@ -1,4 +1,8 @@
-const { ALL_AMPERSANDS, HAS_AMPERSAND } = require('../../constants/regexes');
+const {
+  AMPERSAND,
+  LAST_COMMA,
+  LINE_BREAKS_AND_SPACES,
+} = require('../../constants/regexes');
 const cleanNode = require('../utils/cleanNode');
 const transformAfterNodes = require('../utils/transformAfterNodes');
 
@@ -9,12 +13,35 @@ const transformAfterNodes = require('../utils/transformAfterNodes');
  */
 module.exports = rule => {
   const postcssNode = rule;
+  const COMMA_AND_SPACE = ',\n';
+
   cleanNode(rule);
   transformAfterNodes(rule);
   rule.nodes.slice(0).map(cleanNode);
-  postcssNode.selector = rule.selector.replace(
-    ALL_AMPERSANDS,
-    rule.parent.selector,
+
+  const parentRulesList = postcssNode.parent.selector
+    .replace(LAST_COMMA, '')
+    .replace(LINE_BREAKS_AND_SPACES, '')
+    .split(',');
+
+  const nestedRulesList = postcssNode.selector
+    .replace(LAST_COMMA, '')
+    .replace(LINE_BREAKS_AND_SPACES, '')
+    .split(',');
+
+  let selectorName = '';
+  for (let i = 0; i < parentRulesList.length; i += 1) {
+    for (let j = 0; j < nestedRulesList.length; j += 1) {
+      selectorName +=
+        nestedRulesList[j].replace(AMPERSAND, parentRulesList[i]) +
+        COMMA_AND_SPACE;
+    }
+  }
+
+  postcssNode.selector = selectorName.replace(LAST_COMMA, '');
+  postcssNode.parent.selector = postcssNode.parent.selector.replace(
+    LAST_COMMA,
+    '',
   );
 
   rule.parent.after(rule);
@@ -32,7 +59,7 @@ module.exports = rule => {
  */
 module.exports.test = rule => {
   const { parent } = rule;
-  const isNestedRule = HAS_AMPERSAND.test(rule.selector);
+  const isNestedRule = AMPERSAND.test(rule.selector);
   const parentTypeIsRule = parent.type === 'rule';
   return [parent, isNestedRule, parentTypeIsRule].every(Boolean);
 };
