@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run clean && cross-env nodemon --config nodemon.json node_modules/.bin/webpack-dev-server",
     "build": "npm run clean && cross-env NODE_ENV=production webpack",
-    "demo": "npm run build && cross-env static -a 0.0.0.0 public",
+    "demo": "static public",
     "clean": "cross-env rimraf public",
     "unit:watch": "cross-env jest --watch"
   },
@@ -15,7 +15,7 @@
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-hot-loader": "^4.3.0",
-    "typographist-react-devtools": "^3.0.11"
+    "typographist-react-devtools": "^3.0.12"
   },
   "devDependencies": {
     "assets-webpack-plugin": "^3.6.0",
