@@ -3,7 +3,7 @@ const { userConfig } = require('../../../helpersForTests/mocks');
 
 describe('transformator', () => {
   describe('@t-only', () => {
-    it('should replace @t-only(desktop) with @media screen and (min-width: 48em) and (max-width: 61.99875em)', () => {
+    it('should replace @t-only(desktop) with @media (min-width: 48em) and (max-width: 61.99875em)', () => {
       const source = `
         .test {
           @t-only (desktop) {
@@ -12,7 +12,7 @@ describe('transformator', () => {
         }`;
 
       const compiled = `
-        @media screen and (min-width: 48em) and (max-width: 61.99875em) {
+        @media (min-width: 48em) and (max-width: 61.99875em) {
     .test {
         background-color: rebeccapurple;
     }

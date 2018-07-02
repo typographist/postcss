@@ -12,7 +12,7 @@ describe('transformator', () => {
         }`;
 
       const compiled = `
-        @media screen and (min-width: 48em) {
+        @media (min-width: 48em) {
     .test {
         font-size: 1.9166666666666667rem;
     }
@@ -30,7 +30,7 @@ describe('transformator', () => {
         }`;
 
       const compiled = `
-        @media screen and (max-width: 61.99875em) {
+        @media (max-width: 61.99875em) {
     .test {
         font-size: 1.9166666666666667rem;
     }
@@ -48,7 +48,7 @@ describe('transformator', () => {
         }`;
 
       const compiled = `
-        @media screen and (min-width: 48em) and (max-width: 61.99875em) {
+        @media (min-width: 48em) and (max-width: 61.99875em) {
     .test {
         font-size: 1.9166666666666667rem;
     }

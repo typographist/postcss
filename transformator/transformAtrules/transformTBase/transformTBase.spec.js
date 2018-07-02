@@ -27,22 +27,22 @@ describe('transformator', () => {
             font-size: 1.6rem;
             line-height: 2rem;
           }
-@media  screen and (min-width: 36em) {
+@media  (min-width: 36em) {
             body {
                         font-size: 1.5454545454545454rem;
             }
 }
-@media  screen and (min-width: 48em) {
+@media  (min-width: 48em) {
             body {
                         font-size: 1.5rem;
             }
 }
-@media  screen and (min-width: 62em) {
+@media  (min-width: 62em) {
             body {
                         font-size: 1.5384615384615385rem;
             }
 }
-@media  screen and (min-width: 75em) {
+@media  (min-width: 75em) {
             body {
                         font-size: 1.6153846153846154rem;
             }

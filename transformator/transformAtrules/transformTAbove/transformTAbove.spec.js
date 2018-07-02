@@ -3,7 +3,7 @@ const { userConfig } = require('../../../helpersForTests/mocks');
 
 describe('transformator', () => {
   describe('@t-above', () => {
-    it('should replace @t-above(desktop) with @media screen and (min-width: 48em)', () => {
+    it('should replace @t-above(desktop) with @media (min-width: 48em)', () => {
       const source = `
         .test {
           @t-above(desktop) {
@@ -12,7 +12,7 @@ describe('transformator', () => {
         }`;
 
       const compiled = `
-        @media screen and (min-width: 48em) {
+        @media (min-width: 48em) {
     .test {
         background-color: orange;
     }
@@ -20,7 +20,7 @@ describe('transformator', () => {
       return run(source, compiled, userConfig);
     });
 
-    it('should replace @t-above(1000px) with @media screen and (min-width: 62.5em)', () => {
+    it('should replace @t-above(1000px) with @media (min-width: 62.5em)', () => {
       const source = `
         .test {
           @t-above(1000px) {
@@ -29,7 +29,7 @@ describe('transformator', () => {
         }`;
 
       const compiled = `
-        @media screen and (min-width: 62.5em) {
+        @media (min-width: 62.5em) {
     .test {
         background-color: orange;
     }
@@ -37,7 +37,7 @@ describe('transformator', () => {
       return run(source, compiled, userConfig);
     });
 
-    it('should replace @t-above(40em) with @media screen and (min-width: 40em)', () => {
+    it('should replace @t-above(40em) with @media (min-width: 40em)', () => {
       const source = `
         .test {
           @t-above(40em) {
@@ -46,7 +46,7 @@ describe('transformator', () => {
         }`;
 
       const compiled = `
-        @media screen and (min-width: 40em) {
+        @media (min-width: 40em) {
     .test {
         background-color: orange;
     }

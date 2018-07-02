@@ -35,15 +35,15 @@ const calcParamsOfAtruleAbove = (atrule, config) => {
 
   try {
     if (isBreakpointName) {
-      result = `screen and (min-width: ${calcBreakpointAbove(
+      result = `(min-width: ${calcBreakpointAbove(
         paramsWithoutBrackets,
         config,
       )})`;
     } else if (HAS_PX.test(paramsWithoutBrackets)) {
       const breakpointValue = `${toEm(paramsWithoutBrackets)}em`;
-      result = `screen and (min-width: ${breakpointValue})`;
+      result = `(min-width: ${breakpointValue})`;
     } else if (HAS_EM.test(paramsWithoutBrackets)) {
-      result = `screen and (min-width: ${paramsWithoutBrackets})`;
+      result = `(min-width: ${paramsWithoutBrackets})`;
     } else {
       result = '';
       postcssAtrule.remove();
@@ -66,9 +66,9 @@ const calcParamsOfAtruleAbove = (atrule, config) => {
 };
 
 /**
- * Replacement @t-above with @media screen and (min-width: "blablabla")
+ * Replacement @t-above with @media (min-width: "blablabla")
  *
- * @example @t-above(1000px) => @media screen and (min-width: 62.5em)
+ * @example @t-above(1000px) => @media (min-width: 62.5em)
  * @param {Object} atrule Css atrule.
  * @param {*} config User configuration.
  * @return {void}

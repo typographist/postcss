@@ -33,22 +33,22 @@ describe('transformator', () => {
           --xl-desktop: 1200px;
           font-size: 62.5%;
         }
-@media  screen and (min-width: 36em) {
+@media  (min-width: 36em) {
           :root {
                     font-size: 68.75%;
           }
 }
-@media  screen and (min-width: 48em) {
+@media  (min-width: 48em) {
           :root {
                     font-size: 75%;
           }
 }
-@media  screen and (min-width: 62em) {
+@media  (min-width: 62em) {
           :root {
                     font-size: 81.25%;
           }
 }
-@media  screen and (min-width: 75em) {
+@media  (min-width: 75em) {
           :root {
                     font-size: 81.25%;
           }
@@ -75,22 +75,22 @@ describe('transformator', () => {
           --xl-desktop: 1200px;
           font-size: 62.5%;
         }
-@media  screen and (min-width: 36em) {
+@media  (min-width: 36em) {
           :root {
                     font-size: calc(62.5% + 2 * ((100vw - 36em) / 192));
           }
 }
-@media  screen and (min-width: 48em) {
+@media  (min-width: 48em) {
           :root {
                     font-size: calc(75% + 1 * ((100vw - 48em) / 224));
           }
 }
-@media  screen and (min-width: 62em) {
+@media  (min-width: 62em) {
           :root {
                     font-size: calc(81.25% + 0 * ((100vw - 62em) / 208));
           }
 }
-@media  screen and (min-width: 75em) {
+@media  (min-width: 75em) {
           :root {
                     font-size: 81.25%;
           }

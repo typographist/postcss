@@ -14,7 +14,7 @@ const {
  * if it contains the last value of the breakpoint or contains any values other than the breakpoint names,
  *
  * delete @t-only and warn the user about the error.
- * @example @t-only(tablet) => @media screen and (min-width: 36em) and (max-width: 47.99875em)
+ * @example @t-only(tablet) => @media (min-width: 36em) and (max-width: 47.99875em)
  * @param {Object} atrule @t-only atrule.
  * @param {Object} config User configuration.
  */
@@ -39,10 +39,10 @@ const calcParamsOfAtruleAbove = (atrule, config) => {
       if (isArray(breakValue)) {
         const [lowerBreak, upperBreak] = breakValue;
 
-        result = `screen and (min-width: ${lowerBreak}) and (max-width: ${upperBreak})`;
+        result = `(min-width: ${lowerBreak}) and (max-width: ${upperBreak})`;
         // if last breakpoint name in user configuration.
       } else if (typeof breakValue === 'string') {
-        result = `screen and (min-width: ${breakValue})`;
+        result = `(min-width: ${breakValue})`;
       }
     } else {
       result = '';
@@ -68,8 +68,8 @@ const calcParamsOfAtruleAbove = (atrule, config) => {
 };
 
 /**
- * Replaced @t-only Replacement @t-only(breakpoint name) with @media screen and (min-width: "blablabla") and (max-width: "blablabla")
- * @example @-only(tablet) => @media screen and (min-width: 36em) and (max-width: 47.99875em)
+ * Replaced @t-only Replacement @t-only(breakpoint name) with @media (min-width: "blablabla") and (max-width: "blablabla")
+ * @example @-only(tablet) => @media (min-width: 36em) and (max-width: 47.99875em)
  * @param {Object} node Css node.
  * @param {Object} config User configuration.
  */

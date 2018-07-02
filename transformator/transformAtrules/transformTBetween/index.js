@@ -16,9 +16,9 @@ const { isArray, toEm } = require('../../../helpers');
  * The function checks whether the @ t-below values match the specified pattern.
  * If so, it converts the values into em. If not, deletes @ t-below and warns the user about the error.
  *
- * Replacement @t-between with @media screen and (min-width: "blablabla") and (max-width: "blablabla")
+ * Replacement @t-between with @media (min-width: "blablabla") and (max-width: "blablabla")
  *
- * @example @t-between(1000px, 2000px) => @media screen and (min-width: 62.5em) and (max-width: 125em)
+ * @example @t-between(1000px, 2000px) => @media (min-width: 62.5em) and (max-width: 125em)
  * @param {Object} atrule @t-between atrule.
  * @param {Object} config User configuration.
  * @return {void}
@@ -61,14 +61,14 @@ module.exports = (atrule, config) => {
         if (isArray(calculatedBreaks)) {
           const calculatedLowerBreak = calculatedBreaks[0];
           const calculatedUpperBreak = calculatedBreaks[1];
-          postcssAtrule.params = `screen and (min-width: ${calculatedLowerBreak}) and (max-width: ${calculatedUpperBreak})`;
+          postcssAtrule.params = `(min-width: ${calculatedLowerBreak}) and (max-width: ${calculatedUpperBreak})`;
         } else if (typeof calculatedBreaks === 'string') {
           const calculatedLowerBreak = calcBreakpointsBetween(
             lowerBreak,
             upperBreak,
             config,
           );
-          postcssAtrule.params = `screen and (min-width: ${calculatedLowerBreak})`;
+          postcssAtrule.params = `(min-width: ${calculatedLowerBreak})`;
         }
       } else {
         postcssAtrule.remove();
@@ -84,7 +84,7 @@ module.exports = (atrule, config) => {
 
     if (HAS_PX.test(lowerBreak)) {
       if (HAS_PX.test(upperBreak)) {
-        postcssAtrule.params = `screen and (min-width: ${toEm(
+        postcssAtrule.params = `(min-width: ${toEm(
           lowerBreak,
         )}em) and (max-width: ${toEm(upperBreak)}em)`;
       } else {
@@ -100,7 +100,7 @@ module.exports = (atrule, config) => {
 
     if (HAS_EM.test(lowerBreak)) {
       if (HAS_EM.test(upperBreak)) {
-        postcssAtrule.params = `screen and (min-width: ${lowerBreak}) and (max-width: ${upperBreak})`;
+        postcssAtrule.params = `(min-width: ${lowerBreak}) and (max-width: ${upperBreak})`;
       } else {
         postcssAtrule.remove();
         throw new Error(

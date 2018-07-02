@@ -16,7 +16,7 @@ const {
  * If the value does not match any of the specified patterns, we warn the user of the error.
  * @param {Object} atrule Css atrule.
  * @param {Object} config User configuration.
- * @return {string} @media screen and (max-with: calculated value)
+ * @return {string} @media (max-with: calculated value)
  */
 const calcParamsOfAtruleBelow = (atrule, config) => {
   const postcssAtrule = atrule;
@@ -33,7 +33,7 @@ const calcParamsOfAtruleBelow = (atrule, config) => {
     if (isBreakpointName) {
       // Redo it! The function should only count the result.
       if (calcBreakpointBelow(paramsWithoutBrackets, config)) {
-        result = `screen and (max-width: ${calcBreakpointBelow(
+        result = `(max-width: ${calcBreakpointBelow(
           paramsWithoutBrackets,
           config,
         )})`;
@@ -54,9 +54,9 @@ const calcParamsOfAtruleBelow = (atrule, config) => {
       }
     } else if (HAS_PX.test(paramsWithoutBrackets)) {
       const breakpointValue = `${toEm(paramsWithoutBrackets)}em`;
-      result = `screen and (max-width: ${breakpointValue})`;
+      result = `(max-width: ${breakpointValue})`;
     } else if (HAS_EM.test(paramsWithoutBrackets)) {
-      result = `screen and (max-width: ${paramsWithoutBrackets})`;
+      result = `(max-width: ${paramsWithoutBrackets})`;
     } else {
       result = '';
       postcssAtrule.remove();
@@ -86,8 +86,8 @@ const calcParamsOfAtruleBelow = (atrule, config) => {
 };
 
 /**
- * Replacement @t-below with @media screen and (max-width: "blablabla")
- * @example @-below(1000px) => @media screen and (max-width: 62.5em)
+ * Replacement @t-below with @media (max-width: "blablabla")
+ * @example @-below(1000px) => @media (max-width: 62.5em)
  * @param {Object} atrule @t-blow atrule.
  * @param {Object} config User configuration.
  * @return {void}
