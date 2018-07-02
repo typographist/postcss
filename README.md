@@ -4,28 +4,28 @@
 
 ## Documentation
 
-* [Introduction](#introduction)
-* [Getting Started](#getting-started)
+- [Introduction](#introduction)
+- [Getting Started](#getting-started)
 
-  * [Installation](#installation)
-  * [Configuration](#configuration)
-    * [base](#base)
-    * [line-height](#line-height)
-    * [ratio](#ratio)
-    * [breakpoint](#breakpoint)
-    * [typographist with webpack](#typographist-with-webpack)
-    * [typographist with gulp](#typographist-with-gulp)
+  - [Installation](#installation)
+  - [Configuration](#configuration)
+    - [base](#base)
+    - [line-height](#line-height)
+    - [ratio](#ratio)
+    - [breakpoint](#breakpoint)
+    - [typographist with webpack](#typographist-with-webpack)
+    - [typographist with gulp](#typographist-with-gulp)
 
   CSS
 
-  * [PostCSS syntax hightlight](#postcss-syntax-hightlight)
-  * [Syntax peculiarity](#syntax-peculiarity)
-  * [Root font size](#root-font-size)
-  * [Base font size](#base-font-size)
-  * [Breakpoints](#breakpoints)
-  * [Step unit](#step-unit)
-  * [T-step function](#t-step-function)
-  * [Nesting](#nesting)
+  - [PostCSS syntax hightlight](#postcss-syntax-hightlight)
+  - [Syntax peculiarity](#syntax-peculiarity)
+  - [Root font size](#root-font-size)
+  - [Base font size](#base-font-size)
+  - [Breakpoints](#breakpoints)
+  - [Step unit](#step-unit)
+  - [T-step function](#t-step-function)
+  - [Nesting](#nesting)
 
 ## Introduction
 
