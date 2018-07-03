@@ -2,7 +2,7 @@ const transformStepUnit = require('./transformStepUnit');
 const transformTStepFunction = require('./transformTStepFunction');
 
 /**
- * Processing css declarations depending on the given conditions.
+ * Processing css declarations depending on the conditions.
  * @param {Object} decl Css declaration.
  * @param {Object} config User configuration.
  * @return {void}

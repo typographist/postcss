@@ -2,8 +2,7 @@ const postcss = require('postcss');
 const {
   transformAtrules,
   transformDecls,
-  transformNestedRules,
-  transfromBubblingRule,
+  transformRules,
 } = require('./transformator');
 const ratios = require('./constants/ratios');
 
@@ -25,13 +24,7 @@ const typographist = postcss.plugin(
     });
 
     root.walkRules(rule => {
-      if (transformNestedRules.test(rule)) {
-        transformNestedRules(rule);
-      }
-
-      if (transfromBubblingRule.test(rule)) {
-        transfromBubblingRule(rule);
-      }
+      transformRules(rule);
     });
 
     // Remove empty rules.
