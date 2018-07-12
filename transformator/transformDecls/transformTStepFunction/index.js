@@ -4,7 +4,8 @@ const { mediaAtrule } = require('../../atrules');
 const {
   HAS_FONT_SIZE,
   HAS_TSTEP_FUNCTION_WITH_VALUE,
-  ROUND_BRACKETS_AND_TSTEP_FUNCTION,
+  T_STEP_WITH_BRACKET,
+  REVERCE_BRACKET,
 } = require('../../../constants/regexes');
 const { fontSizeDecl } = require('../../decls');
 const { isNumeric } = require('../../../helpers');
@@ -16,7 +17,9 @@ const { setParentSelector } = require('../../selectors');
  * @return {string} Raw value without t-ms function.
  */
 const replaceRoundBracketsAndTStepFunction = tMsFunctionWithVal =>
-  tMsFunctionWithVal.replace(ROUND_BRACKETS_AND_TSTEP_FUNCTION, '');
+  tMsFunctionWithVal
+    .replace(T_STEP_WITH_BRACKET, '')
+    .replace(REVERCE_BRACKET, '');
 
 /**
  *
@@ -42,7 +45,7 @@ module.exports = (decl, config) => {
           ),
         }),
       ),
-  );
+    );
 
   const fontSize = stepToRem(target, breakpoints);
   decl.replaceWith(fontSizeDecl(fontSize));
