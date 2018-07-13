@@ -6,6 +6,12 @@ const {
   getNamesOfBreakpoints,
   removeRoundBrackets,
 } = require('../../../api/breakpoints');
+const {
+  ALL_CHARACTERS_AFTER_COLON,
+  ALL_CHARACTERS_BEFORE_COLON,
+  ALL_ROUND_BRACKETS,
+} = require('../../../constants/regexes');
+const { getMediaQueriesWithOrientation } = require('../../utils');
 
 /**
  * !!! @t-only accepts only the names of breakpoints.
@@ -21,28 +27,42 @@ const {
 const calcParamsOfAtruleAbove = (atrule, config) => {
   const postcssAtrule = atrule;
   const namesOfBreakpoints = getNamesOfBreakpoints(config);
-  const paramWithoutBrackets = camelize(
-    removeRoundBrackets(postcssAtrule.params),
+
+  const rawParams = camelize(
+    postcssAtrule.params
+      .replace(ALL_CHARACTERS_AFTER_COLON, '')
+      .replace(ALL_ROUND_BRACKETS, ''),
   );
-  const isBreakpointName = checkIsBreakpointName(
-    namesOfBreakpoints,
-    paramWithoutBrackets,
+
+  const orientation = postcssAtrule.params.replace(
+    ALL_CHARACTERS_BEFORE_COLON,
+    '',
   );
+
+  const isBreakpointName = checkIsBreakpointName(namesOfBreakpoints, rawParams);
 
   let result = null;
 
   try {
     if (isBreakpointName) {
-      const breakValue = calcBreakpointOnly(paramWithoutBrackets, config);
+      const breakValue = calcBreakpointOnly(rawParams, config);
 
       // is not last breakpoint name in user configuration.
       if (isArray(breakValue)) {
         const [lowerBreak, upperBreak] = breakValue;
+        result = getMediaQueriesWithOrientation({
+          orientation,
+          mediaQueriesParams: `(min-width: ${lowerBreak}) and (max-width: ${upperBreak})`,
+          atrule: postcssAtrule,
+        });
 
-        result = `(min-width: ${lowerBreak}) and (max-width: ${upperBreak})`;
         // if last breakpoint name in user configuration.
       } else if (typeof breakValue === 'string') {
-        result = `(min-width: ${breakValue})`;
+        result = getMediaQueriesWithOrientation({
+          orientation,
+          mediaQueriesParams: `(min-width: ${breakValue})`,
+          atrule: postcssAtrule,
+        });
       }
     } else {
       result = '';
