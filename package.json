@@ -62,8 +62,5 @@
   "dependencies": {
     "cross-env": "^5.1.4",
     "postcss": "^6.0.22"
-  },
-  "jest": {
-    "collectCoverage": false
   }
 }
