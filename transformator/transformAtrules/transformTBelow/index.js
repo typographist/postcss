@@ -10,7 +10,6 @@ const {
   calcBreakpointBelow,
   checkIsBreakpointName,
   getNamesOfBreakpoints,
-  removeRoundBrackets,
 } = require('../../../api/breakpoints');
 const { getMediaQueriesParams } = require('../../utils');
 
@@ -94,7 +93,10 @@ const calcParamsOfAtruleBelow = (atrule, config) => {
         .filter((item, i, arr) => item !== arr[arr.length - 1])
         .join(', ');
 
-      const valueWithoutBrackets = removeRoundBrackets(postcssAtrule.params);
+      const valueWithoutBrackets = postcssAtrule.params.replace(
+        ALL_ROUND_BRACKETS,
+        '',
+      );
       const exampleBreak = decamelize(namesOfBreakpoints[2], {
         separator: '-',
       });

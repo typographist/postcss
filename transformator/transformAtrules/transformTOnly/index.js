@@ -4,7 +4,6 @@ const {
   calcBreakpointOnly,
   checkIsBreakpointName,
   getNamesOfBreakpoints,
-  removeRoundBrackets,
 } = require('../../../api/breakpoints');
 const {
   ALL_CHARACTERS_AFTER_COLON,
@@ -69,7 +68,10 @@ const calcParamsOfAtruleAbove = (atrule, config) => {
       postcssAtrule.remove();
 
       const breakpointLine = breakpointsToCebabCase(namesOfBreakpoints);
-      const valueWithoutBrackets = removeRoundBrackets(postcssAtrule.params);
+      const valueWithoutBrackets = postcssAtrule.params.replace(
+        ALL_ROUND_BRACKETS,
+        '',
+      );
       const exampleBreak = decamelize(namesOfBreakpoints[2], {
         separator: '-',
       });

@@ -11,7 +11,6 @@ const {
   calcBreakpointAbove,
   checkIsBreakpointName,
   getNamesOfBreakpoints,
-  removeRoundBrackets,
 } = require('../../../api/breakpoints');
 const { getMediaQueriesParams } = require('../../utils');
 
@@ -31,7 +30,7 @@ const calcParamsOfAtruleAbove = (atrule, config) => {
   const postcssAtrule = atrule;
   const namesOfBreakpoints = getNamesOfBreakpoints(config);
 
-  const paramsWithoutBrackets = camelize(
+  const rawParams = camelize(
     postcssAtrule.params
       .replace(ALL_CHARACTERS_AFTER_COLON, '')
       .replace(ALL_ROUND_BRACKETS, ''),
@@ -42,10 +41,7 @@ const calcParamsOfAtruleAbove = (atrule, config) => {
     '',
   );
 
-  const isBreakpointName = checkIsBreakpointName(
-    namesOfBreakpoints,
-    paramsWithoutBrackets,
-  );
+  const isBreakpointName = checkIsBreakpointName(namesOfBreakpoints, rawParams);
 
   let result = null;
 
@@ -54,29 +50,32 @@ const calcParamsOfAtruleAbove = (atrule, config) => {
       result = getMediaQueriesParams({
         orientation,
         mediaQueriesParams: `(min-width: ${calcBreakpointAbove(
-          paramsWithoutBrackets,
+          rawParams,
           config,
         )})`,
         atrule: postcssAtrule,
       });
-    } else if (HAS_PX.test(paramsWithoutBrackets)) {
-      const breakpointValue = `${toEm(paramsWithoutBrackets)}em`;
+    } else if (HAS_PX.test(rawParams)) {
+      const breakpointValue = `${toEm(rawParams)}em`;
       result = getMediaQueriesParams({
         orientation,
         mediaQueriesParams: `(min-width: ${breakpointValue})`,
         atrule: postcssAtrule,
       });
-    } else if (HAS_EM.test(paramsWithoutBrackets)) {
+    } else if (HAS_EM.test(rawParams)) {
       result = getMediaQueriesParams({
         orientation,
-        mediaQueriesParams: `(min-width: ${paramsWithoutBrackets})`,
+        mediaQueriesParams: `(min-width: ${rawParams})`,
         atrule: postcssAtrule,
       });
     } else {
       result = '';
       postcssAtrule.remove();
       const breakpointLine = breakpointsToCebabCase(namesOfBreakpoints);
-      const valueWithoutBrackets = removeRoundBrackets(postcssAtrule.params);
+      const valueWithoutBrackets = postcssAtrule.params.replace(
+        ALL_ROUND_BRACKETS,
+        '',
+      );
       const exampleBreak = decamelize(namesOfBreakpoints[2], {
         separator: '-',
       });

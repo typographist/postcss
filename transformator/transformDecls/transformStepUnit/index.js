@@ -2,6 +2,7 @@ const { camelize } = require('../../../helpers');
 const stepToRem = require('../../../api/modularScale/stepToRem');
 const { makeBreakpointsModel } = require('../../../api/makeBreakpointsModel');
 const {
+  ALL_ROUND_BRACKETS,
   HAS_FONT_SIZE,
   STEP_UNIT,
   POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER_WITH_STEP_UNIT_MEASURE,
@@ -10,7 +11,6 @@ const {
   breakpointsToCebabCase,
   checkIsBreakpointName,
   getNamesOfBreakpoints,
-  removeRoundBrackets,
 } = require('../../../api/breakpoints');
 
 /**
@@ -54,7 +54,9 @@ module.exports = (decl, config) => {
     if (isRoot) {
       postcssNode.value = stepToRem(target, breakpoints);
     } else if ([isTAbove, isTBelow, isTOnly].some(Boolean)) {
-      const atruleRawValue = camelize(removeRoundBrackets(atruleParams));
+      const atruleRawValue = camelize(
+        atruleParams.replace(ALL_ROUND_BRACKETS, ''),
+      );
       const isBreakpointName = checkIsBreakpointName(
         namesOfBreakpoints,
         atruleRawValue,
