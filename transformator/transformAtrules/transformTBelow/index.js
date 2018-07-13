@@ -1,11 +1,18 @@
 const { toEm, camelize, decamelize } = require('../../../helpers');
-const { HAS_EM, HAS_PX } = require('../../../constants/regexes');
+const {
+  ALL_CHARACTERS_AFTER_COLON,
+  ALL_CHARACTERS_BEFORE_COLON,
+  ALL_ROUND_BRACKETS,
+  HAS_EM,
+  HAS_PX,
+} = require('../../../constants/regexes');
 const {
   calcBreakpointBelow,
   checkIsBreakpointName,
   getNamesOfBreakpoints,
   removeRoundBrackets,
 } = require('../../../api/breakpoints');
+const { getMediaQueriesParams } = require('../../utils');
 
 /**
  * !!! @t-below takes the names of breakpoints, values in pixels or em.
@@ -21,10 +28,17 @@ const {
 const calcParamsOfAtruleBelow = (atrule, config) => {
   const postcssAtrule = atrule;
   const namesOfBreakpoints = getNamesOfBreakpoints(config);
-  const paramsWithoutBrackets = removeRoundBrackets(postcssAtrule.params);
+  const rawParams = postcssAtrule.params
+    .replace(ALL_CHARACTERS_AFTER_COLON, '')
+    .replace(ALL_ROUND_BRACKETS, '');
+
+  const orientation = postcssAtrule.params.replace(
+    ALL_CHARACTERS_BEFORE_COLON,
+    '',
+  );
   const isBreakpointName = checkIsBreakpointName(
     namesOfBreakpoints,
-    camelize(paramsWithoutBrackets),
+    camelize(rawParams),
   );
 
   let result = null;
@@ -32,11 +46,15 @@ const calcParamsOfAtruleBelow = (atrule, config) => {
   try {
     if (isBreakpointName) {
       // Redo it! The function should only count the result.
-      if (calcBreakpointBelow(paramsWithoutBrackets, config)) {
-        result = `(max-width: ${calcBreakpointBelow(
-          paramsWithoutBrackets,
-          config,
-        )})`;
+      if (calcBreakpointBelow(rawParams, config)) {
+        result = getMediaQueriesParams({
+          orientation,
+          mediaQueriesParams: `(max-width: ${calcBreakpointBelow(
+            rawParams,
+            config,
+          )})`,
+          atrule: postcssAtrule,
+        });
       } else {
         postcssAtrule.remove();
         const penultimateBreakName = namesOfBreakpoints
@@ -48,15 +66,24 @@ const calcParamsOfAtruleBelow = (atrule, config) => {
           .filter((item, i, arr) => item === arr[arr.length - 2]);
         throw new Error(
           `
-          ${paramsWithoutBrackets} is incorrect parameter in @t-below. Use ${penultimateBreakName} as a maximum breakpoint.
+          ${rawParams} is incorrect parameter in @t-below. Use ${penultimateBreakName} as a maximum breakpoint.
           `,
         );
       }
-    } else if (HAS_PX.test(paramsWithoutBrackets)) {
-      const breakpointValue = `${toEm(paramsWithoutBrackets)}em`;
-      result = `(max-width: ${breakpointValue})`;
-    } else if (HAS_EM.test(paramsWithoutBrackets)) {
-      result = `(max-width: ${paramsWithoutBrackets})`;
+    } else if (HAS_PX.test(rawParams)) {
+      const breakpointValue = `${toEm(rawParams)}em`;
+
+      result = getMediaQueriesParams({
+        orientation,
+        mediaQueriesParams: `(max-width: ${breakpointValue})`,
+        atrule: postcssAtrule,
+      });
+    } else if (HAS_EM.test(rawParams)) {
+      result = getMediaQueriesParams({
+        orientation,
+        mediaQueriesParams: `(max-width: ${rawParams})`,
+        atrule: postcssAtrule,
+      });
     } else {
       result = '';
       postcssAtrule.remove();
