@@ -47,7 +47,7 @@
   },
   "main": "./index.js",
   "scripts": {
-    "unit:watch": "cross-env jest --watch",
+    "test": "cross-env jest --watch",
     "lint": "cross-env eslint **/*.js"
   },
   "devDependencies": {
