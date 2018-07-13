@@ -1,6 +1,6 @@
 {
   "name": "typographist",
-  "version": "0.0.0-development",
+  "version": "3.2.0-semantically-released",
   "description": "Toolkit for the rapid construction of interfaces with high quality typography.",
   "license": "MIT",
   "homepage": "https://github.com/typography-gang/typographist",
