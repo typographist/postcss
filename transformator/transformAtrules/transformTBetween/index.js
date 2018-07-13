@@ -1,14 +1,19 @@
-const { camelize } = require('../../../helpers');
-const { HAS_EM, HAS_PX } = require('../../../constants/regexes');
+const { camelize, isArray, toEm } = require('../../../helpers');
+const {
+  ALL_CHARACTERS_AFTER_COLON,
+  ALL_CHARACTERS_BEFORE_COLON,
+  ALL_ROUND_BRACKETS,
+  HAS_EM,
+  HAS_PX,
+} = require('../../../constants/regexes');
 const isInvalidFirstParameter = require('./isInvalidFirstParameter');
 const {
   breakpointsToCebabCase,
   calcBreakpointsBetween,
   checkIsBreakpointName,
   getNamesOfBreakpoints,
-  removeRoundBrackets,
 } = require('../../../api/breakpoints');
-const { isArray, toEm } = require('../../../helpers');
+const { getMediaQueriesParams } = require('../../utils');
 
 /**
  * !!! @ t-between takes the names of breakpoints, values in pixels or em.
@@ -27,9 +32,10 @@ module.exports = (atrule, config) => {
   const postcssAtrule = atrule;
   const namesOfBreakpoints = getNamesOfBreakpoints(config);
   const breakpointsList = breakpointsToCebabCase(namesOfBreakpoints);
-  const breakpointsValues = removeRoundBrackets(postcssAtrule.params).split(
-    ', ',
-  );
+  const breakpointsValues = postcssAtrule.params
+    .replace(ALL_CHARACTERS_AFTER_COLON, '')
+    .replace(ALL_ROUND_BRACKETS, '')
+    .split(', ');
   const lowerBreak = breakpointsValues[0];
   const upperBreak = breakpointsValues[1];
   const camelizeLowerBreak = camelize(lowerBreak);
@@ -41,6 +47,11 @@ module.exports = (atrule, config) => {
   const namesOfBreakpointsHasUpperBreakpoint = checkIsBreakpointName(
     namesOfBreakpoints,
     camelizeUpperBreak,
+  );
+
+  const orientation = postcssAtrule.params.replace(
+    ALL_CHARACTERS_BEFORE_COLON,
+    '',
   );
   postcssAtrule.name = 'media';
 
@@ -61,14 +72,24 @@ module.exports = (atrule, config) => {
         if (isArray(calculatedBreaks)) {
           const calculatedLowerBreak = calculatedBreaks[0];
           const calculatedUpperBreak = calculatedBreaks[1];
-          postcssAtrule.params = `(min-width: ${calculatedLowerBreak}) and (max-width: ${calculatedUpperBreak})`;
+          // postcssAtrule.params = `(min-width: ${calculatedLowerBreak}) and (max-width: ${calculatedUpperBreak})`;
+          postcssAtrule.params = getMediaQueriesParams({
+            orientation,
+            mediaQueriesParams: `(min-width: ${calculatedLowerBreak}) and (max-width: ${calculatedUpperBreak})`,
+            atrule: postcssAtrule,
+          });
         } else if (typeof calculatedBreaks === 'string') {
           const calculatedLowerBreak = calcBreakpointsBetween(
             lowerBreak,
             upperBreak,
             config,
           );
-          postcssAtrule.params = `(min-width: ${calculatedLowerBreak})`;
+          // postcssAtrule.params = `(min-width: ${calculatedLowerBreak})`;
+          postcssAtrule.params = getMediaQueriesParams({
+            orientation,
+            mediaQueriesParams: `(min-width: ${calculatedLowerBreak})`,
+            atrule: postcssAtrule,
+          });
         }
       } else {
         postcssAtrule.remove();
@@ -100,7 +121,12 @@ module.exports = (atrule, config) => {
 
     if (HAS_EM.test(lowerBreak)) {
       if (HAS_EM.test(upperBreak)) {
-        postcssAtrule.params = `(min-width: ${lowerBreak}) and (max-width: ${upperBreak})`;
+        // postcssAtrule.params = `(min-width: ${lowerBreak}) and (max-width: ${upperBreak})`;
+        postcssAtrule.params = getMediaQueriesParams({
+          orientation,
+          mediaQueriesParams: `(min-width: ${lowerBreak}) and (max-width: ${upperBreak})`,
+          atrule: postcssAtrule,
+        });
       } else {
         postcssAtrule.remove();
         throw new Error(

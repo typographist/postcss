@@ -2,6 +2,7 @@ const {
   AMPERSAND,
   LAST_COMMA,
   LINE_BREAKS_AND_SPACES,
+  COMMA_AND_NEW_LINE,
 } = require('../../constants/regexes');
 const cleanNode = require('../utils/cleanNode');
 const transformAfterNodes = require('../utils/transformAfterNodes');
@@ -13,7 +14,6 @@ const transformAfterNodes = require('../utils/transformAfterNodes');
  */
 module.exports = rule => {
   const postcssNode = rule;
-  const COMMA_AND_SPACE = ',\n';
 
   cleanNode(rule);
   transformAfterNodes(rule);
@@ -34,7 +34,7 @@ module.exports = rule => {
     for (let j = 0; j < nestedRulesList.length; j += 1) {
       selectorName +=
         nestedRulesList[j].replace(AMPERSAND, parentRulesList[i]) +
-        COMMA_AND_SPACE;
+        COMMA_AND_NEW_LINE;
     }
   }
 

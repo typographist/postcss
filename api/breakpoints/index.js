@@ -10,7 +10,6 @@ const getFirstBreakpoint = require('./getFirstBreakpoint');
 const getNameOfMinBreakpoint = require('./getNameOfMinBreakpoint');
 const getNameOfNextBreakpoint = require('./getNameOfNextBreakpoint');
 const getNamesOfBreakpoints = require('./getNamesOfBreakpoints');
-const removeRoundBrackets = require('./removeRoundBrackets');
 
 module.exports = {
   breakpointsToCebabCase,
@@ -25,5 +24,4 @@ module.exports = {
   getNameOfMinBreakpoint,
   getNameOfNextBreakpoint,
   getNamesOfBreakpoints,
-  removeRoundBrackets,
 };

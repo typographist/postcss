@@ -1,12 +1,18 @@
 const { toEm, camelize, decamelize } = require('../../../helpers');
-const { HAS_EM, HAS_PX } = require('../../../constants/regexes');
+const {
+  ALL_CHARACTERS_AFTER_COLON,
+  ALL_CHARACTERS_BEFORE_COLON,
+  ALL_ROUND_BRACKETS,
+  HAS_EM,
+  HAS_PX,
+} = require('../../../constants/regexes');
 const {
   breakpointsToCebabCase,
   calcBreakpointAbove,
   checkIsBreakpointName,
   getNamesOfBreakpoints,
-  removeRoundBrackets,
 } = require('../../../api/breakpoints');
+const { getMediaQueriesParams } = require('../../utils');
 
 /**
  *  !!! @t-above takes the names of breakpoints, values in pixels or em.
@@ -23,32 +29,53 @@ const {
 const calcParamsOfAtruleAbove = (atrule, config) => {
   const postcssAtrule = atrule;
   const namesOfBreakpoints = getNamesOfBreakpoints(config);
-  const paramsWithoutBrackets = camelize(
-    removeRoundBrackets(postcssAtrule.params),
+
+  const rawParams = camelize(
+    postcssAtrule.params
+      .replace(ALL_CHARACTERS_AFTER_COLON, '')
+      .replace(ALL_ROUND_BRACKETS, ''),
   );
-  const isBreakpointName = checkIsBreakpointName(
-    namesOfBreakpoints,
-    paramsWithoutBrackets,
+
+  const orientation = postcssAtrule.params.replace(
+    ALL_CHARACTERS_BEFORE_COLON,
+    '',
   );
+
+  const isBreakpointName = checkIsBreakpointName(namesOfBreakpoints, rawParams);
 
   let result = null;
 
   try {
     if (isBreakpointName) {
-      result = `(min-width: ${calcBreakpointAbove(
-        paramsWithoutBrackets,
-        config,
-      )})`;
-    } else if (HAS_PX.test(paramsWithoutBrackets)) {
-      const breakpointValue = `${toEm(paramsWithoutBrackets)}em`;
-      result = `(min-width: ${breakpointValue})`;
-    } else if (HAS_EM.test(paramsWithoutBrackets)) {
-      result = `(min-width: ${paramsWithoutBrackets})`;
+      result = getMediaQueriesParams({
+        orientation,
+        mediaQueriesParams: `(min-width: ${calcBreakpointAbove(
+          rawParams,
+          config,
+        )})`,
+        atrule: postcssAtrule,
+      });
+    } else if (HAS_PX.test(rawParams)) {
+      const breakpointValue = `${toEm(rawParams)}em`;
+      result = getMediaQueriesParams({
+        orientation,
+        mediaQueriesParams: `(min-width: ${breakpointValue})`,
+        atrule: postcssAtrule,
+      });
+    } else if (HAS_EM.test(rawParams)) {
+      result = getMediaQueriesParams({
+        orientation,
+        mediaQueriesParams: `(min-width: ${rawParams})`,
+        atrule: postcssAtrule,
+      });
     } else {
       result = '';
       postcssAtrule.remove();
       const breakpointLine = breakpointsToCebabCase(namesOfBreakpoints);
-      const valueWithoutBrackets = removeRoundBrackets(postcssAtrule.params);
+      const valueWithoutBrackets = postcssAtrule.params.replace(
+        ALL_ROUND_BRACKETS,
+        '',
+      );
       const exampleBreak = decamelize(namesOfBreakpoints[2], {
         separator: '-',
       });
