@@ -1,5 +1,11 @@
 const { toEm, camelize, decamelize } = require('../../../helpers');
-const { HAS_EM, HAS_PX } = require('../../../constants/regexes');
+const {
+  ALL_CHARACTERS_AFTER_COLON,
+  ALL_CHARACTERS_BEFORE_COLON,
+  ALL_ROUND_BRACKETS,
+  HAS_EM,
+  HAS_PX,
+} = require('../../../constants/regexes');
 const {
   breakpointsToCebabCase,
   calcBreakpointAbove,
@@ -21,11 +27,21 @@ const {
  * @return {string} String with "min-width: " value convertible to em.
  */
 const calcParamsOfAtruleAbove = (atrule, config) => {
+  console.log('yep ---------------');
   const postcssAtrule = atrule;
   const namesOfBreakpoints = getNamesOfBreakpoints(config);
+
   const paramsWithoutBrackets = camelize(
-    removeRoundBrackets(postcssAtrule.params),
+    postcssAtrule.params
+      // .replace(ALL_CHARACTERS_AFTER_COLON, '')
+      .replace(ALL_ROUND_BRACKETS, ''),
   );
+
+  const orientation = postcssAtrule.params.replace(
+    ALL_CHARACTERS_BEFORE_COLON,
+    '',
+  );
+
   const isBreakpointName = checkIsBreakpointName(
     namesOfBreakpoints,
     paramsWithoutBrackets,
@@ -35,10 +51,12 @@ const calcParamsOfAtruleAbove = (atrule, config) => {
 
   try {
     if (isBreakpointName) {
-      result = `(min-width: ${calcBreakpointAbove(
-        paramsWithoutBrackets,
-        config,
-      )})`;
+      if (orientation === '') {
+        result = `(min-width: ${calcBreakpointAbove(
+          paramsWithoutBrackets,
+          config,
+        )})`;
+      }
     } else if (HAS_PX.test(paramsWithoutBrackets)) {
       const breakpointValue = `${toEm(paramsWithoutBrackets)}em`;
       result = `(min-width: ${breakpointValue})`;
