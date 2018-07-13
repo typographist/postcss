@@ -1,9 +1,9 @@
 const cleanNode = require('./cleanNode');
-const getMediaQueriesWithOrientation = require('./getMediaQueriesWithOrientation');
+const getMediaQueriesParams = require('./getMediaQueriesParams');
 const transformAfterNodes = require('./transformAfterNodes');
 
 module.exports = {
   cleanNode,
-  getMediaQueriesWithOrientation,
+  getMediaQueriesParams,
   transformAfterNodes,
 };

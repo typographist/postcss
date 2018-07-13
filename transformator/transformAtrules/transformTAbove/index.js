@@ -13,6 +13,7 @@ const {
   getNamesOfBreakpoints,
   removeRoundBrackets,
 } = require('../../../api/breakpoints');
+const { getMediaQueriesParams } = require('../../utils');
 
 /**
  *  !!! @t-above takes the names of breakpoints, values in pixels or em.
@@ -32,7 +33,7 @@ const calcParamsOfAtruleAbove = (atrule, config) => {
 
   const paramsWithoutBrackets = camelize(
     postcssAtrule.params
-      // .replace(ALL_CHARACTERS_AFTER_COLON, '')
+      .replace(ALL_CHARACTERS_AFTER_COLON, '')
       .replace(ALL_ROUND_BRACKETS, ''),
   );
 
@@ -50,17 +51,27 @@ const calcParamsOfAtruleAbove = (atrule, config) => {
 
   try {
     if (isBreakpointName) {
-      if (orientation === '') {
-        result = `(min-width: ${calcBreakpointAbove(
+      result = getMediaQueriesParams({
+        orientation,
+        mediaQueriesParams: `(min-width: ${calcBreakpointAbove(
           paramsWithoutBrackets,
           config,
-        )})`;
-      }
+        )})`,
+        atrule: postcssAtrule,
+      });
     } else if (HAS_PX.test(paramsWithoutBrackets)) {
       const breakpointValue = `${toEm(paramsWithoutBrackets)}em`;
-      result = `(min-width: ${breakpointValue})`;
+      result = getMediaQueriesParams({
+        orientation,
+        mediaQueriesParams: `(min-width: ${breakpointValue})`,
+        atrule: postcssAtrule,
+      });
     } else if (HAS_EM.test(paramsWithoutBrackets)) {
-      result = `(min-width: ${paramsWithoutBrackets})`;
+      result = getMediaQueriesParams({
+        orientation,
+        mediaQueriesParams: `(min-width: ${paramsWithoutBrackets})`,
+        atrule: postcssAtrule,
+      });
     } else {
       result = '';
       postcssAtrule.remove();

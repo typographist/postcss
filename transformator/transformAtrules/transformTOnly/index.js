@@ -11,7 +11,7 @@ const {
   ALL_CHARACTERS_BEFORE_COLON,
   ALL_ROUND_BRACKETS,
 } = require('../../../constants/regexes');
-const { getMediaQueriesWithOrientation } = require('../../utils');
+const { getMediaQueriesParams } = require('../../utils');
 
 /**
  * !!! @t-only accepts only the names of breakpoints.
@@ -50,7 +50,7 @@ const calcParamsOfAtruleAbove = (atrule, config) => {
       // is not last breakpoint name in user configuration.
       if (isArray(breakValue)) {
         const [lowerBreak, upperBreak] = breakValue;
-        result = getMediaQueriesWithOrientation({
+        result = getMediaQueriesParams({
           orientation,
           mediaQueriesParams: `(min-width: ${lowerBreak}) and (max-width: ${upperBreak})`,
           atrule: postcssAtrule,
@@ -58,7 +58,7 @@ const calcParamsOfAtruleAbove = (atrule, config) => {
 
         // if last breakpoint name in user configuration.
       } else if (typeof breakValue === 'string') {
-        result = getMediaQueriesWithOrientation({
+        result = getMediaQueriesParams({
           orientation,
           mediaQueriesParams: `(min-width: ${breakValue})`,
           atrule: postcssAtrule,
