@@ -27,7 +27,6 @@ const {
  * @return {string} String with "min-width: " value convertible to em.
  */
 const calcParamsOfAtruleAbove = (atrule, config) => {
-  console.log('yep ---------------');
   const postcssAtrule = atrule;
   const namesOfBreakpoints = getNamesOfBreakpoints(config);
 
