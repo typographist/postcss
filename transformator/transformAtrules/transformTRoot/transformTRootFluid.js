@@ -1,11 +1,9 @@
+const { ALL_ROUND_BRACKETS } = require('../../../constants/regexes');
 const { mediaAtrule } = require('../../atrules');
 const { variableDecl, fontSizeDecl } = require('../../decls');
 const getRootRule = require('./getRootRule');
 const { percentage, toEm } = require('../../../helpers');
-const {
-  getFirstBreakpoint,
-  removeRoundBrackets,
-} = require('../../../api/breakpoints');
+const { getFirstBreakpoint } = require('../../../api/breakpoints');
 
 /**
  * The function replaces @t-root(fluid) with the liquid font size for each breakpoint.
@@ -87,7 +85,7 @@ module.exports = (atrule, breakpoints) => {
 module.exports.test = atrule => {
   const { parent, params } = atrule;
   const isRootRule = parent.selector === ':root';
-  const hasFluid = removeRoundBrackets(params) === 'fluid';
+  const hasFluid = params.replace(ALL_ROUND_BRACKETS, '') === 'fluid';
   let result = null;
 
   if ([parent, isRootRule].every(Boolean)) {
@@ -99,8 +97,9 @@ module.exports.test = atrule => {
         atrule.remove();
         throw new Error(
           `
-          "${removeRoundBrackets(
-            params,
+          "${params.replace(
+            ALL_ROUND_BRACKETS,
+            '',
           )}" is incorrect value of @t-root. Use @t-root(fluid).
           `,
         );

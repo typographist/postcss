@@ -2,7 +2,7 @@ const run = require('../../../helpersForTests/run');
 const { userConfig } = require('../../../helpersForTests/mocks');
 
 describe('transformator', () => {
-  describe('@t-below', () => {
+  describe('@t-below atrule', () => {
     it('should replace @t-below(desktop) with @media (min-width: 61.99875em)', () => {
       const source = `
           .test {
@@ -49,6 +49,44 @@ describe('transformator', () => {
 
       const compiled = `
           @media (max-width: 40em) {
+    .test {
+        background-color: gold;
+    }
+}`;
+
+      return run(source, compiled, userConfig);
+    });
+  });
+
+  describe('@t-below atrule with orientation', () => {
+    it('should replace @t-below(desktop):landscape with @media (min-width: 61.99875em) and (orientation: landscape)', () => {
+      const source = `
+            .test {
+              @t-below (desktop):landscape {
+                background-color: gold;
+                }
+            }`;
+
+      const compiled = `
+            @media (max-width: 61.99875em) and (orientation: landscape) {
+    .test {
+        background-color: gold;
+    }
+}`;
+
+      return run(source, compiled, userConfig);
+    });
+
+    it('should replace @t-below(desktop):portrait with @media (min-width: 61.99875em) and (orientation: portrait)', () => {
+      const source = `
+            .test {
+              @t-below (desktop):portrait {
+                background-color: gold;
+                }
+            }`;
+
+      const compiled = `
+            @media (max-width: 61.99875em) and (orientation: portrait) {
     .test {
         background-color: gold;
     }

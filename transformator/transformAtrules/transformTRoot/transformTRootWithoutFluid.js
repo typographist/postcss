@@ -1,9 +1,6 @@
+const { ALL_ROUND_BRACKETS } = require('../../../constants/regexes');
 const { mediaAtrule } = require('../../atrules');
-const cleanNode = require('../../utils/cleanNode');
-const {
-  getFirstBreakpoint,
-  removeRoundBrackets,
-} = require('../../../api/breakpoints');
+const { getFirstBreakpoint } = require('../../../api/breakpoints');
 
 const { variableDecl, fontSizeDecl } = require('../../decls');
 const getRootRule = require('./getRootRule');
@@ -54,7 +51,7 @@ module.exports = (atrule, breakpoints) => {
 module.exports.test = atrule => {
   const { parent, params } = atrule;
   const isRootRule = parent.selector === ':root';
-  const isEmptyParams = removeRoundBrackets(params) === '';
+  const isEmptyParams = params.replace(ALL_ROUND_BRACKETS, '') === '';
 
   return [parent, isRootRule, isEmptyParams].every(Boolean);
 };

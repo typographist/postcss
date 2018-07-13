@@ -2,7 +2,7 @@ const run = require('../../../helpersForTests/run');
 const { userConfig } = require('../../../helpersForTests/mocks');
 
 describe('transformator', () => {
-  describe('@t-between', () => {
+  describe('@t-between atrule', () => {
     it(
       'should replace @t-between(tablet, desktop) with ' +
         '@media (min-width: 36em) and (max-width: 61.99875em)',
@@ -59,6 +59,52 @@ describe('transformator', () => {
 
         const compiled = `
           @media (min-width: 30em) and (max-width: 50em) {
+    .test {
+        color: hotpink;
+    }
+}`;
+
+        return run(source, compiled, userConfig);
+      },
+    );
+  });
+
+  describe('@t-between atrule with orientation', () => {
+    it(
+      'should replace @t-between(30em, 50em):landscape with ' +
+        '@media (min-width: 62.5em) and (max-width: 125em) and (orientation: landscape)',
+      () => {
+        const source = `
+          .test {
+            @t-between(30em, 50em):landscape {
+              color: hotpink;
+            }
+          }`;
+
+        const compiled = `
+          @media (min-width: 30em) and (max-width: 50em) and (orientation: landscape) {
+    .test {
+        color: hotpink;
+    }
+}`;
+
+        return run(source, compiled, userConfig);
+      },
+    );
+
+    it(
+      'should replace @t-between(30em, 50em):portrait with ' +
+        '@media (min-width: 62.5em) and (max-width: 125em) and (orientation: portrait)',
+      () => {
+        const source = `
+          .test {
+            @t-between(30em, 50em):portrait {
+              color: hotpink;
+            }
+          }`;
+
+        const compiled = `
+          @media (min-width: 30em) and (max-width: 50em) and (orientation: portrait) {
     .test {
         color: hotpink;
     }

@@ -1,4 +1,7 @@
+const ALL_CHARACTERS_AFTER_COLON = /:.+\b/;
+const ALL_CHARACTERS_BEFORE_COLON = /^\(.+\):?/;
 const ALL_ROUND_BRACKETS = /[()]/g;
+const COMMA_AND_NEW_LINE = ',\n';
 const DASH_HYPHEN_WHITESPACE_ANY_CHARACTERS = /[-_\s]+(.)?/g;
 const AMPERSAND = /&/;
 const HAS_AT = /-?\b\d+(\.\d+)?(px|em) at -?\d+(\.\d+)??\b/;
@@ -20,7 +23,10 @@ const SEPARATE_STRING_INTO_WORDS_WITH_CAPITAL_LETTER = /(?=[A-Z])/;
 const T_STEP_WITH_BRACKET = /t-step\(/;
 
 module.exports = {
+  ALL_CHARACTERS_AFTER_COLON,
+  ALL_CHARACTERS_BEFORE_COLON,
   ALL_ROUND_BRACKETS,
+  COMMA_AND_NEW_LINE,
   DASH_HYPHEN_WHITESPACE_ANY_CHARACTERS,
   AMPERSAND,
   HAS_AT,
