@@ -78,7 +78,7 @@ const calcParamsOfAtruleAbove = (atrule, config) => {
 
       throw new Error(
         `
-          "${valueWithoutBrackets}" is incorrect parameter of @t-only. Use ${breakpointLine}.
+          \`${valueWithoutBrackets}\` is incorrect parameter of @t-only. Use \`${breakpointLine}\`.
           For example @t-only(${exampleBreak}).
         `,
       );

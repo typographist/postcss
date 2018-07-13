@@ -98,7 +98,7 @@ module.exports = (atrule, config) => {
           .join(', ');
 
         throw new Error(`
-          "${upperBreak}" is incorrect second parameter of @t-between. Use "${recommendedBreaks}".
+          \`${upperBreak}\` is incorrect second parameter of @t-between. Use \`${recommendedBreaks}\`.
           `);
       }
     }
@@ -112,7 +112,7 @@ module.exports = (atrule, config) => {
         postcssAtrule.remove();
         throw new Error(
           `
-            "${upperBreak}" is incorrect second parameter of @t-between. If the first parameter has pixels,
+            \`${upperBreak}\` is incorrect second parameter of @t-between. If the first parameter has pixels,
             then the second parameter must has pixels. For example @t-between(1000px, 2000px).
           `,
         );
@@ -131,7 +131,7 @@ module.exports = (atrule, config) => {
         postcssAtrule.remove();
         throw new Error(
           `
-            "${upperBreak}" is incorrect second parameter of @t-between.
+            \`${upperBreak}\` is incorrect second parameter of @t-between.
             If the first parameter has ems, then the second parameter must has ems. For example @t-between(30em, 50em).
           `,
         );

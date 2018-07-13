@@ -12,9 +12,9 @@ const { isNumeric } = require('../../../helpers');
 const { setParentSelector } = require('../../selectors');
 
 /**
- * @example t-ms(12) => 12
- * @param {string} tMsFunctionWithVal t-ms function with value.
- * @return {string} Raw value without t-ms function.
+ * @example t-step(12) => 12
+ * @param {string} tMsFunctionWithVal t-step function with value.
+ * @return {string} Raw value without t-step function.
  */
 const replaceRoundBracketsAndTStepFunction = tMsFunctionWithVal =>
   tMsFunctionWithVal
@@ -52,9 +52,9 @@ module.exports = (decl, config) => {
 };
 
 /**
- * Does the font-size have a t-ms function? If it contains, check the contents of the function.
+ * Does the font-size have a t-step function? If it contains, check the contents of the function.
  * If the contents is a number, return true, otherwise return false and warn about the user error.
- * @example font-size: t-ms(2) => true.
+ * @example font-size: t-step(2) => true.
  * @param {Object} decl Css declaration.
  * @return {boolean}../
  */
@@ -74,7 +74,7 @@ module.exports.test = decl => {
         result = false;
         decl.parent.remove();
         throw new Error(
-          `"${msValue}" is incorrect value of t-ms function. Use numbers. For example t-ms(3).`,
+          `\`${msValue}\` is incorrect value of t-step function. Use numbers. For example t-step(3).`,
         );
       }
     } catch (err) {

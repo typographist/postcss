@@ -65,7 +65,7 @@ const calcParamsOfAtruleBelow = (atrule, config) => {
           .filter((item, i, arr) => item === arr[arr.length - 2]);
         throw new Error(
           `
-          ${rawParams} is incorrect parameter in @t-below. Use ${penultimateBreakName} as a maximum breakpoint.
+          \`${rawParams}\` is incorrect parameter in @t-below. Use \`${penultimateBreakName}\` as a maximum breakpoint.
           `,
         );
       }
@@ -102,7 +102,7 @@ const calcParamsOfAtruleBelow = (atrule, config) => {
       });
       throw new Error(
         `
-          "${valueWithoutBrackets}" is incorrect parameter of @t-below. Use "${breakpointLine}" or the value in pixels or in ems.
+          \`${valueWithoutBrackets}\` is incorrect parameter of @t-below. Use \`${breakpointLine}\` or the value in pixels or in ems.
           For example @t-below(${exampleBreak}) or @t-below(800px) or @t-below(40em)
         `,
       );

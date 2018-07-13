@@ -67,7 +67,7 @@ module.exports = (decl, config) => {
       } else {
         closestRule.remove();
         throw new Error(
-          `${atruleRawValue} is invalid breakpoint name. Use ${breakpointsList} to convert step to rem`,
+          `\`${atruleRawValue}\` is invalid breakpoint name. Use \`${breakpointsList}\` to convert step to rem`,
         );
       }
     } else if ([!isRoot, !isTAbove, !isTBelow, !isTOnly].every(Boolean)) {

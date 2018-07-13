@@ -81,7 +81,7 @@ const calcParamsOfAtruleAbove = (atrule, config) => {
       });
       throw new Error(
         `
-          "${valueWithoutBrackets}" is invalid argument of @t-above. Use "${breakpointLine}" or the value in pixels or in ems. 
+          \`${valueWithoutBrackets}\` is invalid argument of @t-above. Use \`${breakpointLine}\` or the value in pixels or in ems. 
           For example @t-above(${exampleBreak}) or @t-above(800px) or @t-above(40em).
         `,
       );

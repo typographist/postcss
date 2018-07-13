@@ -16,7 +16,7 @@ const ratioHasAt = ratio => {
       result = false;
       throw new Error(
         `
-        ${ratio} is incorrect value. The string must have a positive or negative integer, 
+        \`${ratio}\` is incorrect value. The string must have a positive or negative integer, 
         or a floating-point number in units of px or em,a space, a word 'at', a space, 
         a positive or negative floating point number without units of measure.
         `,

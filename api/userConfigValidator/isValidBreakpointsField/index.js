@@ -37,7 +37,7 @@ const breakpointHasPxOrEm = breakpoint => {
     } else {
       result = false;
       throw new Error(
-        `${breakpoint} is incorrect value! Please, use pixels or em.`,
+        `\`${breakpoint}\` is incorrect value! Please, use pixels or em.`,
       );
     }
   } catch (err) {

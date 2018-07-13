@@ -97,10 +97,10 @@ module.exports.test = atrule => {
         atrule.remove();
         throw new Error(
           `
-          "${params.replace(
+          \`${params.replace(
             ALL_ROUND_BRACKETS,
             '',
-          )}" is incorrect value of @t-root. Use @t-root(fluid).
+          )}\` is incorrect value of @t-root. Use @t-root(fluid).
           `,
         );
       }
