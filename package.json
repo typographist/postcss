@@ -48,10 +48,10 @@
   "main": "./index.js",
   "scripts": {
     "test": "cross-env jest",
-    "test:watch": "cross-env jest --watch",
-    "lint": "cross-env eslint **/*.js"
+    "test:watch": "cross-env jest --watch"
   },
   "devDependencies": {
+    "codecov": "^3.0.4",
     "eslint": "^4.15.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-config-prettier": "^2.9.0",
