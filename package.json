@@ -1,6 +1,6 @@
 {
   "name": "typographist",
-  "version": "3.1.0",
+  "version": "0.0.0-development",
   "description": "Toolkit for the rapid construction of interfaces with high quality typography.",
   "license": "MIT",
   "homepage": "https://github.com/typography-gang/typographist",
@@ -47,8 +47,10 @@
   },
   "main": "./index.js",
   "scripts": {
-    "test": "cross-env jest",
-    "test:watch": "cross-env jest --watch"
+    "test": "cross-env jest && codecov",
+    "test:watch": "cross-env jest --watch",
+    "travis-deploy-once": "travis-deploy-once",
+    "semantic-release": "semantic-release"
   },
   "devDependencies": {
     "codecov": "^3.0.4",
@@ -58,7 +60,9 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jest": "^21.17.0",
     "eslint-plugin-prettier": "^2.6.0",
-    "jest": "^23.0.1"
+    "jest": "^23.0.1",
+    "travis-deploy-once": "^5.0.1",
+    "semantic-release": "^15.7.1"
   },
   "dependencies": {
     "cross-env": "^5.1.4",
