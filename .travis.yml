@@ -5,7 +5,5 @@ node_js:
   - "8"
 install:
   - YARN_IGNORE_ENGINES=true yarn
-before_install:
-  - pip install --user codecov
 after_success:
   - codecov --file coverage/lcov.info --disable search
