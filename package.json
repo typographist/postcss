@@ -1,13 +1,13 @@
 {
-  "name": "typographist",
+  "name": "@typographist/postcss",
   "version": "0.0.0-development",
   "description": "Toolkit for the rapid construction of interfaces with high quality typography.",
   "license": "MIT",
-  "homepage": "https://github.com/typography-gang/typographist",
-  "bugs": "https://github.com/typography-gang/typographist/issues",
+  "homepage": "https://github.com/typographist/postcss",
+  "bugs": "https://github.com/typographist/postcss/issues",
   "repository": {
     "type": "git",
-    "repository": "https://github.com/typography-gang/typographist"
+    "repository": "https://github.com/typographist/postcss"
   },
   "author": {
     "name": "Maxim Alyoshin",
@@ -65,6 +65,7 @@
     "semantic-release": "^15.7.1"
   },
   "dependencies": {
+    "@typographist/core": "^1.0.0",
     "cross-env": "^5.1.4",
     "postcss": "^6.0.22"
   }

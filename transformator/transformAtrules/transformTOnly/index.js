@@ -1,15 +1,19 @@
-const { isArray, camelize, decamelize } = require('../../../helpers');
+const {
+  isArray,
+  camelize,
+  decamelize
+} = require('@typographist/core/helpers');
 const {
   breakpointsToCebabCase,
   calcBreakpointOnly,
   checkIsBreakpointName,
   getNamesOfBreakpoints,
-} = require('../../../api/breakpoints');
+} = require('@typographist/core/api');
 const {
   ALL_CHARACTERS_AFTER_COLON,
   ALL_CHARACTERS_BEFORE_COLON,
   ALL_ROUND_BRACKETS,
-} = require('../../../constants/regexes');
+} = require('@typographist/core/constants');
 const { getMediaQueriesParams } = require('../../utils');
 
 /**

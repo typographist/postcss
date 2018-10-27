@@ -3,7 +3,7 @@ const {
   LAST_COMMA,
   LINE_BREAKS_AND_SPACES,
   COMMA_AND_NEW_LINE,
-} = require('../../constants/regexes');
+} = require('@typographist/core/constants');
 const cleanNode = require('../utils/cleanNode');
 const transformAfterNodes = require('../utils/transformAfterNodes');
 

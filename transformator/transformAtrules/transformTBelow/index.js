@@ -1,16 +1,16 @@
-const { toEm, camelize, decamelize } = require('../../../helpers');
+const { toEm, camelize, decamelize } = require('@typographist/core/helpers');
 const {
   ALL_CHARACTERS_AFTER_COLON,
   ALL_CHARACTERS_BEFORE_COLON,
   ALL_ROUND_BRACKETS,
   HAS_EM,
   HAS_PX,
-} = require('../../../constants/regexes');
+} = require('@typographist/core/constants');
 const {
   calcBreakpointBelow,
   checkIsBreakpointName,
   getNamesOfBreakpoints,
-} = require('../../../api/breakpoints');
+} = require('@typographist/core/api');
 const { getMediaQueriesParams } = require('../../utils');
 
 /**

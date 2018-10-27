@@ -1,17 +1,17 @@
-const { camelize } = require('../../../helpers');
-const stepToRem = require('../../../api/modularScale/stepToRem');
-const { makeBreakpointsModel } = require('../../../api/makeBreakpointsModel');
+const { camelize } = require('@typographist/core/helpers');
+const { stepToRem } = require('@typographist/core/api');
+const { makeBreakpointsModel } = require('@typographist/core/api');
 const {
   ALL_ROUND_BRACKETS,
   HAS_FONT_SIZE,
   STEP_UNIT,
   POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER_WITH_STEP_UNIT_MEASURE,
-} = require('../../../constants/regexes');
+} = require('@typographist/core/constants');
 const {
   breakpointsToCebabCase,
   checkIsBreakpointName,
   getNamesOfBreakpoints,
-} = require('../../../api/breakpoints');
+} = require('@typographist/core/api');
 
 /**
  *

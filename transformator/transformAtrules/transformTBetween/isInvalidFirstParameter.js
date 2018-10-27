@@ -1,8 +1,8 @@
-const { HAS_EM, HAS_PX } = require('../../../constants/regexes');
+const { HAS_EM, HAS_PX } = require('@typographist/core/constants');
 const {
   checkIsBreakpointName,
   getNamesOfBreakpoints,
-} = require('../../../api/breakpoints');
+} = require('@typographist/core/api');
 
 module.exports = (node, lowerBreakpoint, breakpointsList) => {
   node.remove();

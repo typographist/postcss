@@ -1,9 +1,9 @@
-const { ALL_ROUND_BRACKETS } = require('../../../constants/regexes');
+const { ALL_ROUND_BRACKETS } = require('@typographist/core/constants');
+const { getFirstBreakpoint } = require('@typographist/core/api');
+const { percentage, toEm } = require('@typographist/core/helpers');
 const { mediaAtrule } = require('../../atrules');
 const { variableDecl, fontSizeDecl } = require('../../decls');
 const getRootRule = require('./getRootRule');
-const { percentage, toEm } = require('../../../helpers');
-const { getFirstBreakpoint } = require('../../../api/breakpoints');
 
 /**
  * The function replaces @t-root(fluid) with the liquid font size for each breakpoint.

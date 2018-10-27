@@ -1,7 +1,7 @@
 const url = require('postcss-url');
 const cssImport = require('postcss-import');
 const autoprefixer = require('autoprefixer');
-const { typographist, ratios } = require('typographist');
+const { typographist, ratios } = require('@typographist/postcss');
 
 module.exports = () => ({
   plugins: [

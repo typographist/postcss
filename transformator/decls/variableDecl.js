@@ -1,5 +1,5 @@
 const postcss = require('postcss');
-const { decamelize } = require('../../helpers');
+const { decamelize } = require('@typographist/core/helpers');
 
 /**
  *

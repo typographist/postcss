@@ -1,9 +1,9 @@
 const postcss = require('postcss');
+const { toRem } = require('@typographist/core/helpers');
+const { getFirstBreakpoint } = require('@typographist/core/api');
+const { makeBreakpointsModel } = require('@typographist/core/api');
 const { mediaAtrule } = require('../../atrules');
 const { fontSizeDecl, lineHeightDecl } = require('../../decls');
-const { getFirstBreakpoint } = require('../../../api/breakpoints');
-const { toRem } = require('../../../helpers');
-const { makeBreakpointsModel } = require('../../../api/makeBreakpointsModel');
 
 /**
  * @param {number} baseSize Base font-size.

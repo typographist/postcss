@@ -4,7 +4,7 @@ const flexbugs = require('postcss-flexbugs-fixes');
 const customSelectors = require('postcss-custom-selectors');
 const selectorNot = require('postcss-selector-not');
 const cssImport = require('postcss-import');
-const { typographist, ratios } = require('typographist');
+const { typographist, ratios } = require('@typographist/postcss');
 
 module.exports = () => ({
   plugins: [

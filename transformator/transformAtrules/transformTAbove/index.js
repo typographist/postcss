@@ -1,17 +1,17 @@
-const { toEm, camelize, decamelize } = require('../../../helpers');
+const { toEm, camelize, decamelize } = require('@typographist/core/helpers');
 const {
   ALL_CHARACTERS_AFTER_COLON,
   ALL_CHARACTERS_BEFORE_COLON,
   ALL_ROUND_BRACKETS,
   HAS_EM,
   HAS_PX,
-} = require('../../../constants/regexes');
+} = require('@typographist/core/constants');
 const {
   breakpointsToCebabCase,
   calcBreakpointAbove,
   checkIsBreakpointName,
   getNamesOfBreakpoints,
-} = require('../../../api/breakpoints');
+} = require('@typographist/core/api');
 const { getMediaQueriesParams } = require('../../utils');
 
 /**
@@ -81,7 +81,7 @@ const calcParamsOfAtruleAbove = (atrule, config) => {
       });
       throw new Error(
         `
-          \`${valueWithoutBrackets}\` is invalid argument of @t-above. Use \`${breakpointLine}\` or the value in pixels or in ems. 
+          \`${valueWithoutBrackets}\` is invalid argument of @t-above. Use \`${breakpointLine}\` or the value in pixels or in ems.
           For example @t-above(${exampleBreak}) or @t-above(800px) or @t-above(40em).
         `,
       );

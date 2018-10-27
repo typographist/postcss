@@ -1,4 +1,4 @@
-const { makeBreakpointsModel } = require('../../../api/makeBreakpointsModel');
+const { makeBreakpointsModel } = require('@typographist/core/api');
 const transformTRootFluid = require('./transformTRootFluid');
 const transformTRootWithoutFluid = require('./transformTRootWithoutFluid');
 

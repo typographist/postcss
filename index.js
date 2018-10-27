@@ -4,7 +4,7 @@ const {
   transformDecls,
   transformRules,
 } = require('./transformator');
-const ratios = require('./constants/ratios');
+const { ratios } = require('@typographist/core/constants');
 
 const defaultConfig = {
   base: '16px',

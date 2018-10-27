@@ -1,4 +1,4 @@
-const { AMPERSAND } = require('../../constants/regexes');
+const { AMPERSAND } = require('@typographist/core/constants');
 const cleanNode = require('../utils/cleanNode');
 const transformAfterNodes = require('../utils/transformAfterNodes');
 

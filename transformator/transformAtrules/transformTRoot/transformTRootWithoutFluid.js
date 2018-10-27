@@ -1,10 +1,10 @@
-const { ALL_ROUND_BRACKETS } = require('../../../constants/regexes');
-const { mediaAtrule } = require('../../atrules');
-const { getFirstBreakpoint } = require('../../../api/breakpoints');
+const { ALL_ROUND_BRACKETS } = require('@typographist/core/constants');
+const { getFirstBreakpoint } = require('@typographist/core/api');
+const { percentage } = require('@typographist/core/helpers');
 
+const { mediaAtrule } = require('../../atrules');
 const { variableDecl, fontSizeDecl } = require('../../decls');
 const getRootRule = require('./getRootRule');
-const { percentage } = require('../../../helpers');
 
 /**
  * @param {Object} atrule @t-root atrule.

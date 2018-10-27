@@ -1,5 +1,5 @@
 const postcss = require('postcss');
-const toEm = require('../../helpers/toEm');
+const { toEm } = require('@typographist/core/helpers');
 
 /**
  * Create a media expression and add child declarations to it.

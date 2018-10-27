@@ -51,11 +51,11 @@ To install the stable version:
 Use yarn or npm
 
 ```
-yarn add postcss typographist
+yarn add postcss @typographist/postcss
 ```
 
 ```
-npm i postcss typographist
+npm i postcss @typographist/postcss
 ```
 
 ### Configuration
@@ -65,13 +65,13 @@ npm i postcss typographist
 requireJs
 
 ```js
-const { typographist, ratios } = require('typographist');
+const { typographist, ratios } = require('@typographist/postcss');
 ```
 
 es6 modules
 
 ```js
-import { typographist, ratios } from 'typographist';
+import { typographist, ratios } from '@typographist/postcss';
 ```
 
 #### Base
@@ -200,7 +200,7 @@ I hope it was not difficult for you. The idea of such a simple configuration I b
 You need to create a postcss.config.js
 
 ```js
-const { typographist, ratios } = require('typographist');
+const { typographist, ratios } = require('@typographist/postcss');
 
 module.exports = () => ({
   plugins: [
@@ -238,7 +238,7 @@ const rename = require('gulp-rename');
 const cssnano = require('gulp-cssnano');
 const notify = require('gulp-notify');
 const combine = require('stream-combiner2').obj;
-const { typographist, ratios } = require('typographist');
+const { typographist, ratios } = require('@typographist/postcss');
 
 const processors = [
   typographist({

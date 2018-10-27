@@ -1,14 +1,14 @@
-const { makeBreakpointsModel } = require('../../../api/makeBreakpointsModel');
-const stepToRem = require('../../../api/modularScale/stepToRem');
-const { mediaAtrule } = require('../../atrules');
+const { makeBreakpointsModel } = require('@typographist/core/api');
+const { stepToRem } = require('@typographist/core/api');
 const {
   HAS_FONT_SIZE,
   HAS_TSTEP_FUNCTION_WITH_VALUE,
   T_STEP_WITH_BRACKET,
   REVERCE_BRACKET,
-} = require('../../../constants/regexes');
+} = require('@typographist/core/constants');
+const { isNumeric } = require('@typographist/core/helpers');
+const { mediaAtrule } = require('../../atrules');
 const { fontSizeDecl } = require('../../decls');
-const { isNumeric } = require('../../../helpers');
 const { setParentSelector } = require('../../selectors');
 
 /**
