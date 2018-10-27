@@ -1,6 +1,6 @@
 {
   "name": "@typographist/postcss",
-  "version": "0.0.0-development",
+  "version": "4.0.0-pre",
   "description": "Toolkit for the rapid construction of interfaces with high quality typography.",
   "license": "MIT",
   "homepage": "https://github.com/typographist/postcss",
