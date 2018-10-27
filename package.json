@@ -9,6 +9,9 @@
     "type": "git",
     "repository": "https://github.com/typographist/postcss"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "author": {
     "name": "Maxim Alyoshin",
     "email": "mgreen097@gmail.com"
