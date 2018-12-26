@@ -2,6 +2,8 @@
 
 # Typographist
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/typographist/typographist-postcss.svg)](https://greenkeeper.io/)
+
 ## Documentation
 
 - [Introduction](#introduction)
