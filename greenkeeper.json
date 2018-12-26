@@ -1,0 +1,12 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "examples/react-starter/package.json",
+        "examples/static-starter/package.json",
+        "examples/vue-starter/package.json",
+        "package.json"
+      ]
+    }
+  }
+}
