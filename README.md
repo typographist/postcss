@@ -1,6 +1,6 @@
 <h3><a href="https://maxinakenty.github.io/" target="_blank" title="Demo">Demo</a></h3>
 
-# Typographist
+# typographist/postcss
 
 ## Documentation
 
