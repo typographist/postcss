@@ -52,8 +52,15 @@
     "web-typography"
   ],
   "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/plugin-proposal-export-default-from": "^7.2.0",
+    "@babel/plugin-proposal-export-namespace-from": "^7.2.0",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-flow": "^7.0.0",
     "@commitlint/cli": "^7.5.2",
     "@commitlint/config-conventional": "^7.5.0",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.1.0",
     "codecov": "^3.0.4",
     "eslint": "^5.14.1",
     "eslint-config-airbnb-base": "^13.1.0",
