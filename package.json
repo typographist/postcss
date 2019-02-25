@@ -11,6 +11,7 @@
     "test": "cross-env jest && codecov",
     "test:watch": "cross-env jest --watch",
     "prettier": "prettier './**/**/**.{json,js,eslintrc}' --write",
+    "lint": "eslint .",
     "semantic-release": "semantic-release"
   },
   "repository": {
@@ -71,6 +72,11 @@
     "husky": "^1.3.1",
     "jest": "^23.0.1",
     "prettier": "^1.16.4",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-flow-entry": "^0.3.0",
+    "rollup-plugin-node-resolve": "^4.0.1",
+    "rollup-plugin-terser": "^4.0.4",
+    "rollup-plugin-uglify": "^6.0.2",
     "semantic-release": "^15.7.1",
     "travis-deploy-once": "^5.0.1"
   },
