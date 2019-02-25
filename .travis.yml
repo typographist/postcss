@@ -1,17 +1,26 @@
 language: node_js
-cache:
-  directories:
-    - ~/.npm
-notifications:
-  email: false
+cache: yarn
 node_js:
-  - '10'
-  - '9'
-  - '8'
-install:
-  - YARN_IGNORE_ENGINES=true yarn
-after_success:
-  - npm run travis-deploy-once "npm run semantic-release"
+  - node
+  - "10"
+  - "8"
+os:
+  - linux
+  - osx
 branches:
-  except:
-    - /^v\d+\.\d+\.\d+$/
+  only:
+    - master
+    - "/^greenkeeper/.*$/"
+script:
+  - npm test
+after_success:
+  - npm run coverage
+jobs:
+  include:
+    - stage: release
+      if: branch IN (master, next)
+      node_js: node
+      script:
+        - npm run build
+        - npx semantic-release
+      env:
