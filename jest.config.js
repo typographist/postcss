@@ -1,8 +1,10 @@
 module.exports = {
-  collectCoverage: true,
+  collectCoverage: false,
+  roots: ['<rootDir>/__tests__'],
   transform: {
     '^.+\\.js$': 'babel-jest',
   },
+  testEnvironment: 'node',
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.js$',
-  moduleFileExtensions: ['js', 'json', 'node'],
+  coveragePathIgnorePatterns: ['/node_modules/'],
 };
