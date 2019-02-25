@@ -5,6 +5,13 @@
   "license": "MIT",
   "homepage": "https://github.com/typographist/postcss",
   "bugs": "https://github.com/typographist/postcss/issues",
+  "main": "./index.js",
+  "scripts": {
+    "test": "cross-env jest && codecov",
+    "test:watch": "cross-env jest --watch",
+    "prettier": "prettier './**/**/**.{json,js,eslintrc}' --write",
+    "semantic-release": "semantic-release"
+  },
   "repository": {
     "type": "git",
     "repository": "https://github.com/typographist/postcss"
@@ -43,18 +50,6 @@
     "vertical-rhythm",
     "web-typography"
   ],
-  "engines": {
-    "node": ">=9.8.0",
-    "yarn": "^1.3.2",
-    "npm": "^5.6.0"
-  },
-  "main": "./index.js",
-  "scripts": {
-    "test": "cross-env jest && codecov",
-    "test:watch": "cross-env jest --watch",
-    "travis-deploy-once": "travis-deploy-once",
-    "semantic-release": "semantic-release"
-  },
   "devDependencies": {
     "codecov": "^3.0.4",
     "eslint": "^5.14.1",
@@ -64,6 +59,7 @@
     "eslint-plugin-jest": "^22.3.0",
     "eslint-plugin-prettier": "^3.0.1",
     "jest": "^23.0.1",
+    "prettier": "^1.16.4",
     "semantic-release": "^15.7.1",
     "travis-deploy-once": "^5.0.1"
   },
