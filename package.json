@@ -7,6 +7,7 @@
   "bugs": "https://github.com/typographist/postcss/issues",
   "main": "./index.js",
   "scripts": {
+    "commit": "git-cz",
     "test": "cross-env jest && codecov",
     "test:watch": "cross-env jest --watch",
     "prettier": "prettier './**/**/**.{json,js,eslintrc}' --write",
@@ -51,6 +52,8 @@
     "web-typography"
   ],
   "devDependencies": {
+    "@commitlint/cli": "^7.5.2",
+    "@commitlint/config-conventional": "^7.5.0",
     "codecov": "^3.0.4",
     "eslint": "^5.14.1",
     "eslint-config-airbnb-base": "^13.1.0",
