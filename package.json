@@ -58,6 +58,7 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jest": "^22.3.0",
     "eslint-plugin-prettier": "^3.0.1",
+    "husky": "^1.3.1",
     "jest": "^23.0.1",
     "prettier": "^1.16.4",
     "semantic-release": "^15.7.1",
