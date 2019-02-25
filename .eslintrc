@@ -3,8 +3,7 @@
   "plugins": ["prettier", "jest"],
   "env": {
     "node": true,
-    "mocha": true,
-    "jasmine": true
+    "jest": true
   },
   "rules": {
     "import/no-extraneous-dependencies": 0
