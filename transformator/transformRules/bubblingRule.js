@@ -2,7 +2,7 @@ const { AMPERSAND } = require('@typographist/core/constants');
 const cleanNode = require('../utils/cleanNode');
 const transformAfterNodes = require('../utils/transformAfterNodes');
 
-module.exports = rule => {
+module.exports = (rule) => {
   const postcssRule = rule;
   cleanNode(postcssRule);
   transformAfterNodes(postcssRule);
@@ -15,7 +15,7 @@ module.exports = rule => {
   if (!parent.nodes.length) parent.remove();
 };
 
-module.exports.test = rule => {
+module.exports.test = (rule) => {
   const { parent } = rule;
   const parentTypeIsRule = parent.type === 'rule';
   const isNotNestedRule = !AMPERSAND.test(rule.selector);

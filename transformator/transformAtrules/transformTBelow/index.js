@@ -57,7 +57,7 @@ const calcParamsOfAtruleBelow = (atrule, config) => {
       } else {
         postcssAtrule.remove();
         const penultimateBreakName = namesOfBreakpoints
-          .map(item =>
+          .map((item) =>
             decamelize(item, {
               separator: '-',
             }),
@@ -89,7 +89,7 @@ const calcParamsOfAtruleBelow = (atrule, config) => {
 
       // Without the last value.
       const breakpointLine = namesOfBreakpoints
-        .map(item => decamelize(item, { separator: '-' }))
+        .map((item) => decamelize(item, { separator: '-' }))
         .filter((item, i, arr) => item !== arr[arr.length - 1])
         .join(', ');
 
@@ -132,4 +132,4 @@ module.exports = (atrule, config) => {
  * @param {Object} atrule Css atrule.
  * @return {boolean} Contains @t-below or not.
  */
-module.exports.test = atrule => atrule.name === 't-below';
+module.exports.test = (atrule) => atrule.name === 't-below';

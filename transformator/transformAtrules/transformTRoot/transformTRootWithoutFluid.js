@@ -16,9 +16,9 @@ module.exports = (atrule, breakpoints) => {
   const firstBreakpoint = getFirstBreakpoint(breakpoints);
 
   breakpoints
-    .filter(b => b.value !== '0px')
+    .filter((b) => b.value !== '0px')
     .reverse()
-    .map(b =>
+    .map((b) =>
       parent.after(
         mediaAtrule({
           minWidth: b.value,
@@ -28,14 +28,16 @@ module.exports = (atrule, breakpoints) => {
         }),
       ),
     );
-  breakpoints.filter(b => b.value !== '0px').map(b =>
-    atrule.before(
-      variableDecl({
-        name: b.name,
-        value: b.value,
-      }),
-    ),
-  );
+  breakpoints
+    .filter((b) => b.value !== '0px')
+    .map((b) =>
+      atrule.before(
+        variableDecl({
+          name: b.name,
+          value: b.value,
+        }),
+      ),
+    );
 
   const fontSize = `${percentage(firstBreakpoint.root)}%`;
   atrule.replaceWith(fontSizeDecl(fontSize));
@@ -48,7 +50,7 @@ module.exports = (atrule, breakpoints) => {
  * @param {Object} atrule Css object.
  * @return {boolean} Contains or not.
  */
-module.exports.test = atrule => {
+module.exports.test = (atrule) => {
   const { parent, params } = atrule;
   const isRootRule = parent.selector === ':root';
   const isEmptyParams = params.replace(ALL_ROUND_BRACKETS, '') === '';

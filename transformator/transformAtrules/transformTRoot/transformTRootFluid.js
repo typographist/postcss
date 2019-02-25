@@ -17,15 +17,15 @@ module.exports = (atrule, breakpoints) => {
   const firstBreakpoint = getFirstBreakpoint(breakpoints);
 
   breakpoints
-    .filter(b => b.value !== '0px')
+    .filter((b) => b.value !== '0px')
     .reverse()
     .map((b, index) => {
-      const calcFontSizeFluid = i => {
+      const calcFontSizeFluid = (i) => {
         let result = null;
         const breakpointsValues = breakpoints
-          .filter(breakpoint => breakpoint.value !== '0px')
-          .map(breakpoint => breakpoint.value);
-        const rootValues = breakpoints.map(breakpoint => breakpoint.root);
+          .filter((breakpoint) => breakpoint.value !== '0px')
+          .map((breakpoint) => breakpoint.value);
+        const rootValues = breakpoints.map((breakpoint) => breakpoint.root);
         // remove second root
         rootValues.splice(1, 1);
         const currentPos = rootValues.length - i;
@@ -62,14 +62,16 @@ module.exports = (atrule, breakpoints) => {
       );
     });
 
-  breakpoints.filter(b => b.value !== '0px').map(b =>
-    atrule.before(
-      variableDecl({
-        name: b.name,
-        value: b.value,
-      }),
-    ),
-  );
+  breakpoints
+    .filter((b) => b.value !== '0px')
+    .map((b) =>
+      atrule.before(
+        variableDecl({
+          name: b.name,
+          value: b.value,
+        }),
+      ),
+    );
   const fontSize = `${percentage(firstBreakpoint.root)}%`;
   atrule.replaceWith(fontSizeDecl(fontSize));
 };
@@ -82,7 +84,7 @@ module.exports = (atrule, breakpoints) => {
  * @param {Object} atrule Css atrule.
  * @return {boolean} Contains "fluid" or not.
  */
-module.exports.test = atrule => {
+module.exports.test = (atrule) => {
   const { parent, params } = atrule;
   const isRootRule = parent.selector === ':root';
   const hasFluid = params.replace(ALL_ROUND_BRACKETS, '') === 'fluid';

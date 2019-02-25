@@ -3,7 +3,7 @@
  * @param {Object} node Css node.
  * @return {Object} Cleaned node.
  */
-module.exports = node => {
+module.exports = (node) => {
   const postcssNode = node;
   postcssNode.raws = {
     ...(node.raws.between ? { between: node.raws.between } : {}),

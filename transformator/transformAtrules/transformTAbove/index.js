@@ -112,4 +112,4 @@ module.exports = (atrule, config) => {
  * @param {Object} atrule Css atrule.
  * @return {boolean} Contains or not.
  */
-module.exports.test = atrule => atrule.name === 't-above';
+module.exports.test = (atrule) => atrule.name === 't-above';

@@ -37,9 +37,9 @@ module.exports = (atrule, config) => {
     const firstBreakpoint = getFirstBreakpoint(breakpoints);
 
     breakpoints
-      .filter(b => b.value !== '0px')
+      .filter((b) => b.value !== '0px')
       .reverse()
-      .map(b =>
+      .map((b) =>
         parent.after(
           mediaAtrule({
             minWidth: b.value,
@@ -59,4 +59,4 @@ module.exports = (atrule, config) => {
  * @param {Object} atrule Css atrule.
  * @return {boolean} is @t-base or not.
  */
-module.exports.test = atrule => atrule.name === 't-base';
+module.exports.test = (atrule) => atrule.name === 't-base';

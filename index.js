@@ -14,21 +14,21 @@ const defaultConfig = {
 
 const typographist = postcss.plugin(
   'typographist',
-  (config = defaultConfig) => root => {
-    root.walkDecls(decl => {
+  (config = defaultConfig) => (root) => {
+    root.walkDecls((decl) => {
       transformDecls(decl, config);
     });
 
-    root.walkAtRules(atrule => {
+    root.walkAtRules((atrule) => {
       transformAtrules(atrule, config);
     });
 
-    root.walkRules(rule => {
+    root.walkRules((rule) => {
       transformRules(rule);
     });
 
     // Remove empty rules.
-    root.walkRules(rule => {
+    root.walkRules((rule) => {
       if (!rule.nodes.length) rule.remove();
     });
   },

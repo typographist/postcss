@@ -12,7 +12,7 @@ const transformAfterNodes = require('../utils/transformAfterNodes');
  * @param {Object} rule Css rule.
  * @returns {void}
  */
-module.exports = rule => {
+module.exports = (rule) => {
   const postcssNode = rule;
 
   cleanNode(rule);
@@ -57,7 +57,7 @@ module.exports = rule => {
  * @param {Object} rule Css rule.
  * @return {boolean} Nested rule or not.
  */
-module.exports.test = rule => {
+module.exports.test = (rule) => {
   const { parent } = rule;
   const isNestedRule = AMPERSAND.test(rule.selector);
   const parentTypeIsRule = parent.type === 'rule';

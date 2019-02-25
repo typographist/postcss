@@ -8,7 +8,7 @@ const transformAfterNodes = require('../../utils/transformAfterNodes');
  * @param {Object} atrule Css atrule.
  * @return {void}
  */
-module.exports = atrule => {
+module.exports = (atrule) => {
   cleanNode(atrule);
   transformAfterNodes(atrule);
 
@@ -33,7 +33,7 @@ module.exports = atrule => {
  * @param {Object} atrule Css atrule.
  * @return {boolean} Corresponds to the specified pattern or not.
  */
-module.exports.test = atrule => {
+module.exports.test = (atrule) => {
   const { parent, name } = atrule;
   const listOfAtrules = ['t-above', 't-below', 't-only', 't-between'];
   return listOfAtrules.includes(name) && parent && parent.type === 'rule';

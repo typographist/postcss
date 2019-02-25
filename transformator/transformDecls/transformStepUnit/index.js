@@ -18,7 +18,7 @@ const {
  * @param {Object} decl Css declaration.
  * @return {Object} Closest rule.
  */
-const getClosestRule = decl => {
+const getClosestRule = (decl) => {
   let selectorParent = decl.parent;
 
   while (selectorParent && selectorParent.type !== 'atrule') {
@@ -87,7 +87,7 @@ module.exports = (decl, config) => {
  * @param {Object} decl Css declaration.
  * @return {boolean} Contains or not.
  */
-module.exports.test = decl => {
+module.exports.test = (decl) => {
   const hasFontSize = HAS_FONT_SIZE.test(decl.prop);
   const hasStepUnit = POSITIVE_OR_NEGATIVE_FLOATING_POINT_NUMBER_WITH_STEP_UNIT_MEASURE.test(
     decl.value,

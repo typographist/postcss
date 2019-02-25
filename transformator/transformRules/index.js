@@ -6,7 +6,7 @@ const nestedRule = require('./nestedRule');
  * @param {Object} rule Css rule.
  * @return {void}
  */
-module.exports = rule => {
+module.exports = (rule) => {
   if (bubblingRule.test(rule)) {
     bubblingRule(rule);
   }

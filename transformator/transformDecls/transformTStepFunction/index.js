@@ -16,7 +16,7 @@ const { setParentSelector } = require('../../selectors');
  * @param {string} tMsFunctionWithVal t-step function with value.
  * @return {string} Raw value without t-step function.
  */
-const replaceRoundBracketsAndTStepFunction = tMsFunctionWithVal =>
+const replaceRoundBracketsAndTStepFunction = (tMsFunctionWithVal) =>
   tMsFunctionWithVal
     .replace(T_STEP_WITH_BRACKET, '')
     .replace(REVERCE_BRACKET, '');
@@ -34,9 +34,9 @@ module.exports = (decl, config) => {
   const target = replaceRoundBracketsAndTStepFunction(value);
 
   breakpoints
-    .filter(b => b.value !== '0px')
+    .filter((b) => b.value !== '0px')
     .reverse()
-    .map(b =>
+    .map((b) =>
       parent.after(
         mediaAtrule({
           minWidth: b.value,
@@ -58,7 +58,7 @@ module.exports = (decl, config) => {
  * @param {Object} decl Css declaration.
  * @return {boolean}../
  */
-module.exports.test = decl => {
+module.exports.test = (decl) => {
   const { prop, value } = decl;
   const hasFontSize = HAS_FONT_SIZE.test(prop);
   const hasTStepFunction = HAS_TSTEP_FUNCTION_WITH_VALUE.test(value);

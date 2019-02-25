@@ -94,7 +94,7 @@ module.exports = (atrule, config) => {
       } else {
         postcssAtrule.remove();
         const recommendedBreaks = namesOfBreakpoints
-          .filter(item => item !== lowerBreak)
+          .filter((item) => item !== lowerBreak)
           .join(', ');
 
         throw new Error(`
@@ -147,4 +147,4 @@ module.exports = (atrule, config) => {
  * @param {Object} atrule Css atrule.
  * @return {boolean} Contains @t-between or not.
  */
-module.exports.test = atrule => atrule.name === 't-between';
+module.exports.test = (atrule) => atrule.name === 't-between';

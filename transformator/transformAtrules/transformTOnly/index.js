@@ -1,8 +1,4 @@
-const {
-  isArray,
-  camelize,
-  decamelize
-} = require('@typographist/core/helpers');
+const { isArray, camelize, decamelize } = require('@typographist/core/helpers');
 const {
   breakpointsToCebabCase,
   calcBreakpointOnly,
@@ -110,4 +106,4 @@ module.exports = (node, config) => {
  * @param {Object} atrule Css atrule.
  * @return {boolean} Contains @t-only or not.
  */
-module.exports.test = atrule => atrule.name === 't-only';
+module.exports.test = (atrule) => atrule.name === 't-only';

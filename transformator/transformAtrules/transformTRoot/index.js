@@ -16,4 +16,4 @@ module.exports = (atrule, config) => {
   }
 };
 
-module.exports.test = atrule => atrule.name === 't-root';
+module.exports.test = (atrule) => atrule.name === 't-root';
