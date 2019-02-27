@@ -17,5 +17,10 @@
     "no-unused-vars": 1,
     "global-require": 0,
     "no-param-reassign": 0
+  },
+  "settings": {
+    "import/resolver": {
+      "babel-module": {}
+    }
   }
 }

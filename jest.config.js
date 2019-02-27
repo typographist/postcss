@@ -1,6 +1,6 @@
 module.exports = {
   collectCoverage: false,
-  roots: ['<rootDir>/__tests__'],
+  roots: ['<rootDir>'],
   transform: {
     '^.+\\.js$': 'babel-jest',
   },

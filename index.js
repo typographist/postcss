@@ -1,20 +1,21 @@
-const postcss = require('postcss');
+import postcss from 'postcss';
+
+export { ratios } from '@typographist/core';
 const {
   transformAtrules,
   transformDecls,
   transformRules,
 } = require('./transformator');
-const { ratios } = require('@typographist/core/constants');
 
-const defaultConfig = {
+const DEFAULT_CONFIG = {
   base: '16px',
   lineHeight: 1.5,
   ratio: 1.333,
 };
 
-const typographist = postcss.plugin(
+export const typographist = postcss.plugin(
   'typographist',
-  (config = defaultConfig) => (root) => {
+  (config = DEFAULT_CONFIG) => (root) => {
     root.walkDecls((decl) => {
       transformDecls(decl, config);
     });
@@ -33,8 +34,3 @@ const typographist = postcss.plugin(
     });
   },
 );
-
-module.exports = {
-  typographist,
-  ratios,
-};

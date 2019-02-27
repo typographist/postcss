@@ -1,9 +1,3 @@
-const transformAtrules = require('./transformAtrules');
-const transformDecls = require('./transformDecls');
-const transformRules = require('./transformRules');
-
-module.exports = {
-  transformAtrules,
-  transformDecls,
-  transformRules,
-};
+export { transformAtrules } from './atrules-transformation';
+export { transformDecls } from './decls-transformation';
+export { transformRules } from './rules-transformation';

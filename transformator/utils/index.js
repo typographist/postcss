@@ -1,6 +1,6 @@
-const cleanNode = require('./cleanNode');
-const getMediaQueriesParams = require('./getMediaQueriesParams');
-const transformAfterNodes = require('./transformAfterNodes');
+const cleanNode = require('./clean-node');
+const getMediaQueriesParams = require('./get-media-query-params');
+const transformAfterNodes = require('./transform-after-nodes');
 
 module.exports = {
   cleanNode,

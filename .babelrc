@@ -1,12 +1,17 @@
 {
-  "presets": [
-    ["@babel/preset-env", { "modules": false }],
-    "@babel/preset-flow",
-    "@babel/preset-react"
-  ],
+  "presets": [["@babel/preset-env", { "modules": false }]],
   "plugins": [
     "@babel/plugin-proposal-export-default-from",
-    "@babel/plugin-proposal-export-namespace-from"
+    "@babel/plugin-proposal-export-namespace-from",
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "@transformator": "./transformator",
+          "@helpers-for-tests": "./helpers-for-tests"
+        }
+      }
+    ]
   ],
   "env": {
     "test": {
