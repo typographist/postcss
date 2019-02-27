@@ -10,8 +10,8 @@
     "commit": "npx git-cz",
     "test": "cross-env jest && codecov",
     "test:watch": "cross-env jest --watch",
-    "prettier": "prettier './**/**/**.{json,js,eslintrc}' --write",
-    "lint": "eslint --fix .",
+    "prettier": "cross-env prettier './**/**/**.{json,js,eslintrc}' --write",
+    "lint": "eslint .",
     "semantic-release": "semantic-release"
   },
   "repository": {
@@ -66,13 +66,14 @@
     "cross-env": "5.2.0",
     "eslint": "^5.14.1",
     "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-config-prettier": "^4.0.0",
+    "eslint-config-prettier": "4.1.0",
     "eslint-plugin-flowtype": "^3.4.2",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jest": "^22.3.0",
     "eslint-plugin-prettier": "^3.0.1",
+    "flow-bin": "0.93.0",
     "husky": "^1.3.1",
-    "jest": "^23.0.1",
+    "jest": "24.1.0",
     "lint-staged": "^8.1.4",
     "prettier": "^1.16.4",
     "rollup-plugin-babel": "^4.3.2",
@@ -84,6 +85,7 @@
   },
   "dependencies": {
     "@typographist/core": "^13.1.3",
-    "postcss": "^7.0.14"
+    "postcss": "^7.0.14",
+    "ramda": "0.26.1"
   }
 }
