@@ -2,7 +2,6 @@ const { plugin } = require('postcss');
 const { ratios, makeBreakpointsMap } = require('@typographist/core');
 const { isStep, step } = require('./features/step');
 const { isStepFunction, stepFunction } = require('./features/step-function');
-
 const { isBubblingRule, bubblingRule } = require('./features/bubbling-rule');
 const { isNestedRule, nestedRule } = require('./features/nested-rule');
 
