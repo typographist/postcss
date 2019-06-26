@@ -1,6 +1,6 @@
 <h3><a href="https://maxinakenty.github.io/" target="_blank" title="Demo">Demo</a></h3>
 
-# typographist/postcss
+# Typographist
 
 ## Documentation
 
@@ -51,11 +51,11 @@ To install the stable version:
 Use yarn or npm
 
 ```
-yarn add postcss @typographist/postcss
+yarn add postcss typographist
 ```
 
 ```
-npm i postcss @typographist/postcss
+npm i postcss typographist
 ```
 
 ### Configuration
@@ -65,13 +65,13 @@ npm i postcss @typographist/postcss
 requireJs
 
 ```js
-const { typographist, ratios } = require('@typographist/postcss');
+const { typographist, ratios } = require('typographist');
 ```
 
 es6 modules
 
 ```js
-import { typographist, ratios } from '@typographist/postcss';
+import { typographist, ratios } from 'typographist';
 ```
 
 #### Base
@@ -200,7 +200,7 @@ I hope it was not difficult for you. The idea of such a simple configuration I b
 You need to create a postcss.config.js
 
 ```js
-const { typographist, ratios } = require('@typographist/postcss');
+const { typographist, ratios } = require('typographist');
 
 module.exports = () => ({
   plugins: [
@@ -238,7 +238,7 @@ const rename = require('gulp-rename');
 const cssnano = require('gulp-cssnano');
 const notify = require('gulp-notify');
 const combine = require('stream-combiner2').obj;
-const { typographist, ratios } = require('@typographist/postcss');
+const { typographist, ratios } = require('typographist');
 
 const processors = [
   typographist({
@@ -295,7 +295,7 @@ Set the root font-size.
 
 ```css
 :root {
-  @t-root;
+  @root;
 }
 ```
 
@@ -325,13 +325,13 @@ Output
 }
 ```
 
-Using the @ t-root directive, we calculated the size of the root font for each breakpoint. Also now we have the opportunity to link our css and javascript to native css variables. The value of each breakpoint is converted to em.
+Using the @ root directive, we calculated the size of the root font for each breakpoint. Also now we have the opportunity to link our css and javascript to native css variables. The value of each breakpoint is converted to em.
 
 Input
 
 ```css
 :root {
-  @t-root (fluid);
+  @root (fluid);
 }
 ```
 
@@ -370,7 +370,7 @@ Input
 
 ```css
 body {
-  @t-base;
+  @base;
 }
 ```
 
@@ -402,15 +402,15 @@ The @ t-base directive sets the size of the base font to rem for each breakpoint
 
 ### Breakpoints
 
-#### @t-above
+#### @up
 
-@t-above takes as parameters the names of breakpoints, values in pixels or ems.
+@up takes as parameters the names of breakpoints, values in pixels or ems.
 
 Input
 
 ```css
 .your-class {
-  @t-above (desktop) {
+  @up (desktop) {
     /* your code */
   }
 }
@@ -426,14 +426,14 @@ Output
 }
 ```
 
-#### @t-below
+#### @down
 
-@t-below takes as parameters the names of breakpoints, values in pixels or ems.
+@down takes as parameters the names of breakpoints, values in pixels or ems.
 Input
 
 ```css
 .your-class {
-  @t-below (desktop) {
+  @down (desktop) {
     /* your code */
   }
 }
@@ -449,15 +449,15 @@ Output
 }
 ```
 
-#### @t-only
+#### @only
 
-@t-only takes as parameters parameters only the names of breakpoints.
+@only takes as parameters parameters only the names of breakpoints.
 
 Input
 
 ```css
 .your-class {
-  @t-only (desktop) {
+  @only (desktop) {
     /* your code */
 }
 ```
@@ -472,14 +472,14 @@ Output
 }
 ```
 
-#### @t-between
+#### @between
 
-@t-between takes as parameters the names of breakpoints, values in pixels or ems.
+@between takes as parameters the names of breakpoints, values in pixels or ems.
 
 Input
 
 ```css
-.your-class @t-between(tablet, desktop) {
+.your-class @between(tablet, desktop) {
   /* your code */
 }
 ```
@@ -498,9 +498,9 @@ Output
 
 Set the font size from the position in the modular scale.
 
-  <img src="/docs/images/msunit.jpg" alt="position in modular scale">
+  <img src="/img/msunit.jpg" alt="position in modular scale">
 
-To convert step to rem, use directives @t-above, @t-below, or @t-only.
+To convert step to rem, use directives @up, @down, or @only.
 
 input
 
@@ -508,15 +508,15 @@ input
 h1 {
   font-size: 6step;
 
-  @t-above (tablet) {
+  @-above (tablet) {
     font-size: 6step;
   }
 
-  @t-above (desktop) {
+  @up (desktop) {
     font-size: 6step;
   }
 
-  @t-above (lg-desktop) {
+  @up (lg-desktop) {
     font-size: 6step;
   }
 }
