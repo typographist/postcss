@@ -49,7 +49,7 @@ function hasStepUnit(value) {
 function getClosestRule({ parent }) {
   let selectorParent = parent;
 
-  while (selectorParent && !selectorParent.type === 'atrule') {
+  while (selectorParent && selectorParent.type !== 'atrule') {
     selectorParent = selectorParent.parent;
     if (selectorParent.type === 'root') {
       return selectorParent;
