@@ -48,14 +48,16 @@ Typographist works by setting the root font-size as half the line-height of the 
 
 To install the stable version:
 
-Use yarn or npm
+**yarn**
 
 ```
-yarn add postcss typographist
+yarn add postcss @typographist/postcss -D
 ```
 
+**npm**
+
 ```
-npm i postcss typographist
+npm i postcss  @typographist/postcss
 ```
 
 ### Configuration
@@ -65,13 +67,13 @@ npm i postcss typographist
 requireJs
 
 ```js
-const { typographist, ratios } = require('typographist');
+const { typographist, ratios } = require('@typographist/postcss');
 ```
 
 es6 modules
 
 ```js
-import { typographist, ratios } from 'typographist';
+import { typographist, ratios } from ' @typographist/postcss';
 ```
 
 #### Base
@@ -197,7 +199,7 @@ I hope it was not difficult for you. The idea of such a simple configuration I b
 
 #### Typographist with Webpack
 
-You need to create a postcss.config.js
+You need to create a `postcss.config.js` or `.postcssrc.js`
 
 ```js
 const { typographist, ratios } = require('typographist');
@@ -283,10 +285,6 @@ gulp.task('styles', () =>
 ### Postcss syntax hightlight
 
 If you use vscode as the code editor. To avoid conflicts with the linter and to correctly postcss syntax highlighting, install the plugin <a href="https://marketplace.visualstudio.com/items?itemName=ricard.PostCSS#review-details" target="_blank">PostCSS syntax</a>.
-
-### Syntax peculiarity
-
-Syntax peculiarity. All that belongs to the Typographist begins with @t- or t-. Most likely you already thought that without these prefixes it would be more convenient to write the code, but in the future when when there is more code, it will help to avoid confusion. You can always understand what exactly belongs to the typographist.
 
 ### Root font size
 
@@ -549,15 +547,15 @@ Step unit is converted to rem.
 
 This approach is useful if you want to dramatically increase the font size on any of the breakpoints, but in most cases it is too cumbersome and we force you to duplicate the code every time. For this I have something better for you!
 
-### t-step function
+### step function
 
-With t-step function we do the same much faster and more gracefully.
+With step function we do the same much faster and more gracefully.
 
 Input
 
 ```css
 h1 {
-  font-size: t-step(6);
+  font-size: step(6);
 }
 ```
 
