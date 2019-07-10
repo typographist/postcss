@@ -6,13 +6,13 @@
   "scripts": {
     "commit": "cross-env npx git-cz",
     "coverage": "cross-env cat ./coverage/lcov.info | coveralls",
-    "prettier": "cross-env prettier './**/**/**.{json,js}' --write",
+    "pretty": "cross-env prettier './**/**/**.{json,js}' --write",
+    "lint:all": "cross-env eslint --fix .",
+    "lint:file": "cross-env eslint --fix",
     "semantic-release": "npx semantic-release",
     "test": "npm run test:code",
-    "test:watch": "cross-env jest --coverage --watch --updateSnapshot",
-    "test:code": "cross-env jest --coverage",
-    "lint": "cross-env eslint --fix .",
-    "size": "cross-env size-limit"
+    "test:watch": "cross-env jest --coverage --watch",
+    "test:code": "cross-env jest --coverage"
   },
   "license": "MIT",
   "homepage": "https://github.com/typographist/postcss#readme",
@@ -41,11 +41,6 @@
     "ratio",
     "scale",
     "typographist"
-  ],
-  "size-limit": [
-    {
-      "path": "dist"
-    }
   ],
   "publishConfig": {
     "access": "public"
