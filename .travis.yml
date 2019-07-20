@@ -1,17 +1,26 @@
 language: node_js
-cache:
-  directories:
-    - ~/.npm
-notifications:
-  email: false
+cache: yarn
 node_js:
-  - '10'
-  - '9'
-  - '8'
-install:
-  - YARN_IGNORE_ENGINES=true yarn
-after_success:
-  - npm run travis-deploy-once "npm run semantic-release"
+- node
+- '10'
+os:
+- linux
+- osx
 branches:
-  except:
-    - /^v\d+\.\d+\.\d+$/
+  only:
+  - master
+  - "/^greenkeeper/.*$/"
+script:
+- npm test
+after_success:
+- yarn coverage
+jobs:
+  include:
+  - stage: release
+    if: branch IN (master, next)
+    node_js: node
+    script:
+    - npx semantic-release
+    env:
+      - secure: mbHVtUiVYw3flLupYQKPQ8PXV2wyIoZf4NmI9pLzI9EMlYh3kGLi5l1XLN1rVxudj7xJoDbKctRLFuICuHGRkL4D4rl0AaAQE48/5+TMDHQGuncr9mKxPyoAbR+08HiMu9Igoi42cvOZt5nPOWJy6ZYGtWhYuOjT1hUcV3hT5oe0wGB7UFHqekb2TqLlVxE5eG7go4IC5ZQQrAshF01946Qt6GmVbTDKTKSq4G+Fzl6smzswOe9XrxM2lAkuqwZltQ/l1zbGs1H9t0aakkafqE6x0cbhzqaPQvoUuLQAL+zzWepOqmRHH1TIUcbm/1cWsbzXTu9APgOcuWs87q7cdKm9N18wQIF/E2XS21z7PFJKDtRgoUxIXkvsOP0OngyIJjY4qzbJv/FsE4O14/9V+U86/dKd9ykgZEKmgD8tJQswC4TN1Z3axJD61WHXCdaItH/mlplCeq2IXM9hpUHc5/UOqhiA6LrbN+tjOKGzrFqRBKPz6VFV8/FmoAW0dMauWSQwqNQToB7QQowpvd67xZlq33+mJiRVHq1fu1bOK25CHuoiyjhLBhmYW6cTxz/3oHp8tA1Gm9T2MaaKvDE/h+CyJItU0oidfQ0/XaQK58eYhQjdpk3UuJsPC+bkHCKd5mW801r9aqL8Umn9IYNr+/nt2TbXQS+E5YUOjmRZvH8=
+      - secure: XpsjH9kJ9vPZZsqyOdcRLJcVQAPsq7+KcYwvbePQy1k5p2oTLFUUGjhCZgTuw9vgM4LEcRqC+Kw4yiiBRhW9vfza9L6oYWwWisdu4toEu2cSA/KXx6iq+tgVwzPrI6dpNExin1ggEhTjuwFB7S5z8pDL2hiU3BgYJK8WOPW61SW6+R3LICSiIGldEmz5E5M5uvOoBPWlvIAnBKOp81fFvOXKe7FYtYKXy1L8VfdpJA7Q87bUHxPMCoAxD1NJFKpsTrdGSMlQp0pq/Kp98RtVBu0LUnHb69By4gOwyMJ5D/UYrzXJbBzYwaj6EyGfsLVDrRK7mghmIKdkA5wSkJWhdubffEIpM551JB8NCqAV6YWAeM/Ojly9bCHlMpIUlMpi56KT7A5TuXPfU+Htbq2BLkt86MzbvM+ry00q46GQhApL2L9l/3w9EavXuOSxYMF51ysm5lFqRKtCbERNmulnpdB30E0phrUbGc1LLkSRxt/GqVPeLUWEjavK7IdeXUvDiFTc1virT4v1aYkXodOnvWIjem9Zc93tEuR8YNSi+8nQqa/BxhZyDOyzyKDQRW/r19lxmgP2oBkpQ0KbjjPCG9WyistG847AFxr7LfRWQbM4pYP/xEKHTW3LjoSQisE8sK2jHDkv66L0IAcvH0Apb9nGkoJCV51FEj1vWZxuFuM=

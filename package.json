@@ -1,71 +1,81 @@
 {
-  "name": "typographist",
-  "version": "3.2.0-semantically-released",
+  "name": "@typographist/postcss",
+  "version": "5.0.2",
   "description": "Toolkit for the rapid construction of interfaces with high quality typography.",
+  "main": "index.js",
+  "scripts": {
+    "commit": "cross-env npx git-cz",
+    "coverage": "cross-env cat ./coverage/lcov.info | coveralls",
+    "pretty": "cross-env prettier './**/**/**.{json,js}' --write",
+    "lint:all": "cross-env eslint --fix .",
+    "lint:file": "cross-env eslint --fix",
+    "semantic-release": "npx semantic-release",
+    "test": "npm run test:code",
+    "test:watch": "cross-env jest --coverage --watch",
+    "test:code": "cross-env jest --coverage"
+  },
   "license": "MIT",
-  "homepage": "https://github.com/typography-gang/typographist",
-  "bugs": "https://github.com/typography-gang/typographist/issues",
+  "homepage": "https://github.com/typographist/postcss#readme",
   "repository": {
     "type": "git",
-    "repository": "https://github.com/typography-gang/typographist"
+    "url": "https://github.com/typographist/postcss.git"
   },
-  "author": {
-    "name": "Maxim Alyoshin",
-    "email": "mgreen097@gmail.com"
+  "bugs": {
+    "url": "https://github.com/typographist/postcss/issues"
   },
-  "files": [
-    "api",
-    "constants",
-    "helpers",
-    "transformator",
-    "index.js"
-  ],
+  "author": "mg901 <mgreen097@gmail.com>",
   "keywords": [
-    "css",
+    "postcss",
+    "css-in-js",
     "design",
     "golden-ratio",
-    "eyeglass-module",
     "modular",
+    "micro-module",
+    "vertical-rhythm",
+    "fluid-typography",
+    "responsive-typography",
+    "typography",
+    "web-typography",
     "modular-scale",
-    "modularscale",
-    "modularscale-postcss",
     "musical-scales",
-    "postcss",
-    "postcss-plugin",
     "ratio",
     "scale",
-    "typo",
-    "typography",
-    "typographist",
-    "vertical-rhythm",
-    "web-typography"
+    "typographist"
   ],
-  "engines": {
-    "node": ">=9.8.0",
-    "yarn": "^1.3.2",
-    "npm": "^5.6.0"
+  "publishConfig": {
+    "access": "public"
   },
-  "main": "./index.js",
-  "scripts": {
-    "test": "cross-env jest && codecov",
-    "test:watch": "cross-env jest --watch",
-    "travis-deploy-once": "travis-deploy-once",
-    "semantic-release": "semantic-release"
+  "peerDependencies": {
+    "postcss": "^7.0.17"
   },
   "devDependencies": {
-    "codecov": "^3.0.4",
-    "eslint": "^4.15.0",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-jest": "^21.17.0",
-    "eslint-plugin-prettier": "^2.6.0",
-    "jest": "^23.0.1",
-    "travis-deploy-once": "^5.0.1",
-    "semantic-release": "^15.7.1"
+    "@commitlint/cli": "^8.0.0",
+    "@commitlint/config-conventional": "^8.0.0",
+    "@semantic-release/changelog": "^3.0.4",
+    "@semantic-release/commit-analyzer": "^6.2.0",
+    "@semantic-release/git": "^7.0.16",
+    "@semantic-release/github": "^5.4.2",
+    "@semantic-release/npm": "^5.1.12",
+    "@semantic-release/release-notes-generator": "^7.2.0",
+    "commitizen": "3.1.1",
+    "coveralls": "3.0.4",
+    "cross-env": "5.2.0",
+    "cz-conventional-changelog": "^2.1.0",
+    "eslint": "^6.0.1",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-import": "2.18.0",
+    "eslint-plugin-jest": "^22.7.2",
+    "eslint-plugin-prettier": "3.1.0",
+    "husky": "^3.0.0",
+    "jest": "^24.8.0",
+    "lint-staged": "^9.1.0",
+    "nyc": "14.1.1",
+    "prettier": "^1.18.2",
+    "rimraf": "2.6.3"
   },
   "dependencies": {
-    "cross-env": "^5.1.4",
-    "postcss": "^6.0.22"
+    "@typographist/core": "^20.0.0",
+    "postcss": "^7.0.17"
   }
 }

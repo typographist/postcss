@@ -48,14 +48,16 @@ Typographist works by setting the root font-size as half the line-height of the 
 
 To install the stable version:
 
-Use yarn or npm
+**yarn**
 
 ```
-yarn add postcss typographist
+yarn add postcss @typographist/postcss -D
 ```
 
+**npm**
+
 ```
-npm i postcss typographist
+npm i postcss  @typographist/postcss
 ```
 
 ### Configuration
@@ -65,13 +67,13 @@ npm i postcss typographist
 requireJs
 
 ```js
-const { typographist, ratios } = require('typographist');
+const { typographist, ratios } = require('@typographist/postcss');
 ```
 
 es6 modules
 
 ```js
-import { typographist, ratios } from 'typographist';
+import { typographist, ratios } from ' @typographist/postcss';
 ```
 
 #### Base
@@ -197,7 +199,7 @@ I hope it was not difficult for you. The idea of such a simple configuration I b
 
 #### Typographist with Webpack
 
-You need to create a postcss.config.js
+You need to create a `postcss.config.js` or `.postcssrc.js`
 
 ```js
 const { typographist, ratios } = require('typographist');
@@ -284,10 +286,6 @@ gulp.task('styles', () =>
 
 If you use vscode as the code editor. To avoid conflicts with the linter and to correctly postcss syntax highlighting, install the plugin <a href="https://marketplace.visualstudio.com/items?itemName=ricard.PostCSS#review-details" target="_blank">PostCSS syntax</a>.
 
-### Syntax peculiarity
-
-Syntax peculiarity. All that belongs to the Typographist begins with @t- or t-. Most likely you already thought that without these prefixes it would be more convenient to write the code, but in the future when when there is more code, it will help to avoid confusion. You can always understand what exactly belongs to the typographist.
-
 ### Root font size
 
 Input
@@ -295,7 +293,7 @@ Set the root font-size.
 
 ```css
 :root {
-  @t-root;
+  @root;
 }
 ```
 
@@ -325,13 +323,13 @@ Output
 }
 ```
 
-Using the @ t-root directive, we calculated the size of the root font for each breakpoint. Also now we have the opportunity to link our css and javascript to native css variables. The value of each breakpoint is converted to em.
+Using the @ root directive, we calculated the size of the root font for each breakpoint. Also now we have the opportunity to link our css and javascript to native css variables. The value of each breakpoint is converted to em.
 
 Input
 
 ```css
 :root {
-  @t-root (fluid);
+  @root (fluid);
 }
 ```
 
@@ -370,7 +368,7 @@ Input
 
 ```css
 body {
-  @t-base;
+  @base;
 }
 ```
 
@@ -402,15 +400,15 @@ The @ t-base directive sets the size of the base font to rem for each breakpoint
 
 ### Breakpoints
 
-#### @t-above
+#### @up
 
-@t-above takes as parameters the names of breakpoints, values in pixels or ems.
+@up takes as parameters the names of breakpoints, values in pixels or ems.
 
 Input
 
 ```css
 .your-class {
-  @t-above (desktop) {
+  @up (desktop) {
     /* your code */
   }
 }
@@ -426,14 +424,14 @@ Output
 }
 ```
 
-#### @t-below
+#### @down
 
-@t-below takes as parameters the names of breakpoints, values in pixels or ems.
+@down takes as parameters the names of breakpoints, values in pixels or ems.
 Input
 
 ```css
 .your-class {
-  @t-below (desktop) {
+  @down (desktop) {
     /* your code */
   }
 }
@@ -449,15 +447,15 @@ Output
 }
 ```
 
-#### @t-only
+#### @only
 
-@t-only takes as parameters parameters only the names of breakpoints.
+@only takes as parameters parameters only the names of breakpoints.
 
 Input
 
 ```css
 .your-class {
-  @t-only (desktop) {
+  @only (desktop) {
     /* your code */
 }
 ```
@@ -472,14 +470,14 @@ Output
 }
 ```
 
-#### @t-between
+#### @between
 
-@t-between takes as parameters the names of breakpoints, values in pixels or ems.
+@between takes as parameters the names of breakpoints, values in pixels or ems.
 
 Input
 
 ```css
-.your-class @t-between(tablet, desktop) {
+.your-class @between(tablet, desktop) {
   /* your code */
 }
 ```
@@ -498,9 +496,9 @@ Output
 
 Set the font size from the position in the modular scale.
 
-  <img src="/docs/images/msunit.jpg" alt="position in modular scale">
+  <img src="/img/msunit.jpg" alt="position in modular scale">
 
-To convert step to rem, use directives @t-above, @t-below, or @t-only.
+To convert step to rem, use directives @up, @down, or @only.
 
 input
 
@@ -512,11 +510,11 @@ h1 {
     font-size: 6step;
   }
 
-  @t-above (desktop) {
+  @up (desktop) {
     font-size: 6step;
   }
 
-  @t-above (lg-desktop) {
+  @up (lg-desktop) {
     font-size: 6step;
   }
 }
@@ -549,15 +547,15 @@ Step unit is converted to rem.
 
 This approach is useful if you want to dramatically increase the font size on any of the breakpoints, but in most cases it is too cumbersome and we force you to duplicate the code every time. For this I have something better for you!
 
-### t-step function
+### step function
 
-With t-step function we do the same much faster and more gracefully.
+With step function we do the same much faster and more gracefully.
 
 Input
 
 ```css
 h1 {
-  font-size: t-step(6);
+  font-size: step(6);
 }
 ```
 
