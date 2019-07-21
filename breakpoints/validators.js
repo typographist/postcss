@@ -28,9 +28,9 @@ const validateOrientation = (atrule) => {
 // validateBreakpointValue ::  (Object, Object) -> Void
 const validateBreakpointValue = (breakpoints, atrule) =>
   getBreakpointValues(atrule.params).forEach((p) => {
-    const isValidValue = breakpoints[camelize(p)] || hasPxOrEm(p);
+    const isValidValue = !!breakpoints[camelize(p)] || hasPxOrEm(p);
 
-    if (!isValidValue) {
+    if (isValidValue) {
       throw atrule.error(
         `[typographist]: '${p}' is invalid breakpoint name. Use '${makeBreakpointList(
           breakpoints,

@@ -1,4 +1,4 @@
-const { toRem, modularScale } = require('@typographist/core');
+const { toRem, modularScale, pipe, tail, map } = require('@typographist/core');
 
 const ALL_CHARACTERS_AFTER_COLON = /:.+\b/;
 const ALL_PARENTHESES = /[()]/g;
@@ -61,11 +61,28 @@ const toEmOrNot = (x) => (hasPx(x) ? toEm(x) : x);
 // toPxOrNot :: String -> String
 const toPxOrNot = (x) => (hasEm(x) ? toPx(x) : x);
 
+// validBreakpointNames :: Object -> [String]
+const validBreakpointNames = pipe(
+  Object.keys,
+  tail,
+  map(toKebabCase),
+);
+
 // calcFontSize :: Object -> (Number | String, String) -> String
 const calcFontSize = (breakpoints) => (target, breakName = 'initial') => {
-  const { root, base, ratio } = breakpoints[breakName];
+  if (!breakpoints[breakName]) {
+    throw new Error(
+      `[typographist]: '${toKebabCase(
+        breakName,
+      )}' is invalid breakpoint name. Use '${validBreakpointNames(
+        breakpoints,
+      ).join(', ')}'.`,
+    );
+  } else {
+    const { root, base, ratio } = breakpoints[breakName];
 
-  return toRem(root, modularScale(Number(target), base, ratio));
+    return toRem(root, modularScale(Number(target), base, ratio));
+  }
 };
 
 // makeBreakpointName :: String -> String
