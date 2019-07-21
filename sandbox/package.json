@@ -1,0 +1,13 @@
+{
+  "name": "sandbox",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "npx postcss src/index.css -o dist/index.css -w"
+  },
+  "devDependencies": {
+    "postcss": "^7.0.17",
+    "postcss-cli": "^6.1.3"
+  }
+}

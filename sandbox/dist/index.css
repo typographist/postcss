@@ -1,0 +1,21 @@
+:root {
+  --tablet: 768px;
+  --desktop: 992px;
+  --lg-desktop: 1200px;
+  font-size: 75%;
+}
+@media  (min-width: 48em) {
+  :root {
+    font-size: 81.25%;
+  }
+}
+@media  (min-width: 62em) {
+  :root {
+    font-size: 90.625%;
+  }
+}
+@media  (min-width: 75em) {
+  :root {
+    font-size: 100%;
+  }
+}
