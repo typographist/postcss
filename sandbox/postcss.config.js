@@ -1,4 +1,4 @@
-const { typographist, ratios } = require('../../index.js');
+const { typographist, ratios } = require('..');
 
 module.exports = () => ({
   plugins: [
