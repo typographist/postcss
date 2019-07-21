@@ -1,6 +1,5 @@
 const { cleanNode, transformAfterNodes } = require('../helpers');
 
-const AMPERSAND = /&/;
 const LAST_COMMA = /,\s*$/;
 const LINE_BREAKS_AND_SPACES = /[\n\s]/g;
 const COMMA_AND_NEW_LINE = ',\n';
