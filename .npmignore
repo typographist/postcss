@@ -2,6 +2,8 @@
 .gitignore
 .editorconfig
 
+sandbox/
+
 node_modules/
 npm-debug.log
 yarn.lock
