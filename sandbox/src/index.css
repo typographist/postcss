@@ -1,3 +1,11 @@
 :root {
-  @root;
+  @root (fluid);
+}
+
+body {
+  @base;
+}
+
+h1 {
+  font-size: step(1);
 }
