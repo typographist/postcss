@@ -57,15 +57,15 @@
     "@semantic-release/github": "^5.4.2",
     "@semantic-release/npm": "^5.1.12",
     "@semantic-release/release-notes-generator": "^7.2.0",
-    "commitizen": "3.1.1",
-    "coveralls": "3.0.4",
+    "commitizen": "^4.0.3",
+    "coveralls": "^3.0.5",
     "cross-env": "5.2.0",
-    "cz-conventional-changelog": "^2.1.0",
-    "eslint": "^6.0.1",
+    "cz-conventional-changelog": "^3.0.2",
+    "eslint": "^6.1.0",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-config-prettier": "^6.0.0",
-    "eslint-plugin-import": "2.18.0",
-    "eslint-plugin-jest": "^22.7.2",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^22.13.6",
     "eslint-plugin-prettier": "3.1.0",
     "husky": "^3.0.0",
     "jest": "^24.8.0",
@@ -75,7 +75,7 @@
     "rimraf": "2.6.3"
   },
   "dependencies": {
-    "@typographist/core": "^20.0.0",
+    "@typographist/core": "^21.0.0",
     "postcss": "^7.0.17"
   }
 }
