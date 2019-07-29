@@ -3,11 +3,11 @@
 const { percentage, toEm } = require('@typographist/core');
 
 const { mediaQuery, fontSizeProp } = require('../elements');
-const { rootProp, cssVariable } = require('./elements');
+const { makeRootProp, cssVariable } = require('./elements');
 
 // isFluidRoot :: Object -> Boolean
 exports.isFluidRoot = ({ parent, params }) =>
-  parent && parent.selector === ':root' && params === '(fluid)';
+  parent && /:root|html/.test(parent.selector) && params === '(fluid)';
 
 // defaultRoot :: (Object, Object) -> Void
 exports.fluidRoot = (atrule, breakpointsMap) => {
@@ -39,7 +39,7 @@ function addRootSizeForEachBreakpoints(atrule, breaks) {
       const fontSize = fontSizeProp(
         `calc(${root} + ${rootDiff} * ((100vw - ${breakpoint}) / ${breaksDiff}))`,
       );
-      const rootSelector = rootProp().append(fontSize);
+      const rootSelector = makeRootProp(atrule.parent).append(fontSize);
 
       return atrule.parent.after(
         mediaQuery(breaks[index].value).append(rootSelector),
@@ -49,7 +49,7 @@ function addRootSizeForEachBreakpoints(atrule, breaks) {
     if (index === 0) {
       const root = percentage(breaks[index].root);
       const fontSize = fontSizeProp(root);
-      const rootSelector = rootProp().append(fontSize);
+      const rootSelector = makeRootProp(atrule.parent).append(fontSize);
 
       return atrule.parent.after(
         mediaQuery(breaks[index].value).append(rootSelector),

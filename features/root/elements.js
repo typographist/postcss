@@ -1,10 +1,10 @@
 const { rule, decl } = require('postcss');
 const { toKebabCase } = require('../../utils');
 
-// rootProp :: () -> Object
-exports.rootProp = () =>
+// makeRootProp :: Object -> Object
+exports.makeRootProp = ({ selector }) =>
   rule({
-    selector: ':root',
+    selector,
   });
 
 // cssVariable :: (String, String) -> Object

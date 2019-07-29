@@ -1,10 +1,10 @@
 const { percentage } = require('@typographist/core');
 const { mediaQuery, fontSizeProp } = require('../elements');
-const { rootProp, cssVariable } = require('./elements');
+const { makeRootProp, cssVariable } = require('./elements');
 
 // isDefaultRoot :: Object -> Boolean
 exports.isDefaultRoot = ({ parent, params }) =>
-  parent && parent.selector === ':root' && params === '';
+  parent && /:root|html/.test(parent.selector) && params === '';
 
 // defaultRoot :: (Object, Object) -> Void
 exports.defaultRoot = (atrule, breakpointsMap) => {
@@ -28,7 +28,7 @@ function addCssVariables(atrule, breakpoints) {
 function addRootSizesForEachBreaks(atrule, breaks) {
   breaks.reverse().map(({ root, value }) => {
     const fontSize = fontSizeProp(percentage(root));
-    const rootSelector = rootProp().append(fontSize);
+    const rootSelector = makeRootProp(atrule.parent).append(fontSize);
 
     return atrule.parent.after(mediaQuery(value).append(rootSelector));
   });
