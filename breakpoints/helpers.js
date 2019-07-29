@@ -1,14 +1,13 @@
 const { toKebabCase } = require('../utils');
 
-// const NOT_BREAKPOINT_NAME = /^\((\w+)\).*$/g;
-const NOT_BREAKPOINT_NAMES = /^\((\w+(,?\w+)?)\).*$/g;
+const NOT_BREAKPOINT_NAMES = /^\(([a-z0-9-]+(,?[a-z0-9-]+)?)\).*$/i;
 const ALL_CHARACTERS_BEFORE_COLON = /^\(.+\):?/;
 const SPACES = /\s/g;
 
 // getOrientation :: String -> String
 const getOrientation = (x) => x.replace(ALL_CHARACTERS_BEFORE_COLON, '');
 
-// getBreakpointValues :: String -> String
+// getBreakpointValues :: String -> [String]
 const getBreakpointValues = (params) =>
   params
     .replace(SPACES, '')
@@ -18,6 +17,7 @@ const getBreakpointValues = (params) =>
 // makeBreakpointList :: Object -> [String]
 const makeBreakpointList = (x) =>
   Object.keys(x)
+    .slice(1)
     .map(toKebabCase)
     .join(', ');
 
