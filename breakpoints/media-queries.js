@@ -1,5 +1,5 @@
 /* eslint-disable consistent-return */
-const { pipe, head, tail } = require('@typographist/core');
+const { pipe } = require('@typographist/core');
 const {
   getOrientation,
   getBreakpointValues,
@@ -13,11 +13,11 @@ const {
   validateOrientation,
   validateBreakpointValue,
   lastBreakpointOrNot,
+  hasTwoArguments,
 } = require('./validators');
 
 // up :: (Object, Object) -> String | Void
 exports.up = (atrule, breakpoints) => {
-  const { params } = atrule;
   validateOrientation(atrule);
   validateBreakpointValue(breakpoints, atrule);
 
@@ -25,13 +25,12 @@ exports.up = (atrule, breakpoints) => {
     getBreakpointValues,
     calcMinWidth(breakpoints),
     withMinWidth,
-    withOrientationOrNot(getOrientation(params)),
-  )(params);
+    withOrientationOrNot(getOrientation(atrule.params)),
+  )(atrule.params);
 };
 
 // down :: (Object, Object) -> String | Void
 exports.down = (atrule, breakpoints) => {
-  const { params } = atrule;
   validateOrientation(atrule);
   validateBreakpointValue(breakpoints, atrule);
   lastBreakpointOrNot(breakpoints, atrule);
@@ -40,8 +39,8 @@ exports.down = (atrule, breakpoints) => {
     getBreakpointValues,
     calcMaxWidth(breakpoints),
     withMaxWidth,
-    withOrientationOrNot(getOrientation(params)),
-  )(params);
+    withOrientationOrNot(getOrientation(atrule.params)),
+  )(atrule.params);
 };
 
 // only :: (Object, Object) -> String | Void
@@ -71,22 +70,24 @@ exports.only = (atrule, breakpoints) => {
 // only :: (Object, Object) -> String | Void
 exports.between = (atrule, breakpoints) => {
   const { params } = atrule;
-
-  validateOrientation(atrule);
+  hasTwoArguments(atrule);
   validateBreakpointValue(breakpoints, atrule);
+  validateOrientation(atrule);
   lastBreakpointOrNot(breakpoints, atrule);
 
-  const min = pipe(
-    getBreakpointValues,
-    head,
-    calcMinWidth(breakpoints),
-  );
+  // min :: [String] -> String
+  const min = (x) => {
+    const [head] = getBreakpointValues(x);
 
-  const max = pipe(
-    getBreakpointValues,
-    tail,
-    calcMaxWidth(breakpoints),
-  );
+    return calcMinWidth(breakpoints)(head);
+  };
+
+  // max :: [String] -> String
+  const max = (x) => {
+    const [, ...tail] = getBreakpointValues(x);
+
+    return calcMaxWidth(breakpoints)(tail);
+  };
 
   const mediaQueries = withMinAndMaxWidth(min(params), max(params));
   const withOrientation = withOrientationOrNot(getOrientation(params));
