@@ -21,6 +21,7 @@ exports.up = (atrule, breakpoints) => {
   validateOrientation(atrule);
   validateBreakpointValue(breakpoints, atrule);
 
+  // String -> String
   return pipe(
     getBreakpointValues,
     calcMinWidth(breakpoints),
@@ -35,6 +36,7 @@ exports.down = (atrule, breakpoints) => {
   validateBreakpointValue(breakpoints, atrule);
   lastBreakpointOrNot(breakpoints, atrule);
 
+  // String -> String
   return pipe(
     getBreakpointValues,
     calcMaxWidth(breakpoints),
@@ -51,11 +53,13 @@ exports.only = (atrule, breakpoints) => {
   validateBreakpointValue(breakpoints, atrule);
   lastBreakpointOrNot(breakpoints, atrule);
 
+  // min :: String -> String
   const min = pipe(
     getBreakpointValues,
     calcMinWidth(breakpoints),
   );
 
+  // max :: String -> String
   const max = pipe(
     getBreakpointValues,
     calcMaxWidth(breakpoints),
