@@ -1,4 +1,4 @@
-const { cleanNode, transformAfterNodes } = require('../helpers');
+const { cleanNode, transformAfterNodes } = require('../../helpers');
 
 // isBubblingRule :: Object -> Boolean
 exports.isBubblingRule = ({ parent, selector }) =>

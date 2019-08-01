@@ -1,4 +1,4 @@
-const { cleanNode, transformAfterNodes } = require('../helpers');
+const { cleanNode, transformAfterNodes } = require('../../helpers');
 
 exports.isBubblingAtrule = ({ parent, name }) =>
   isValidMediaQuery(name) && parent && parent.type === 'rule';

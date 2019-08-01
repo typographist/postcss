@@ -1,4 +1,4 @@
-const { cleanNode, transformAfterNodes } = require('../helpers');
+const { cleanNode, transformAfterNodes } = require('../../helpers');
 
 const LAST_COMMA = /,\s*$/;
 const LINE_BREAKS_AND_SPACES = /[\n\s]/g;
