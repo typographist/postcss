@@ -54,28 +54,28 @@
     "@semantic-release/changelog": "^3.0.4",
     "@semantic-release/commit-analyzer": "^6.2.0",
     "@semantic-release/git": "^7.0.16",
-    "@semantic-release/github": "^5.4.2",
-    "@semantic-release/npm": "^5.1.12",
+    "@semantic-release/github": "^5.4.3",
+    "@semantic-release/npm": "^5.1.15",
     "@semantic-release/release-notes-generator": "^7.2.0",
     "commitizen": "^4.0.3",
     "coveralls": "^3.0.5",
-    "cross-env": "5.2.0",
+    "cross-env": "^5.2.1",
     "cz-conventional-changelog": "^3.0.2",
-    "eslint": "^6.1.0",
+    "eslint": "^6.3.0",
     "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-config-prettier": "^6.0.0",
+    "eslint-config-prettier": "^6.2.0",
     "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-jest": "^22.13.6",
+    "eslint-plugin-jest": "^22.17.0",
     "eslint-plugin-prettier": "3.1.0",
-    "husky": "^3.0.0",
+    "husky": "^3.0.5",
     "jest": "^24.8.0",
-    "lint-staged": "^9.1.0",
+    "lint-staged": "^9.2.5",
     "nyc": "14.1.1",
     "prettier": "^1.18.2",
     "rimraf": "^3.0.0"
   },
   "dependencies": {
     "@typographist/core": "^21.0.0",
-    "postcss": "^7.0.17"
+    "postcss": "^7.0.18"
   }
 }
