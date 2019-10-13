@@ -1,3 +1,11 @@
+## [5.0.4](https://github.com/typographist/postcss/compare/v5.0.3...v5.0.4) (2019-10-13)
+
+
+### Bug Fixes
+
+* add export default for plugin ([6f01227](https://github.com/typographist/postcss/commit/6f01227bea9136ebfc28b1e03f9c2ec8b5b0fbbc))
+* fix path for plugin ([b04929c](https://github.com/typographist/postcss/commit/b04929c2c7ad675d3b3fcd99e1bd5a15e4efd2b9))
+
 ## [5.0.3](https://github.com/typographist/postcss/compare/v5.0.2...v5.0.3) (2019-07-29)
 
 
