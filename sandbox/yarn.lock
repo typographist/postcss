@@ -39,6 +39,19 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.6.8.tgz#e469b4bf9d1c9832aee4907ba8a051494357c12c"
   integrity sha512-aX+gFgA5GHcDi89KG5keey2zf0WfZk/HAQotEamsK2kbey+8yGKcson0hbK8E+v0NArlCJQCqMP161YhV6ZXLg==
 
+"@typographist/core@^21.0.0":
+  version "21.0.1"
+  resolved "https://registry.yarnpkg.com/@typographist/core/-/core-21.0.1.tgz#95a205939055a91150555f97432f179ed592bfa2"
+  integrity sha512-PCf/AGk8JCOo5XSkwgxWABelvCllBzti+nh8oYjhv9A6mrZJ0lTyePrU4s3Y9bYu9ao/viCX5pcDNgEZHhiPhA==
+
+"@typographist/postcss@^5.0.4":
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/@typographist/postcss/-/postcss-5.0.4.tgz#42d8eb304b3c307ba12f5692045e57d42f0bfde0"
+  integrity sha512-SnyLT8zytj2cqTXDrQxINmIwg5c8KQdOOWpcPxgtpl2JBAF7EmLVO2tIpqft76GM8L29YSMvP0SmAfrS0CMAtw==
+  dependencies:
+    "@typographist/core" "^21.0.0"
+    postcss "^7.0.18"
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
@@ -1402,6 +1415,15 @@ postcss@^7.0.0, postcss@^7.0.17, postcss@^7.0.7:
   version "7.0.17"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-7.0.17.tgz#4da1bdff5322d4a0acaab4d87f3e782436bad31f"
   integrity sha512-546ZowA+KZ3OasvQZHsbuEpysvwTZNGJv9EfyCQdsIDltPSWHAeTQ5fQy/Npi2ZDtLI3zs7Ps/p6wThErhm9fQ==
+  dependencies:
+    chalk "^2.4.2"
+    source-map "^0.6.1"
+    supports-color "^6.1.0"
+
+postcss@^7.0.18:
+  version "7.0.18"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-7.0.18.tgz#4b9cda95ae6c069c67a4d933029eddd4838ac233"
+  integrity sha512-/7g1QXXgegpF+9GJj4iN7ChGF40sYuGYJ8WZu8DZWnmhQ/G36hfdk3q9LBJmoK+lZ+yzZ5KYpOoxq7LF1BxE8g==
   dependencies:
     chalk "^2.4.2"
     source-map "^0.6.1"

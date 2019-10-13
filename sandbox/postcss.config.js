@@ -1,8 +1,8 @@
-const { typographist, ratios } = require('..');
+const { ratios } = require('@typographist/postcss');
 
-module.exports = () => ({
+module.exports = {
   plugins: [
-    typographist({
+    require('@typographist/postcss')({
       base: '16px',
       lineHeight: 1.5,
       ratio: ratios.MINOR_SECOND,
@@ -22,4 +22,4 @@ module.exports = () => ({
       },
     }),
   ],
-});
+};
