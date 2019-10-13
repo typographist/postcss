@@ -23,60 +23,54 @@ const defaultConfig = {
   ratio: 1.333,
 };
 
-const typographist = plugin(
-  'typographist',
-  (config = defaultConfig) => (root) => {
-    const breakpointsMap = makeBreakpointsMap(config);
+exports.ratios = ratios;
 
-    root.walkDecls((decl) => {
-      if (isStep(decl)) {
-        step(decl, breakpointsMap);
-      }
+module.exports = plugin('typographist', (config = defaultConfig) => (root) => {
+  const breakpointsMap = makeBreakpointsMap(config);
 
-      if (isStepFunction(decl, breakpointsMap)) {
-        stepFunction(decl, breakpointsMap);
-      }
-    });
+  root.walkDecls((decl) => {
+    if (isStep(decl)) {
+      step(decl, breakpointsMap);
+    }
 
-    root.walkAtRules((atrule) => {
-      if (isBubblingAtrule(atrule)) {
-        bubblingAtrule(atrule);
-      }
-    });
+    if (isStepFunction(decl, breakpointsMap)) {
+      stepFunction(decl, breakpointsMap);
+    }
+  });
 
-    root.walkAtRules((atrule) => {
-      const atrules = {
-        root: renderRoot,
-        base: renderBase,
-        up: renderUp,
-        down: renderDown,
-        only: renderOnly,
-        between: renderBetween,
-      };
+  root.walkAtRules((atrule) => {
+    if (isBubblingAtrule(atrule)) {
+      bubblingAtrule(atrule);
+    }
+  });
 
-      if (atrules[atrule.name]) {
-        atrules[atrule.name](atrule, breakpointsMap);
-      }
-    });
+  root.walkAtRules((atrule) => {
+    const atrules = {
+      root: renderRoot,
+      base: renderBase,
+      up: renderUp,
+      down: renderDown,
+      only: renderOnly,
+      between: renderBetween,
+    };
 
-    root.walkRules((rule) => {
-      if (isBubblingRule(rule)) {
-        bubblingRule(rule);
-      }
+    if (atrules[atrule.name]) {
+      atrules[atrule.name](atrule, breakpointsMap);
+    }
+  });
 
-      if (isNestedRule(rule)) {
-        nestedRule(rule);
-      }
-    });
+  root.walkRules((rule) => {
+    if (isBubblingRule(rule)) {
+      bubblingRule(rule);
+    }
 
-    // Remove empty rules.
-    root.walkRules((rule) => {
-      if (!rule.nodes.length) rule.remove();
-    });
-  },
-);
+    if (isNestedRule(rule)) {
+      nestedRule(rule);
+    }
+  });
 
-module.exports = {
-  ratios,
-  typographist,
-};
+  // Remove empty rules.
+  root.walkRules((rule) => {
+    if (!rule.nodes.length) rule.remove();
+  });
+});
