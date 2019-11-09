@@ -1,6 +1,6 @@
 {
   "name": "@typographist/postcss",
-  "version": "5.0.3",
+  "version": "5.0.4",
   "description": "Toolkit for the rapid construction of interfaces with high quality typography.",
   "main": "index.js",
   "scripts": {
