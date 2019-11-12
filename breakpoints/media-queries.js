@@ -54,16 +54,10 @@ exports.only = (atrule, breakpoints) => {
   lastBreakpointOrNot(breakpoints, atrule);
 
   // min :: String -> String
-  const min = pipe(
-    getBreakpointValues,
-    calcMinWidth(breakpoints),
-  );
+  const min = pipe(getBreakpointValues, calcMinWidth(breakpoints));
 
   // max :: String -> String
-  const max = pipe(
-    getBreakpointValues,
-    calcMaxWidth(breakpoints),
-  );
+  const max = pipe(getBreakpointValues, calcMaxWidth(breakpoints));
 
   const mediaQueries = withMinAndMaxWidth(min(params), max(params));
   const withOrientation = withOrientationOrNot(getOrientation(params));
