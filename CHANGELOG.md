@@ -1,3 +1,10 @@
+## [5.1.1](https://github.com/typographist/postcss/compare/v5.1.0...v5.1.1) (2019-11-12)
+
+
+### Bug Fixes
+
+* fix function "calcMaxWidth" ([5d80431](https://github.com/typographist/postcss/commit/5d804318fb1fdd25d9852faf5458002c3847d6dd))
+
 # [5.1.0](https://github.com/typographist/postcss/compare/v5.0.4...v5.1.0) (2019-11-12)
 
 
