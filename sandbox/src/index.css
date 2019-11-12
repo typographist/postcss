@@ -9,3 +9,27 @@ body {
 h1 {
   font-size: step(1);
 }
+
+.foo {
+  color: red;
+  font-size: 0step;
+
+  @only (tablet): portrait {
+    color: black;
+    font-size: 4step;
+  }
+
+  @between (tablet, desktop):landscape {
+    color: lightblue;
+  }
+
+  @down (tablet):portrait {
+    color: green;
+    font-size: 1step;
+  }
+
+  @up (desktop):landscape {
+    color: gold;
+    font-size: 2step;
+  }
+}

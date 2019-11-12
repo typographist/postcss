@@ -7,10 +7,10 @@
     "start": "npx postcss src/index.css -o dist/index.css -w"
   },
   "devDependencies": {
-    "postcss": "^7.0.21",
     "postcss-cli": "^6.1.3"
   },
   "dependencies": {
-    "@typographist/postcss": "^5.1.0"
+    "@typographist/postcss": "^5.1.0",
+    "postcss": "^7.0.21"
   }
 }

@@ -5,22 +5,19 @@
   font-size: 75%;
 }
 
-@media  (min-width: 48em) {
-
+@media (min-width: 48em) {
   :root {
     font-size: calc(75% + 1 * ((100vw - 48em) / 224));
   }
 }
 
-@media  (min-width: 62em) {
-
+@media (min-width: 62em) {
   :root {
     font-size: calc(81.25% + 1.5 * ((100vw - 62em) / 208));
   }
 }
 
-@media  (min-width: 75em) {
-
+@media (min-width: 75em) {
   :root {
     font-size: 100%;
   }
@@ -31,22 +28,19 @@ body {
   line-height: 2rem;
 }
 
-@media  (min-width: 48em) {
-
+@media (min-width: 48em) {
   body {
     font-size: 1.3076923076923077rem;
   }
 }
 
-@media  (min-width: 62em) {
-
+@media (min-width: 62em) {
   body {
     font-size: 1.3103448275862069rem;
   }
 }
 
-@media  (min-width: 75em) {
-
+@media (min-width: 75em) {
   body {
     font-size: 1.3125rem;
   }
@@ -56,23 +50,52 @@ h1 {
   font-size: 1.4166666666666667rem;
 }
 
-@media  (min-width: 48em) {
-
+@media (min-width: 48em) {
   h1 {
     font-size: 1.4615384615384615rem;
   }
 }
 
-@media  (min-width: 62em) {
-
+@media (min-width: 62em) {
   h1 {
     font-size: 1.5862068965517242rem;
   }
 }
 
-@media  (min-width: 75em) {
-
+@media (min-width: 75em) {
   h1 {
     font-size: 1.5625rem;
+  }
+}
+
+.foo {
+  color: red;
+  font-size: 1.3333333333333333rem;
+}
+
+@media (min-width: 48em) and (max-width: 61.99875em) and (orientation: portrait) {
+  .foo {
+    color: black;
+    font-size: 2.076923076923077rem;
+  }
+}
+
+@media (min-width: 48em) and (max-width: 74.99875em) and (orientation: landscape) {
+  .foo {
+    color: lightblue;
+  }
+}
+
+@media (max-width: 61.99875em) and (orientation: portrait) {
+  .foo {
+    color: green;
+    font-size: 1.4615384615384615rem;
+  }
+}
+
+@media (min-width: 62em) and (orientation: landscape) {
+  .foo {
+    color: gold;
+    font-size: 1.8620689655172413rem;
   }
 }
