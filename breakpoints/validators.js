@@ -28,18 +28,18 @@ const validateOrientation = (atrule) => {
 
 // validateBreakpointValue ::  (Object, Object) -> Void
 const validateBreakpointValue = (breakpoints, atrule) => {
-  getBreakpointValues(atrule.params).forEach((p) => {
-    if (/[A-Z]/.test(p)) {
+  getBreakpointValues(atrule.params).forEach((param) => {
+    if (/[A-Z]/.test(param)) {
       throw atrule.error(
-        `${PREFIX} '${p}' is invalid breakpoint name. Set the name to lowercase, use kebab case notation. Example: 'desktop' or 'lg-desktop'.`,
+        `${PREFIX} '${param}' is invalid breakpoint name. Set the name to lowercase, use kebab case notation. Example: 'desktop' or 'lg-desktop'.`,
       );
     }
 
-    const isValidValue = !!breakpoints[camelize(p)] || hasPxOrEm(p);
+    const isValidValue = !!breakpoints[camelize(param)] || hasPxOrEm(param);
 
     if (!isValidValue) {
       throw atrule.error(
-        `${PREFIX} '${p}' is invalid breakpoint name. Use '${makeBreakpointList(
+        `${PREFIX} '${param}' is invalid breakpoint name. Use '${makeBreakpointList(
           breakpoints,
         )}' or values with pixels or ems. Example: @up(tablet) or @up(1200px) or @up(60em).`,
       );
