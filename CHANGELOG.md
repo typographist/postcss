@@ -1,3 +1,10 @@
+# [5.1.0](https://github.com/typographist/postcss/compare/v5.0.4...v5.1.0) (2019-11-12)
+
+
+### Features
+
+* add ratios ([12940bb](https://github.com/typographist/postcss/commit/12940bb980dce94a5953df2ed18440fa87a6d79a))
+
 ## [5.0.4](https://github.com/typographist/postcss/compare/v5.0.3...v5.0.4) (2019-10-13)
 
 
