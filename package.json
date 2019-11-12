@@ -46,7 +46,7 @@
     "access": "public"
   },
   "peerDependencies": {
-    "postcss": "^7.0.17"
+    "postcss": "^7.0.21"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.2.0",
@@ -71,11 +71,11 @@
     "jest": "^24.8.0",
     "lint-staged": "^9.4.2",
     "nyc": "14.1.1",
+    "postcss": "^7.0.21",
     "prettier": "^1.18.2",
     "rimraf": "^3.0.0"
   },
   "dependencies": {
-    "@typographist/core": "^21.0.0",
-    "postcss": "^7.0.18"
+    "@typographist/core": "^21.0.0"
   }
 }
