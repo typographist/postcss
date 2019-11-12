@@ -1,5 +1,3 @@
-const { pipe } = require('@typographist/core');
-
 const { toEm, toPx, toEmOrNot, hasEm, camelize } = require('../utils');
 const { getNextBreakpointValue } = require('./helpers');
 
@@ -23,10 +21,12 @@ exports.calcMaxWidth = (breakpoints) => (breakpoint) => {
   const breakParams = normalizeBreakParams(breakpoint);
 
   if (breakpoints[breakParams]) {
-    return pipe(
-      getNextBreakpointValue(breakParams),
-      calcMaxBreakValue,
-    )(breakpoints);
+    const nextBreakpointValue = getNextBreakpointValue(
+      breakParams,
+      breakpoints,
+    );
+
+    return calcMaxBreakValue(nextBreakpointValue);
   }
 
   if (hasEm(breakParams)) {
