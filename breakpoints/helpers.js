@@ -46,7 +46,7 @@ const getCurrentIndex = (name, breakpoints) =>
   Object.keys(breakpoints).indexOf(name);
 
 // getNextBreakpointValue :: String  -> Object -> String
-const getNextBreakpointValue = (name) => (breakpoints) => {
+const getNextBreakpointValue = (name, breakpoints) => {
   const currentIndex = getCurrentIndex(name, breakpoints);
   const nextBreakpointName = Object.keys(breakpoints)[currentIndex + 1];
 
